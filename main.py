@@ -11,4 +11,3 @@ dataDB = getDataFromDataBaseExecute(createConnection(),sqlGet)
 
 for i in dataDB:
     print(i)
-#123
