@@ -59,4 +59,3 @@ def getDataFromDataBaseExecutemany (connection, query, data):
     except OperationalError as e:
         print(f"The error '{e}' occurred")
     return result
-#123
