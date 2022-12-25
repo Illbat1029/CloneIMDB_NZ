@@ -9,7 +9,7 @@ sqlGet = """SELECT * FROM user"""
 executemanyQuery(createConnection(),sql,data)
 #$sdfsdfsdfsdfsdfsd
 #fsdfsdfsdfsdfsdf
-#dsfgdfsdfsdfsd
+
 dataDB = getDataFromDataBaseExecute(createConnection(),sqlGet)
 
 for i in dataDB:
