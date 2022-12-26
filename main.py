@@ -1,15 +1,18 @@
 
 import sys
 import os
-
-
-from PyQt5.QtCore import QPropertyAnimation, QEasingCurve
+import bcrypt
+from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve
 
 
 from Login_page import *
 from main_page import *
 from fogort_GUI import *
 from search_field import *
+from userDataValidation import *
+from DB_connector import *
+
+
 if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     app = QtWidgets.QApplication(sys.argv)
@@ -28,11 +31,23 @@ if __name__ == "__main__":
 
     def page_sign():
         ui.stackedWidget.setCurrentIndex(0)
+
     def page_log():
         ui.stackedWidget.setCurrentIndex(1)
 
+
     def login():
-        window.show()
+        #DONTUSE ="""
+        #CREATE TABLE user (
+        #id INT AUTO_INCREMENT PRIMARY KEY,
+        #username VARCHAR(30),
+        #email VARCHAR(30),
+        #password CHAR(60)
+        #)
+        #"""
+        if len(ui.user_or_email.text())!=0 and len(ui.password.text()) !=0 and AuthenticateUser(ui.user_or_email.text(), ui.password.text()):
+            window.show()
+
 
     def fogort():
 
