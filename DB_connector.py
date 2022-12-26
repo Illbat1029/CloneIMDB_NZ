@@ -8,7 +8,7 @@ def createConnection():
             host="34.88.49.141",
             user="root",
             password="Hu@n584217",
-            database="user"
+            database="dataIMDB"
         )
         print("Connection to MySQL DB successful")
     except Error as e:
