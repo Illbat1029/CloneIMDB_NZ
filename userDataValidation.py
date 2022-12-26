@@ -7,6 +7,19 @@ from email.mime.text import MIMEText
 import smtplib
 import random
 
+def checkUsernameExist(username):
+    con = createConnection()
+    cur = con.cursor()
+    existUsernameSQL = """
+        SELECT * FROM user WHERE username =%s"""
+    cur.execute(existUsernameSQL, [username])
+    existUsername = cur.fetchone()
+    if existUsername != None:
+        return True
+    if len(username) > 4 and len(username) < 18:
+        return False
+    return True
+
 def validatePassword(password):
     l,u,p,d = 0,0,0,0
     capitAlalphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -14,7 +27,7 @@ def validatePassword(password):
     specialChar = "!@#$%^&*()_+=-/><"
     digits = "0123456789"
     if(len(password)>=8):
-        for i in s:
+        for i in password:
             if(i in smallAlphabets):
                 l+=1
             if (i in capitAlalphabets):
@@ -23,7 +36,7 @@ def validatePassword(password):
                 d+=1
             if (i in specialChar):
                 p+=1
-    if(l>=1 and u>=1 and p>=1 and d >=1 and l+p+u+d==len(password))
+    if(l>=1 and u>=1 and p>=1 and d >=1 and l+p+u+d==len(password)):
         return True
     else:
         print( "Bad password. Your password must be at least 8 characters including a lowercase letter, an uppercase letter, a number, and a special char!")
@@ -52,48 +65,51 @@ def checkEmailExist(email):
     con = createConnection()
     cur = con.cursor()
     existMailSQL = """
-    SELECT * FROM users WHERE email =%s"""
-    existMail = cur.execute(existMailSQL,[email]).fetchone()
-    if len(existMail) == 0 and re.match(pattern,email):
+    SELECT * FROM user WHERE email =%s"""
+    cur.execute(existMailSQL,[email])
+    existMail = cur.fetchone()
+    if existMail != None:
         return True
-    return False
+    if re.match(pattern,email):
+        return False
+    return True
 
 def checkEmailForgoutPassword(email):
     con = createConnection()
     cur = con.cursor()
     chekEmailSQL = """
-    SELECT * FROM users WHERE email = %s"""
-    existMailForgoutPassword = cur.execute(chekEmailSQL, [email]).fetchone()
-    if len(existMailForgoutPassword) > 0 :
+    SELECT * FROM user WHERE email = %s"""
+    cur.execute(chekEmailSQL, [email])
+    existMailForgoutPassword = cur.fetchone()
+    if existMailForgoutPassword != None:
         return True
     return False
-def RegistrationUser(username, email, password):
+def RegistrationUser(username, email, password, repeatPassword):
     con = createConnection()
     cur = con.cursor()
-    existSQL = """
-    SELECT * FROM users WHERE username =%s"""
     createAcconutSQL = """
     INSERT INTO user (username, email, password) VALUES (%s, %s, %s)"""
-    existUser = cur.execute(existSQL, [username]).fetchone()
-    if len(existUser) == 0 and checkEmailExist(email) and validatePassword(password):
+    if checkUsernameExist(username) == False and checkEmailExist(email) == False and validatePassword(password) and password == repeatPassword:
         cur.execute(createAcconutSQL, [(username), (email), (bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))])
         con.commit()
         print ("Account has been created!")
     else:
         print("User exist!")
+
 def gennerateVereficationCodeEmail():
     code = ''
     for i in range(6):
-        code = code + random.choise(list('1234567890'))
+        code = code + random.choice(list('1234567890'))
     return code
 verCode = gennerateVereficationCodeEmail()
+
 def sendMailForgoutPassword(userEmail):
     global verCode
     if checkEmailForgoutPassword(userEmail)!=True:
         print("This is email in not exist")
         return 0
     msg = MIMEMultipart()
-    message = "Your verecication code is: "+ verCode +"\nPlese, enter this code in application!"
+    message = "Your verecication code is: " + verCode + "\nPlese, enter this code in application!"
     passwordEmail = "gdqmnzokxrktxbok"
     msg['From'] = "srmp.app@gmail.com"
     msg['To'] = userEmail
@@ -120,10 +136,10 @@ def ForgoutPassword(email, verificationCode, password, repeatPassword):
         con.commit()
         print("Your password has been successfully changed")
         return True
-    elif verificationCode!= verCode:
-        print ("Bad verefication code!")
+    elif verificationCode != verCode:
+        print("Bad verefication code!")
     elif password!=repeatPassword:
-        print ("Password and confirm password does not match.")
+        print("Password and confirm password does not match.")
     else:
         print("Bad password!")
     return False
