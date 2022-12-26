@@ -108,13 +108,13 @@ color:white;
       <property name="minimumSize">
        <size>
         <width>200</width>
-        <height>300</height>
+        <height>400</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
         <width>200</width>
-        <height>300</height>
+        <height>400</height>
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -145,7 +145,7 @@ color:white;
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../../Documents/baza/res.qrc">:/icon/door-key-access-svgrepo-com.svg</pixmap>
+          <pixmap>:/icon/door-key-access-svgrepo-com.svg</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -176,7 +176,7 @@ color:white;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="emai_warn_label">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -208,7 +208,7 @@ color:white;
           <number>13</number>
          </property>
          <property name="text">
-          <string>Wrong email</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -232,7 +232,7 @@ color:white;
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="sent_mail_button">
          <property name="text">
           <string>Sent</string>
          </property>
@@ -265,7 +265,7 @@ color:white;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="code_warn_label">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -297,7 +297,7 @@ color:white;
           <number>13</number>
          </property>
          <property name="text">
-          <string>Wrong code</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -331,7 +331,7 @@ color:white;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="newpass_warn_label">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -363,7 +363,7 @@ color:white;
           <number>13</number>
          </property>
          <property name="text">
-          <string>nie podchody po pravilam</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -397,7 +397,7 @@ color:white;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="confirmpass_warn_label">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -429,10 +429,33 @@ color:white;
           <number>13</number>
          </property>
          <property name="text">
-          <string>nie podchody po pravilam</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="change_pass_button">
+         <property name="text">
+          <string>Sent</string>
          </property>
         </widget>
        </item>
@@ -443,7 +466,7 @@ color:white;
   </widget>
  </widget>
  <resources>
-  <include location="../../Documents/baza/res.qrc"/>
+  <include location="C:/Users/eblat/Documents/baza/res.qrc"/>
  </resources>
  <connections/>
 </ui>

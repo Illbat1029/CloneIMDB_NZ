@@ -21,11 +21,11 @@ if __name__ == "__main__":
     ui = Ui_Form()
     ui.setupUi(Form)
     window = QtWidgets.QWidget()
-    menu=Main_page()
+    menu = Main_page()
     menu.setupUi(window)
     Form.show()
-    window2=QtWidgets.QWidget()
-    search=Filter()
+    window2 = QtWidgets.QWidget()
+    search = Filter()
     search.setupUi(window2)
 
 
@@ -45,8 +45,12 @@ if __name__ == "__main__":
         #password CHAR(60)
         #)
         #"""
-        if len(ui.user_or_email.text())!=0 and len(ui.password.text()) !=0 and AuthenticateUser(ui.user_or_email.text(), ui.password.text()):
+        if len(ui.user_or_email.text()) != 0 and len(ui.password.text()) != 0 and AuthenticateUser(ui.user_or_email.text(), ui.password.text()):
             window.show()
+
+    def register():
+        sendMailForgoutPassword(ui.email.text())
+        RegistrationUser(ui.username.text(), ui.email.text(), ui.password_sign.text(), ui.reapet_passwd.text())
 
 
     def fogort():
@@ -55,7 +59,8 @@ if __name__ == "__main__":
     #переключение между логирование и регитсрациец
     ui.to_register.clicked.connect(page_sign)
 
-
+    def gsg():
+        print("zaebok")
 
 
     def slide_menu():
@@ -135,8 +140,6 @@ if __name__ == "__main__":
     ui.bttn_forgort.clicked.connect(fogort)
     ui.bttn_login.clicked.connect(login)
     ui.bttn_login.clicked.connect(Form.close)
-
-
-
+    ui.bttn_register.clicked.connect(register)
 
     sys.exit(app.exec_())

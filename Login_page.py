@@ -14,13 +14,16 @@ from main_page import Main_page
 from fogort_GUI import Fogort_page
 class Ui_Form(object):
 
-
+    def gsg(self):
+        print("zaebok")
 
     def openFogortPage(self):
         self.window=QtWidgets.QMainWindow()
         self.ui=Fogort_page()
         self.ui.setupUi(self.window)
+        self.ui.sent_mail_button.clicked.connect(self.gsg)
         self.window.show()
+
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
