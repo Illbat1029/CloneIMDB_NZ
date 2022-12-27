@@ -11,7 +11,7 @@ from fogort_GUI import *
 from search_field import *
 from userDataValidation import *
 from DB_connector import *
-
+dataUser = []
 
 if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
@@ -37,6 +37,7 @@ if __name__ == "__main__":
 
 
     def login():
+        global dataUser
         #DONTUSE ="""
         #CREATE TABLE user (
         #id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,6 +47,10 @@ if __name__ == "__main__":
         #)
         #"""
         if len(ui.user_or_email.text()) != 0 and len(ui.password.text()) != 0 and AuthenticateUser(ui.user_or_email.text(), ui.password.text()):
+            dataUser=getDataUser([ui.user_or_email.text()])
+            updateLastVisitDataTime(dataUser[0])
+            #createFilm()
+            getfilm()
             window.show()
 
     def register():
