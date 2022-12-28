@@ -10,21 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from main_page import Main_page
-from fogort_GUI import Fogort_page
+
 class Ui_Form(object):
-
-    def gsg(self):
-        print("zaebok")
-
-    def openFogortPage(self):
-        self.window=QtWidgets.QMainWindow()
-        self.ui=Fogort_page()
-        self.ui.setupUi(self.window)
-        self.ui.sent_mail_button.clicked.connect(self.gsg)
-        self.window.show()
-
-
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1000, 600)
@@ -251,6 +238,14 @@ class Ui_Form(object):
         self.user_or_email.setText("")
         self.user_or_email.setObjectName("user_or_email")
         self.verticalLayout_3.addWidget(self.user_or_email)
+        self.push_up_login_notifikation = QtWidgets.QLabel(self.frame_2)
+        self.push_up_login_notifikation.setMaximumSize(QtCore.QSize(16777215, 0))
+        font = QtGui.QFont()
+        font.setPointSize(5)
+        self.push_up_login_notifikation.setFont(font)
+        self.push_up_login_notifikation.setStyleSheet("color:red;")
+        self.push_up_login_notifikation.setObjectName("push_up_login_notifikation")
+        self.verticalLayout_3.addWidget(self.push_up_login_notifikation)
         spacerItem9 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_3.addItem(spacerItem9)
         self.password = QtWidgets.QLineEdit(self.frame_2)
@@ -318,6 +313,7 @@ class Ui_Form(object):
         self.label_5.setText(_translate("Form", "Log in"))
         self.label_6.setText(_translate("Form", "Enter your information "))
         self.user_or_email.setPlaceholderText(_translate("Form", "username or email"))
+        self.push_up_login_notifikation.setText(_translate("Form", "Invalid login or password"))
         self.password.setPlaceholderText(_translate("Form", "password"))
         self.bttn_login.setText(_translate("Form", "Login"))
         self.bttn_forgort.setText(_translate("Form", "Forgot password?"))
