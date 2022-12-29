@@ -46,11 +46,14 @@ if __name__ == "__main__":
         #password CHAR(60)
         #)
         #"""
+
         if len(ui.user_or_email.text()) != 0 and len(ui.password.text()) != 0 and AuthenticateUser(ui.user_or_email.text(), ui.password.text()):
             dataUser=getDataUser([ui.user_or_email.text()])
             updateLastVisitDataTime(dataUser[0])
             #createFilm()
-            getfilm()
+            #getfilm()
+            getDataFilmIMDB()
+            #getfilm()
             window.show()
 
     def register():
