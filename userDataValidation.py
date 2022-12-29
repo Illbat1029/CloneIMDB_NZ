@@ -6,6 +6,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
 import random
+from datetime import datetime, date
+
 
 def checkUsernameExist(username):
     con = createConnection()
@@ -45,10 +47,6 @@ def AuthenticateUser (login, password):
     sqlAuthenticateUser = """
     SELECT password FROM user WHERE username = %s 
     """
-    s = """SELECT * FROM user"""
-    r = getDataFromDataBaseExecute(createConnection(),s)
-    for i in r:
-        print(i)
     con = createConnection()
     cur = con.cursor()
     cur.execute(sqlAuthenticateUser,[login])
@@ -65,7 +63,7 @@ def checkEmailExist(email):
     con = createConnection()
     cur = con.cursor()
     existMailSQL = """
-    SELECT * FROM user WHERE email =%s"""
+    SELECT * FROM user WHERE "email" =%s"""
     cur.execute(existMailSQL,[email])
     existMail = cur.fetchone()
     if existMail != None:
@@ -87,8 +85,7 @@ def checkEmailForgoutPassword(email):
 def RegistrationUser(username, email, password, repeatPassword):
     con = createConnection()
     cur = con.cursor()
-    createAcconutSQL = """
-    INSERT INTO user (username, email, password) VALUES (%s, %s, %s)"""
+    createAcconutSQL = """INSERT INTO user (username, email, password) VALUES (%s, %s, %s)"""
     if checkUsernameExist(username) == False and checkEmailExist(email) == False and validatePassword(password) and password == repeatPassword:
         cur.execute(createAcconutSQL, [(username), (email), (bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))])
         con.commit()
@@ -143,3 +140,29 @@ def ForgoutPassword(email, verificationCode, password, repeatPassword):
     else:
         print("Bad password!")
     return False
+
+def getDataUser (username):
+    con = createConnection()
+    cur = con.cursor()
+    sqlGetDataUser = """
+    SELECT * FROM user WHERE username = %s"""
+    cur.execute(sqlGetDataUser, username)
+    userData = cur.fetchone()
+    return userData
+
+def updateLastVisitDataTime (id):
+    con = createConnection()
+    cur = con.cursor()
+    sqlUpdateData = """
+    UPDATE user SET lastvisitdata = %s WHERE id = %s"""
+    cur.execute(sqlUpdateData, [(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), (id)])
+    con.commit()
+    print ("Update last visit data successful!")
+
+
+
+
+
+
+
+
