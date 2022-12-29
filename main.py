@@ -11,6 +11,7 @@ from fogort_GUI import *
 from search_field import *
 from userDataValidation import *
 from DB_connector import *
+from getDataFromIMDB import *
 dataUser = []
 
 if __name__ == "__main__":
@@ -52,8 +53,9 @@ if __name__ == "__main__":
             updateLastVisitDataTime(dataUser[0])
             #createFilm()
             #getfilm()
-            getDataFilmIMDB()
-            #getfilm()
+            #getDataFilmIMDB()
+            getfilmImage()
+            #existFilmDatabase("The Shawshank Redemption", 1994)
             window.show()
 
     def register():

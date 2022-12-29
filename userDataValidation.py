@@ -7,14 +7,7 @@ from email.mime.text import MIMEText
 import smtplib
 import random
 from datetime import datetime, date
-import base64
-from PIL import Image
-import io
-import imdb
-from imdb import Cinemagoer
-import requests
-import urllib
-import os
+
 
 def checkUsernameExist(username):
     con = createConnection()
@@ -167,120 +160,7 @@ def updateLastVisitDataTime (id):
     print ("Update last visit data successful!")
 
 
-def createFilm(filmname, description, country, genre, language, releasedata, runtime, score, vote, director, actors):
-    file = open("Images_Film/1.png", 'rb').read()
-    file = base64.b64encode(file)
-    con = createConnection()
-    cur = con.cursor()
-    sqlInsertFim = """
-    INSERT INTO films (filmname, description, country, gen, language, releasedata, runtime, score, vote, director, actors, picture) 
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s )
-    """
-    args = (filmname,
-            description,
-            country,
-            genre,
-            language,
-            releasedata,
-            runtime,
-            score,
-            vote,
-            director,
-            actors,
-            file)
-    cur.execute(sqlInsertFim,args)
-    con.commit()
-def getfilm():
-    con = createConnection()
-    cur = con.cursor()
-    sqlGetFilm ="""
-    SELECT picture FROM films WHERE id = 3"""
-    cur.execute(sqlGetFilm)
-    data = cur.fetchall()
-    image = data[0][0]
-    binary_data = base64.b64decode(image)
-    image = Image.open(io.BytesIO(binary_data))
-    image.show()
 
-def downloadImages(imURL):
-    urllib.request.urlretrieve(imURL, "Images_Film/1.png")
-def getDataFilmIMDB():
-    ia = imdb.IMDb()
-    code = "0133093"
-
-    ib = Cinemagoer()
-    movie = ia.get_movie(code)
-
-    #name film and all data
-    series = ia.get_movie(code)
-    print("NAME:")
-    print(series)
-
-    # description
-    outline = series.data['plot outline']
-    print("Description:")
-    print(outline)
-
-    #countries
-    country = "" #series.data['countries'][0]
-    for c in series.data['countries']:
-        country = country+c+";"
-    print("Country:")
-    print(country)
-
-    # genre
-    print("GENRE:")
-    genre = ""
-    for i in series.data['genres']:
-        genre = genre + i+";"
-    print(genre)
-
-    #language
-    print("Language:")
-    lang = ""
-    for lan in movie['language']:
-        lang = lang +lan+";"
-    print(lang)
-
-    #release data
-    year = series.data['year']
-    print("RELEASE:")
-    print(year)
-
-    #runtime
-    runtimes = series.data['runtimes'][0]
-    print("RUNTIME:")
-    print(runtimes)
-
-    #director
-    print("DIRECTOR:")
-    directorS = ""
-    try:
-        for director in movie['director']:
-            directorS = directorS + str(director) +";"
-    except:
-        directorS = ""
-        print("BRAK")
-    print(directorS)
-
-
-    #actor
-    print("ACTORS:")
-    cast = ""
-    c = series.data['cast']
-    for i in range(len(c)):
-        cast = cast +str(c[i])+";"
-    print(cast)
-
-    #images
-    print("IMAGES URL:")
-    cover = series.data['cover url']
-    #downloadImages(cover)
-    print(cover)
-
-    if directorS == "":
-        directorS = "BRAK"
-    #createFilm(str(series), outline, country, genre, lang,year,runtimes,0,0,dir,cast)
 
 
 
