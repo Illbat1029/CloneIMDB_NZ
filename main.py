@@ -39,23 +39,12 @@ if __name__ == "__main__":
 
     def login():
         global dataUser
-        #DONTUSE ="""
-        #CREATE TABLE user (
-        #id INT AUTO_INCREMENT PRIMARY KEY,
-        #username VARCHAR(30),
-        #email VARCHAR(30),
-        #password CHAR(60)
-        #)
-        #"""
-
         if len(ui.user_or_email.text()) != 0 and len(ui.password.text()) != 0 and AuthenticateUser(ui.user_or_email.text(), ui.password.text()):
-            dataUser=getDataUser([ui.user_or_email.text()])
+            dataUser = getDataUser([ui.user_or_email.text()])
             updateLastVisitDataTime(dataUser[0])
-            #createFilm()
-            #getfilm()
-            #getDataFilmIMDB()
-            getfilmImage()
-            #existFilmDatabase("The Shawshank Redemption", 1994)
+
+            for i in range(111161, 112161):
+                getDataFilmIMDB(i)
             window.show()
 
     def register():
@@ -68,10 +57,6 @@ if __name__ == "__main__":
         ui.openFogortPage()
     #переключение между логирование и регитсрациец
     ui.to_register.clicked.connect(page_sign)
-
-    def gsg():
-        print("zaebok")
-
 
     def slide_menu():
 
