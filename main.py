@@ -12,6 +12,8 @@ from forgot_GUI import *
 from search_field import *
 from userDataValidation import *
 from DB_connector import *
+from getFilmsDataFromDB import *
+from getDataFromIMDB import *
 
 
 if __name__ == "__main__":
@@ -48,30 +50,25 @@ if __name__ == "__main__":
     def page_log():
         Log_page.stackedWidget.setCurrentIndex(1)
     def login():
-
-        if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
-            dataUser = getDataUser([Log_page.user_or_email.text()])
-            updateLastVisitDataTime(dataUser[0])
-            Main_page_form.show()
-            Log_page_form.close()
-        else:
+        #getListAllDataAllFilms()
+        #getListAllFilmWithGenresUser(["Adventure", "Comedy"])
+        #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
+        #getListAllFilmsWithPeopleUserAndStatus("Frank Darabont")
+        #getListAllFilmsWithPeopleUser("Matthias Schweighöfer")
+        #getAllDataFilmByID(1)
+        #getAllDataFilmByReleaseDataBetween(2000, 2010)
+        #getAllDataFilmByReleaseDataBetween()
+        #getAllDataFilmByLanguage("Spanish")
+        #getAllDataFilmByCountry("Israel")
+        #getAllDataFilmByScoreBetween(1,2) //POKA NETU NI 1 FILMA SO SCORE
+        try:
+            if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
+                dataUser = getDataUser([Log_page.user_or_email.text()])
+                updateLastVisitDataTime(dataUser[0])
+                Main_page_form.show()
+                Log_page_form.close()
+        except:
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
-    def addFilms():
-        a = 1
-        stime = datetime.now()
-        for i in range(112031, 112032):  # 112161
-            try:
-                getDataFilmIMDB(i, a)
-                a = a + 1
-                print(50 * "=")
-            except:
-                print("BAD URL")
-                continue
-        print("TIME ADDED FILMS = ", datetime.now() - stime)
-        print(50 * "=")
-        print(50 * "-")
-        print("FILMS COUNT = ", a)
-        print(50 * "-")
     def register():
         #sendMailForgoutPassword(Log_page.email.text())
         RegistrationUser(Log_page.username.text(), Log_page.email.text(), Log_page.password_sign.text(), Log_page.reapet_passwd.text())
