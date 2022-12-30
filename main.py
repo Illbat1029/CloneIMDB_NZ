@@ -54,23 +54,33 @@ if __name__ == "__main__":
     def page_log():
         Log_page.stackedWidget.setCurrentIndex(1)
 
-
-    #логоване
     def login():
-        #DONTUSE ="""
-        #CREATE TABLE user (
-        #id INT AUTO_INCREMENT PRIMARY KEY,
-        #username VARCHAR(30),
-        #email VARCHAR(30),
-        #password CHAR(60)
-        #)
-        #"""
         try:
             if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
+                dataUser = getDataUser([ui.user_or_email.text()])
+                updateLastVisitDataTime(dataUser[0])
                 Main_page_form.show()
                 Log_page_form.close()
         except:
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
+
+
+    def addFilms():
+        a = 1
+        stime = datetime.now()
+        for i in range(112031, 112032):  # 112161
+            try:
+                getDataFilmIMDB(i, a)
+                a = a + 1
+                print(50 * "=")
+            except:
+                print("BAD URL")
+                continue
+        print("TIME ADDED FILMS = ", datetime.now() - stime)
+        print(50 * "=")
+        print(50 * "-")
+        print("FILMS COUNT = ", a)
+        print(50 * "-")
 
 
     def register():
@@ -83,9 +93,6 @@ if __name__ == "__main__":
     def fogort():
 
         Fogort_page_from.show()
-
-
-
     def slide_menu():
 
         width = Main_page.left_menu.width()
