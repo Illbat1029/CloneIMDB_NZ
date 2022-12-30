@@ -7,10 +7,12 @@ import requests
 import urllib
 import os
 from DB_connector import *
+from datetime import datetime, timedelta
+
 def addFilms():
     a = 1
     stime = datetime.now()
-    for i in range(13024674, 13024675):  # 112161
+    for i in range(5463162, 5463163):  # 112161
         try:
             getDataFilmIMDB(i, a)
             a = a + 1
@@ -61,6 +63,8 @@ def createFilm(filmname, description, country, genre, language, releasedata, run
     cur.execute(sqlInsertFim,args)
     con.commit()
 #download images
+def downloadImagesPeop(imURL):
+    urllib.request.urlretrieve(imURL, "Images_People/1.png")
 def downloadImages(imURL):
     urllib.request.urlretrieve(imURL, "Images_Film/1.png")
 def getDataFilmIMDB(code, num):
@@ -145,19 +149,37 @@ def genresDataInsert(genresList, filmID):
     con.commit()
     print("All genres succeeful added to films_genres")
 def peopleDataInsert(directors, cast, filmID):
+    ia = imdb.IMDb()
     con = createConnection()
     cur = con.cursor()
     newPeopleList = []
     dictionary = dict((x, y) for y, x in getIDAllPeople())
     for i in directors:
-        print(str(i))
         if str(i) not in dictionary:
-            newPeopleList.append((str(i),))
+            try:
+                actor = ia.get_person(i.personID)
+                imA = actor['headshot']
+                downloadImagesPeop(imA)
+                file = open("Images_People/1.png", 'rb').read()
+                file = base64.b64encode(file)
+            except:
+                file = open("Images_People/noFoto.png", 'rb').read()
+                file = base64.b64encode(file)
+            newPeopleList.append((str(i), file))
     for i in cast:
         if str(i) not in dictionary and (str(i),) not in newPeopleList:
-            newPeopleList.append((str(i),))
+            try:
+                actor = ia.get_person(i.personID)
+                imA = actor['headshot']
+                downloadImagesPeop(imA)
+                file = open("Images_People/1.png", 'rb').read()
+                file = base64.b64encode(file)
+            except:
+                file = open("Images_People/noFoto.png", 'rb').read()
+                file = base64.b64encode(file)
+            newPeopleList.append((str(i), file))
     sqlAddPeople = """
-    INSERT INTO people (fullname) VALUES (%s) 
+    INSERT INTO people (fullname, peopleIMG) VALUES (%s, %s) 
     """
     cur.executemany(sqlAddPeople, newPeopleList)
     con.commit()
@@ -189,7 +211,7 @@ def getIDAllPeople():
     con = createConnection()
     cur = con.cursor()
     sqlIDAllPeople = """
-    SELECT * FROM people
+    SELECT id, fullname FROM people
     """
     cur.execute(sqlIDAllPeople)
     personsData = cur.fetchall()
@@ -211,7 +233,7 @@ def getfilmImage():
     con = createConnection()
     cur = con.cursor()
     sqlGetFilm ="""
-    SELECT picture FROM films WHERE id = 1"""
+    SELECT peopleIMG FROM people WHERE id = 11933"""
     cur.execute(sqlGetFilm)
     data = cur.fetchall()
     image = data[0][0]
