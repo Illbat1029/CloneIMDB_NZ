@@ -48,6 +48,7 @@ if __name__ == "__main__":
     def page_log():
         Log_page.stackedWidget.setCurrentIndex(1)
     def login():
+
         if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
             dataUser = getDataUser([Log_page.user_or_email.text()])
             updateLastVisitDataTime(dataUser[0])
