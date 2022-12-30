@@ -220,10 +220,10 @@ def getfilmImage():
     con = createConnection()
     cur = con.cursor()
     sqlGetFilm ="""
-    SELECT picture FROM films WHERE id = 20"""
+    SELECT picture FROM films WHERE id = 1"""
     cur.execute(sqlGetFilm)
     data = cur.fetchall()
     image = data[0][0]
     binary_data = base64.b64decode(image)
     image = Image.open(io.BytesIO(binary_data))
-    image.show()
+
