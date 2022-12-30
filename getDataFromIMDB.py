@@ -7,6 +7,24 @@ import requests
 import urllib
 import os
 from DB_connector import *
+from datetime import datetime, timedelta
+
+def addFilms():
+    a = 1
+    stime = datetime.now()
+    for i in range(5463162, 5463163):  # 112161
+        try:
+            getDataFilmIMDB(i, a)
+            a = a + 1
+            print(50 * "=")
+        except:
+            print("BAD URL")
+            continue
+    print("TIME ADDED FILMS = ", datetime.now() - stime)
+    print(50 * "=")
+    print(50 * "-")
+    print("FILMS COUNT = ", a)
+    print(50 * "-")
 def existFilmDatabase(nameFilm, release):
     con = createConnection()
     cur = con.cursor()
@@ -44,6 +62,9 @@ def createFilm(filmname, description, country, genre, language, releasedata, run
             file)
     cur.execute(sqlInsertFim,args)
     con.commit()
+#download images
+def downloadImagesPeop(imURL):
+    urllib.request.urlretrieve(imURL, "Images_People/1.png")
 def downloadImages(imURL):
     urllib.request.urlretrieve(imURL, "Images_Film/1.png")
 def getDataFilmIMDB(code, num):
@@ -82,11 +103,8 @@ def getDataFilmIMDB(code, num):
         runtimes = series.data['runtimes'][0]
     # director
         directorS = ""
-        try:
-            for director in movie['director']:
-                directorS = directorS + str(director) + ";"
-        except:
-            directorS = ""
+        for director in movie['director']:
+            directorS = directorS + str(director) + ";"
     # actor
         cast = ""
         c = series.data['cast']
@@ -95,24 +113,19 @@ def getDataFilmIMDB(code, num):
     # images
         cover = series.data['cover url']
         downloadImages(cover)
-        if directorS == "":
-            directorS = "BRAK"
-
-        if existFilmDatabase(str(series), year) == 1:
-            #createFilm(str(series), outline, country, genre, lang, year, runtimes, 0, 0, directorS, cast)
+        if existFilmDatabase(str(series), year) != 1:
+            createFilm(str(series), outline, country, genre, lang, year, runtimes, 0, 0, directorS, cast)
             newFilmID = getFilmID(str(series), int(year))
-            #genresDataInsert(series.data['genres'], newFilmID)
+            genresDataInsert(series.data['genres'], newFilmID)
             peopleDataInsert(movie['director'], series.data['cast'], newFilmID)
             print("Films added to DB")
     except:
         print("Films NOT added to DB")
-
 def getGenresID(genresList):
     con = createConnection()
     cur = con.cursor()
-    # print(genresList)
     for i in range(len(genresList)):
-        if i == "Sci-Fi":
+        if genresList[i] == "Sci-Fi":
             genresList[i] = 'Science Fiction'
     qr = 'SELECT id FROM genres WHERE genre in ({0})'.format(', '.join('%s' for _ in genresList))
     cur.execute(qr, genresList)
@@ -135,27 +148,40 @@ def genresDataInsert(genresList, filmID):
     cur.executemany(sqlFilmGenresJoin, dir)
     con.commit()
     print("All genres succeeful added to films_genres")
-
 def peopleDataInsert(directors, cast, filmID):
+    ia = imdb.IMDb()
     con = createConnection()
     cur = con.cursor()
-    newDirectorsList = []
-    newActorList = []
-    dictionary = dict((x, y) for x, y in getIDAllPeople())
+    newPeopleList = []
+    dictionary = dict((x, y) for y, x in getIDAllPeople())
     for i in directors:
-        #if isPeopleExist(i) == 0:
-        if i not in dictionary:
-            newDirectorsList.append((str(i),))
+        if str(i) not in dictionary:
+            try:
+                actor = ia.get_person(i.personID)
+                imA = actor['headshot']
+                downloadImagesPeop(imA)
+                file = open("Images_People/1.png", 'rb').read()
+                file = base64.b64encode(file)
+            except:
+                file = open("Images_People/noFoto.png", 'rb').read()
+                file = base64.b64encode(file)
+            newPeopleList.append((str(i), file))
     for i in cast:
-        #if isPeopleExist(i) == 0:
-        if i not in dictionary:
-            newActorList.append((str(i),))
+        if str(i) not in dictionary and (str(i),) not in newPeopleList:
+            try:
+                actor = ia.get_person(i.personID)
+                imA = actor['headshot']
+                downloadImagesPeop(imA)
+                file = open("Images_People/1.png", 'rb').read()
+                file = base64.b64encode(file)
+            except:
+                file = open("Images_People/noFoto.png", 'rb').read()
+                file = base64.b64encode(file)
+            newPeopleList.append((str(i), file))
     sqlAddPeople = """
-    INSERT INTO people (fullname) VALUES (%s) 
+    INSERT INTO people (fullname, peopleIMG) VALUES (%s, %s) 
     """
-    #print(newDirectorsList, newActorList, sep = "\n")
-    cur.executemany(sqlAddPeople, newDirectorsList)
-    cur.executemany(sqlAddPeople, newActorList)
+    cur.executemany(sqlAddPeople, newPeopleList)
     con.commit()
     print("All  new people succeeful added to people table!")
     filmStatusPeopleJoin(directors,cast, filmID)
@@ -164,7 +190,6 @@ def filmStatusPeopleJoin(directors, actors, filmID):
     cur = con.cursor()
     peopleArr = getIDAllPeople()
     dir = []
-    #print(peopleArr)
     dictionary = dict((y, x) for x, y in getIDAllPeople())
     for stri in directors:
         num = dictionary.get(str(stri))
@@ -179,30 +204,18 @@ def filmStatusPeopleJoin(directors, actors, filmID):
     sqlFilmPeopleJoin = """
     INSERT INTO films_people_status (id_film, id_people, id_status) VALUES (%s,%s,%s)
     """
-    #print(dir)
     cur.executemany(sqlFilmPeopleJoin, dir)
     con.commit()
     print("People and films joined succeeful!")
-
 def getIDAllPeople():
     con = createConnection()
     cur = con.cursor()
     sqlIDAllPeople = """
-    SELECT * FROM people
+    SELECT id, fullname FROM people
     """
     cur.execute(sqlIDAllPeople)
     personsData = cur.fetchall()
     return personsData
-def isPeopleExist(person):
-    con = createConnection()
-    cur = con.cursor()
-    sqlIsPersonExist = """
-        SELECT EXISTS(SELECT id FROM people WHERE fullname = %s)
-        """
-    bufferString = (str(person),)
-    cur.execute(sqlIsPersonExist, bufferString)
-    isExist = cur.fetchone()
-    return isExist[0]
 def getFilmID(name, year):
     con = createConnection()
     cur = con.cursor()
@@ -220,7 +233,7 @@ def getfilmImage():
     con = createConnection()
     cur = con.cursor()
     sqlGetFilm ="""
-    SELECT picture FROM films WHERE id = 1"""
+    SELECT peopleIMG FROM people WHERE id = 11933"""
     cur.execute(sqlGetFilm)
     data = cur.fetchall()
     image = data[0][0]

@@ -86,8 +86,8 @@ color:white;
    </property>
    <property name="maximumSize">
     <size>
-     <width>1000</width>
-     <height>600</height>
+     <width>700</width>
+     <height>500</height>
     </size>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -109,7 +109,7 @@ color:white;
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../Documents/baza/res.qrc">:/icon/2560px-Tmdb.new.logo.svg.png</pixmap>
+       <pixmap resource="baza/res.qrc">:/icon/2560px-Tmdb.new.logo.svg.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -118,16 +118,19 @@ color:white;
     </item>
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>300</width>
-        <height>420</height>
+        <width>400</width>
+        <height>500</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>300</width>
-        <height>405</height>
+        <width>400</width>
+        <height>500</height>
        </size>
       </property>
       <property name="currentIndex">
@@ -169,7 +172,7 @@ color:white;
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../Documents/baza/res.qrc">:/icon/add-user-add-svgrepo-com.svg</pixmap>
+           <pixmap resource="baza/res.qrc">:/icon/add-user-add-svgrepo-com.svg</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -287,6 +290,22 @@ color:white;
             </widget>
            </item>
            <item>
+            <widget class="QLabel" name="wrong_username_reg">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>10</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 4);</string>
+             </property>
+             <property name="text">
+              <string>Incorrect username</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer_7">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -315,6 +334,22 @@ color:white;
              </property>
              <property name="placeholderText">
               <string>email</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="worng_email_reg">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>10</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 4);</string>
+             </property>
+             <property name="text">
+              <string>Incorrect email</string>
              </property>
             </widget>
            </item>
@@ -354,6 +389,22 @@ color:white;
             </widget>
            </item>
            <item>
+            <widget class="QLabel" name="wrong_pass_reg">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>10</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 4);</string>
+             </property>
+             <property name="text">
+              <string>Incorrect password</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer_9">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -385,6 +436,22 @@ color:white;
              </property>
              <property name="placeholderText">
               <string>again password</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="wrong_pass_repeat_reg">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>10</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 4);</string>
+             </property>
+             <property name="text">
+              <string>Passwords do not match</string>
              </property>
             </widget>
            </item>
@@ -524,7 +591,7 @@ color:white;
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../Documents/baza/res.qrc">:/icon/login-svgrepo-com.svg</pixmap>
+           <pixmap resource="baza/res.qrc">:/icon/login-svgrepo-com.svg</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -646,6 +713,22 @@ color:white;
             </widget>
            </item>
            <item>
+            <widget class="QLabel" name="wrong_login">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>10</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 4);</string>
+             </property>
+             <property name="text">
+              <string>Incorrect username or email</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer_3">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -683,6 +766,22 @@ color:white;
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QLabel" name="wrong_pass">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>10</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 4);</string>
+             </property>
+             <property name="text">
+              <string>Incorrect password</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -712,7 +811,7 @@ color:white;
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="bttn_forgort">
+         <widget class="QPushButton" name="bttn_forgot">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -768,6 +867,7 @@ color:white;
   </widget>
  </widget>
  <resources>
+  <include location="baza/res.qrc"/>
   <include location="../../Documents/baza/res.qrc"/>
  </resources>
  <connections/>

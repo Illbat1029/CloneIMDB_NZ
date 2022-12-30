@@ -145,7 +145,7 @@ color:white;
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../../Documents/baza/res.qrc">:/icon/door-key-access-svgrepo-com.svg</pixmap>
+          <pixmap>:/icon/door-key-access-svgrepo-com.svg</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -194,7 +194,7 @@ color:white;
          </property>
          <property name="font">
           <font>
-           <pointsize>5</pointsize>
+           <pointsize>8</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -216,43 +216,24 @@ color:white;
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Maximum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="sent_forgot_page">
+        <widget class="QPushButton" name="sentCodelForgotBttn">
          <property name="text">
           <string>Sent</string>
          </property>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Maximum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+        <widget class="QLabel" name="label_2">
+         <property name="maximumSize">
           <size>
-           <width>20</width>
-           <height>20</height>
+           <width>16777215</width>
+           <height>13</height>
           </size>
          </property>
-        </spacer>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="Code_forgot_password">
@@ -305,22 +286,6 @@ color:white;
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Maximum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
         <widget class="QLineEdit" name="New_password">
          <property name="echoMode">
           <enum>QLineEdit::Password</enum>
@@ -363,28 +328,12 @@ color:white;
           <number>13</number>
          </property>
          <property name="text">
-          <string>nie podchody po pravilam</string>
+          <string>The new password does not fit</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Maximum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item>
         <widget class="QLineEdit" name="Confirm_password_forgot_page">
@@ -397,10 +346,7 @@ color:white;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="confirm_password_error">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
+        <widget class="QLabel" name="wrongPassword2">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -413,26 +359,18 @@ color:white;
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-          </font>
-         </property>
          <property name="styleSheet">
-          <string notr="true">color:red;
-</string>
-         </property>
-         <property name="lineWidth">
-          <number>1</number>
-         </property>
-         <property name="midLineWidth">
-          <number>13</number>
+          <string notr="true">color: rgb(255, 0, 0);</string>
          </property>
          <property name="text">
-          <string>nie podchody po pravilam</string>
+          <string>The passwords don't match</string>
          </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="acceptNewPassBttn">
+         <property name="text">
+          <string>Accept new password</string>
          </property>
         </widget>
        </item>
@@ -442,8 +380,6 @@ color:white;
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="../../Documents/baza/res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

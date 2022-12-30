@@ -1,10 +1,10 @@
 
 import sys
 import os
-from datetime import datetime, timedelta
+
 
 from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox
+from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter
 
 from Login_page import *
 from main_page import *
@@ -12,6 +12,8 @@ from forgot_GUI import *
 from search_field import *
 from userDataValidation import *
 from DB_connector import *
+from getFilmsDataFromDB import *
+from getDataFromIMDB import *
 
 
 if __name__ == "__main__":
@@ -51,31 +53,28 @@ if __name__ == "__main__":
         Log_page.wrong_pass_reg.setFixedSize(0, 0)
         Log_page.worng_email_reg.setFixedSize(0, 0)
         Log_page.wrong_username_reg.setFixedSize(0, 0)
-    def login():
 
-        if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
-            dataUser = getDataUser([Log_page.user_or_email.text()])
-            updateLastVisitDataTime(dataUser[0])
-            Main_page_form.show()
-            Log_page_form.close()
-        else:
+    def login():
+        #addFilms()
+        #getListAllDataAllFilms()
+        #getListAllFilmWithGenresUser(["Adventure", "Comedy"])
+        #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
+        #getListAllFilmsWithPeopleUserAndStatus("Frank Darabont")
+        #getListAllFilmsWithPeopleUser("Matthias Schweighöfer")
+        #getAllDataFilmByID(1)
+        #getAllDataFilmByReleaseDataBetween(2000, 2010)
+        #getAllDataFilmByReleaseDataBetween()
+        #getAllDataFilmByLanguage("Spanish")
+        #getAllDataFilmByCountry("Israel")
+        #getAllDataFilmByScoreBetween(1,2) //POKA NETU NI 1 FILMA SO SCORE
+        try:
+            if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
+                dataUser = getDataUser([Log_page.user_or_email.text()])
+                updateLastVisitDataTime(dataUser[0])
+                Main_page_form.show()
+                Log_page_form.close()
+        except:
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
-    def addFilms():
-        a = 1
-        stime = datetime.now()
-        for i in range(112031, 112032):  # 112161
-            try:
-                getDataFilmIMDB(i, a)
-                a = a + 1
-                print(50 * "=")
-            except:
-                print("BAD URL")
-                continue
-        print("TIME ADDED FILMS = ", datetime.now() - stime)
-        print(50 * "=")
-        print(50 * "-")
-        print("FILMS COUNT = ", a)
-        print(50 * "-")
     def register():
         #sendMailForgoutPassword(Log_page.email.text())
         RegistrationUser(Log_page.username.text(), Log_page.email.text(), Log_page.password_sign.text(), Log_page.reapet_passwd.text())
@@ -83,7 +82,7 @@ if __name__ == "__main__":
         Fogort_page.wrong_email.setFixedSize(0, 0)
         Fogort_page.wrong_code.setFixedSize(0, 0)
         Fogort_page.wrong_password.setFixedSize(0, 0)
-        Fogort_page.confirm_password_error.setFixedSize(0, 0)
+        Fogort_page.wrongPassword2.setFixedSize(0, 0)
         Fogort_page_from.show()
     def slide_menu():
 
@@ -105,36 +104,172 @@ if __name__ == "__main__":
         animation.setEasingCurve(QEasingCurve.InCurve)
         animation.start()
 
+    def getInfo(tableName):
+        lst = []
+        sql = f"SELECT * FROM {tableName}"
+        con = createConnection()
+        cur = con.cursor()
+        cur.execute(sql)
+        data = cur.fetchall()
+        print(type(data))
+        for row in data:
+            buff = list(row)
+            lst.append(buff[1])
+        lst.sort()
+        return lst
 
+    def getInfoFromFilmsTable(tableName,columnName):
+        lst = []
+        sql = f"SELECT {columnName} FROM {tableName}"
+        con = createConnection()
+        cur = con.cursor()
+        cur.execute(sql)
+        data = cur.fetchall()
+        for row in data:
+            #print(s[s.find(";") + 1:])
+            buff = list(row)
+            buff=buff[0].split(';')[0]
+            lst.append(buff)
+        lst.sort()
+        return set(lst)
+
+
+    listOfPeople = getInfo("people")
+    completer = QCompleter(listOfPeople, Main_page.searchingActosLineEdit)
+    completer.setCaseSensitivity(Qt.CaseInsensitive)
+    Main_page.searchingActosLineEdit.setCompleter(completer)
+
+    listOfCountries = getInfoFromFilmsTable("films","country")
+    completer = QCompleter(listOfCountries, Main_page.searchingCountriesLineEdit)
+    completer.setCaseSensitivity(Qt.CaseInsensitive)
+    Main_page.searchingCountriesLineEdit.setCompleter(completer)
+
+    listOfFilms = getInfoFromFilmsTable("films","filmname")
+    completer = QCompleter(listOfFilms, Main_page.search)
+    completer.setCaseSensitivity(Qt.CaseInsensitive)
+    Main_page.search.setCompleter(completer)
+
+    listOfLanguage = getInfoFromFilmsTable("films","language")
+    completer = QCompleter(listOfLanguage, Main_page.searchingLanguageLineEdit)
+    completer.setCaseSensitivity(Qt.CaseInsensitive)
+    Main_page.searchingLanguageLineEdit.setCompleter(completer)
+
+
+    home_pressed=("background-image: url(:/icon/home.svg);\n"
+                 "background-color:#9BA7A5;\n"
+                 "background-repeat:none;\n"
+                 "background-position:center left;\n"
+                 "padding-left:30px;")
+
+    home_default=("background-image: url(:/icon/home.svg);\n"
+                 "background-repeat:none;\n"
+                 "background-position:center left;\n"
+                 "padding-left:30px;")
+
+    favorite_pressed=("background-image: url(:/icon/heart.svg);\n"
+                                            "background-color:#9BA7A5;\n"
+                                            "background-repeat:none;\n"
+                                            "background-position:center left;\n"
+                                            "padding-left:30px;")
+    favorite_default=("background-image: url(:/icon/heart.svg);\n"
+                                            "background-repeat:none;\n"
+                                            "background-position:center left;\n"
+                                            "padding-left:30px;")
+
+    later_pressed=("background-image: url(:/icon/pause.svg);\n"
+                                            "background-color:#9BA7A5;\n"
+                                            "background-repeat:none;\n"
+                                            "background-position:center left;\n"
+                                            "padding-left:30px;")
+
+    later_default=("background-image: url(:/icon/pause.svg);\n"
+                                            "background-repeat:none;\n"
+                                            "background-position:center left;\n"
+                                            "padding-left:30px;")
+
+    history_default = ("background-image: url(:/icon/history-svgrepo-com.svg);\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
+
+    history_pressed = ("background-image: url(:/icon/history-svgrepo-com.svg);\n"
+                     "background-color:#9BA7A5;\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
+
+    settings_pressed=("background-image: url(:/icon/settings.svg);\n"
+                     "background-color:#9BA7A5;\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
+
+    settings_default=("background-image: url(:/icon/settings.svg);\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
 
     #Переключает на домашнию страницу
     def home():
 
         Main_page.stackedWidget.setCurrentIndex(0)
+        Main_page.home_button.setStyleSheet(home_pressed)
+        Main_page.favorite_button.setStyleSheet(favorite_default)
+        Main_page.histor_button.setStyleSheet(history_default)
+        Main_page.settings_button.setStyleSheet(settings_default)
+        Main_page.watch_later_button.setStyleSheet(later_default)
         Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу любимое
     def favorite():
         Main_page.stackedWidget.setCurrentIndex(1)
+
+        Main_page.home_button.setStyleSheet(home_default)
+        Main_page.favorite_button.setStyleSheet(favorite_pressed)
+        Main_page.histor_button.setStyleSheet(history_default)
+        Main_page.settings_button.setStyleSheet(settings_default)
+        Main_page.watch_later_button.setStyleSheet(later_default)
+
         Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу позже
     def later():
         Main_page.stackedWidget.setCurrentIndex(3)
+
+        Main_page.home_button.setStyleSheet(home_default)
+        Main_page.favorite_button.setStyleSheet(favorite_default)
+        Main_page.histor_button.setStyleSheet(history_default)
+        Main_page.settings_button.setStyleSheet(settings_default)
+        Main_page.watch_later_button.setStyleSheet(later_pressed)
+
         Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу история
     def history():
         Main_page.stackedWidget.setCurrentIndex(4)
+
+        Main_page.home_button.setStyleSheet(home_default)
+        Main_page.favorite_button.setStyleSheet(favorite_default)
+        Main_page.histor_button.setStyleSheet(history_pressed)
+        Main_page.settings_button.setStyleSheet(settings_default)
+        Main_page.watch_later_button.setStyleSheet(later_default)
+
         Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу настроек
     def settings():
         Main_page.stackedWidget.setCurrentIndex(6)
+
+        Main_page.home_button.setStyleSheet(home_default)
+        Main_page.favorite_button.setStyleSheet(favorite_default)
+        Main_page.histor_button.setStyleSheet(history_default)
+        Main_page.settings_button.setStyleSheet(settings_pressed)
+        Main_page.watch_later_button.setStyleSheet(later_default)
+
         Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
@@ -177,10 +312,10 @@ if __name__ == "__main__":
     def sent_forgot():
 
 
-        Fogort_page.wrong_email.setFixedSize(276, 10)
-        Fogort_page.wrong_code.setFixedSize(276, 10)
-        Fogort_page.wrong_password.setFixedSize(276, 10)
-        Fogort_page.confirm_password_error.setFixedSize(276, 10)
+        Fogort_page.wrong_email.setFixedSize(276, 13)
+        Fogort_page.wrong_code.setFixedSize(276, 13)
+        Fogort_page.wrong_password.setFixedSize(276, 13)
+        Fogort_page.wrongPassword2.setFixedSize(276, 13)
 
 
 
@@ -390,6 +525,8 @@ if __name__ == "__main__":
         Log_page.worng_email_reg.setFixedSize(276, 10)
         Log_page.wrong_username_reg.setFixedSize(276, 10)
 
+        #Автоматическое вписание юзернейма после регистрации
+        Log_page.user_or_email.setText(Log_page.username.text())
 
         #Окно успешной регистрации с кнопкой
 
@@ -487,7 +624,7 @@ if __name__ == "__main__":
     #кнопка назад из онка с инфой о фильме
     Main_page.back_buttn.clicked.connect(back)
 
-    Fogort_page.sent_forgot_page.clicked.connect(sent_forgot)
+    Fogort_page.sentCodelForgotBttn.clicked.connect(sent_forgot)
 
     # переключение между логирование и регитсрациец
     Log_page.bttn_register.clicked.connect(registration)
