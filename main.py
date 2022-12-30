@@ -23,7 +23,6 @@ if __name__ == "__main__":
 
 
     #создает окно логованя и регистрации
-
     Log_page_form = QtWidgets.QWidget()
     Log_page = Ui_Form()
     Log_page.setupUi(Log_page_form)
@@ -42,29 +41,20 @@ if __name__ == "__main__":
     Fogort_page.setupUi(Fogort_page_from)
 
 
-
-
-
     #переключает на страницу где регистрация
     def page_sign():
         Log_page.stackedWidget.setCurrentIndex(0)
-
-
     #переключает на страницу где логоване
     def page_log():
         Log_page.stackedWidget.setCurrentIndex(1)
-
     def login():
-        try:
-            if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
-                dataUser = getDataUser([ui.user_or_email.text()])
-                updateLastVisitDataTime(dataUser[0])
-                Main_page_form.show()
-                Log_page_form.close()
-        except:
+        if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
+            dataUser = getDataUser([Log_page.user_or_email.text()])
+            updateLastVisitDataTime(dataUser[0])
+            Main_page_form.show()
+            Log_page_form.close()
+        else:
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
-
-
     def addFilms():
         a = 1
         stime = datetime.now()
@@ -81,17 +71,10 @@ if __name__ == "__main__":
         print(50 * "-")
         print("FILMS COUNT = ", a)
         print(50 * "-")
-
-
     def register():
-        sendMailForgoutPassword(Log_page.email.text())
-
+        #sendMailForgoutPassword(Log_page.email.text())
         RegistrationUser(Log_page.username.text(), Log_page.email.text(), Log_page.password_sign.text(), Log_page.reapet_passwd.text())
-
-
-
     def fogort():
-
         Fogort_page_from.show()
     def slide_menu():
 
