@@ -1,7 +1,7 @@
 
 import sys
 import os
-from datetime import datetime, timedelta
+
 
 from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve
 from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox
@@ -53,7 +53,9 @@ if __name__ == "__main__":
         Log_page.wrong_pass_reg.setFixedSize(0, 0)
         Log_page.worng_email_reg.setFixedSize(0, 0)
         Log_page.wrong_username_reg.setFixedSize(0, 0)
+
     def login():
+        #addFilms()
         #getListAllDataAllFilms()
         #getListAllFilmWithGenresUser(["Adventure", "Comedy"])
         #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
