@@ -78,28 +78,22 @@ color:white;
      <height>600</height>
     </rect>
    </property>
-   <widget class="QCustomStackedWidget" name="stackedWidget">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>120</y>
-      <width>311</width>
-      <height>391</height>
+      <x>580</x>
+      <y>50</y>
+      <width>400</width>
+      <height>501</height>
      </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>391</height>
-     </size>
     </property>
     <property name="currentIndex">
      <number>1</number>
     </property>
-    <widget class="QWidget" name="SignupPage_2">
+    <widget class="QWidget" name="stackedWidgetPage1" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <spacer name="verticalSpacer_3">
@@ -150,7 +144,7 @@ color:white;
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../Documents/baza/res.qrc">:/icon/add-user-add-svgrepo-com.svg</pixmap>
+         <pixmap resource="baza/res.qrc">:/icon/add-user-add-svgrepo-com.svg</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -221,14 +215,27 @@ color:white;
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QLineEdit" name="sign_in_user">
+          <widget class="QLineEdit" name="username">
            <property name="placeholderText">
             <string>Username</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="sign_in_mail">
+          <widget class="QLabel" name="label_8">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>10</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Incorrect username</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="email">
            <property name="placeholderText">
             <string>Email</string>
            </property>
@@ -238,7 +245,20 @@ color:white;
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="sign_in_pass">
+          <widget class="QLabel" name="label_9">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>10</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Incorrect email</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="password_sign">
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
            </property>
@@ -248,12 +268,38 @@ color:white;
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="sign_in_pass2">
+          <widget class="QLabel" name="label_10">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>10</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Incorrect password</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="reapet_passwd">
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
            </property>
            <property name="placeholderText">
             <string>Confirm password</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>10</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Passwords don't match</string>
            </property>
           </widget>
          </item>
@@ -274,7 +320,7 @@ color:white;
           </spacer>
          </item>
          <item>
-          <widget class="QCheckBox" name="agree_term">
+          <widget class="QCheckBox" name="agree_box">
            <property name="styleSheet">
             <string notr="true">color:grey;
 background: transparent;
@@ -305,7 +351,7 @@ background-color: transparent;</string>
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="register_buttn">
+       <widget class="QPushButton" name="bttn_to_register">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -352,7 +398,7 @@ color:white</string>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="LoginPage">
+    <widget class="QWidget" name="stackedWidgetPage2" native="true">
      <layout class="QVBoxLayout" name="verticalLayout_8">
       <item>
        <spacer name="verticalSpacer_4">
@@ -403,7 +449,7 @@ color:white</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../Documents/baza/res.qrc">:/icon/login-svgrepo-com.svg</pixmap>
+         <pixmap resource="baza/res.qrc">:/icon/login-svgrepo-com.svg</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -474,16 +520,30 @@ color:white</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
          <item>
-          <widget class="QLineEdit" name="login_user">
+          <widget class="QLineEdit" name="user_or_email">
            <property name="placeholderText">
             <string>Username or email</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="login_pass">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="password_2">
            <property name="placeholderText">
             <string>Password</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>TextLabel</string>
            </property>
           </widget>
          </item>
@@ -517,7 +577,7 @@ color:white</string>
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="login_butt">
+       <widget class="QPushButton" name="bttn_login">
         <property name="font">
          <font>
           <family>Times New Roman</family>
@@ -535,7 +595,7 @@ color:white</string>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="forgot_pass">
+       <widget class="QPushButton" name="bttn_forgot">
         <property name="font">
          <font>
           <family>Times New Roman</family>
@@ -552,7 +612,7 @@ color:white</string>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="to_register">
+       <widget class="QPushButton" name="bttn_register">
         <property name="font">
          <font>
           <family>Times New Roman</family>
@@ -587,25 +647,110 @@ color:white</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../Documents/baza/res.qrc">:/icon/768px-Tmdb.new.logo.svg.png</pixmap>
+     <pixmap resource="baza/res.qrc">:/icon/768px-Tmdb.new.logo.svg.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="wrong_code">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>40</y>
+      <width>0</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>13</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:red;
+</string>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>13</number>
+    </property>
+    <property name="text">
+     <string>Wrong code</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="wrong_code_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>60</y>
+      <width>0</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>13</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:red;
+</string>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>13</number>
+    </property>
+    <property name="text">
+     <string>Wrong code</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QCustomStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>.Widgets.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
-  <include location="../../Documents/baza/res.qrc"/>
+  <include location="res.qrc"/>
   <include location="baza/res.qrc"/>
+  <include location="../../Documents/baza/res.qrc"/>
  </resources>
  <connections/>
 </ui>
