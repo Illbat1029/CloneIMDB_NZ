@@ -4,7 +4,7 @@ import os
 from datetime import datetime, timedelta
 
 from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve
-from PyQt5.QtWidgets import QPushButton, QSizePolicy
+from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox
 
 from Login_page import *
 from main_page import *
@@ -47,6 +47,10 @@ if __name__ == "__main__":
     #переключает на страницу где логоване
     def page_log():
         Log_page.stackedWidget.setCurrentIndex(1)
+        Log_page.wrong_pass_repeat_reg.setFixedSize(0, 0)
+        Log_page.wrong_pass_reg.setFixedSize(0, 0)
+        Log_page.worng_email_reg.setFixedSize(0, 0)
+        Log_page.wrong_username_reg.setFixedSize(0, 0)
     def login():
 
         if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
@@ -76,6 +80,10 @@ if __name__ == "__main__":
         #sendMailForgoutPassword(Log_page.email.text())
         RegistrationUser(Log_page.username.text(), Log_page.email.text(), Log_page.password_sign.text(), Log_page.reapet_passwd.text())
     def fogort():
+        Fogort_page.wrong_email.setFixedSize(0, 0)
+        Fogort_page.wrong_code.setFixedSize(0, 0)
+        Fogort_page.wrong_password.setFixedSize(0, 0)
+        Fogort_page.confirm_password_error.setFixedSize(0, 0)
         Fogort_page_from.show()
     def slide_menu():
 
@@ -103,31 +111,31 @@ if __name__ == "__main__":
     def home():
 
         Main_page.stackedWidget.setCurrentIndex(0)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('C:/Users/nikitos/Documents/baza/arrow-down')))
+        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу любимое
     def favorite():
         Main_page.stackedWidget.setCurrentIndex(1)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('C:/Users/nikitos/Documents/baza/arrow-down')))
+        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу позже
     def later():
         Main_page.stackedWidget.setCurrentIndex(3)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('C:/Users/nikitos/Documents/baza/arrow-down')))
+        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу история
     def history():
         Main_page.stackedWidget.setCurrentIndex(4)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('C:/Users/nikitos/Documents/baza/arrow-down')))
+        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу настроек
     def settings():
         Main_page.stackedWidget.setCurrentIndex(6)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('C:/Users/nikitos/Documents/baza/arrow-down')))
+        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
 
     # Переключает на страницу с фильтром фильмов
@@ -135,13 +143,13 @@ if __name__ == "__main__":
         global index
         index = Main_page.stackedWidget.currentIndex()
         Main_page.stackedWidget.setCurrentIndex(5)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('C:/Users/nikitos/Documents/baza/arrow-up')))
+        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-up')))
 
     #отключает страницу с фильтром фильмов
     def filter_off():
 
         Main_page.stackedWidget.setCurrentIndex(index)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('C:/Users/nikitos/Documents/baza/arrow-down')))
+        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
 
     #страничка в которой содержиться инфа о фильме
     def about_film():
@@ -374,7 +382,46 @@ if __name__ == "__main__":
 
                 filter_off()
 
+    #Кнопка регистрации с подсветкой красным под линейками, если не правильно
+    def registration():
+        #Красная подсветка, если данные не правильны
+        Log_page.wrong_pass_repeat_reg.setFixedSize(276, 10)
+        Log_page.wrong_pass_reg.setFixedSize(276, 10)
+        Log_page.worng_email_reg.setFixedSize(276, 10)
+        Log_page.wrong_username_reg.setFixedSize(276, 10)
 
+
+        #Окно успешной регистрации с кнопкой
+
+        success_mess_box = QMessageBox()
+        success_mess_box.setWindowTitle("Info")
+        success_mess_box.setText("Successful registration")
+        success_mess_box.setIcon(QMessageBox.Information)
+        success_mess_box.buttonClicked.connect(bttn_in_messege_box)
+        success_mess_box.exec_()
+
+    #После успешной регистрации и нажатия кнопки ок, перенос на экран логования, удаление красный надписей
+    def bttn_in_messege_box():
+        Log_page.stackedWidget.setCurrentIndex(1)
+
+        Log_page.wrong_pass_repeat_reg.setFixedSize(0, 0)
+        Log_page.wrong_pass_reg.setFixedSize(0, 0)
+        Log_page.worng_email_reg.setFixedSize(0, 0)
+        Log_page.wrong_username_reg.setFixedSize(0, 0)
+
+        #Если все данные правильны, то это убирает надписи
+        # Log_page.wrong_pass_repeat_reg.setFixedSize(0, 0)
+        # Log_page.wrong_pass_reg.setFixedSize(0, 0)
+        # Log_page.worng_email_reg.setFixedSize(0, 0)
+        # Log_page.wrong_username_reg.setFixedSize(0, 0)
+
+        #Красные надписи, если логпасс на логовании неправильный
+        # Log_page.wrong_login.setFixedSize(276, 10)
+        # Log_page.wrong_pass.setFixedSize(276, 10)
+
+        #Убрать красные надписи с логования
+        # Log_page.wrong_login.setFixedSize(0, 0)
+        # Log_page.wrong_pass.setFixedSize(0, 0)
 
     # кнопка фильтра проверка
     Main_page.pushButton_6.clicked.connect(IsPress)
@@ -407,7 +454,7 @@ if __name__ == "__main__":
     Log_page.to_login_2.clicked.connect(page_log)
 
     # кнопки регистрации и логирования
-    Log_page.bttn_forgort.clicked.connect(fogort)
+    Log_page.bttn_forgot.clicked.connect(fogort)
     Log_page.bttn_login.clicked.connect(login)
 
     #удлинение рассширение территории меню
@@ -443,5 +490,6 @@ if __name__ == "__main__":
     Fogort_page.sent_forgot_page.clicked.connect(sent_forgot)
 
     # переключение между логирование и регитсрациец
+    Log_page.bttn_register.clicked.connect(registration)
     Log_page.to_register.clicked.connect(page_sign)
     sys.exit(app.exec_())
