@@ -10,7 +10,7 @@ def createConnection():
             password="Hu@n584217",
             database="dataIMDB"
         )
-        print("Connection to MySQL DB successful")
+        #print("Connection to MySQL DB successful")
     except Error as e:
         print(f"The error '{e}' occurred")
     return connection

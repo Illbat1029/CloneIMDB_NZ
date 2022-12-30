@@ -36,15 +36,27 @@ if __name__ == "__main__":
     def page_log():
         ui.stackedWidget.setCurrentIndex(1)
 
-
+    def addFilms():
+        a = 1
+        stime = datetime.now()
+        for i in range(112031, 112032):  # 112161
+            try:
+                getDataFilmIMDB(i, a)
+                a = a + 1
+                print(50 * "=")
+            except:
+                print("BAD URL")
+                continue
+        print("TIME ADDED FILMS = ", datetime.now() - stime)
+        print(50 * "=")
+        print(50 * "-")
+        print("FILMS COUNT = ", a)
+        print(50 * "-")
     def login():
         global dataUser
         if len(ui.user_or_email.text()) != 0 and len(ui.password.text()) != 0 and AuthenticateUser(ui.user_or_email.text(), ui.password.text()):
             dataUser = getDataUser([ui.user_or_email.text()])
             updateLastVisitDataTime(dataUser[0])
-
-            for i in range(111161, 112161):
-                getDataFilmIMDB(i)
             window.show()
 
     def register():
