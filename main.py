@@ -14,6 +14,7 @@ from userDataValidation import *
 from DB_connector import *
 from getFilmsDataFromDB import *
 from getDataFromIMDB import *
+from getAndSetDataFilmStatusUser import *
 
 
 if __name__ == "__main__":
