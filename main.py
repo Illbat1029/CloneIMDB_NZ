@@ -54,7 +54,14 @@ if __name__ == "__main__":
         Log_page.worng_email_reg.setFixedSize(0, 0)
         Log_page.wrong_username_reg.setFixedSize(0, 0)
 
+#Я хз, можно ли при логине инициализировать массив, который будет юзаться потом по всей проге:
+#Ибо эту переменную листа можно юзать по всей проге, он хранит листы фильмов нашего Юзера
+#Доделать в зависимости от ответа обновление этого листа (брать с бд или обновлять глобалку)
     def login():
+        #addUserFavoriteFilm(7, 46, getUsersFilmsLists(7))
+        #addUserWatchedFilm(7, 46, getUsersFilmsLists(7))
+        #addUserWatchLaterFilm(7, 46, getUsersFilmsLists(7))
+        #getUsersFilmsLists(id_user=)
         #addFilms()
         #getListAllDataAllFilms()
         #getListAllFilmWithGenresUser(["Adventure", "Comedy"])

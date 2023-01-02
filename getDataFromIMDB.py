@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 def addFilms():
     a = 1
     stime = datetime.now()
-    for i in range(5463162, 5463163):  # 112161
+    for i in range(60196, 70196):  # 112161
         try:
             getDataFilmIMDB(i, a)
             a = a + 1

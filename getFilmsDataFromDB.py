@@ -208,3 +208,130 @@ def getAllDataFilmByScoreBetween(scoreStart = 0, scoreEnd = 5):
     data = refractoringDataPeopleFilm(data)
     return data
 
+#Output List = [0] = Favorite Films
+#Output List = [1] = Watched Films
+#Output List = [2] = Watch_later Films
+def getUsersFilmsLists(id_user):
+    con = createConnection()
+    cur = con.cursor()
+    exe = []
+    sqlGetUsersFavorite = """
+    SELECT id_films FROM favorite_films WHERE id_user = %s"""
+    sqlGetUsersWatched = """   
+    SELECT id_films FROM watched_films WHERE id_user = %s"""
+    sqlGetUsersWatch_later = """
+    SELECT id_films FROM watchlater_films WHERE id_user = %s"""
+    cur.execute(sqlGetUsersFavorite, (id_user,))
+    exe.append(cur.fetchall())
+    cur.execute(sqlGetUsersWatched, (id_user,))
+    exe.append(cur.fetchall())
+    cur.execute(sqlGetUsersWatch_later, (id_user,))
+    exe.append(cur.fetchall())
+    a = 0
+    for i in exe:
+        for j in range(len(i)):
+            exe[a][j] = exe[a][j][0]
+        a += 1
+    return exe
+
+def addUserFavoriteFilm(id_user, id_film, userFilmsList):
+    con = createConnection()
+    cur = con.cursor()
+    sqlAddToFavoriteFilms = """
+    INSERT INTO favorite_films (id_user, id_films) VALUES (%s, %s)"""
+    if id_film in userFilmsList[0]:
+        #ОБЕСЦВЕТИТЬ КНОПКУ FAVORITE
+        print("Already in FavoriteFilm, deleting")
+        sqlRemoveFromFavoriteFilms = """
+        DELETE FROM favorite_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromFavoriteFilms, (id_user, id_film))
+        con.commit()
+    elif id_film in userFilmsList[1]:
+        # ОБЕСЦВЕТИТЬ КНОПКУ WATCHED/ЗАКРАСИТЬ КНОПКУ FAVORITE
+        print("Already in WatchedFilm, deleting")
+        sqlRemoveFromWatchedFilms = """
+        DELETE FROM watched_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromWatchedFilms, (id_user, id_film))
+        cur.execute(sqlAddToFavoriteFilms, (id_user, id_film))
+        con.commit()
+    elif id_film in userFilmsList[2]:
+        # ОБЕСЦВЕТИТЬ КНОПКУ WATCHE_LATER/ЗАКРАСИТЬ КНОПКУ FAVORITE
+        print("Already in Watch LaterFilm, deleting")
+        sqlRemoveFromWatchLaterFilms = """
+        DELETE FROM watchlater_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromWatchLaterFilms, (id_user, id_film))
+        cur.execute(sqlAddToFavoriteFilms, (id_user, id_film))
+        con.commit()
+    else:
+        # ЗАКРАСИТЬ КНОПКУ FAVORITE
+        print("No such film in users list, adding")
+        cur.execute(sqlAddToFavoriteFilms, (id_user, id_film))
+        con.commit()
+
+def addUserWatchedFilm(id_user, id_film, userFilmsList):
+    con = createConnection()
+    cur = con.cursor()
+    sqlAddToWatchedFilms = """
+    INSERT INTO watched_films (id_user, id_films) VALUES (%s, %s)"""
+    if id_film in userFilmsList[0]:
+        #ОБЕСЦВЕТИТЬ КНОПКУ FAVORITE/ЗАКРАСИТЬ КНОПКУ WATCHED
+        print("Already in FavoriteFilm, deleting")
+        sqlRemoveFromFavoriteFilms = """
+        DELETE FROM favorite_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromFavoriteFilms, (id_user, id_film))
+        cur.execute(sqlAddToWatchedFilms, (id_user, id_film))
+        con.commit()
+    elif id_film in userFilmsList[1]:
+        # ОБЕСЦВЕТИТЬ КНОПКУ WATCHED
+        print("Already in WatchedFilm, deleting")
+        sqlRemoveFromWatchedFilms = """
+        DELETE FROM watched_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromWatchedFilms, (id_user, id_film))
+        con.commit()
+    elif id_film in userFilmsList[2]:
+        # ОБЕСЦВЕТИТЬ КНОПКУ WATCHE_LATER/ЗАКРАСИТЬ КНОПКУ WATCHED
+        print("Already in Watch LaterFilm, deleting")
+        sqlRemoveFromWatchLaterFilms = """
+        DELETE FROM watchlater_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromWatchLaterFilms, (id_user, id_film))
+        cur.execute(sqlAddToWatchedFilms, (id_user, id_film))
+        con.commit()
+    else:
+        # ЗАКРАСИТЬ КНОПКУ WATCHED
+        print("No such film in users list, adding")
+        cur.execute(sqlAddToWatchedFilms, (id_user, id_film))
+        con.commit()
+
+def addUserWatchLaterFilm(id_user, id_film, userFilmsList):
+    con = createConnection()
+    cur = con.cursor()
+    sqlAddToWatchLaterFilms = """
+    INSERT INTO watchlater_films (id_user, id_films) VALUES (%s, %s)"""
+    if id_film in userFilmsList[0]:
+        #ОБЕСЦВЕТИТЬ КНОПКУ FAVORITE/ЗАКРАСИТЬ КНОПКУ WATCHlater
+        print("Already in FavoriteFilm, deleting")
+        sqlRemoveFromFavoriteFilms = """
+        DELETE FROM favorite_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromFavoriteFilms, (id_user, id_film))
+        cur.execute(sqlAddToWatchLaterFilms, (id_user, id_film))
+        con.commit()
+    elif id_film in userFilmsList[1]:
+        # ОБЕСЦВЕТИТЬ КНОПКУ WATCHED/ЗАКРАСИТЬ КНОПКУ WATCHlater
+        print("Already in WatchedFilm, deleting")
+        sqlRemoveFromWatchedFilms = """
+        DELETE FROM watched_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromWatchedFilms, (id_user, id_film))
+        cur.execute(sqlAddToWatchLaterFilms, (id_user, id_film))
+        con.commit()
+    elif id_film in userFilmsList[2]:
+        # ОБЕСЦВЕТИТЬ КНОПКУ WATCHE_LATER
+        print("Already in Watch LaterFilm, deleting")
+        sqlRemoveFromWatchLaterFilms = """
+        DELETE FROM watchlater_films WHERE id_user = %s AND id_films = %s"""
+        cur.execute(sqlRemoveFromWatchLaterFilms, (id_user, id_film))
+        con.commit()
+    else:
+        # ЗАКРАСИТЬ КНОПКУ WatchLater
+        print("No such film in users list, adding")
+        cur.execute(sqlAddToWatchLaterFilms, (id_user, id_film))
+        con.commit()
