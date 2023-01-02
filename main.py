@@ -58,10 +58,12 @@ if __name__ == "__main__":
 #Ибо эту переменную листа можно юзать по всей проге, он хранит листы фильмов нашего Юзера
 #Доделать в зависимости от ответа обновление этого листа (брать с бд или обновлять глобалку)
     def login():
-        #addUserFavoriteFilm(7, 46, getUsersFilmsLists(7))
-        #addUserWatchedFilm(7, 46, getUsersFilmsLists(7))
-        #addUserWatchLaterFilm(7, 46, getUsersFilmsLists(7))
-        #getUsersFilmsLists(id_user=)
+        #getUsersFavoriteFilms(7)
+        #getUsersWatchedFilms(7)
+        #getUsersWatchLaterFilms(7)
+        #addUserFavoriteFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
+        #addUserWatchedFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
+        #addUserWatchLaterFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
         #addFilms()
         #getListAllDataAllFilms()
         #getListAllFilmWithGenresUser(["Adventure", "Comedy"])
