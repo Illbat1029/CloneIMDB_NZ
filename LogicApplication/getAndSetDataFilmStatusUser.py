@@ -1,4 +1,4 @@
-from DB_connector import *
+from LogicApplication.DB_connector import *
 import mysql.connector
 
 def getUsersFavoriteFilms(id_user):

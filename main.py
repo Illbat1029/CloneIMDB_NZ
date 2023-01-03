@@ -10,13 +10,13 @@ from Login_page import *
 from main_page import *
 from forgot_GUI import *
 from search_field import *
-from userDataValidation import *
-from DB_connector import *
-from getFilmsDataFromDB import *
-from getAndSetDataFilmStatusUser import *
-from getAndSetScoreFilms import *
-from getAndSetReviews import *
-from methodsAdminAndModerator import *
+from LogicApplication.userDataValidation import *
+from LogicApplication.DB_connector import *
+from LogicApplication.getFilmsDataFromDB import *
+from LogicApplication.getAndSetDataFilmStatusUser import *
+from LogicApplication.getAndSetScoreFilms import *
+from LogicApplication.getAndSetReviews import *
+from LogicApplication.methodsAdminAndModerator import *
 
 
 if __name__ == "__main__":

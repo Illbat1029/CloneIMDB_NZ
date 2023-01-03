@@ -1,4 +1,4 @@
-from DB_connector import *
+from LogicApplication.DB_connector import *
 import mysql.connector
 class userReview:
     def __init__(self, idUser, uname, filmname, review, score):

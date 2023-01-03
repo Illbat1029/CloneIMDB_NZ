@@ -1,4 +1,4 @@
-from DB_connector import *
+from LogicApplication.DB_connector import *
 import mysql.connector
 class Film:
     def __init__(self, id=0, filmname="", description="",
