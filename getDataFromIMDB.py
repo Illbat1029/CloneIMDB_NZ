@@ -9,10 +9,10 @@ import os
 from DB_connector import *
 from datetime import datetime, timedelta
 
-def addFilms():
+def addFilms(filmIDStart, filmIDEnd):
     a = 1
     stime = datetime.now()
-    for i in range(13024674, 13024675):  # 112161
+    for i in range(filmIDStart, filmIDEnd):  # 112161
         try:
             getDataFilmIMDB(i, a)
             a = a + 1
