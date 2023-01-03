@@ -1,6 +1,6 @@
-from DB_connector import *
+from LogicApplication.DB_connector import *
 import mysql.connector
-from getDataFromIMDB import *
+from LogicApplication.getDataFromIMDB import *
 class ReportReview:
     def __init__(self, review, type):
         self.review = review
