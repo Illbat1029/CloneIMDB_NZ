@@ -13,9 +13,10 @@ from search_field import *
 from userDataValidation import *
 from DB_connector import *
 from getFilmsDataFromDB import *
-from getDataFromIMDB import *
 from getAndSetDataFilmStatusUser import *
 from getAndSetScoreFilms import *
+from getAndSetReviews import *
+from methodsAdminAndModerator import *
 
 
 if __name__ == "__main__":
@@ -60,13 +61,26 @@ if __name__ == "__main__":
 #Ибо эту переменную листа можно юзать по всей проге, он хранит листы фильмов нашего Юзера
 #Доделать в зависимости от ответа обновление этого листа (брать с бд или обновлять глобалку)
     def login():
+        #-----------------REVIEW-----------------
+        #addReview(7,2, "Pizda")
+        #changeRivewText(7,2, "Hujnia")
+        #deleteReview(7,2)
+        #a = getAllReviewsUser(7)
+        #a = getAllReviewsForFilm(1)
+        # -----------------ADMIN/MODER PANEL-----------------
+        #addFilmsAdmin(54215)  OR addFilmsAdmin(54215, 54300)
+        #deleteFilmFromDB("Gen, 1988")
+        #a = getAllReportReviews()
+        #deleteReviewAfterValidation(1)
+        # -----------------SCORE FILMS-----------------
         #addVotesAndScoreUser(7, 1, 5)
         #changeScoreFilmUser(7,1,3)
         #deleteScoreUser(7,1)
+        # -----------------FILM TYPE LISTS-----------------
         #addUserFavoriteFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
         #addUserWatchedFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
         #addUserWatchLaterFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
-        #addFilms()
+        # -----------------FILMS OPERATION SEARCH-----------------
         #getListAllDataAllFilms()
         #getListAllFilmWithGenresUser(["Adventure", "Comedy"])
         #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
@@ -78,6 +92,10 @@ if __name__ == "__main__":
         #getAllDataFilmByLanguage("Spanish")
         #getAllDataFilmByCountry("Israel")
         #getAllDataFilmByScoreBetween(1,2) //POKA NETU NI 1 FILMA SO SCORE
+        # -----------------SCORE REVIEW-----------------
+        #
+        #
+        #
         try:
             if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
                 dataUser = getDataUser([Log_page.user_or_email.text()])
