@@ -4,10 +4,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5 import QtGui
 import re
 import StyleSheetForButtons
-from userDataValidation import *
-from DB_connector import *
-from getFilmsDataFromDB import *
-from getDataFromIMDB import *
+from LogicApplication.userDataValidation import *
+from LogicApplication.DB_connector import *
+from LogicApplication.getFilmsDataFromDB import *
+from LogicApplication.getDataFromIMDB import *
 from collections import OrderedDict
 
 def addFavorite(name,fav):

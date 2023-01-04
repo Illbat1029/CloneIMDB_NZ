@@ -13,10 +13,10 @@ from Login_page import *
 from main_page import *
 from forgot_GUI import *
 
-from userDataValidation import *
-from DB_connector import *
-from getFilmsDataFromDB import *
-from getDataFromIMDB import *
+from LogicApplication.userDataValidation import *
+from LogicApplication.DB_connector import *
+from LogicApplication.getFilmsDataFromDB import *
+from LogicApplication.getDataFromIMDB import *
 
 
 if __name__ == "__main__":
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     #создает окно логованя и регистрации
     Log_page_form = QtWidgets.QWidget()
-    Log_page = Ui_Form()
+    Log_page = Login()
     Log_page.setupUi(Log_page_form)
 
     #Показывает окно логованя или регистрации

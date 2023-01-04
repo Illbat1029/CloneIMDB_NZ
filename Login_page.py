@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from LoginPageFunctions import page_to_sign,page_to_login,registration_function
 from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
 
-class Ui_Form(object):
+class Login(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1000, 600)

@@ -4,11 +4,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5 import QtGui
 import re
 import StyleSheetForButtons
-from userDataValidation import *
-from DB_connector import *
-from getFilmsDataFromDB import *
-from getDataFromIMDB import *
-
+from LogicApplication.userDataValidation import *
+from LogicApplication.DB_connector import *
+from LogicApplication.getFilmsDataFromDB import *
+from LogicApplication.getDataFromIMDB import *
 def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6):
     stackedWidget.setCurrentIndex(0)
     home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
@@ -53,6 +52,7 @@ def settingsPage(stackedWidget,home_button,favorite_button,histor_button,setting
     settings_button.setStyleSheet(StyleSheetForButtons.settings_pressed)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
     pushButton_6.setIcon(QIcon(('arrow-down')))
+
 
 b=getListAllDataAllFilms()
 def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film):
