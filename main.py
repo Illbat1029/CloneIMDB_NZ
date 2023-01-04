@@ -60,7 +60,11 @@ if __name__ == "__main__":
                 dataUser = getDataUser([Log_page.user_or_email.text()])
                 updateLastVisitDataTime(dataUser[0])
                 Main_page_form.show()
+
+
                 Log_page_form.close()
+                Main_page.username_lable.setText(Log_page.user_or_email.text())
+                Main_page.id_label.setText('ID: '+  str(dataUser[0]))
             else:
                 Log_page.push_up_login_notifikation.setFixedSize(276, 10)
         except:
