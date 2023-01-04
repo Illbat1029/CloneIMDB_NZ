@@ -16,7 +16,6 @@ from forgot_GUI import *
 from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
 from LogicApplication.getFilmsDataFromDB import *
-from LogicApplication.getDataFromIMDB import *
 
 
 if __name__ == "__main__":
@@ -41,7 +40,7 @@ if __name__ == "__main__":
     Fogort_page.setupUi(Fogort_page_from)
 
     def login():
-        #addFilms()
+
         #getListAllDataAllFilms()
        #a=getListAllFilmWithGenresUser(["Adventure", "Comedy"])
        #for i in range(len(a)):
