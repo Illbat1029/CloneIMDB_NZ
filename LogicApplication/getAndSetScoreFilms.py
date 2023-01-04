@@ -25,3 +25,14 @@ def changeScoreFilmUser(idUser, idFilm, newScore):
     data = (newScore, idUser, idFilm)
     cur.execute(sqlChangeScoreFilm, data)
     con.commit()
+
+def selectScoreFromDB(idUser, idFilm):
+    con = createConnection()
+    cur = con.cursor()
+    sqlChangeScoreFilm = """
+    SELECT score FROM films_score WHERE(id_user = %s AND id_films = %s)"""
+    data = (idUser, idFilm)
+    cur.execute(sqlChangeScoreFilm, data)
+
+    x=cur.fetchall()
+    return x
