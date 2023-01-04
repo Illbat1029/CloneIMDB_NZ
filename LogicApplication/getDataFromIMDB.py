@@ -6,13 +6,13 @@ from imdb import Cinemagoer
 import requests
 import urllib
 import os
-from DB_connector import *
+from LogicApplication.DB_connector import *
 from datetime import datetime, timedelta
 
-def addFilms():
+def addFilms(filmIDStart, filmIDEnd):
     a = 1
     stime = datetime.now()
-    for i in range(5463162, 5463163):  # 112161
+    for i in range(filmIDStart, filmIDEnd):  # 112161
         try:
             getDataFilmIMDB(i, a)
             a = a + 1
@@ -40,7 +40,7 @@ def existFilmDatabase(nameFilm, release):
     isExist = isExist[0]
     return isExist
 def createFilm(filmname, description, country, genre, language, releasedata, runtime, score, vote, director, actors):
-    file = open("Images_Film/1.png", 'rb').read()
+    file = open("../Images_Film/1.png", 'rb').read()
     file = base64.b64encode(file)
     con = createConnection()
     cur = con.cursor()
@@ -160,24 +160,31 @@ def peopleDataInsert(directors, cast, filmID):
                 actor = ia.get_person(i.personID)
                 imA = actor['headshot']
                 downloadImagesPeop(imA)
-                file = open("Images_People/1.png", 'rb').read()
+                file = open("../Images_People/1.png", 'rb').read()
                 file = base64.b64encode(file)
             except:
-                file = open("Images_People/noFoto.png", 'rb').read()
+                file = open("../Images_People/noFoto.png", 'rb').read()
                 file = base64.b64encode(file)
             newPeopleList.append((str(i), file))
     for i in cast:
-        if str(i) not in dictionary and (str(i),) not in newPeopleList:
-            try:
-                actor = ia.get_person(i.personID)
-                imA = actor['headshot']
-                downloadImagesPeop(imA)
-                file = open("Images_People/1.png", 'rb').read()
-                file = base64.b64encode(file)
-            except:
-                file = open("Images_People/noFoto.png", 'rb').read()
-                file = base64.b64encode(file)
-            newPeopleList.append((str(i), file))
+        #and (str(i),) not in newPeopleList
+        if str(i) not in dictionary:
+            check = 0
+            for j in newPeopleList:
+                if str(i) in j[0]:
+                    check += 1
+                    break
+            if check == 0:
+                try:
+                    actor = ia.get_person(i.personID)
+                    imA = actor['headshot']
+                    downloadImagesPeop(imA)
+                    file = open("../Images_People/1.png", 'rb').read()
+                    file = base64.b64encode(file)
+                except:
+                    file = open("../Images_People/noFoto.png", 'rb').read()
+                    file = base64.b64encode(file)
+                newPeopleList.append((str(i), file))
     sqlAddPeople = """
     INSERT INTO people (fullname, peopleIMG) VALUES (%s, %s) 
     """
