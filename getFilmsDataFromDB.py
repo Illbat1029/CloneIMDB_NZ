@@ -115,6 +115,7 @@ def getListAllFilmWithGenresUser(genresList):
         cur.execute(sqlGetDataFilm, genresIDUser[i])
         data.append(cur.fetchall())
     data=refractoringDataGenresFilm(data)
+
     return data
 
 def getListAllFilmsWithPeopleUserAndStatus(peopleFullName):

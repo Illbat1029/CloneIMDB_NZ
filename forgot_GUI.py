@@ -90,7 +90,7 @@ class Forgot_page(object):
         self.wrong_email.setMinimumSize(QtCore.QSize(0, 13))
         self.wrong_email.setMaximumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
-        font.setPointSize(8)
+        font.setPointSize(5)
         self.wrong_email.setFont(font)
         self.wrong_email.setStyleSheet("color:red;\n"
 "")
@@ -116,7 +116,7 @@ class Forgot_page(object):
         self.wrong_code.setMinimumSize(QtCore.QSize(0, 13))
         self.wrong_code.setMaximumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
-        font.setPointSize(8)
+        font.setPointSize(5)
         self.wrong_code.setFont(font)
         self.wrong_code.setStyleSheet("color:red;\n"
 "")
@@ -134,7 +134,7 @@ class Forgot_page(object):
         self.wrong_password.setMinimumSize(QtCore.QSize(0, 13))
         self.wrong_password.setMaximumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
-        font.setPointSize(8)
+        font.setPointSize(5)
         self.wrong_password.setFont(font)
         self.wrong_password.setStyleSheet("color:red;\n"
 "")
@@ -176,11 +176,3 @@ class Forgot_page(object):
         self.acceptNewPassBttn.setText(_translate("Form", "Accept new password"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())

@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from LoginPageFunctions import page_to_sign,page_to_login,registration_function
+from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -59,6 +60,7 @@ class Ui_Form(object):
 "background-color: transparent;\n"
 "color:white;\n"
 "}")
+
         self.Central_widget = QtWidgets.QWidget(Form)
         self.Central_widget.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.Central_widget.setMinimumSize(QtCore.QSize(1000, 600))
@@ -342,7 +344,10 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Form)
-
+        #кнопки
+        self.to_register.clicked.connect(self.page_sign)
+        self.to_login_2.clicked.connect(self.page_log)
+        self.bttn_register.clicked.connect(self.registration)
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
@@ -369,4 +374,13 @@ class Ui_Form(object):
         self.bttn_login.setText(_translate("Form", "Login"))
         self.bttn_forgot.setText(_translate("Form", "Forgot password?"))
         self.to_register.setText(_translate("Form", "Not registered? Register"))
+    #функции кнопок
+    def page_sign(self) :
+        page_to_sign(self.stackedWidget)
+
+    def page_log(self):
+        page_to_login(self.stackedWidget,self.wrong_pass_repeat_reg,self.wrong_pass_reg,self.wrong_username_reg,self. worng_email_reg)
+    def registration(self):
+        registration_function(self.stackedWidget,self.username,self.email,self.password_sign,self.reapet_passwd,self.user_or_email,self.wrong_pass_repeat_reg,self.wrong_pass_reg,self.wrong_username_reg,self. worng_email_reg)
+
 import res
