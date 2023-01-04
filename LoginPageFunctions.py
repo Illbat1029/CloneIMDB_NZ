@@ -1,4 +1,4 @@
-from LogicApplication import userDataValidation
+from LogicApplication.userDataValidation import *
 from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox
 def page_to_sign(stackedWidget):
     stackedWidget.setCurrentIndex(0)

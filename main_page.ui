@@ -1081,7 +1081,7 @@ padding-left:30px;
                <string notr="true"/>
               </property>
               <property name="currentIndex">
-               <number>5</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="home_page">
                <property name="styleSheet">

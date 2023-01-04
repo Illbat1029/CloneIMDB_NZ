@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back
 from SlideMenuFunction import slide_menu_fun
-from ScoreFilmAndChangeIcon import swap_star_and_get_score1_icon,swap_star_and_get_score2_icon,swap_star_and_get_score3_icon,swap_star_and_get_score4_icon,swap_star_and_get_score5_icon
+from ScoreFilmAndChangeIcon import swap_star_and_get_score1_icon,swap_star_and_get_score2_icon,swap_star_and_get_score3_icon,swap_star_and_get_score4_icon,swap_star_and_get_score5_icon,setScoreFromDataBase
 from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_history,next_page_later, next_page_favorite, back_page_history,back_page_favorite,back_page_home,back_page_later
 from PyQt5.QtWidgets import QPushButton
 from addFilmToFavoriteLaterWatched import addFavorite,addLater,addwatched
@@ -3772,6 +3772,8 @@ class Main_page(object):
             about_film_page(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                             self.Score_of_film_2, self.current_page_home)
+            setScoreFromDataBase(self.username_lable, self.score_1_button, self.score_2_button, self.score_3_button,
+                                 self.score_4_button, self.score_5_button, self.username_lable,self.Name_of_film_and_year_2)
 
     def back_button(self):
             back(self.stackedWidget)
@@ -3811,27 +3813,32 @@ class Main_page(object):
                               self.page_next2_button_history)
 
     def swap_star_and_get_score1(self):
+
             swap_star_and_get_score1_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.username_lable)
 
     def swap_star_and_get_score2(self):
+
             swap_star_and_get_score2_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
 
     def swap_star_and_get_score3(self):
+
             swap_star_and_get_score3_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
 
     def swap_star_and_get_score4(self):
+
             swap_star_and_get_score4_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
 
     def swap_star_and_get_score5(self):
+
             swap_star_and_get_score5_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
 
     def addInFavorite(self):
-            addFavorite(self.Name_of_film_and_year_2, self.add_in_favorite_bttn_2)
+            addFavorite(self.Name_of_film_and_year_2, self.add_in_favorite_bttn_2,self.username_lable)
 
     def addInLater(self):
             addLater(self.Name_of_film_and_year_2, self.add_in_watch_later_bttn_2)
