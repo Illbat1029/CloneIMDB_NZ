@@ -17,6 +17,7 @@ from LogicApplication.getAndSetDataFilmStatusUser import *
 from LogicApplication.getAndSetScoreFilms import *
 from LogicApplication.getAndSetReviews import *
 from LogicApplication.methodsAdminAndModerator import *
+from LogicApplication.reviewLogic import *
 
 
 if __name__ == "__main__":
@@ -67,6 +68,12 @@ if __name__ == "__main__":
         #deleteReview(7,2)
         #a = getAllReviewsUser(7)
         #a = getAllReviewsForFilm(1)
+        #getLikesListForThisFilmReviews(1)
+        # -----------------REVIEW_VOTE_FILM FOR FILM PAGE---------------
+        #idfilm = 2
+        #list = getLikesListForThisFilmReviews(idfilm)
+        #3 ПАРАМЕТ 1 или -1, в зависимости от кнопки
+        #reviewScoreButton(7, 8, 1, list)
         # -----------------ADMIN/MODER PANEL-----------------
         #addFilmsAdmin(54215)  OR addFilmsAdmin(54215, 54300)
         #deleteFilmFromDB("Gen, 1988")
