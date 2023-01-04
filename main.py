@@ -1,36 +1,29 @@
 
 import sys
 import os
+from PIL.ImageQt import ImageQt
 
+from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt ,QSize
+from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem,QLabel
+from PyQt5.QtGui import QIcon
 
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox
+import StyleSheetForButtons
 
 from Login_page import *
 from main_page import *
 from forgot_GUI import *
-from search_field import *
+
 from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
 from LogicApplication.getFilmsDataFromDB import *
-from LogicApplication.getAndSetDataFilmStatusUser import *
-from LogicApplication.getAndSetScoreFilms import *
-from LogicApplication.getAndSetReviews import *
-from LogicApplication.methodsAdminAndModerator import *
-from LogicApplication.reviewLogic import *
 
 
 if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     app = QtWidgets.QApplication(sys.argv)
-    #homepage index=0
-    #favorite_page index=1
-    #about film index=3
-
-
     #создает окно логованя и регистрации
     Log_page_form = QtWidgets.QWidget()
-    Log_page = Ui_Form()
+    Log_page = Login()
     Log_page.setupUi(Log_page_form)
 
     #Показывает окно логованя или регистрации
@@ -46,50 +39,13 @@ if __name__ == "__main__":
     Fogort_page=Forgot_page()
     Fogort_page.setupUi(Fogort_page_from)
 
-
-    #переключает на страницу где регистрация
-    def page_sign():
-        Log_page.stackedWidget.setCurrentIndex(0)
-    #переключает на страницу где логоване
-    def page_log():
-        Log_page.stackedWidget.setCurrentIndex(1)
-        Log_page.wrong_pass_repeat_reg.setFixedSize(0, 0)
-        Log_page.wrong_pass_reg.setFixedSize(0, 0)
-        Log_page.worng_email_reg.setFixedSize(0, 0)
-        Log_page.wrong_username_reg.setFixedSize(0, 0)
-
-#Я хз, можно ли при логине инициализировать массив, который будет юзаться потом по всей проге:
-#Ибо эту переменную листа можно юзать по всей проге, он хранит листы фильмов нашего Юзера
-#Доделать в зависимости от ответа обновление этого листа (брать с бд или обновлять глобалку)
     def login():
-        #-----------------REVIEW-----------------
-        #addReview(7,2, "Pizda")
-        #changeRivewText(7,2, "Hujnia")
-        #deleteReview(7,2)
-        #a = getAllReviewsUser(7)
-        #a = getAllReviewsForFilm(1)
-        #getLikesListForThisFilmReviews(1)
-        # -----------------REVIEW_VOTE_FILM FOR FILM PAGE---------------
-        #idfilm = 2
-        #list = getLikesListForThisFilmReviews(idfilm)
-        #3 ПАРАМЕТ 1 или -1, в зависимости от кнопки
-        #reviewScoreButton(7, 8, 1, list)
-        # -----------------ADMIN/MODER PANEL-----------------
-        #addFilmsAdmin(54215)  OR addFilmsAdmin(54215, 54300)
-        #deleteFilmFromDB("Gen, 1988")
-        #a = getAllReportReviews()
-        #deleteReviewAfterValidation(1)
-        # -----------------SCORE FILMS-----------------
-        #addVotesAndScoreUser(7, 1, 5)
-        #changeScoreFilmUser(7,1,3)
-        #deleteScoreUser(7,1)
-        # -----------------FILM TYPE LISTS-----------------
-        #addUserFavoriteFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
-        #addUserWatchedFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
-        #addUserWatchLaterFilm(7, 46, getUsersFavoriteFilms(7), getUsersWatchedFilms(7), getUsersWatchLaterFilms(7))
-        # -----------------FILMS OPERATION SEARCH-----------------
+
         #getListAllDataAllFilms()
-        #getListAllFilmWithGenresUser(["Adventure", "Comedy"])
+       #a=getListAllFilmWithGenresUser(["Adventure", "Comedy"])
+       #for i in range(len(a)):
+        #   print(a[i].name, a[i].genres)
+
         #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
         #getListAllFilmsWithPeopleUserAndStatus("Frank Darabont")
         #getListAllFilmsWithPeopleUser("Matthias Schweighöfer")
@@ -99,432 +55,92 @@ if __name__ == "__main__":
         #getAllDataFilmByLanguage("Spanish")
         #getAllDataFilmByCountry("Israel")
         #getAllDataFilmByScoreBetween(1,2) //POKA NETU NI 1 FILMA SO SCORE
-        # -----------------SCORE REVIEW-----------------
-        #
-        #
-        #
         try:
             if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
                 dataUser = getDataUser([Log_page.user_or_email.text()])
                 updateLastVisitDataTime(dataUser[0])
                 Main_page_form.show()
                 Log_page_form.close()
+            else:
+                Log_page.push_up_login_notifikation.setFixedSize(276, 10)
         except:
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
-    def register():
-        #sendMailForgoutPassword(Log_page.email.text())
-        RegistrationUser(Log_page.username.text(), Log_page.email.text(), Log_page.password_sign.text(), Log_page.reapet_passwd.text())
+
+        Main_page.stackedWidget.setCurrentIndex(0)
+        Main_page.home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
+    # регистрация ничего делать не надо
+
     def fogort():
         Fogort_page.wrong_email.setFixedSize(0, 0)
         Fogort_page.wrong_code.setFixedSize(0, 0)
         Fogort_page.wrong_password.setFixedSize(0, 0)
-        Fogort_page.confirm_password_error.setFixedSize(0, 0)
+        Fogort_page.wrongPassword2.setFixedSize(0, 0)
         Fogort_page_from.show()
-    def slide_menu():
 
-        width = Main_page.left_menu.width()
-
-        if width == 50:
-
-            newWidth = 160
-        else:
-
-            newWidth = 50
-
-        animation = QPropertyAnimation(Main_page.left_menu, b"maximumWidth")
-
-        animation.setDuration(1000)
-
-        animation.setStartValue(newWidth)
-        animation.setEndValue(width)
-        animation.setEasingCurve(QEasingCurve.InCurve)
-        animation.start()
-
-
-
-    #Переключает на домашнию страницу
-    def home():
-
-        Main_page.stackedWidget.setCurrentIndex(0)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
-
-
-    # Переключает на страницу любимое
-    def favorite():
-        Main_page.stackedWidget.setCurrentIndex(1)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
-
-
-    # Переключает на страницу позже
-    def later():
-        Main_page.stackedWidget.setCurrentIndex(3)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
-
-
-    # Переключает на страницу история
-    def history():
-        Main_page.stackedWidget.setCurrentIndex(4)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
-
-
-    # Переключает на страницу настроек
-    def settings():
-        Main_page.stackedWidget.setCurrentIndex(6)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
-
-
-    # Переключает на страницу с фильтром фильмов
-    def filter_on():
-        global index
-        index = Main_page.stackedWidget.currentIndex()
-        Main_page.stackedWidget.setCurrentIndex(5)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-up')))
-
-    #отключает страницу с фильтром фильмов
-    def filter_off():
-
-        Main_page.stackedWidget.setCurrentIndex(index)
-        Main_page.pushButton_6.setIcon(QtGui.QIcon(('arrow-down')))
-
-    #страничка в которой содержиться инфа о фильме
-    def about_film():
-        global index
-        index = Main_page.stackedWidget.currentIndex()
-       # Main_page.Name_of_film_and_year.setText(str) поле с названием фильма и сразу же год
-        #Main_page.date_country_genres_runtime.setText(str) после с временем старнйо жанрмами и длительностью
-        #Main_page.Score_of_film.setText(str) поле с оценкой
-       # Main_page.Tags_for_film.setText(str) тэги
-        #Main_page.Overview_text.setText(str) овервью тьоесть описание
-       # Main_page.first_actor_name.setText(str)
-        #Main_page.second_actor_name.setText(str)
-        #Main_page.third_actor_name.setText(str)
-        #Main_page.fourth_actor_name.setText(str) с фото то же самое
-
-        Main_page.stackedWidget.setCurrentIndex(2)
-
-    #возвращает на прошулую страницу со страницы о фильме
-    def back():
-
-        Main_page.stackedWidget.setCurrentIndex(index)
 
 
 
     def sent_forgot():
 
 
-        Fogort_page.wrong_email.setFixedSize(276, 10)
-        Fogort_page.wrong_code.setFixedSize(276, 10)
-        Fogort_page.wrong_password.setFixedSize(276, 10)
-        Fogort_page.confirm_password_error.setFixedSize(276, 10)
+        Fogort_page.wrong_email.setFixedSize(276, 13)
+        Fogort_page.wrong_code.setFixedSize(276, 13)
+        Fogort_page.wrong_password.setFixedSize(276, 13)
+        Fogort_page.wrongPassword2.setFixedSize(276, 13)
 
-
-
-
-
-
-    film_bttn = []
-    film_bttn_not_text = []
+    film_bttn ={}
+    film_bttn_not_text = {}
+    film_name = {}
+    film_name_not_text = {}
     buttons = Main_page.widget.findChildren(QPushButton)
+    Labels = Main_page.widget.findChildren(QLabel)
     for button in buttons:
 
-        for i in range(40):
+
+        for i in range(19):
             if button.objectName() == 'home_film_bttn' + str(i):
-                film_bttn.append(button.objectName())
-                print(button.objectName())
-                film_bttn_not_text.append(button)
-                # print(button.objectName())
-                png = "border-image: url(Film_" + str(i) + ".jpg);"
-                button.setStyleSheet(png)
+                film_bttn[i]=button.objectName()
+                film_bttn_not_text[i]=button
+    for label in Labels:
 
 
-    #переключает след старницу в разедле хоум
-    def next_page_home():
+        for i in range(19):
+            if label.objectName() == 'home_name_film' + str(i):
 
-        if Main_page.current_page_home.text() != 'last':
-            x = 0
+                film_name_not_text[i]=label
 
-            # Print the button's name
 
-            stranica = int(Main_page.current_page_home.text()) + 1
-            Main_page.current_page_home.setText(str(stranica))
-            Main_page.pagr_next_button_home.setText(str(int(Main_page.pagr_next_button_home.text()) + 1))
-            Main_page.page_next2_button_home.setText(str(int(Main_page.page_next2_button_home.text()) + 1))
 
-            for i in film_bttn:
-                i = i[14:]
 
-                #сюда подставить фото с базы данных потом
-                png = "border-image: url(Film_" + str(int(i) + (stranica - 1) * 18) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
+    a = getListAllDataAllFilms()
+    x=0
+    for i in film_bttn_not_text.keys():
 
-    #Страница нахад в разделе хоум
-    def back_page_home():
+        binary_data = base64.b64decode(a[i-1 ].images)
 
-        if Main_page.current_page_home.text() != '1':
-            x = 0
 
-            # Print the button's name
-            Main_page.pagr_next_button_home.setText(str(int(Main_page.pagr_next_button_home.text()) - 1))
-            Main_page.page_next2_button_home.setText(str(int(Main_page.page_next2_button_home.text()) -1))
-            stranica = int(Main_page.current_page_home.text())
 
-            Main_page.current_page_home.setText(str(stranica - 1))
+        pixmap = QtGui.QPixmap()
+        pixmap.loadFromData(binary_data)
+        film_name_not_text[i].setText(a[i-1].name)
 
-            for i in film_bttn:
-                i = i[14:]
+     #   #     png = "border-image: url(Film_" + str(i) + ".jpg);"
+        film_bttn_not_text[i].setIconSize(QSize(100, 140))
+        film_bttn_not_text[i].setIcon(QIcon(pixmap))
 
-                #Подставить фото
-                png = "border-image: url(Film_" + str((stranica - 2) * 18 + (int(i))) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
 
-    # переключает след старницу в разедле фаворит
-    def next_page_favorite():
 
-        if Main_page.current_page_favorite.text() != 'last':
-            x = 0
+       # Main_page.score_1_button.setStyleSheet(star_1_pressed)
 
-            # Print the button's name
-
-            stranica = int(Main_page.current_page_favorite.text()) + 1
-            Main_page.current_page_favorite.setText(str(stranica))
-            Main_page.pagr_next_button_favorite.setText(str(int(Main_page.pagr_next_button_favorite.text()) + 1))
-            Main_page.page_next2_button_favorite.setText(str(int(Main_page.page_next2_button_favorite.text()) + 1))
-
-            for i in film_bttn:
-                i = i[14:]
-
-                #сюда подставить фото с базы данных потом
-                png = "border-image: url(Film_" + str(int(i) + (stranica - 1) * 18) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
-
-    def back_page_favorite():
-
-        if Main_page.current_page_favorite.text() != '1':
-            x = 0
-
-            # Print the button's name
-            Main_page.pagr_next_button_favorite.setText(str(int(Main_page.pagr_next_button_favorite.text()) - 1))
-            Main_page.page_next2_button_favorite.setText(str(int(Main_page.page_next2_button_favorite.text()) - 1))
-            stranica = int(Main_page.current_page_favorite.text())
-
-            Main_page.current_page_favorite.setText(str(stranica - 1))
-
-            for i in film_bttn:
-                i = i[14:]
-
-                # Подставить фото
-                png = "border-image: url(Film_" + str((stranica - 2) * 18 + (int(i))) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
-
-    def next_page_later():
-
-        if Main_page.current_page_watch_later.text() != 'last':
-            x = 0
-
-            # Print the button's name
-
-            stranica = int(Main_page.current_page_watch_later.text()) + 1
-            Main_page.current_page_watch_later.setText(str(stranica))
-            Main_page.pagr_next_button_watch_later.setText(str(int(Main_page.pagr_next_button_watch_later.text()) + 1))
-            Main_page.page_next2_button_watch_later.setText(str(int(Main_page.page_next2_button_watch_later.text()) + 1))
-
-            for i in film_bttn:
-                i = i[14:]
-
-                #сюда подставить фото с базы данных потом
-                png = "border-image: url(Film_" + str(int(i) + (stranica - 1) * 18) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
-
-    def back_page_later():
-
-        if Main_page.current_page_watch_later.text() != '1':
-            x = 0
-
-            # Print the button's name
-            Main_page.pagr_next_button_watch_later.setText(str(int(Main_page.pagr_next_button_watch_later.text()) - 1))
-            Main_page.page_next2_button_watch_later.setText(str(int(Main_page.page_next2_button_watch_later.text()) - 1))
-            stranica = int(Main_page.current_page_watch_later.text())
-
-            Main_page.current_page_watch_later.setText(str(stranica - 1))
-
-            for i in film_bttn:
-                i = i[14:]
-
-                # Подставить фото
-                png = "border-image: url(Film_" + str((stranica - 2) * 18 + (int(i))) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
-
-    def next_page_history():
-
-        if Main_page.current_page_history.text() != 'last':
-            x = 0
-
-            # Print the button's name
-
-            stranica = int(Main_page.current_page_history.text()) + 1
-            Main_page.current_page_history.setText(str(stranica))
-            Main_page.pagr_next_button_history.setText(str(int(Main_page.pagr_next_button_history.text()) + 1))
-            Main_page.page_next2_button_history.setText(str(int(Main_page.page_next2_button_history.text()) + 1))
-
-            for i in film_bttn:
-                i = i[14:]
-
-                #сюда подставить фото с базы данных потом
-                png = "border-image: url(Film_" + str(int(i) + (stranica - 1) * 18) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
-
-    def back_page_history():
-
-        if Main_page.current_page_history.text() != '1':
-            x = 0
-
-            # Print the button's name
-            Main_page.pagr_next_button_history.setText(str(int(Main_page.pagr_next_button_history.text()) - 1))
-            Main_page.page_next2_button_history.setText(str(int(Main_page.page_next2_button_history.text()) - 1))
-            stranica = int(Main_page.current_page_history.text())
-
-            Main_page.current_page_history.setText(str(stranica - 1))
-
-            for i in film_bttn:
-                i = i[14:]
-
-                # Подставить фото
-                png = "border-image: url(Film_" + str((stranica - 2) * 18 + (int(i))) + ".jpg);"
-                film_bttn_not_text[x].setStyleSheet(png)
-                x += 1
-
-    #открытие фильтра поиска
-    def IsPress():
-
-        Main_page.pushButton_6.setCheckable(True)
-        Main_page.pushButton_6.toggle()
-
-        if Main_page.pushButton_6.isChecked():
-            if Main_page.stackedWidget.currentIndex() != 5 and Main_page.stackedWidget.currentIndex() != 2:
-
-                filter_on()
-
-            elif Main_page.stackedWidget.currentIndex() == 2:
-                pass
-            else:
-
-                filter_off()
-
-    #Кнопка регистрации с подсветкой красным под линейками, если не правильно
-    def registration():
-        #Красная подсветка, если данные не правильны
-        Log_page.wrong_pass_repeat_reg.setFixedSize(276, 10)
-        Log_page.wrong_pass_reg.setFixedSize(276, 10)
-        Log_page.worng_email_reg.setFixedSize(276, 10)
-        Log_page.wrong_username_reg.setFixedSize(276, 10)
-
-
-        #Окно успешной регистрации с кнопкой
-
-        success_mess_box = QMessageBox()
-        success_mess_box.setWindowTitle("Info")
-        success_mess_box.setText("Successful registration")
-        success_mess_box.setIcon(QMessageBox.Information)
-        success_mess_box.buttonClicked.connect(bttn_in_messege_box)
-        success_mess_box.exec_()
-
-    #После успешной регистрации и нажатия кнопки ок, перенос на экран логования, удаление красный надписей
-    def bttn_in_messege_box():
-        Log_page.stackedWidget.setCurrentIndex(1)
-
-        Log_page.wrong_pass_repeat_reg.setFixedSize(0, 0)
-        Log_page.wrong_pass_reg.setFixedSize(0, 0)
-        Log_page.worng_email_reg.setFixedSize(0, 0)
-        Log_page.wrong_username_reg.setFixedSize(0, 0)
-
-        #Если все данные правильны, то это убирает надписи
-        # Log_page.wrong_pass_repeat_reg.setFixedSize(0, 0)
-        # Log_page.wrong_pass_reg.setFixedSize(0, 0)
-        # Log_page.worng_email_reg.setFixedSize(0, 0)
-        # Log_page.wrong_username_reg.setFixedSize(0, 0)
-
-        #Красные надписи, если логпасс на логовании неправильный
-        # Log_page.wrong_login.setFixedSize(276, 10)
-        # Log_page.wrong_pass.setFixedSize(276, 10)
-
-        #Убрать красные надписи с логования
-        # Log_page.wrong_login.setFixedSize(0, 0)
-        # Log_page.wrong_pass.setFixedSize(0, 0)
-
-    # кнопка фильтра проверка
-    Main_page.pushButton_6.clicked.connect(IsPress)
 
     # кнопка страница вперед в разделе хоум
-    Main_page.next_button_home.clicked.connect(next_page_home)
-
-    #кнопка страница назад в разделе хоум
-    Main_page.previos_page_button_home.clicked.connect(back_page_home)
-
-    # кнопка страница вперед в разделе фаворит
-    Main_page.next_button_favorite.clicked.connect(next_page_favorite)
-
-    # кнопка страница назад в разделе фаворит
-    Main_page.previos_page_button_favorite.clicked.connect(back_page_favorite)
-
-    # кнопка страница вперед в разделе позже
-    Main_page.next_button_watch_later.clicked.connect(next_page_later)
-
-    # кнопка страница назад в разделе позже
-    Main_page.previos_page_button_watch_later.clicked.connect(back_page_later)
-
-    # кнопка страница вперед в разделе история
-    Main_page.next_button_history.clicked.connect(next_page_history)
-
-    # кнопка страница назад в разделе истроия
-    Main_page.previos_page_button_history.clicked.connect(back_page_history)
-
-    #переключится на сраницу логованя
-    Log_page.to_login_2.clicked.connect(page_log)
 
     # кнопки регистрации и логирования
     Log_page.bttn_forgot.clicked.connect(fogort)
     Log_page.bttn_login.clicked.connect(login)
 
-    #удлинение рассширение территории меню
-    Main_page.menu_buttn.clicked.connect(slide_menu)
-
-    #кнопка домой
-    Main_page.home_button.clicked.connect(home)
-
-    #кнопка любимое
-    Main_page.favorite_button.clicked.connect(favorite)
-
-    #кнопка посже
-    Main_page.watch_later_button.clicked.connect(later)
-
-    #кнопка история
-    Main_page.histor_button.clicked.connect(history)
-
-    #кнопка настрйокми
-    Main_page.settings_button.clicked.connect(settings)
-
-    #кнопка про информацию о фильме
-    for button in buttons:
-
-        if button.objectName()[:9] == 'home_film' or button.objectName()[:13]=='favorite_film' or button.objectName()[:16 ]=='watch_later_film' or button.objectName()[:12 ]=='history_film':
-            if "border-image" in  button.styleSheet():
-
-                button.clicked.connect(about_film)
+    Fogort_page.sentCodelForgotBttn.clicked.connect(sent_forgot)
 
 
-    #кнопка назад из онка с инфой о фильме
-    Main_page.back_buttn.clicked.connect(back)
 
-    Fogort_page.sent_forgot_page.clicked.connect(sent_forgot)
-
-    # переключение между логирование и регитсрациец
-    Log_page.bttn_register.clicked.connect(registration)
-    Log_page.to_register.clicked.connect(page_sign)
     sys.exit(app.exec_())

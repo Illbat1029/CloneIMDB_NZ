@@ -247,3 +247,4 @@ def getfilmImage():
     binary_data = base64.b64decode(image)
     image = Image.open(io.BytesIO(binary_data))
 
+
