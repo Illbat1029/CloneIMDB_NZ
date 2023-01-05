@@ -16,7 +16,7 @@ from forgot_GUI import *
 from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
 from LogicApplication.getFilmsDataFromDB import *
-
+from LogicApplication.getDataFromIMDB import *
 
 if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     x=0
     for i in film_bttn_not_text.keys():
 
-        binary_data = base64.b64decode(a[i-1 ].images)
+        binary_data = base64.b64decode(a[i-1].images)
 
 
 

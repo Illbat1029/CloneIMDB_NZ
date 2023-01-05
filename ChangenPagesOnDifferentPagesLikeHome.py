@@ -3,12 +3,15 @@ from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
 from LogicApplication.getFilmsDataFromDB import *
 from LogicApplication.getDataFromIMDB import *
+from LogicApplication.getAndSetDataFilmStatusUser import *
 from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt ,QSize
 from PyQt5 import QtGui
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QPushButton ,QLabel
 
 a = getListAllDataAllFilms()
+
+
 def next_page_home(current_page_home,all_button_name,next_button):
     if current_page_home.text() != 'last':
 
@@ -62,121 +65,326 @@ def back_page_home(current_page_home,all_button_name,next_button):
 #
 
 # переключает след старницу в разедле фаворит
-def next_page_favorite(current_page_favorite,pagr_next_button_favorite,page_next2_button_favorite):
+def next_page_favorite(current_page_favorite,all_button_name,next_button,userid):
     if current_page_favorite.text() != 'last':
-        x = 0
-
-        # Print the button's name
 
         stranica = int(current_page_favorite.text()) + 1
+        curr = stranica - 1
         current_page_favorite.setText(str(stranica))
-        pagr_next_button_favorite.setText(str(int(pagr_next_button_favorite.text()) + 1))
-        page_next2_button_favorite.setText(str(int(page_next2_button_favorite.text()) + 1))
-
-       # for i in film_bttn:
-        #    i = i[14:]
-
-         #   # сюда подставить фото с базы данных потом
-         #   png = "border-image: url(Film_" + str(int(i) + (stranica - 1) * 18) + ".jpg);"
-          #  film_bttn_not_text[x].setStyleSheet(png)
-          #  x += 1
 
 
-def back_page_favorite(current_page_favorite,pagr_next_button_favorite,page_next2_button_favorite):
+        userid1 = re.sub("[^0-9]", "", userid.text())
+        filmID = getUsersFavoriteFilms(userid1)
+        button = all_button_name.findChildren(QPushButton)
+        labels = all_button_name.findChildren(QLabel)
+        print(button)
+        dict2 = {}
+        labelDict = {}
+        for i in range(18):
+            bttn_number = re.sub("[^0-9]", "", button[i].objectName())
+            label_number = re.sub("[^0-9]", "", labels[i].objectName())
+            dict2[int(bttn_number)] = button[i]
+            labelDict[int(label_number)] = labels[i]
+        dict2 = dict(sorted(dict2.items()))
+        print(len(filmID))
+        labelDict = dict(sorted(labelDict.items()))
+        try:
+            try:
+                for i in range(curr*18,curr*18+18):
+
+                    bttn = (dict2.get(int(i)%18 + 1))
+
+                    label = labelDict.get(int(i)%18 + 1)
+                    binary_data = base64.b64decode(a[filmID[i] - 1].images)
+
+                    pixmap = QtGui.QPixmap()
+                    pixmap.loadFromData(binary_data)
+                    bttn.setIconSize(QSize(100, 140))
+                    bttn.setIcon(QIcon(pixmap))
+                    label.setText(a[filmID[i] - 1].name)
+            except:
+                for i in range(curr * 18,len(filmID)):
+                    bttn = (dict2.get(int(i) % 18 + 1))
+
+                    label = labelDict.get(int(i) % 18 + 1)
+                    binary_data = base64.b64decode(a[filmID[i] - 1].images)
+
+                    pixmap = QtGui.QPixmap()
+                    pixmap.loadFromData(binary_data)
+                    bttn.setIconSize(QSize(100, 140))
+                    bttn.setIcon(QIcon(pixmap))
+                    label.setText(a[filmID[i] - 1].name)
+
+                bttn.setEnabled(True)
+                next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+                current_page_favorite.setText(str(stranica-1))
+                if filmID[i] == filmID[-1]:
+                    for j in range(len(filmID)%18,18):
+                        bttn = (dict2.get(int(j)  + 1))
+                        print(j)
+                        label = labelDict.get(int(j)  + 1)
+                        bttn.setIconSize(QSize(0, 0))
+                        label.setText('')
+                        bttn.setEnabled(False)
+
+
+        except:
+            pass
+
+
+def back_page_favorite(current_page_favorite,all_button_name,next_button,userid):
     if current_page_favorite.text() != '1':
-        x = 0
+        stranica = int(current_page_favorite.text()) - 1
+        curr = stranica - 1
+        current_page_favorite.setText(str(stranica))
 
-        # Print the button's name
-        pagr_next_button_favorite.setText(str(int(pagr_next_button_favorite.text()) - 1))
-        page_next2_button_favorite.setText(str(int(page_next2_button_favorite.text()) - 1))
-        stranica = int(current_page_favorite.text())
+        userid1 = re.sub("[^0-9]", "", userid.text())
+        filmID = getUsersFavoriteFilms(userid1)
+        button = all_button_name.findChildren(QPushButton)
+        labels = all_button_name.findChildren(QLabel)
+        print(button)
+        dict2 = {}
+        labelDict = {}
+        for i in range(18):
+            bttn_number = re.sub("[^0-9]", "", button[i].objectName())
+            label_number = re.sub("[^0-9]", "", labels[i].objectName())
+            dict2[int(bttn_number)] = button[i]
+            labelDict[int(label_number)] = labels[i]
+        dict2 = dict(sorted(dict2.items()))
 
-        current_page_favorite.setText(str(stranica - 1))
+        labelDict = dict(sorted(labelDict.items()))
+        try:
+            for i in range(curr * 18,curr * 18+18 ):
 
-       # for i in film_bttn:
-         #   i = i[14:]
+                bttn = (dict2.get(int(i) % 18 + 1))
 
-          #  # Подставить фото
-           # png = "border-image: url(Film_" + str((stranica - 2) * 18 + (int(i))) + ".jpg);"
-           # film_bttn_not_text[x].setStyleSheet(png)
-           # x += 1
+                label = labelDict.get(int(i) % 18 + 1)
+                binary_data = base64.b64decode(a[filmID[i] - 1].images)
+
+                pixmap = QtGui.QPixmap()
+                pixmap.loadFromData(binary_data)
+                bttn.setIconSize(QSize(100, 140))
+                bttn.setIcon(QIcon(pixmap))
+                label.setText(a[filmID[i] - 1].name)
+                bttn.setEnabled(True)
+
+            next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+        #
+        except:
+            pass
 
 
-def next_page_later(current_page_watch_later,pagr_next_button_watch_later,page_next2_button_watch_later):
+def next_page_later(current_page_watch_later,all_button_name,next_button,userid):
     if current_page_watch_later.text() != 'last':
-        x = 0
+        userid1 = re.sub("[^0-9]", "", userid.text())
+        filmID = getUsersWatchLaterFilms(userid1)
+        if len(filmID) >18:
 
-        # Print the button's name
-
-        stranica = int(current_page_watch_later.text()) + 1
-        current_page_watch_later.setText(str(stranica))
-        pagr_next_button_watch_later.setText(str(int(pagr_next_button_watch_later.text()) + 1))
-        page_next2_button_watch_later.setText(str(int(page_next2_button_watch_later.text()) + 1))
-
-       # for i in film_bttn:
-        #    i = i[14:]
-#
-        #    # сюда подставить фото с базы данных потом
-         #   png = "border-image: url(Film_" + str(int(i) + (stranica - 1) * 18) + ".jpg);"
-         #   film_bttn_not_text[x].setStyleSheet(png)
-         #   x += 1
+            stranica = int(current_page_watch_later.text()) + 1
+            curr = stranica - 1
+            current_page_watch_later.setText(str(stranica))
 
 
-def back_page_later(current_page_watch_later,pagr_next_button_watch_later,page_next2_button_watch_later):
+
+            button = all_button_name.findChildren(QPushButton)
+            labels = all_button_name.findChildren(QLabel)
+            print(button)
+            dict2 = {}
+            labelDict = {}
+            for i in range(18):
+                bttn_number = re.sub("[^0-9]", "", button[i].objectName())
+                label_number = re.sub("[^0-9]", "", labels[i].objectName())
+                dict2[int(bttn_number)] = button[i]
+                labelDict[int(label_number)] = labels[i]
+            dict2 = dict(sorted(dict2.items()))
+            print(len(filmID))
+            labelDict = dict(sorted(labelDict.items()))
+            try:
+                try:
+                    for i in range(curr * 18, curr * 18 + 18):
+                        bttn = (dict2.get(int(i) % 18 + 1))
+
+                        label = labelDict.get(int(i) % 18 + 1)
+                        binary_data = base64.b64decode(a[filmID[i] - 1].images)
+
+                        pixmap = QtGui.QPixmap()
+                        pixmap.loadFromData(binary_data)
+                        bttn.setIconSize(QSize(100, 140))
+                        bttn.setIcon(QIcon(pixmap))
+                        label.setText(a[filmID[i] - 1].name)
+                except:
+                    for i in range(curr * 18, len(filmID)):
+                        bttn = (dict2.get(int(i) % 18 + 1))
+
+                        label = labelDict.get(int(i) % 18 + 1)
+                        binary_data = base64.b64decode(a[filmID[i] - 1].images)
+
+                        pixmap = QtGui.QPixmap()
+                        pixmap.loadFromData(binary_data)
+                        bttn.setIconSize(QSize(100, 140))
+                        bttn.setIcon(QIcon(pixmap))
+                        label.setText(a[filmID[i] - 1].name)
+
+                    bttn.setEnabled(True)
+                    next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+                    current_page_watch_later.setText(str(stranica - 1))
+                    if filmID[i] == filmID[-1]:
+                        for j in range(len(filmID) % 18, 18):
+                            bttn = (dict2.get(int(j) + 1))
+                            print(j)
+                            label = labelDict.get(int(j) + 1)
+                            bttn.setIconSize(QSize(0, 0))
+                            label.setText('')
+                            bttn.setEnabled(False)
+                        next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+
+            except:
+                pass
+
+
+def back_page_later(current_page_watch_later,all_button_name,next_button,userid):
     if current_page_watch_later.text() != '1':
-        x = 0
+        stranica = int(current_page_watch_later.text()) - 1
+        curr = stranica - 1
+        current_page_watch_later.setText(str(stranica))
 
-        # Print the button's name
-        pagr_next_button_watch_later.setText(str(int(pagr_next_button_watch_later.text()) - 1))
-        page_next2_button_watch_later.setText(str(int(page_next2_button_watch_later.text()) - 1))
-        stranica = int(current_page_watch_later.text())
+        userid1 = re.sub("[^0-9]", "", userid.text())
+        filmID = getUsersWatchLaterFilms(userid1)
+        button = all_button_name.findChildren(QPushButton)
+        labels = all_button_name.findChildren(QLabel)
+        print(button)
+        dict2 = {}
+        labelDict = {}
+        for i in range(18):
+            bttn_number = re.sub("[^0-9]", "", button[i].objectName())
+            label_number = re.sub("[^0-9]", "", labels[i].objectName())
+            dict2[int(bttn_number)] = button[i]
+            labelDict[int(label_number)] = labels[i]
+        dict2 = dict(sorted(dict2.items()))
 
-        current_page_watch_later.setText(str(stranica - 1))
+        labelDict = dict(sorted(labelDict.items()))
+        try:
+            for i in range(curr * 18, curr * 18 + 18):
+                bttn = (dict2.get(int(i) % 18 + 1))
 
-        #for i in film_bttn:
-        #    i = i[14:]
+                label = labelDict.get(int(i) % 18 + 1)
+                binary_data = base64.b64decode(a[filmID[i] - 1].images)
 
-            # Подставить фото
-        #    png = "border-image: url(Film_" + str((stranica - 2) * 18 + (int(i))) + ".jpg);"
-        #    film_bttn_not_text[x].setStyleSheet(png)
-         #   x += 1
+                pixmap = QtGui.QPixmap()
+                pixmap.loadFromData(binary_data)
+                bttn.setIconSize(QSize(100, 140))
+                bttn.setIcon(QIcon(pixmap))
+                label.setText(a[filmID[i] - 1].name)
+                bttn.setEnabled(True)
+
+            next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+        #
+        except:
+            pass
 
 
-def next_page_history(current_page_history,pagr_next_button_history,page_next2_button_history):
+def next_page_history(current_page_history,all_button_name,next_button,userid):
     if current_page_history.text() != 'last':
-        x = 0
+        userid1 = re.sub("[^0-9]", "", userid.text())
+        filmID = getUsersWatchedFilms(userid1)
+        if len(filmID) > 18:
 
-        # Print the button's name
+            stranica = int(current_page_history.text()) + 1
+            curr = stranica - 1
+            current_page_history.setText(str(stranica))
 
-        stranica = int(current_page_history.text()) + 1
-        current_page_history.setText(str(stranica))
-        pagr_next_button_history.setText(str(int(pagr_next_button_history.text()) + 1))
-        page_next2_button_history.setText(str(int(page_next2_button_history.text()) + 1))
+            button = all_button_name.findChildren(QPushButton)
+            labels = all_button_name.findChildren(QLabel)
+            print(button)
+            dict2 = {}
+            labelDict = {}
+            for i in range(18):
+                bttn_number = re.sub("[^0-9]", "", button[i].objectName())
+                label_number = re.sub("[^0-9]", "", labels[i].objectName())
+                dict2[int(bttn_number)] = button[i]
+                labelDict[int(label_number)] = labels[i]
+            dict2 = dict(sorted(dict2.items()))
+            print(len(filmID))
+            labelDict = dict(sorted(labelDict.items()))
+            try:
+                try:
+                    for i in range(curr * 18, curr * 18 + 18):
+                        bttn = (dict2.get(int(i) % 18 + 1))
 
-      #  for i in film_bttn:
-        #    i = i[14:]
+                        label = labelDict.get(int(i) % 18 + 1)
+                        binary_data = base64.b64decode(a[filmID[i] - 1].images)
 
-        #    # сюда подставить фото с базы данных потом
-         #   png = "border-image: url(Film_" + str(int(i) + (stranica - 1) * 18) + ".jpg);"
-          ##  film_bttn_not_text[x].setStyleSheet(png)
-         #   x += 1
+                        pixmap = QtGui.QPixmap()
+                        pixmap.loadFromData(binary_data)
+                        bttn.setIconSize(QSize(100, 140))
+                        bttn.setIcon(QIcon(pixmap))
+                        label.setText(a[filmID[i] - 1].name)
+                except:
+                    for i in range(curr * 18, len(filmID)):
+                        bttn = (dict2.get(int(i) % 18 + 1))
+
+                        label = labelDict.get(int(i) % 18 + 1)
+                        binary_data = base64.b64decode(a[filmID[i] - 1].images)
+
+                        pixmap = QtGui.QPixmap()
+                        pixmap.loadFromData(binary_data)
+                        bttn.setIconSize(QSize(100, 140))
+                        bttn.setIcon(QIcon(pixmap))
+                        label.setText(a[filmID[i] - 1].name)
+
+                    bttn.setEnabled(True)
+                    next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+                    current_page_history.setText(str(stranica - 1))
+                    if filmID[i] == filmID[-1]:
+                        for j in range(len(filmID) % 18, 18):
+                            bttn = (dict2.get(int(j) + 1))
+                            print(j)
+                            label = labelDict.get(int(j) + 1)
+                            bttn.setIconSize(QSize(0, 0))
+                            label.setText('')
+                            bttn.setEnabled(False)
+                        next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+
+            except:
+                pass
 
 
-def back_page_history(current_page_history,pagr_next_button_history,page_next2_button_history):
+def back_page_history(current_page_history,all_button_name,next_button,userid):
     if current_page_history.text() != '1':
-        x = 0
+        stranica = int(current_page_history.text()) - 1
+        curr = stranica - 1
+        current_page_history.setText(str(stranica))
 
-        # Print the button's name
-        pagr_next_button_history.setText(str(int(pagr_next_button_history.text()) - 1))
-        page_next2_button_history.setText(str(int(page_next2_button_history.text()) - 1))
-        stranica = int(current_page_history.text())
+        userid1 = re.sub("[^0-9]", "", userid.text())
+        filmID = getUsersWatchedFilms(userid1)
+        button = all_button_name.findChildren(QPushButton)
+        labels = all_button_name.findChildren(QLabel)
+        print(button)
+        dict2 = {}
+        labelDict = {}
+        for i in range(18):
+            bttn_number = re.sub("[^0-9]", "", button[i].objectName())
+            label_number = re.sub("[^0-9]", "", labels[i].objectName())
+            dict2[int(bttn_number)] = button[i]
+            labelDict[int(label_number)] = labels[i]
+        dict2 = dict(sorted(dict2.items()))
 
-        current_page_history.setText(str(stranica - 1))
+        labelDict = dict(sorted(labelDict.items()))
+        try:
+            for i in range(curr * 18, curr * 18 + 18):
+                bttn = (dict2.get(int(i) % 18 + 1))
 
-        #for i in film_bttn:
-          #  i = i[14:]
+                label = labelDict.get(int(i) % 18 + 1)
+                binary_data = base64.b64decode(a[filmID[i] - 1].images)
 
-            # Подставить фото
-           # png = "border-image: url(Film_" + str((stranica - 2) * 18 + (int(i))) + ".jpg);"
-          #  film_bttn_not_text[x].setStyleSheet(png)
-          #  x += 1
+                pixmap = QtGui.QPixmap()
+                pixmap.loadFromData(binary_data)
+                bttn.setIconSize(QSize(100, 140))
+                bttn.setIcon(QIcon(pixmap))
+                label.setText(a[filmID[i] - 1].name)
+                bttn.setEnabled(True)
+
+            next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+        #
+        except:
+            pass
