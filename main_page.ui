@@ -4230,6 +4230,9 @@ background-color:#9BA7A5;
                        </property>
                        <item row="3" column="6">
                         <widget class="QLabel" name="label_50">
+                         <property name="styleSheet">
+                          <string notr="true">color:rgb(42, 54, 63);</string>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -4883,10 +4886,6 @@ font: 6pt &quot;MS Shell Dlg 2&quot;;
 
 
 
-QPushButton:hover
-{
-background-color:#9BA7A5;
-}
 </string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -5113,7 +5112,7 @@ background-color:#9BA7A5;
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
-                      <item>
+                      <item alignment="Qt::AlignHCenter">
                        <widget class="QPushButton" name="watch_later_film_bttn1">
                         <property name="minimumSize">
                          <size>
@@ -5914,7 +5913,7 @@ background-color:#9BA7A5;
                        </widget>
                       </item>
                       <item alignment="Qt::AlignHCenter">
-                       <widget class="QLabel" name="watch_later_name_film8_2">
+                       <widget class="QLabel" name="watch_later_name_film8">
                         <property name="styleSheet">
                          <string notr="true">color:white;</string>
                         </property>
@@ -6532,6 +6531,13 @@ background-color:#9BA7A5;
                         </property>
                        </widget>
                       </item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QLabel" name="history_name_film18">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
                      </layout>
                     </widget>
                    </item>
@@ -6585,6 +6591,13 @@ background-color:#9BA7A5;
                         <property name="styleSheet">
                          <string notr="true"/>
                         </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QLabel" name="history_name_film6">
                         <property name="text">
                          <string/>
                         </property>
@@ -6723,6 +6736,13 @@ background-color:#9BA7A5;
                         <property name="styleSheet">
                          <string notr="true"/>
                         </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QLabel" name="history_name_film12">
                         <property name="text">
                          <string/>
                         </property>

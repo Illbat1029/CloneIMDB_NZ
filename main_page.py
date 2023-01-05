@@ -9,13 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back
+from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back,aboutFilmFromNotHome
 from SlideMenuFunction import slide_menu_fun
 from ScoreFilmAndChangeIcon import swap_star_and_get_score1_icon,swap_star_and_get_score2_icon,swap_star_and_get_score3_icon,swap_star_and_get_score4_icon,swap_star_and_get_score5_icon,setScoreFromDataBase
 from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_history,next_page_later, next_page_favorite, back_page_history,back_page_favorite,back_page_home,back_page_later
 from PyQt5.QtWidgets import QPushButton
 from addFilmToFavoriteLaterWatched import addFavorite,addLater,addwatched
 from SearchFilmByGenresNameIDT import searchFilm
+
 
 class Main_page(object):
     def setupUi(self, Form):
@@ -1713,10 +1714,6 @@ class Main_page(object):
 "\n"
 "\n"
 "\n"
-"QPushButton:hover\n"
-"{\n"
-"background-color:#9BA7A5;\n"
-"}\n"
 "")
         self.watch_later_page.setObjectName("watch_later_page")
         self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.watch_later_page)
@@ -1796,7 +1793,7 @@ class Main_page(object):
         self.watch_later_film_bttn1.setStyleSheet("")
         self.watch_later_film_bttn1.setText("")
         self.watch_later_film_bttn1.setObjectName("watch_later_film_bttn1")
-        self.verticalLayout_54.addWidget(self.watch_later_film_bttn1)
+        self.verticalLayout_54.addWidget(self.watch_later_film_bttn1, 0, QtCore.Qt.AlignHCenter)
         self.watch_later_name_film1 = QtWidgets.QLabel(self.watch_later_film_1)
         self.watch_later_name_film1.setMaximumSize(QtCore.QSize(16777215, 22))
         self.watch_later_name_film1.setStyleSheet("color:white;")
@@ -2055,11 +2052,11 @@ class Main_page(object):
         self.watch_later_film_bttn8.setText("")
         self.watch_later_film_bttn8.setObjectName("watch_later_film_bttn8")
         self.verticalLayout_65.addWidget(self.watch_later_film_bttn8, 0, QtCore.Qt.AlignHCenter)
-        self.watch_later_name_film8_2 = QtWidgets.QLabel(self.watch_later_film_8)
-        self.watch_later_name_film8_2.setStyleSheet("color:white;")
-        self.watch_later_name_film8_2.setText("")
-        self.watch_later_name_film8_2.setObjectName("watch_later_name_film8_2")
-        self.verticalLayout_65.addWidget(self.watch_later_name_film8_2, 0, QtCore.Qt.AlignHCenter)
+        self.watch_later_name_film8 = QtWidgets.QLabel(self.watch_later_film_8)
+        self.watch_later_name_film8.setStyleSheet("color:white;")
+        self.watch_later_name_film8.setText("")
+        self.watch_later_name_film8.setObjectName("watch_later_name_film8")
+        self.verticalLayout_65.addWidget(self.watch_later_name_film8, 0, QtCore.Qt.AlignHCenter)
         self.gridLayout_9.addWidget(self.watch_later_film_8, 1, 2, 1, 1)
         self.watch_later_film_3 = QtWidgets.QFrame(self.frame_where_all_films_watch_later)
         self.watch_later_film_3.setMinimumSize(QtCore.QSize(0, 164))
@@ -2288,6 +2285,10 @@ class Main_page(object):
         self.history_film_bttn18.setText("")
         self.history_film_bttn18.setObjectName("history_film_bttn18")
         self.verticalLayout_70.addWidget(self.history_film_bttn18, 0, QtCore.Qt.AlignHCenter)
+        self.history_name_film18 = QtWidgets.QLabel(self.history_film_18)
+        self.history_name_film18.setText("")
+        self.history_name_film18.setObjectName("history_name_film18")
+        self.verticalLayout_70.addWidget(self.history_name_film18, 0, QtCore.Qt.AlignHCenter)
         self.gridLayout_10.addWidget(self.history_film_18, 2, 6, 1, 1)
         self.history_film_6 = QtWidgets.QFrame(self.frame_where_all_films_history_page)
         self.history_film_6.setMinimumSize(QtCore.QSize(1, 164))
@@ -2306,6 +2307,10 @@ class Main_page(object):
         self.history_film_bttn6.setText("")
         self.history_film_bttn6.setObjectName("history_film_bttn6")
         self.verticalLayout_71.addWidget(self.history_film_bttn6, 0, QtCore.Qt.AlignHCenter)
+        self.history_name_film6 = QtWidgets.QLabel(self.history_film_6)
+        self.history_name_film6.setText("")
+        self.history_name_film6.setObjectName("history_name_film6")
+        self.verticalLayout_71.addWidget(self.history_name_film6, 0, QtCore.Qt.AlignHCenter)
         self.gridLayout_10.addWidget(self.history_film_6, 0, 6, 1, 1)
         self.history_film_1 = QtWidgets.QFrame(self.frame_where_all_films_history_page)
         self.history_film_1.setMinimumSize(QtCore.QSize(153, 164))
@@ -2349,6 +2354,10 @@ class Main_page(object):
         self.history_film_bttn12.setText("")
         self.history_film_bttn12.setObjectName("history_film_bttn12")
         self.verticalLayout_73.addWidget(self.history_film_bttn12, 0, QtCore.Qt.AlignHCenter)
+        self.history_name_film12 = QtWidgets.QLabel(self.history_film_12)
+        self.history_name_film12.setText("")
+        self.history_name_film12.setObjectName("history_name_film12")
+        self.verticalLayout_73.addWidget(self.history_name_film12, 0, QtCore.Qt.AlignHCenter)
         self.gridLayout_10.addWidget(self.history_film_12, 1, 6, 1, 1)
         self.history_film_7 = QtWidgets.QFrame(self.frame_where_all_films_history_page)
         self.history_film_7.setMinimumSize(QtCore.QSize(0, 164))
@@ -3608,7 +3617,7 @@ class Main_page(object):
         self.verticalLayout_5.addWidget(self.widget)
 
         self.retranslateUi(Form)
-        self.stackedWidget.setCurrentIndex(7)
+        self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -3721,10 +3730,17 @@ class Main_page(object):
 
         self.previos_page_button_home.clicked.connect(
                 lambda checked, b=self.frame_where_all_films_home: self.back_page_home1(b))
-        self.next_button_favorite.clicked.connect(self.next_page_favorite1)
-        self.previos_page_button_favorite.clicked.connect(self.back_page_favorite1)
-        self.next_button_watch_later.clicked.connect(self.next_page_later1)
-        self.previos_page_button_watch_later.clicked.connect(self.back_page_later1)
+        self.next_button_favorite.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_favorite: self.next_page_favorite1(b))
+        self.previos_page_button_favorite.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_favorite: self.back_page_favorite1(b))
+        self.next_button_watch_later.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_favorite: self.next_page_later1(b))
+        self.previos_page_button_watch_later.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_favorite: self.back_page_later1(b))
+
+
+
         self.next_button_history.clicked.connect(self.next_page_history1)
         self.previos_page_button_history.clicked.connect(self.back_page_history1)
         self.score_1_button.clicked.connect(self.swap_star_and_get_score1)
@@ -3736,31 +3752,40 @@ class Main_page(object):
         self.add_in_watch_later_bttn_2.clicked.connect(self.addInLater)
         self.add_in_history_bttn_2.clicked.connect(self.addInWatched)
         buttons = self.frame_where_all_films_home.findChildren(QPushButton)
-        favorite_buttons = self.frame_where_all_films_favorite.findChildren(QPushButton)
+
         for button in buttons:
                 if button.objectName()[:9] == 'home_film':
                         button.clicked.connect(lambda checked, b=button: self.about_film(b.objectName()))
 
+        buttons_favorite = self.frame_where_all_films_favorite.findChildren(QPushButton)
+        for button in buttons_favorite:
+                button.clicked.connect(lambda checked, b=button: self.about_film_favorite_page(b.objectName()))
+        buttons_watched_later = self.frame_where_all_films_watch_later.findChildren(QPushButton)
+        for button in buttons_watched_later:
+                button.clicked.connect(lambda checked, b=button: self.about_film_later_page(b.objectName()))
+        buttons_histroy = self.frame_where_all_films_history_page.findChildren(QPushButton)
+        for button in buttons_histroy:
+                button.clicked.connect(lambda checked, b=button: self.about_film_history_page(b.objectName()))
     def home(self):
             homePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                      self.settings_button, self.watch_later_button, self.pushButton_6)
 
     def favorite(self):
             favoritePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                         self.settings_button, self.watch_later_button, self.pushButton_6)
+                         self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_favorite,self.id_label,self.current_page_favorite,self.next_button_favorite)
 
     def later(self):
             laterPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                      self.settings_button, self.watch_later_button, self.pushButton_6)
+                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_watch_later,self.id_label)
 
     def history(self):
             histroyPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                        self.settings_button, self.watch_later_button, self.pushButton_6)
+                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_history_page,self.id_label)
 
     def settings(self):
             settingsPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.username_sett,
-                         self.email_sett, self.id_sett)
+                         self.email_sett, self.id_sett,self.username_lable,self.id_label)
 
     def IsPress(self):
             IsPressSearchButton(self.pushButton_6, self.stackedWidget, self.searchingActosLineEdit,
@@ -3771,10 +3796,30 @@ class Main_page(object):
 
             about_film_page(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
-                            self.Score_of_film_2, self.current_page_home)
-            setScoreFromDataBase(self.username_lable, self.score_1_button, self.score_2_button, self.score_3_button,
-                                 self.score_4_button, self.score_5_button, self.username_lable,self.Name_of_film_and_year_2)
+                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.label_50,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2)
+            setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
+                                 self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
 
+    def about_film_favorite_page(self,button_name):
+        aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
+                            self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
+                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_favorite,self.current_page_favorite,self.label_50)
+        setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
+                                 self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
+    def about_film_later_page(self,button_name):
+        aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
+                            self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
+                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_watch_later, self.current_page_history,self.label_50)
+        setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
+                                 self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
+    def about_film_history_page(self,button_name):
+            aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
+                                 self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
+                                 self.Score_of_film_2, self.current_page_home, self.add_in_favorite_bttn_2,
+                                 self.id_label, self.add_in_watch_later_bttn_2, self.add_in_history_bttn_2,
+                                 self.frame_where_all_films_history_page,self.current_page_history,self.label_50)
+            setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
+                                 self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
     def back_button(self):
             back(self.stackedWidget)
 
@@ -3785,66 +3830,60 @@ class Main_page(object):
     def next_page_home1(self, all_button_name):
             next_page_home(self.current_page_home, all_button_name, self.next_button_home)
 
-    def next_page_favorite1(self):
-            next_page_favorite(self.current_page_favorite, self.pagr_next_button_favorite,
-                               self.page_next2_button_favorite)
+    def next_page_favorite1(self,all_button_name):
+            next_page_favorite(self.current_page_favorite, all_button_name,self.next_button_favorite,self.id_label)
 
-    def next_page_later1(self):
-            next_page_later(self.current_page_watch_later, self.pagr_next_button_watch_later,
-                            self.page_next2_button_watch_later)
+    def next_page_later1(self,all_button_name):
+            next_page_later(self.current_page_watch_later, all_button_name,self.next_button_watch_later,self.id_label)
 
-    def next_page_history1(self):
-            next_page_history(self.current_page_history, self.pagr_next_button_history, self.page_next2_button_history)
+    def next_page_history1(self,all_button_name):
+            next_page_history(self.current_page_history, all_button_name,self.next_button_history, self.id_label)
             # ----------------------------------------------------------------
 
     def back_page_home1(self, all_button_name):
             back_page_home(self.current_page_home, all_button_name, self.next_button_home)
 
-    def back_page_favorite1(self):
-            back_page_favorite(self.current_page_favorite, self.pagr_next_button_favorite,
-                               self.page_next2_button_favorite)
+    def back_page_favorite1(self,all_button_name):
+            back_page_favorite(self.current_page_favorite, all_button_name,self.next_button_favorite,self.id_label)
+    def back_page_later1(self,all_button_name):
+            back_page_later(self.current_page_watch_later, all_button_name,self.next_button_watch_later,self.id_label)
 
-    def back_page_later1(self):
-            back_page_later(self.current_page_watch_later, self.pagr_next_button_watch_later,
-                            self.page_next2_button_watch_later)
-
-    def back_page_history1(self):
-            back_page_history(self.self.current_page_history, self.pagr_next_button_history,
-                              self.page_next2_button_history)
+    def back_page_history1(self,all_button_name):
+            back_page_history(self.current_page_history, all_button_name,self.next_button_history, self.id_label)
 
     def swap_star_and_get_score1(self):
 
             swap_star_and_get_score1_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.username_lable)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
 
     def swap_star_and_get_score2(self):
 
             swap_star_and_get_score2_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
 
     def swap_star_and_get_score3(self):
 
             swap_star_and_get_score3_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
 
     def swap_star_and_get_score4(self):
 
             swap_star_and_get_score4_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
 
     def swap_star_and_get_score5(self):
 
             swap_star_and_get_score5_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
 
     def addInFavorite(self):
-            addFavorite(self.Name_of_film_and_year_2, self.add_in_favorite_bttn_2,self.username_lable)
+            addFavorite(self.Name_of_film_and_year_2, self.add_in_favorite_bttn_2, self.id_label, self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2)
 
     def addInLater(self):
-            addLater(self.Name_of_film_and_year_2, self.add_in_watch_later_bttn_2)
+            addLater(self.Name_of_film_and_year_2, self.add_in_watch_later_bttn_2,self.id_label, self.add_in_favorite_bttn_2,self.add_in_history_bttn_2)
 
     def addInWatched(self):
-            addwatched(self.Name_of_film_and_year_2, self.add_in_history_bttn_2)
+            addwatched(self.Name_of_film_and_year_2, self.add_in_watch_later_bttn_2,self.id_label, self.add_in_favorite_bttn_2,self.add_in_history_bttn_2)
 
     def searchFunction(self):
             searchFilm(self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.filter_page,self.stackedWidget,self.frame_where_all_films_searchin)
