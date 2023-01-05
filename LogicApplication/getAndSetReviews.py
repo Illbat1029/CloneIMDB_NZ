@@ -1,12 +1,13 @@
 from LogicApplication.DB_connector import *
 import mysql.connector
 class userReview:
-    def __init__(self, idUser, uname, filmname, review, score):
+    def __init__(self, idUser, uname, filmname, review, score, idReview):
         self.idUser = idUser
         self.username = uname
         self.filmname = filmname
         self.review = review
         self.scoreReview = score
+        self.review_id = idReview
 def isExistRivew(idUser, idFilm):
     con = createConnection()
     cur = con.cursor()
@@ -58,7 +59,7 @@ def getAllReviewsUser(idUser):
     con = createConnection()
     cur = con.cursor()
     sqlGetAllReviewUser = """
-    SELECT id_user, filmname, review, films_review.score FROM films_review
+    SELECT id_user, filmname, review, films_review.score, films_review.id FROM films_review
     JOIN films
     ON films_review.id_films = films.id
     WHERE id_user = %s
@@ -69,14 +70,14 @@ def getAllReviewsUser(idUser):
     dataRet = []
     for row in allReview:
         buff = list(row)
-        uReview = userReview(buff[0], "BRAK" ,buff[1], buff[2], buff[3])
+        uReview = userReview(buff[0], "BRAK", buff[1], buff[2], buff[3], buff[4])
         dataRet.append(uReview)
     return dataRet
 def getAllReviewsForFilm(idFilm):
     con = createConnection()
     cur = con.cursor()
     sqlGetAllReviewFilm = """
-     SELECT id_user, username, filmname, review, films_review.score FROM films_review
+     SELECT id_user, username, filmname, review, films_review.score, films_review.id FROM films_review
      JOIN films
      ON films_review.id_films = films.id
      JOIN user
@@ -88,6 +89,6 @@ def getAllReviewsForFilm(idFilm):
     dataRet = []
     for row in allReview:
         buff = list(row)
-        uReview = userReview(buff[0], buff[1], buff[2], buff[3], buff[4])
+        uReview = userReview(buff[0], buff[1], buff[2], buff[3], buff[4], buff[5])
         dataRet.append(uReview)
     return dataRet
