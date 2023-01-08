@@ -3773,7 +3773,7 @@ class Main_page(object):
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                             self.Score_of_film_2, self.current_page_home)
             setScoreFromDataBase(self.username_lable, self.score_1_button, self.score_2_button, self.score_3_button,
-                                 self.score_4_button, self.score_5_button, self.username_lable,self.Name_of_film_and_year_2)
+                                 self.score_4_button, self.score_5_button, self.Name_of_film_and_year_2)
 
     def back_button(self):
             back(self.stackedWidget)
