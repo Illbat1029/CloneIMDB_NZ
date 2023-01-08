@@ -64,6 +64,7 @@ def createReportReview(idReview, idUser, type_id):
     sqlSentRewiewReport = """
     INSERT INTO reviews_report (id_review, id_user, type_id) VALUES (%s, %s, %s)"""
     if (isExistsReport(idReview, idUser, type_id) == (1,)):
+        #change this
         print("Report already exists")
     else:
         cur.execute(sqlSentRewiewReport, (idReview, idUser, type_id))
