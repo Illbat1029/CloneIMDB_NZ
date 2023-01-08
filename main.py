@@ -1,4 +1,3 @@
-
 import sys
 import os
 from PIL.ImageQt import ImageQt
@@ -12,11 +11,15 @@ import StyleSheetForButtons
 from Login_page import *
 from main_page import *
 from forgot_GUI import *
-
+#from search_field import *
 from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
 from LogicApplication.getFilmsDataFromDB import *
-
+from LogicApplication.getAndSetDataFilmStatusUser import *
+from LogicApplication.getAndSetScoreFilms import *
+from LogicApplication.getAndSetReviews import *
+from LogicApplication.methodsAdminAndModerator import *
+from LogicApplication.reviewLogic import *
 
 if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
@@ -40,14 +43,14 @@ if __name__ == "__main__":
     Fogort_page.setupUi(Fogort_page_from)
 
     def login():
-
         #getListAllDataAllFilms()
        #a=getListAllFilmWithGenresUser(["Adventure", "Comedy"])
        #for i in range(len(a)):
         #   print(a[i].name, a[i].genres)
-
+        createReportReview(4, 9, 2)
         #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
         #getListAllFilmsWithPeopleUserAndStatus("Frank Darabont")
+        #addFilmsAdmin(993840)
         #getListAllFilmsWithPeopleUser("Matthias Schweighöfer")
         #getAllDataFilmByID(1)
         #getAllDataFilmByReleaseDataBetween(2000, 2010)
