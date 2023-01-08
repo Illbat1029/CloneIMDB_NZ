@@ -12,13 +12,11 @@ def getLikesListForThisFilmReviews(idFilm):
     cur.execute(sqlGetLikesListForThisFilmID, (idFilm,))
     exe = cur.fetchall()
     return exe
-
 def deleteReviewVoteForThisUser(idUser, idReview, con = createConnection()):
     cur = con.cursor()
     sql = """
     DELETE FROM review_score WHERE id_user = %s AND id_review = %s"""
     cur.execute(sql, (idUser, idReview))
-
 def updateReviewVoteForThisUser(idUser, idReview, score, con = createConnection()):
     cur = con.cursor()
     sql = """
@@ -30,7 +28,6 @@ def insertReviewVoteForThisUser(idUser, idReview, score, con = createConnection(
     sql = """
     INSERT INTO review_score (score, id_user, id_review) VALUES (%s, %s, %s)"""
     cur.execute(sql, (score, idUser, idReview))
-
 def reviewScoreButton(idUser, idReview, score, likesReviewsListForThisFilm):
     con = createConnection()
     cur = con.cursor()
@@ -49,7 +46,6 @@ def reviewScoreButton(idUser, idReview, score, likesReviewsListForThisFilm):
         insertReviewVoteForThisUser(idUser, idReview, score, con)
         print("Not exists, creating...")
     con.commit()
-
 def isExistsReport(idReview, idUser, type_id, con = createConnection()):
     cur = con.cursor()
     sqlIsReportExists = """
@@ -57,7 +53,6 @@ def isExistsReport(idReview, idUser, type_id, con = createConnection()):
     cur.execute(sqlIsReportExists, (idReview, idUser, type_id))
     exe = cur.fetchone()
     return exe
-
 def createReportReview(idReview, idUser, type_id):
     con = createConnection()
     cur = con.cursor()
@@ -69,9 +64,6 @@ def createReportReview(idReview, idUser, type_id):
     else:
         cur.execute(sqlSentRewiewReport, (idReview, idUser, type_id))
         con.commit()
-
-
-
 def getAllReportTypes():
     con = createConnection()
     cur = con.cursor()
