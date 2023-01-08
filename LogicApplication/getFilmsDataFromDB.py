@@ -149,7 +149,6 @@ def getListAllFilmsWithPeopleUser(peopleFullName):
             if (data[i][0] == data[j][0]):
                 del data[j]
             j += 1
-    print(data)
     data = refractoringDataPeopleFilm(data)
     return data
 
