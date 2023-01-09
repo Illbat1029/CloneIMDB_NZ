@@ -52,5 +52,5 @@ def deleteReviewAfterValidation(reviewId):
     dataDelete = (reviewId, )
     cur.execute(sqlDeleteReview, dataDelete)
     con.commit()
-
+#
 
