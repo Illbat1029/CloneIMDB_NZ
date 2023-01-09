@@ -6,11 +6,13 @@ from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
 from LogicApplication.getFilmsDataFromDB import *
 from LogicApplication.getDataFromIMDB import *
-def setScoreFromDataBase(user,score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name):
+def setScoreFromDataBase(userid,score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name,idfilm):
 
-    dataUserId = getDataUser([user.text()])
+    userid1 = re.sub("[^0-9]", "", userid.text())
     without_brackets = re.sub(r"[\(\)]", "", str(name.text()))
-    a = selectScoreFromDB(dataUserId[0], getFilmID(str(without_brackets[:-4]),str(without_brackets[-4:])))
+
+    a = selectScoreFromDB(userid1, idfilm.text())
+
     a = str(a)
     a = a.replace('(', '')
     a = a.replace(')', '')
@@ -21,38 +23,32 @@ def setScoreFromDataBase(user,score_1_button,score_2_button,score_3_button,score
 
     if a=='1':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
-        score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+        score_2_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_3_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
+
     elif a=='2':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
-        score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+
+        score_3_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     elif a=='3':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
-        score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+        score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     elif a=='4':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_4_button.setIcon(QIcon(('icons8-star-filled-48')))
-        score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
+
 
     elif a=='5':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
@@ -60,17 +56,9 @@ def setScoreFromDataBase(user,score_1_button,score_2_button,score_3_button,score
         score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_4_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_5_button.setIcon(QIcon(('icons8-star-filled-48')))
-        score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-        score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+
     elif a=='':
-        score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
-        score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
-        score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
-        score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
-        score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+
         score_1_button.setIcon(QIcon(('star-empty-icon.webp')))
         score_2_button.setIcon(QIcon(('star-empty-icon.webp')))
         score_3_button.setIcon(QIcon(('star-empty-icon.webp')))
@@ -79,72 +67,92 @@ def setScoreFromDataBase(user,score_1_button,score_2_button,score_3_button,score
 
 
 
-def swap_star_and_get_score1_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,user,name):
-    dataUserId = getDataUser([user.text()])
-    without_brackets = re.sub(r"[\(\)]", "", str(name.text()))
-    a = selectScoreFromDB(dataUserId[0], getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:])))
-    a = str(a)
-    a = a.replace('(', '')
-    a = a.replace(')', '')
-    a = a.replace(',', '')
-    a = a.replace('[', '')
-    a = a.replace(']', '')
+def swap_star_and_get_score1_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+    userid1=re.sub("[^0-9]", "", userid.text())
+    without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
+    filmId =getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
+
+    score_2_button.setIcon(QIcon(('star-empty-icon.webp')))
+    score_3_button.setIcon(QIcon(('star-empty-icon.webp')))
+    score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+    score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
+
     score = 1
-    score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    a=addVotesAndScoreUser()
+    deleteScoreUser(int(userid1),filmId)
+    addVotesAndScoreUser(int(userid1),filmId,score)
 
 
 
-def swap_star_and_get_score2_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year):
-    score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
-    score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
+def swap_star_and_get_score2_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+
+
     score = 2
-    score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+    userid1 = re.sub("[^0-9]", "", userid.text())
+    without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
+    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
+    score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
+    score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
+    score_3_button.setIcon(QIcon(('star-empty-icon.webp')))
+    score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+    score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
 
 
-def swap_star_and_get_score3_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year):
+    deleteScoreUser(int(userid1), filmId)
+    addVotesAndScoreUser(int(userid1), filmId, score)
+
+
+def swap_star_and_get_score3_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+
+    userid1 = re.sub("[^0-9]", "", userid.text())
+    without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
+    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
+
+    score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+    score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     score = 3
-    score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
 
 
-def swap_star_and_get_score4_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year):
+    deleteScoreUser(int(userid1), filmId)
+    addVotesAndScoreUser(int(userid1), filmId, score)
+
+
+def swap_star_and_get_score4_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+    userid1 = re.sub("[^0-9]", "", userid.text())
+    without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
+    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
+
     score_4_button.setIcon(QIcon(('icons8-star-filled-48')))
+    score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     score = 4
-    score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+
+    deleteScoreUser(int(userid1), filmId)
+    addVotesAndScoreUser(int(userid1), filmId, score)
 
 
-def swap_star_and_get_score5_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year):
+
+def swap_star_and_get_score5_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+    userid1 = re.sub("[^0-9]", "", userid.text())
+    without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
+    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
+
     score_4_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_5_button.setIcon(QIcon(('icons8-star-filled-48')))
     score = 5
-    score_1_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_2_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_3_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    score_4_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-    Mscore_5_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+
+    deleteScoreUser(int(userid1), filmId)
+    addVotesAndScoreUser(int(userid1), filmId, score)
