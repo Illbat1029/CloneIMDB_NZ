@@ -18,15 +18,14 @@ def checkUsernameExist(username):
     existUsername = cur.fetchone()
     if existUsername != None:
         return True
-    if len(username) > 4 and len(username) < 18:
+    if len(username) > 4 and len(username) <= 18:
         return False
     return True
-
 def validatePassword(password):
     l,u,p,d = 0,0,0,0
     capitAlalphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     smallAlphabets = "abcdefghijklmnopqrstuvwxyz"
-    specialChar = "!@#$%^&*()_+=-/><"
+    specialChar = "!@#$%^&*()_+=-/><.,"
     digits = "0123456789"
     if(len(password)>=8):
         for i in password:
@@ -57,7 +56,6 @@ def AuthenticateUser (login, password):
     if bcrypt.checkpw(password.encode('utf-8'), hashDataBase.encode('utf-8')):
         return True
     return False
-
 def checkEmailExist(email):
     pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     con = createConnection()
@@ -102,6 +100,7 @@ verCode = gennerateVereficationCodeEmail()
 
 def sendMailForgoutPassword(userEmail):
     global verCode
+    verCode = gennerateVereficationCodeEmail()
     if checkEmailForgoutPassword(userEmail)!=True:
         print("This is email in not exist")
         return 0

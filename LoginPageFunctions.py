@@ -11,7 +11,6 @@ def page_to_login(stackedWidget,wrong_pass_repeat_reg,wrong_pass_reg,wrong_usern
     worng_email_reg.setFixedSize(0, 0)
     wrong_username_reg.setFixedSize(0, 0)
 
-
 def registration_function(stackedWidget,username,email,password_sign,reapet_passwd,user_or_email,wrong_pass_repeat_reg,wrong_pass_reg,wrong_username_reg,worng_email_reg):
     def bttn_in_messege_box():
         stackedWidget.setCurrentIndex(1)
@@ -20,21 +19,6 @@ def registration_function(stackedWidget,username,email,password_sign,reapet_pass
         wrong_pass_reg.setFixedSize(0, 0)
         worng_email_reg.setFixedSize(0, 0)
         wrong_username_reg.setFixedSize(0, 0)
-
-        # Если все данные правильны, то это убирает надписи
-        # Log_page.wrong_pass_repeat_reg.setFixedSize(0, 0)
-        # Log_page.wrong_pass_reg.setFixedSize(0, 0)
-        # Log_page.worng_email_reg.setFixedSize(0, 0)
-        # Log_page.wrong_username_reg.setFixedSize(0, 0)
-
-        # Красные надписи, если логпасс на логовании неправильный
-        # Log_page.wrong_login.setFixedSize(276, 10)
-        # Log_page.wrong_pass.setFixedSize(276, 10)
-
-        # Убрать красные надписи с логования
-        # Log_page.wrong_login.setFixedSize(0, 0)
-        # Log_page.wrong_pass.setFixedSize(0, 0)
-            # sendMailForgoutPassword(Log_page.email.text())
     try:
         RegistrationUser(username.text(), email.text(), password_sign.text(),reapet_passwd.text())
             # Окно успешной регистрации с кнопкой

@@ -60,7 +60,6 @@ class Login(object):
 "background-color: transparent;\n"
 "color:white;\n"
 "}")
-
         self.Central_widget = QtWidgets.QWidget(Form)
         self.Central_widget.setGeometry(QtCore.QRect(0, 0, 1000, 600))
         self.Central_widget.setMinimumSize(QtCore.QSize(1000, 600))

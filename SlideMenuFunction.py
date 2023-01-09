@@ -14,9 +14,7 @@ def slide_menu_fun(left_menu):
         newWidth = 50
 
     animation = QPropertyAnimation(left_menu, b"maximumWidth")
-
     animation.setDuration(1000)
-
     animation.setStartValue(newWidth)
     animation.setEndValue(width)
     animation.setEasingCurve(QEasingCurve.InCurve)

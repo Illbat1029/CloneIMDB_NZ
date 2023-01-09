@@ -10,7 +10,6 @@ def addFilmsAdmin (idFilmStart, idFilmEnd=0):
     if (idFilmEnd == 0):
         idFilmEnd = idFilmStart+1
     addFilms(idFilmStart, idFilmEnd)
-
 def splitDataFilmDelete(dataSplit):
     ret = dataSplit.split(",")
     for i in range(len(ret)):

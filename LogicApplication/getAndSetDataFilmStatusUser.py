@@ -54,7 +54,6 @@ def deleteFilmFromFavoriteFilms(id_user, id_film, con = createConnection()):
     sqlRemoveFromFavoriteFilms = """
             DELETE FROM favorite_films WHERE id_user = %s AND id_films = %s"""
     cur.execute(sqlRemoveFromFavoriteFilms, (id_user, id_film))
-
 def insertIntoWatchedFilms(id_user, id_film, con = createConnection()):
     cur = con.cursor()
     print("Adding into Watchd Films")
@@ -67,7 +66,6 @@ def deleteFilmFromWatchedFilms(id_user, id_film, con = createConnection()):
     sqlRemoveFromWatchedFilms = """
             DELETE FROM watched_films WHERE id_user = %s AND id_films = %s"""
     cur.execute(sqlRemoveFromWatchedFilms, (id_user, id_film))
-
 def insertIntoWatchLaterFilms(id_user, id_film, con = createConnection()):
     cur = con.cursor()
     print("Adding into WatchLater Films")
@@ -80,7 +78,6 @@ def deleteFilmFromWatchLaterFilms(id_user, id_film, con = createConnection()):
     sqlRemoveFromWatchLaterFilms = """
             DELETE FROM watchlater_films WHERE id_user = %s AND id_films = %s"""
     cur.execute(sqlRemoveFromWatchLaterFilms, (id_user, id_film))
-
 def addUserFavoriteFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmList, userWatchLaterFilmList):
     con = createConnection()
     if id_film in userFavoriteFilmList:
@@ -98,7 +95,6 @@ def addUserFavoriteFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmL
         # ЗАКРАСИТЬ КНОПКУ FAVORITE
         insertIntoFavoriteFilms(id_user, id_film, con)
     con.commit()
-
 def addUserWatchedFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmList, userWatchLaterFilmList):
     con = createConnection()
     if id_film in userFavoriteFilmList:
@@ -116,7 +112,6 @@ def addUserWatchedFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmLi
         # ЗАКРАСИТЬ КНОПКУ WATCHED
         insertIntoWatchedFilms(id_user, id_film, con)
     con.commit()
-
 def addUserWatchLaterFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmList, userWatchLaterFilmList):
     con = createConnection()
     if id_film in userFavoriteFilmList:

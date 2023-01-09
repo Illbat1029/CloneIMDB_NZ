@@ -44,7 +44,6 @@ def favoritePage(stackedWidget,home_button,favorite_button,histor_button,setting
 
     filmID = getUsersFavoriteFilms(userid1)
 
-
     button = allbutton.findChildren(QPushButton)
     labels = allbutton.findChildren(QLabel)
     dict2 = {}

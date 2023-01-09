@@ -12,7 +12,6 @@ def setScoreFromDataBase(userid,score_1_button,score_2_button,score_3_button,sco
     without_brackets = re.sub(r"[\(\)]", "", str(name.text()))
 
     a = selectScoreFromDB(userid1, idfilm.text())
-
     a = str(a)
     a = a.replace('(', '')
     a = a.replace(')', '')
