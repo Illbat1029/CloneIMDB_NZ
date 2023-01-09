@@ -259,4 +259,5 @@ CREATE DEFINER=`root`@`%` TRIGGER `deleteAllReviewScoreAfterUserDelete`
     WHERE
         review_score.id_user = OLD.id;
 end
+
 #-------------------------------------------------------------------------------------------------------------

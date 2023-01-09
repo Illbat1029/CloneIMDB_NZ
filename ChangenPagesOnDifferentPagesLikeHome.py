@@ -36,11 +36,6 @@ def next_page_home(current_page_home,all_button_name,next_button):
                     button[i].setIconSize(QSize(0, 0))
                     labels[i].setText('')
                     next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-
-
-
-
-
 # Страница нахад в разделе хоум
 def back_page_home(current_page_home,all_button_name,next_button):
     if current_page_home.text() != '1':
@@ -62,8 +57,6 @@ def back_page_home(current_page_home,all_button_name,next_button):
             pixmap.loadFromData(binary_data)
             button[i].setIconSize(QSize(100, 140))
             button[i].setIcon(QIcon(pixmap))
-#
-
 
 def next(current_page,all_button_name,next_button,userid):
     stranica = int(current_page.text()) + 1
@@ -122,11 +115,7 @@ def next(current_page,all_button_name,next_button,userid):
                 bttn.setIconSize(QSize(100, 140))
                 bttn.setIcon(QIcon(pixmap))
                 print(len(filmID),(curr+1)*18)
-
-
             else:
-
-
                 for i in range(curr * 18, len(filmID)):
                     pop = False
                     bttn = (dict2.get(int(i) % 18 + 1))
@@ -154,10 +143,8 @@ def next(current_page,all_button_name,next_button,userid):
                     pixmap.loadFromData(binary_data)
                     bttn.setIconSize(QSize(100, 140))
                     bttn.setIcon(QIcon(pixmap))
-
                     bttn.setEnabled(True)
                 next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-
                 if filmID[i] == filmID[-1]:
                     for j in range(len(filmID) % 18, 18):
                         bttn = (dict2.get(int(j) + 1))
@@ -166,23 +153,17 @@ def next(current_page,all_button_name,next_button,userid):
                         bttn.setIconSize(QSize(0, 0))
                         label.setText('')
                         bttn.setEnabled(False)
-
-
     except:
         current_page.setText(str(stranica-1))
         next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
         pass
-
 def back(current_page,all_button_name,next_button,userid):
     stranica = int(current_page.text()) - 1
     curr = stranica - 1
     current_page.setText(str(stranica))
-
     userid1 = re.sub("[^0-9]", "", userid.text())
     if current_page.objectName() == 'current_page_favorite':
         filmID = getUsersFavoriteFilms(userid1)
-
-
     elif current_page.objectName() == 'current_page_history':
         filmID = getUsersWatchedFilms(userid1)
     elif current_page.objectName() == 'current_page_watch_later':
@@ -198,7 +179,6 @@ def back(current_page,all_button_name,next_button,userid):
         dict2[int(bttn_number)] = button[i]
         labelDict[int(label_number)] = labels[i]
     dict2 = dict(sorted(dict2.items()))
-
     labelDict = dict(sorted(labelDict.items()))
     try:
         for i in range(curr * 18, curr * 18 + 18):
@@ -229,11 +209,8 @@ def back(current_page,all_button_name,next_button,userid):
             pixmap.loadFromData(binary_data)
             bttn.setIconSize(QSize(100, 140))
             bttn.setIcon(QIcon(pixmap))
-
             bttn.setEnabled(True)
-
         next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
-    #
     except:
         pass
 # переключает след старницу в разедле фаворит

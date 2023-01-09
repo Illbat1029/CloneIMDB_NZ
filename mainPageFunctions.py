@@ -199,8 +199,6 @@ def report(allComboBox, buttonName, send_buttons):
         allComboBox[int(buttonName[-1]) - 1].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(700, 94, 150, 20))
         send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(860, 80, 61, 40))
-
-
     else:
         allComboBox[0].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[0].setGeometry(QtCore.QRect(700, 94, 150, 20))
@@ -208,16 +206,12 @@ def report(allComboBox, buttonName, send_buttons):
 
 def sendRep(buttonName, allComboBoxes, idReviews, idUser, all_buttons):
     userid1 = re.sub("[^0-9]", "", idUser.text())
-
-
     for c in buttonName:
         if c.isnumeric():
             allComboBoxes[int(c) - 1].setMaximumSize(QtCore.QSize(200, 0))
             all_buttons[int(c) - 1].setGeometry(QtCore.QRect(860, 80, 61, 0))
             reviewId=idReviews[int(c)-1]
             createReportReview(int(reviewId),int(userid1) ,allComboBoxes[int(c) - 1].currentIndex())
-
-
 def changePPage(reviewCount, currPage, allComboBox, allButtons):
     k=int(reviewCount.text())
     for comboBox in allComboBox:
@@ -227,7 +221,6 @@ def changePPage(reviewCount, currPage, allComboBox, allButtons):
     if (int(currPage.text())>1):
         currPage.setText(str(int(currPage.text())-1))
         reviewCount.setText(str(k+5))
-
 def changeNPage(reviewCount, currPage, allComboBox, allButtons):
     k=int(reviewCount.text())
     for comboBox in allComboBox:

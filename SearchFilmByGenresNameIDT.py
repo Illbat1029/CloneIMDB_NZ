@@ -13,7 +13,6 @@ import collections
 
 
 def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedWidget,buttonsAndLabel,film):
-
     try:
         if actors.text() !='':
 

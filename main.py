@@ -68,7 +68,6 @@ if __name__ == "__main__":
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
         Main_page.stackedWidget.setCurrentIndex(0)
         Main_page.home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
-
     def fogort():
         Fogort_page.wrong_email.setFixedSize(0, 0)
         Fogort_page.wrong_code.setFixedSize(0, 0)
