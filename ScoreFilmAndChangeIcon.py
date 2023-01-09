@@ -23,22 +23,31 @@ def setScoreFromDataBase(userid,score_1_button,score_2_button,score_3_button,sco
 
     if a=='1':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
+        score_2_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_3_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
 
     elif a=='2':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
 
+        score_3_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     elif a=='3':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
-
+        score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     elif a=='4':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_3_button.setIcon(QIcon(('icons8-star-filled-48')))
         score_4_button.setIcon(QIcon(('icons8-star-filled-48')))
 
+        score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
 
 
     elif a=='5':

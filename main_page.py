@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back,aboutFilmFromNotHome
 from SlideMenuFunction import slide_menu_fun
 from ScoreFilmAndChangeIcon import swap_star_and_get_score1_icon,swap_star_and_get_score2_icon,swap_star_and_get_score3_icon,swap_star_and_get_score4_icon,swap_star_and_get_score5_icon,setScoreFromDataBase
-from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_history,next_page_later, next_page_favorite, back_page_history,back_page_favorite,back_page_home,back_page_later
+from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_history,next_page_later, next_page_favorite, back_page_history,back_page_favorite,back_page_home,back_page_later,next_page_search,back_page_search
 from PyQt5.QtWidgets import QPushButton, QLabel, QComboBox
 from addFilmToFavoriteLaterWatched import addFavorite,addLater,addwatched
 from SearchFilmByGenresNameIDT import searchFilm
@@ -4272,14 +4272,20 @@ class Main_page(object):
         self.previos_page_button_favorite.clicked.connect(
                 lambda checked, b=self.frame_where_all_films_favorite: self.back_page_favorite1(b))
         self.next_button_watch_later.clicked.connect(
-                lambda checked, b=self.frame_where_all_films_favorite: self.next_page_later1(b))
+                lambda checked, b=self.frame_where_all_films_watch_later: self.next_page_later1(b))
         self.previos_page_button_watch_later.clicked.connect(
-                lambda checked, b=self.frame_where_all_films_favorite: self.back_page_later1(b))
+                lambda checked, b=self.frame_where_all_films_watch_later: self.back_page_later1(b))
 
+        self.next_button_history.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_history_page: self.next_page_history1(b))
+        self.previos_page_button_history.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_history_page: self.back_page_history1(b))
 
+        self.next_button_history_2.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_searchin: self.next_page_search1(b))
+        self.previos_page_button_history_2.clicked.connect(
+                lambda checked, b=self.frame_where_all_films_searchin: self.back_page_search1(b))
 
-        self.next_button_history.clicked.connect(self.next_page_history1)
-        self.previos_page_button_history.clicked.connect(self.back_page_history1)
         self.score_1_button.clicked.connect(self.swap_star_and_get_score1)
         self.score_2_button.clicked.connect(self.swap_star_and_get_score2)
         self.score_3_button.clicked.connect(self.swap_star_and_get_score3)
@@ -4325,12 +4331,19 @@ class Main_page(object):
         buttons_favorite = self.frame_where_all_films_favorite.findChildren(QPushButton)
         for button in buttons_favorite:
                 button.clicked.connect(lambda checked, b=button: self.about_film_favorite_page(b.objectName()))
+
         buttons_watched_later = self.frame_where_all_films_watch_later.findChildren(QPushButton)
         for button in buttons_watched_later:
                 button.clicked.connect(lambda checked, b=button: self.about_film_later_page(b.objectName()))
+
         buttons_histroy = self.frame_where_all_films_history_page.findChildren(QPushButton)
         for button in buttons_histroy:
                 button.clicked.connect(lambda checked, b=button: self.about_film_history_page(b.objectName()))
+
+        buttons_search = self.frame_where_all_films_searchin.findChildren(QPushButton)
+        for button in buttons_search:
+                button.clicked.connect(lambda checked, b=button: self.about_film_search_page(b.objectName()))
+
     def home(self):
             homePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                      self.settings_button, self.watch_later_button, self.pushButton_6)
@@ -4341,11 +4354,11 @@ class Main_page(object):
 
     def later(self):
             laterPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_watch_later,self.id_label)
+                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_watch_later,self.id_label,self.current_page_watch_later,self.next_button_watch_later)
 
     def history(self):
             histroyPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_history_page,self.id_label)
+                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_history_page,self.id_label,self.current_page_history,self.next_button_history)
 
     def settings(self):
             settingsPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
@@ -4379,11 +4392,26 @@ class Main_page(object):
 
             aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
-                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_favorite,self.current_page_favorite,self.label_50)
-            setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
+                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_favorite,self.current_page_favorite,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to)
+            setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
+                                 self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
             setCount(self.label_50.text(), self.reviewCount)
+            setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2,
+                      self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3, self.nameReviewer_4,
+                      self.textCommentary_4, self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2,
+                      self.userReviewText,
+                      self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore,
+                      self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview,
+                      self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5,
+                      self.current_page_watch_later_2.text(), self.reviewCount)
+    def about_film_search_page(self,button_name):
+        aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
+                            self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
+                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_searchin,self.current_page_history_2,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to)
+        setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
+        setCount(self.label_50.text(), self.reviewCount)
 
-            setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary,
+        setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary,
                                        self.nameReviewer_2, self.textCommentary_2, self.nameReviewer_3,
                                        self.textCommentary_3, self.nameReviewer_4, self.textCommentary_4,
                                        self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2,
@@ -4400,7 +4428,7 @@ class Main_page(object):
 
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
-                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_watch_later, self.current_page_history,self.label_50)
+                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_watch_later, self.current_page_watch_later,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to)
         setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
                                  self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
         setCount(self.label_50.text(), self.reviewCount)
@@ -4421,7 +4449,7 @@ class Main_page(object):
                                  self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                                  self.Score_of_film_2, self.current_page_home, self.add_in_favorite_bttn_2,
                                  self.id_label, self.add_in_watch_later_bttn_2, self.add_in_history_bttn_2,
-                                 self.frame_where_all_films_history_page,self.current_page_history,self.label_50)
+                                 self.frame_where_all_films_history_page,self.current_page_history,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to)
             setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
                                  self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
             setCount(self.label_50.text(), self.reviewCount)
@@ -4451,8 +4479,12 @@ class Main_page(object):
     def next_page_later1(self,all_button_name):
             next_page_later(self.current_page_watch_later, all_button_name,self.next_button_watch_later,self.id_label)
 
-    def next_page_history1(self,all_button_name):
-            next_page_history(self.current_page_history, all_button_name,self.next_button_history, self.id_label)
+    def next_page_search1(self,all_button_name):
+            next_page_search(self.current_page_history_2, all_button_name,self.next_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4)
+
+    def next_page_history1(self, all_button_name):
+                    next_page_history(self.current_page_history, all_button_name, self.next_button_history,self.id_label)
+                    # ----------------------------------------------------------------
             # ----------------------------------------------------------------
 
     def back_page_home1(self, all_button_name):
@@ -4466,6 +4498,8 @@ class Main_page(object):
     def back_page_history1(self,all_button_name):
             back_page_history(self.current_page_history, all_button_name,self.next_button_history, self.id_label)
 
+    def back_page_search1(self,all_button_name):
+            back_page_search(self.current_page_history_2, all_button_name,self.previos_page_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4)
     def swap_star_and_get_score1(self):
 
             swap_star_and_get_score1_icon(self.score_1_button, self.score_2_button, self.score_3_button,
@@ -4501,7 +4535,7 @@ class Main_page(object):
             addwatched(self.Name_of_film_and_year_2, self.add_in_watch_later_bttn_2,self.id_label, self.add_in_favorite_bttn_2,self.add_in_history_bttn_2)
 
     def searchFunction(self):
-            searchFilm(self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.filter_page,self.stackedWidget,self.frame_where_all_films_searchin)
+            searchFilm(self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.filter_page,self.stackedWidget,self.frame_where_all_films_searchin,self.search)
 
     def addReviewTo(self):
         addReviewToDB(self.id_label, self.label_50.text(), self.reviewTextEdit.toPlainText(), self.stackedWidget_2, self.userReviewText)
@@ -4517,6 +4551,7 @@ class Main_page(object):
 
     def deletingReview(self):
             deleteReviewFromDB(self.id_label, self.label_50.text())
+            self.reviewCount.setText(str(int(self.reviewCount.text())-1))
             setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2,
                       self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4,
                       self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2,self.userReviewText,

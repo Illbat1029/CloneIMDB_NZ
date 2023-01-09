@@ -46,7 +46,7 @@ def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userNam
         reviewScore1.setText(str(allReviews[cp].scoreReview))
         idReview1.setText(str(allReviews[cp].review_id))
 
-        frame1.setMaximumSize(QtCore.QSize(1000, 400))
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
         frame2.setMaximumSize(QtCore.QSize(0, 0))
         frame3.setMaximumSize(QtCore.QSize(0, 0))
         frame4.setMaximumSize(QtCore.QSize(0, 0))
@@ -63,8 +63,8 @@ def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userNam
         reviewScore2.setText(str(allReviews[cp+1].scoreReview))
         idReview2.setText(str(allReviews[cp+1].review_id))
 
-        frame1.setMaximumSize(QtCore.QSize(1000, 400))
-        frame2.setMaximumSize(QtCore.QSize(1000, 400))
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
+        frame2.setMaximumSize(QtCore.QSize(970, 400))
         frame3.setMaximumSize(QtCore.QSize(0, 0))
         frame4.setMaximumSize(QtCore.QSize(0, 0))
         frame5.setMaximumSize(QtCore.QSize(0, 0))
@@ -85,9 +85,9 @@ def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userNam
         reviewScore3.setText(str(allReviews[cp+2].scoreReview))
         idReview3.setText(str(allReviews[cp+2].review_id))
 
-        frame1.setMaximumSize(QtCore.QSize(1000, 400))
-        frame2.setMaximumSize(QtCore.QSize(1000, 400))
-        frame3.setMaximumSize(QtCore.QSize(1000, 400))
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
+        frame2.setMaximumSize(QtCore.QSize(970, 400))
+        frame3.setMaximumSize(QtCore.QSize(970, 400))
         frame4.setMaximumSize(QtCore.QSize(0, 0))
         frame5.setMaximumSize(QtCore.QSize(0, 0))
 
@@ -112,10 +112,10 @@ def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userNam
         reviewScore3.setText(str(allReviews[cp+3].scoreReview))
         idReview3.setText(str(allReviews[cp+3].review_id))
 
-        frame1.setMaximumSize(QtCore.QSize(1000, 400))
-        frame2.setMaximumSize(QtCore.QSize(1000, 400))
-        frame3.setMaximumSize(QtCore.QSize(1000, 400))
-        frame4.setMaximumSize(QtCore.QSize(1000, 400))
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
+        frame2.setMaximumSize(QtCore.QSize(970, 400))
+        frame3.setMaximumSize(QtCore.QSize(970, 400))
+        frame4.setMaximumSize(QtCore.QSize(970, 400))
         frame5.setMaximumSize(QtCore.QSize(0, 0))
 
     elif (k>=5):
@@ -145,11 +145,11 @@ def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userNam
         idReview5.setText(str(allReviews[cp+4].review_id))
 
 
-        frame1.setMaximumSize(QtCore.QSize(1000, 400))
-        frame2.setMaximumSize(QtCore.QSize(1000, 400))
-        frame3.setMaximumSize(QtCore.QSize(1000, 400))
-        frame4.setMaximumSize(QtCore.QSize(1000, 400))
-        frame5.setMaximumSize(QtCore.QSize(1000, 400))
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
+        frame2.setMaximumSize(QtCore.QSize(970, 400))
+        frame3.setMaximumSize(QtCore.QSize(970, 400))
+        frame4.setMaximumSize(QtCore.QSize(970, 400))
+        frame5.setMaximumSize(QtCore.QSize(970, 400))
 
     elif(len(allReviews)==0):
         frame1.setMaximumSize(QtCore.QSize(0, 0))

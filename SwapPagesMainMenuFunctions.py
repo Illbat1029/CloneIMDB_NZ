@@ -1,8 +1,10 @@
 from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt,QSize
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem , QLabel
+from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem , QLabel , QCheckBox, QLineEdit,QDateEdit
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtGui
 import re
+import time
+from multiprocessing import Process
 import StyleSheetForButtons
 from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
@@ -11,6 +13,15 @@ from LogicApplication.getDataFromIMDB import *
 from LogicApplication.getAndSetDataFilmStatusUser import *
 from LogicApplication.getAndSetReviews import *
 alldata=getListAllDataAllFilms()
+def getfav(id):
+    global favfilm
+    favfilm=getUsersFavoriteFilms(id)
+def getlat(id):
+    global latfilm
+    latfilm = getUsersWatchLaterFilms(id)
+def gethis(id):
+    global hisfilm
+    hisfilm = getUsersWatchedFilms(id)
 def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6):
     stackedWidget.setCurrentIndex(0)
     home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
@@ -30,7 +41,10 @@ def favoritePage(stackedWidget,home_button,favorite_button,histor_button,setting
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
     pushButton_6.setIcon(QIcon(('arrow-down')))
     userid1 = re.sub("[^0-9]", "", userid.text())
+
     filmID = getUsersFavoriteFilms(userid1)
+
+
     button = allbutton.findChildren(QPushButton)
     labels = allbutton.findChildren(QLabel)
     dict2 = {}
@@ -74,7 +88,7 @@ def favoritePage(stackedWidget,home_button,favorite_button,histor_button,setting
             label.setText('')
             bttn.setEnabled(False)
 
-def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,allbutton,userid):
+def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,allbutton,userid,currentPage,next_button):
     stackedWidget.setCurrentIndex(3)
     home_button.setStyleSheet(StyleSheetForButtons.home_default)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -82,8 +96,8 @@ def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_b
     settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_pressed)
     pushButton_6.setIcon(QIcon(('arrow-down')))
-
-
+    currentPage.setText('1')
+    next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
     userid1 = re.sub("[^0-9]", "", userid.text())
     filmID = getUsersWatchLaterFilms(userid1)
     button = allbutton.findChildren(QPushButton)
@@ -130,7 +144,7 @@ def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_b
             label.setText('')
             bttn.setEnabled(False)
 
-def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,allbutton,userid):
+def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,allbutton,userid,currentPage,next_button):
     stackedWidget.setCurrentIndex(4)
     home_button.setStyleSheet(StyleSheetForButtons.home_default)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -138,7 +152,8 @@ def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings
     settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
     pushButton_6.setIcon(QIcon(('arrow-down')))
-
+    currentPage.setText('1')
+    next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
     userid1 = re.sub("[^0-9]", "", userid.text())
     filmID = getUsersWatchedFilms(userid1)
     button = allbutton.findChildren(QPushButton)
@@ -265,7 +280,36 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
         id =re.sub("[^0-9]", "", button_name)
         idFilmFromHome.setText(str(int(id)+(int(current_page.text())-1)*18))
         idFilmFromHome.setStyleSheet('color:rgb(42, 54, 63)')
-        a = getAllDataFilmByID(str(int(id)+(int(current_page.text())-1)*18))
+        filminxed=str(int(id)+(int(current_page.text())-1)*18)
+
+
+
+        s = Process(target=getfav, args=(userid1))
+        s2 = Process(target=getlat, args=(userid1))
+        s3 = Process(target=gethis, args=(userid1))
+
+        s.start()
+        s2.start()
+        s3.start()
+        pop=False
+
+        while pop==False:
+            try:
+                a = getAllDataFilmByID(filminxed)
+                pop=True
+            except:
+
+                for i in range(int(filminxed),int(filminxed)+20):
+                    try:
+                        a = getAllDataFilmByID(i)
+                        pop=True
+                        break
+                    except:
+                        pop = False
+
+
+
+
 
 
 
@@ -276,6 +320,7 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
         pixmap = QtGui.QPixmap()
         pixmap.loadFromData(binary_data)
         score.setText(str(a.score))
+
         image.setScaledContents(True)
         image.setPixmap((pixmap))
         Name_of_film.setText(a.name+' '+'('+str(a.release)+')')
@@ -295,12 +340,17 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
 
 
 
-        if filmid in getUsersFavoriteFilms(userid1):
+
+        if filmid in favfilm:
             favorite.setStyleSheet('background-color: #696d6d')
-        elif filmId in getUsersWatchLaterFilms(userid1):
+        elif filmid in latfilm:
             lat.setStyleSheet('background-color: #696d6d')
-        elif filmId in getUsersWatchedFilms(userid1):
+        elif filmid in hisfilm:
             his.setStyleSheet('background-color: #696d6d')
+
+
+
+
 
 
 
@@ -309,16 +359,18 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
 
 
 
-
-def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome):
+def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome,frameForFilter,actor,language,country,run,date_from,date_to):
 
         userid1 = re.sub("[^0-9]", "", userid.text())
         id =re.sub("[^0-9]", "", button_name)
         page=int(current_page.text())-1
 
+
+
         filmId=0
         if frame.objectName() =='frame_where_all_films_favorite':
             filmsID = getUsersFavoriteFilms(userid1)
+
             filmId = filmsID[int(id)-1+page*18]
         elif frame.objectName() =='frame_where_all_films_watch_later':
             filmsID = getUsersWatchLaterFilms(userid1)
@@ -326,13 +378,72 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
         elif frame.objectName() =='frame_where_all_films_history_page':
             filmsID = getUsersWatchedFilms(userid1)
             filmId = filmsID[int(id)-1+page*18]
+        else:
+            try:
+                if actor.text() != '':
+                    a = getListAllFilmsWithPeopleUser(actor.text())
+                elif int(date_from.text()) != 2000 and int(date_to.text()) != 2000:
+                    a = getAllDataFilmByReleaseDataBetween(str(date_from.text()), str(date_to.text()))
+                elif language.text() != '':
+                    a = getAllDataFilmByLanguage(language.text())
+                elif country.text() != '':
+                    a = getAllDataFilmByCountry(country.text())
+
+                else:
+                    genersList = []
+                    checkbox = frameForFilter.findChildren(QCheckBox)
+
+                    for i in range(len(checkbox)):
+
+                        if checkbox[i].isChecked():
+                            if checkbox[i].objectName() == 'checkBoxGameShow':
+                                genersList.append('Game-Show')
+                            elif checkbox[i].objectName() == 'checkBoxRealityTV':
+                                genersList.append('Reality-TV')
+                            elif checkbox[i].objectName() == 'checkBoxTalkShow':
+                                genersList.append('Talk-Show')
+                            elif checkbox[i].objectName() == 'checkBoxFilmNoir':
+                                genersList.append('Film-Noir')
+                            else:
+                                genersList.append((checkbox[i].objectName()).replace('checkBox', ''))
+                a = getListAllFilmWithGenresUser(genersList)
+
+            except:
+                pass
+
+
+
+
+            filmId = int(a[int(id) - 1 + page * 18].id)
+
+
+
+
+
+
+
+
         idFilmFromHome.setText(str(filmId))
         idFilmFromHome.setStyleSheet('color:rgb(42, 54, 63)')
 
 
         global index
         index = stackedWidget.currentIndex()
-        actors.setText(str(alldata[filmId-1].actors).replace(';',', '))
+        try:
+            actors.setText(str(alldata[filmId-1].actors).replace(';',', '))
+        except:
+            pop =False
+            while pop==False:
+                for i in range(100):
+                    try:
+                        actors.setText(str(alldata[filmId - i].actors).replace(';', ', '))
+                        filmId=filmId-i
+                        pop=True
+                        break
+                    except:
+                        pop = False
+            filmId+=1
+            pop = True
         binary_data = base64.b64decode(alldata[filmId-1].images)
         pixmap = QtGui.QPixmap()
         pixmap.loadFromData(binary_data)
