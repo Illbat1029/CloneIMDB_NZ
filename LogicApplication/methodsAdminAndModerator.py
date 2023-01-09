@@ -51,5 +51,12 @@ def deleteReviewAfterValidation(reviewId):
     dataDelete = (reviewId, )
     cur.execute(sqlDeleteReview, dataDelete)
     con.commit()
-#
-
+def deleteReviewFromAdminTableWhereReviewGood(reviewId):
+    con = createConnection()
+    cur = con.cursor()
+    sqlDeleteReview = """
+    DELETE FROM admin_review_validation WHERE id_review = %s
+    """
+    dataDelete = (reviewId,)
+    cur.execute(sqlDeleteReview, dataDelete)
+    con.commit()
