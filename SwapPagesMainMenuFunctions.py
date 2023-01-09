@@ -9,6 +9,7 @@ from LogicApplication.DB_connector import *
 from LogicApplication.getFilmsDataFromDB import *
 from LogicApplication.getDataFromIMDB import *
 from LogicApplication.getAndSetDataFilmStatusUser import *
+from LogicApplication.getAndSetReviews import *
 alldata=getListAllDataAllFilms()
 def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6):
     stackedWidget.setCurrentIndex(0)
@@ -266,6 +267,8 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
         idFilmFromHome.setStyleSheet('color:rgb(42, 54, 63)')
         a = getAllDataFilmByID(str(int(id)+(int(current_page.text())-1)*18))
 
+
+
         global index
         index = stackedWidget.currentIndex()
         actors.setText(a.actors.replace(';',', '))
@@ -287,12 +290,19 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
         lat.setStyleSheet('background-color: rgb(42, 54, 63)')
         his.setStyleSheet('background-color: rgb(42, 54, 63)')
         filmid = int(int(id)+(int(current_page.text())-1)*18)
+
+
+
+
+
         if filmid in getUsersFavoriteFilms(userid1):
             favorite.setStyleSheet('background-color: #696d6d')
         elif filmId in getUsersWatchLaterFilms(userid1):
             lat.setStyleSheet('background-color: #696d6d')
         elif filmId in getUsersWatchedFilms(userid1):
             his.setStyleSheet('background-color: #696d6d')
+
+
 
     except:
         pass

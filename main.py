@@ -1,4 +1,4 @@
-
+import base64
 import sys
 import os
 from PIL.ImageQt import ImageQt
@@ -10,8 +10,8 @@ from PyQt5.QtGui import QIcon
 import StyleSheetForButtons
 
 from Login_page import *
-from main_page import *
 from forgot_GUI import *
+from main_page import *
 
 from LogicApplication.userDataValidation import *
 from LogicApplication.DB_connector import *
@@ -38,6 +38,7 @@ if __name__ == "__main__":
     Fogort_page_from=QtWidgets.QWidget()
     Fogort_page=Forgot_page()
     Fogort_page.setupUi(Fogort_page_from)
+
 
     def login():
 

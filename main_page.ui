@@ -216,7 +216,7 @@ background-color:#9BA7A5;
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="../../../Documents/baza/res.qrc">
+               <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
                 <normaloff>:/icon/menu.svg</normaloff>:/icon/menu.svg</iconset>
               </property>
               <property name="iconSize">
@@ -293,7 +293,7 @@ background-color:#9BA7A5;
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="../../../Documents/baza/res.qrc">:/icon/2560px-Tmdb.new.logo.svg.png</pixmap>
+                  <pixmap resource="../CloneIMDB_andey5/baza/res.qrc">:/icon/2560px-Tmdb.new.logo.svg.png</pixmap>
                  </property>
                  <property name="scaledContents">
                   <bool>true</bool>
@@ -392,7 +392,7 @@ border:2px solid #696d6d;
                      <string/>
                     </property>
                     <property name="pixmap">
-                     <pixmap resource="../../../Documents/baza/res.qrc">:/icon/search-svgrepo-com.svg</pixmap>
+                     <pixmap resource="../CloneIMDB_andey5/baza/res.qrc">:/icon/search-svgrepo-com.svg</pixmap>
                     </property>
                     <property name="scaledContents">
                      <bool>true</bool>
@@ -464,7 +464,7 @@ color:#bfc5c5;</string>
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="../../../Documents/baza/res.qrc">
+                     <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
                       <normaloff>:/icon/arrow-down.svg</normaloff>:/icon/arrow-down.svg</iconset>
                     </property>
                     <property name="iconSize">
@@ -614,7 +614,7 @@ color:#bfc5c5;</string>
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../../Documents/baza/res.qrc">:/icon/1613328317_108-p-kislotno-sinii-fon-148.jpg</pixmap>
+               <pixmap resource="../CloneIMDB_andey5/baza/res.qrc">:/icon/1613328317_108-p-kislotno-sinii-fon-148.jpg</pixmap>
               </property>
               <property name="scaledContents">
                <bool>true</bool>
@@ -4179,6 +4179,12 @@ background-color:#9BA7A5;
                 </property>
                 <item>
                  <widget class="QScrollArea" name="scrollArea">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>500</height>
+                   </size>
+                  </property>
                   <property name="horizontalScrollBarPolicy">
                    <enum>Qt::ScrollBarAlwaysOff</enum>
                   </property>
@@ -4189,9 +4195,9 @@ background-color:#9BA7A5;
                    <property name="geometry">
                     <rect>
                      <x>0</x>
-                     <y>0</y>
+                     <y>-962</y>
                      <width>970</width>
-                     <height>1230</height>
+                     <height>1560</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -4228,81 +4234,130 @@ background-color:#9BA7A5;
                        <property name="leftMargin">
                         <number>0</number>
                        </property>
-                       <item row="3" column="6">
-                        <widget class="QLabel" name="label_50">
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(42, 54, 63);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="0">
-                        <spacer name="horizontalSpacer_4">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeType">
-                          <enum>QSizePolicy::Fixed</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>20</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item row="2" column="1">
-                        <widget class="QLabel" name="Film_foto_about_2">
+                       <item row="2" column="4">
+                        <widget class="QFrame" name="frame_22">
                          <property name="minimumSize">
                           <size>
-                           <width>170</width>
-                           <height>250</height>
+                           <width>90</width>
+                           <height>50</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>170</width>
-                           <height>250</height>
+                           <width>130</width>
+                           <height>22222</height>
                           </size>
                          </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(0, 85, 255);</string>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
                          </property>
-                         <property name="text">
-                          <string>                   FOTO</string>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
                          </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="0">
-                        <widget class="QPushButton" name="back_buttn">
-                         <property name="minimumSize">
-                          <size>
-                           <width>30</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>30</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="../../../Documents/baza/res.qrc">
-                           <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
-                         </property>
-                         <property name="iconSize">
-                          <size>
-                           <width>30</width>
-                           <height>30</height>
-                          </size>
-                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_21">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item alignment="Qt::AlignTop">
+                           <widget class="QPushButton" name="add_in_watch_later_bttn_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>30</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                              <normaloff>:/icon/pause.svg</normaloff>:/icon/pause.svg</iconset>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>29</width>
+                              <height>29</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item alignment="Qt::AlignTop">
+                           <widget class="QPushButton" name="add_in_favorite_bttn_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>30</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                              <normaloff>:/icon/favorite-svgrepo-com.svg</normaloff>:/icon/favorite-svgrepo-com.svg</iconset>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>23</width>
+                              <height>23</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item alignment="Qt::AlignTop">
+                           <widget class="QPushButton" name="add_in_history_bttn_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>30</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                              <normaloff>:/icon/history-svgrepo-com.svg</normaloff>:/icon/history-svgrepo-com.svg</iconset>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>29</width>
+                              <height>29</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                        <item row="2" column="2" colspan="2">
@@ -4346,6 +4401,152 @@ background-color:#9BA7A5;
                           <property name="spacing">
                            <number>0</number>
                           </property>
+                          <item row="7" column="2">
+                           <widget class="QFrame" name="frame_7">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>80</height>
+                             </size>
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_11">
+                             <item>
+                              <widget class="QPushButton" name="score_1_button">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset>
+                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="score_2_button">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset>
+                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="score_3_button">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset>
+                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="score_4_button">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset>
+                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="score_5_button">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset>
+                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>30</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <spacer name="horizontalSpacer_2">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
                           <item row="0" column="1" colspan="7">
                            <spacer name="verticalSpacer_11">
                             <property name="orientation">
@@ -4384,152 +4585,6 @@ background-color:#9BA7A5;
                             <property name="text">
                              <string>4.2</string>
                             </property>
-                           </widget>
-                          </item>
-                          <item row="7" column="2">
-                           <widget class="QFrame" name="frame_7">
-                            <property name="maximumSize">
-                             <size>
-                              <width>16777215</width>
-                              <height>80</height>
-                             </size>
-                            </property>
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
-                            </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_11">
-                             <item>
-                              <widget class="QPushButton" name="score_1_button">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../../../Documents/baza/res.qrc">
-                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
-                               </property>
-                               <property name="iconSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="score_2_button">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../../../Documents/baza/res.qrc">
-                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
-                               </property>
-                               <property name="iconSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="score_3_button">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../../../Documents/baza/res.qrc">
-                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
-                               </property>
-                               <property name="iconSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="score_4_button">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../../../Documents/baza/res.qrc">
-                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
-                               </property>
-                               <property name="iconSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="score_5_button">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../../../Documents/baza/res.qrc">
-                                 <normaloff>:/newPrefix/star-empty-icon.webp</normaloff>:/newPrefix/star-empty-icon.webp</iconset>
-                               </property>
-                               <property name="iconSize">
-                                <size>
-                                 <width>30</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <spacer name="horizontalSpacer_2">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                            </layout>
                            </widget>
                           </item>
                           <item row="9" column="1" rowspan="2" alignment="Qt::AlignRight|Qt::AlignTop">
@@ -4613,22 +4668,6 @@ background-color:#9BA7A5;
                             </property>
                            </widget>
                           </item>
-                          <item row="3" column="1">
-                           <spacer name="verticalSpacer_12">
-                            <property name="orientation">
-                             <enum>Qt::Vertical</enum>
-                            </property>
-                            <property name="sizeType">
-                             <enum>QSizePolicy::Fixed</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                             <size>
-                              <width>20</width>
-                              <height>7</height>
-                             </size>
-                            </property>
-                           </spacer>
-                          </item>
                           <item row="8" column="1">
                            <spacer name="verticalSpacer_13">
                             <property name="orientation">
@@ -4645,10 +4684,100 @@ background-color:#9BA7A5;
                             </property>
                            </spacer>
                           </item>
+                          <item row="3" column="1">
+                           <spacer name="verticalSpacer_12">
+                            <property name="orientation">
+                             <enum>Qt::Vertical</enum>
+                            </property>
+                            <property name="sizeType">
+                             <enum>QSizePolicy::Fixed</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>20</width>
+                              <height>7</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
                          </layout>
                         </widget>
                        </item>
-                       <item row="3" column="1" colspan="3" alignment="Qt::AlignTop">
+                       <item row="0" column="0">
+                        <widget class="QPushButton" name="back_buttn">
+                         <property name="minimumSize">
+                          <size>
+                           <width>30</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>30</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                           <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>30</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="5">
+                        <widget class="QLabel" name="label_50">
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <spacer name="horizontalSpacer_4">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeType">
+                          <enum>QSizePolicy::Fixed</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QLabel" name="Film_foto_about_2">
+                         <property name="minimumSize">
+                          <size>
+                           <width>170</width>
+                           <height>250</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>170</width>
+                           <height>250</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(0, 85, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>                   FOTO</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="1" colspan="3">
                         <widget class="QLabel" name="label_10">
                          <property name="font">
                           <font>
@@ -4663,132 +4792,6 @@ background-color:#9BA7A5;
                          </property>
                         </widget>
                        </item>
-                       <item row="2" column="5">
-                        <widget class="QFrame" name="frame_22">
-                         <property name="minimumSize">
-                          <size>
-                           <width>90</width>
-                           <height>50</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>130</width>
-                           <height>22222</height>
-                          </size>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QHBoxLayout" name="horizontalLayout_21">
-                          <property name="spacing">
-                           <number>0</number>
-                          </property>
-                          <property name="leftMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="topMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="rightMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="bottomMargin">
-                           <number>0</number>
-                          </property>
-                          <item alignment="Qt::AlignTop">
-                           <widget class="QPushButton" name="add_in_watch_later_bttn_2">
-                            <property name="minimumSize">
-                             <size>
-                              <width>30</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>30</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="text">
-                             <string/>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="../../../Documents/baza/res.qrc">
-                              <normaloff>:/icon/pause.svg</normaloff>:/icon/pause.svg</iconset>
-                            </property>
-                            <property name="iconSize">
-                             <size>
-                              <width>29</width>
-                              <height>29</height>
-                             </size>
-                            </property>
-                           </widget>
-                          </item>
-                          <item alignment="Qt::AlignTop">
-                           <widget class="QPushButton" name="add_in_favorite_bttn_2">
-                            <property name="minimumSize">
-                             <size>
-                              <width>30</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>30</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="text">
-                             <string/>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="../../../Documents/baza/res.qrc">
-                              <normaloff>:/icon/favorite-svgrepo-com.svg</normaloff>:/icon/favorite-svgrepo-com.svg</iconset>
-                            </property>
-                            <property name="iconSize">
-                             <size>
-                              <width>23</width>
-                              <height>23</height>
-                             </size>
-                            </property>
-                           </widget>
-                          </item>
-                          <item alignment="Qt::AlignTop">
-                           <widget class="QPushButton" name="add_in_history_bttn_2">
-                            <property name="minimumSize">
-                             <size>
-                              <width>30</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>30</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="text">
-                             <string/>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="../../../Documents/baza/res.qrc">
-                              <normaloff>:/icon/history-svgrepo-com.svg</normaloff>:/icon/history-svgrepo-com.svg</iconset>
-                            </property>
-                            <property name="iconSize">
-                             <size>
-                              <width>29</width>
-                              <height>29</height>
-                             </size>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
                       </layout>
                      </widget>
                     </item>
@@ -4797,12 +4800,12 @@ background-color:#9BA7A5;
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
-                        <height>130</height>
+                        <height>200</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>16777215</width>
+                        <width>920</width>
                         <height>160</height>
                        </size>
                       </property>
@@ -4812,7 +4815,296 @@ background-color:#9BA7A5;
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_9"/>
+                      <layout class="QGridLayout" name="gridLayout_4">
+                       <item row="0" column="0">
+                        <widget class="QStackedWidget" name="stackedWidget_2">
+                         <property name="currentIndex">
+                          <number>0</number>
+                         </property>
+                         <widget class="QWidget" name="page_3">
+                          <widget class="QTextEdit" name="reviewTextEdit">
+                           <property name="geometry">
+                            <rect>
+                             <x>0</x>
+                             <y>20</y>
+                             <width>900</width>
+                             <height>91</height>
+                            </rect>
+                           </property>
+                          </widget>
+                          <widget class="QPushButton" name="sendReviewBttn">
+                           <property name="geometry">
+                            <rect>
+                             <x>750</x>
+                             <y>120</y>
+                             <width>150</width>
+                             <height>40</height>
+                            </rect>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>100</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>-1</pointsize>
+                             <underline>false</underline>
+                             <strikeout>false</strikeout>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color:#6ED9A0; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+border-radius: 12px;</string>
+                           </property>
+                           <property name="text">
+                            <string>Send a review</string>
+                           </property>
+                          </widget>
+                          <widget class="QLabel" name="label_16">
+                           <property name="geometry">
+                            <rect>
+                             <x>0</x>
+                             <y>0</y>
+                             <width>900</width>
+                             <height>19</height>
+                            </rect>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>12</pointsize>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Write a review</string>
+                           </property>
+                          </widget>
+                         </widget>
+                         <widget class="QWidget" name="page_4">
+                          <widget class="QLabel" name="label_17">
+                           <property name="geometry">
+                            <rect>
+                             <x>0</x>
+                             <y>0</y>
+                             <width>91</width>
+                             <height>21</height>
+                            </rect>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>12</pointsize>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Your review</string>
+                           </property>
+                          </widget>
+                          <widget class="QLabel" name="userReviewText">
+                           <property name="geometry">
+                            <rect>
+                             <x>0</x>
+                             <y>30</y>
+                             <width>861</width>
+                             <height>81</height>
+                            </rect>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                          <widget class="QPushButton" name="editReviewBttn">
+                           <property name="geometry">
+                            <rect>
+                             <x>10</x>
+                             <y>130</y>
+                             <width>150</width>
+                             <height>40</height>
+                            </rect>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>100</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>-1</pointsize>
+                             <underline>false</underline>
+                             <strikeout>false</strikeout>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color:#6ED9A0; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+border-radius: 12px;</string>
+                           </property>
+                           <property name="text">
+                            <string>Edit review</string>
+                           </property>
+                          </widget>
+                          <widget class="QPushButton" name="deleteReviewBttn">
+                           <property name="geometry">
+                            <rect>
+                             <x>180</x>
+                             <y>130</y>
+                             <width>150</width>
+                             <height>40</height>
+                            </rect>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>100</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>-1</pointsize>
+                             <underline>false</underline>
+                             <strikeout>false</strikeout>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color:#6ED9A0; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+border-radius: 12px;</string>
+                           </property>
+                           <property name="text">
+                            <string>Delete review</string>
+                           </property>
+                          </widget>
+                         </widget>
+                         <widget class="QWidget" name="page">
+                          <widget class="QTextEdit" name="reviewTextEdit_2">
+                           <property name="geometry">
+                            <rect>
+                             <x>0</x>
+                             <y>20</y>
+                             <width>900</width>
+                             <height>91</height>
+                            </rect>
+                           </property>
+                          </widget>
+                          <widget class="QLabel" name="label_18">
+                           <property name="geometry">
+                            <rect>
+                             <x>0</x>
+                             <y>0</y>
+                             <width>900</width>
+                             <height>19</height>
+                            </rect>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>12</pointsize>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Editing your review</string>
+                           </property>
+                          </widget>
+                          <widget class="QPushButton" name="sendReviewBttn_2">
+                           <property name="geometry">
+                            <rect>
+                             <x>750</x>
+                             <y>120</y>
+                             <width>150</width>
+                             <height>40</height>
+                            </rect>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>100</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>-1</pointsize>
+                             <underline>false</underline>
+                             <strikeout>false</strikeout>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color:#6ED9A0; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+border-radius: 12px;</string>
+                           </property>
+                           <property name="text">
+                            <string>Change review</string>
+                           </property>
+                          </widget>
+                          <widget class="QFrame" name="frame_19">
+                           <property name="geometry">
+                            <rect>
+                             <x>0</x>
+                             <y>160</y>
+                             <width>911</width>
+                             <height>811</height>
+                            </rect>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </widget>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                     <item>
@@ -4820,7 +5112,13 @@ background-color:#9BA7A5;
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
-                        <height>600</height>
+                        <height>160</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>400</height>
                        </size>
                       </property>
                       <property name="frameShape">
@@ -4829,39 +5127,1373 @@ background-color:#9BA7A5;
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="0">
-                       <property name="spacing">
-                        <number>0</number>
+                      <widget class="QFrame" name="frame_8">
+                       <property name="geometry">
+                        <rect>
+                         <x>0</x>
+                         <y>20</y>
+                         <width>920</width>
+                         <height>130</height>
+                        </rect>
                        </property>
-                       <property name="leftMargin">
-                        <number>0</number>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>130</height>
+                        </size>
                        </property>
-                       <property name="topMargin">
-                        <number>0</number>
+                       <property name="maximumSize">
+                        <size>
+                         <width>920</width>
+                         <height>160</height>
+                        </size>
                        </property>
-                       <property name="rightMargin">
-                        <number>0</number>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
                        </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
                        </property>
-                       <item>
-                        <spacer name="horizontalSpacer_5">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeType">
-                          <enum>QSizePolicy::Fixed</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>245</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                      </layout>
+                       <widget class="QPushButton" name="likeReview">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/plus.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="reviewScore">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>18</y>
+                          <width>16</width>
+                          <height>16</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>5</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="dislikeReviwe">
+                        <property name="geometry">
+                         <rect>
+                          <x>832</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/minus.svg);
+</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="nameReviewer">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>10</y>
+                          <width>800</width>
+                          <height>31</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>800</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>700</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>dodik</string>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="textCommentary">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>49</y>
+                          <width>741</width>
+                          <height>71</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>text</string>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                       <widget class="QComboBox" name="reportComboBox">
+                        <property name="geometry">
+                         <rect>
+                          <x>700</x>
+                          <y>94</y>
+                          <width>150</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="reportBttn">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>87</y>
+                          <width>34</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>40</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/flag.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="idReview">
+                        <property name="geometry">
+                         <rect>
+                          <x>800</x>
+                          <y>50</y>
+                          <width>0</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="sendReport1">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>80</y>
+                          <width>61</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>40</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>150</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>-1</pointsize>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color:#6ED9A0; /* Green */
+
+
+  font-size: 12px;
+border-radius: 12px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Send</string>
+                        </property>
+                       </widget>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_9">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>160</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <widget class="QFrame" name="frame_10">
+                       <property name="geometry">
+                        <rect>
+                         <x>0</x>
+                         <y>10</y>
+                         <width>920</width>
+                         <height>130</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>130</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>920</width>
+                         <height>160</height>
+                        </size>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <widget class="QPushButton" name="likeReview_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/plus.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="reviewScore_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>18</y>
+                          <width>16</width>
+                          <height>16</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>5</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="dislikeReviwe_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>832</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/minus.svg);
+</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="nameReviewer_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>10</y>
+                          <width>800</width>
+                          <height>31</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>800</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>700</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>dodik</string>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="textCommentary_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>49</y>
+                          <width>741</width>
+                          <height>71</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>text</string>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                       <widget class="QComboBox" name="reportComboBox_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>700</x>
+                          <y>94</y>
+                          <width>150</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="reportBttn_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>87</y>
+                          <width>34</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>40</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/flag.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="idReview_2">
+                        <property name="geometry">
+                         <rect>
+                          <x>790</x>
+                          <y>70</y>
+                          <width>0</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>TextLabel</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="sendReviewBttn_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>0</x>
+                          <y>0</y>
+                          <width>61</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>40</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>150</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>-1</pointsize>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color:#6ED9A0; /* Green */
+
+
+  font-size: 12px;
+border-radius: 12px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Send</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="sendReport2">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>80</y>
+                          <width>61</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>40</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>150</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>-1</pointsize>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color:#6ED9A0; /* Green */
+
+
+  font-size: 12px;
+border-radius: 12px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Send</string>
+                        </property>
+                       </widget>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_11">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>160</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <widget class="QFrame" name="frame_12">
+                       <property name="geometry">
+                        <rect>
+                         <x>0</x>
+                         <y>10</y>
+                         <width>920</width>
+                         <height>130</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>130</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>920</width>
+                         <height>160</height>
+                        </size>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <widget class="QPushButton" name="likeReview_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/plus.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="reviewScore_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>18</y>
+                          <width>16</width>
+                          <height>16</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>5</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="dislikeReviwe_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>832</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/minus.svg);
+</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="nameReviewer_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>10</y>
+                          <width>800</width>
+                          <height>31</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>800</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>700</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>dodik</string>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="textCommentary_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>49</y>
+                          <width>741</width>
+                          <height>71</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>text</string>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                       <widget class="QComboBox" name="reportComboBox_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>700</x>
+                          <y>94</y>
+                          <width>150</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="reportBttn_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>87</y>
+                          <width>34</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>40</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/flag.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="idReview_3">
+                        <property name="geometry">
+                         <rect>
+                          <x>750</x>
+                          <y>70</y>
+                          <width>0</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="sendReport3">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>80</y>
+                          <width>61</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>40</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>150</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>-1</pointsize>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color:#6ED9A0; /* Green */
+
+
+  font-size: 12px;
+border-radius: 12px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Send</string>
+                        </property>
+                       </widget>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_13">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>160</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <widget class="QFrame" name="frame_14">
+                       <property name="geometry">
+                        <rect>
+                         <x>0</x>
+                         <y>20</y>
+                         <width>920</width>
+                         <height>130</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>130</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>920</width>
+                         <height>160</height>
+                        </size>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <widget class="QPushButton" name="likeReview_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/plus.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="reviewScore_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>18</y>
+                          <width>16</width>
+                          <height>16</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>5</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="dislikeReviwe_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>832</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/minus.svg);
+</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="nameReviewer_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>10</y>
+                          <width>800</width>
+                          <height>31</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>800</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>700</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>dodik</string>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="textCommentary_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>49</y>
+                          <width>741</width>
+                          <height>71</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>text</string>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                       <widget class="QComboBox" name="reportComboBox_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>700</x>
+                          <y>94</y>
+                          <width>150</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="reportBttn_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>87</y>
+                          <width>34</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>40</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/flag.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="idReview_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>780</x>
+                          <y>70</y>
+                          <width>47</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="sendReport4">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>80</y>
+                          <width>61</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>40</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>150</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>-1</pointsize>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color:#6ED9A0; /* Green */
+
+
+  font-size: 12px;
+border-radius: 12px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Send</string>
+                        </property>
+                       </widget>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_16">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>160</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <widget class="QFrame" name="frame_17">
+                       <property name="geometry">
+                        <rect>
+                         <x>0</x>
+                         <y>20</y>
+                         <width>920</width>
+                         <height>130</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>130</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>920</width>
+                         <height>160</height>
+                        </size>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <widget class="QPushButton" name="likeReview_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/plus.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="reviewScore_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>18</y>
+                          <width>16</width>
+                          <height>16</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>5</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="dislikeReviwe_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>832</x>
+                          <y>10</y>
+                          <width>20</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>20</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/minus.svg);
+</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="nameReviewer_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>10</y>
+                          <width>800</width>
+                          <height>31</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>800</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>700</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>dodik</string>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="textCommentary_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>10</x>
+                          <y>49</y>
+                          <width>741</width>
+                          <height>71</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>text</string>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                       <widget class="QComboBox" name="reportComboBox_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>700</x>
+                          <y>94</y>
+                          <width>150</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="reportBttn_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>876</x>
+                          <y>87</y>
+                          <width>34</width>
+                          <height>33</height>
+                         </rect>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>40</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">image: url(:/icon/flag.svg);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="idReview_5">
+                        <property name="geometry">
+                         <rect>
+                          <x>760</x>
+                          <y>40</y>
+                          <width>0</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="sendReport5">
+                        <property name="geometry">
+                         <rect>
+                          <x>860</x>
+                          <y>80</y>
+                          <width>61</width>
+                          <height>0</height>
+                         </rect>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>40</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>150</width>
+                          <height>100</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>-1</pointsize>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color:#6ED9A0; /* Green */
+
+
+  font-size: 12px;
+border-radius: 12px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Send</string>
+                        </property>
+                       </widget>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_15">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>60</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <widget class="QPushButton" name="current_page_watch_later_2">
+                       <property name="geometry">
+                        <rect>
+                         <x>470</x>
+                         <y>0</y>
+                         <width>30</width>
+                         <height>30</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>MS Shell Dlg 2</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>1</string>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="previos_page_button_watch_later_2">
+                       <property name="geometry">
+                        <rect>
+                         <x>450</x>
+                         <y>0</y>
+                         <width>30</width>
+                         <height>30</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>MS Shell Dlg 2</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>&lt;</string>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="next_button_watch_later_2">
+                       <property name="geometry">
+                        <rect>
+                         <x>490</x>
+                         <y>0</y>
+                         <width>30</width>
+                         <height>30</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>MS Shell Dlg 2</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>&gt;</string>
+                       </property>
+                      </widget>
+                      <widget class="QLabel" name="reviewCount">
+                       <property name="geometry">
+                        <rect>
+                         <x>820</x>
+                         <y>30</y>
+                         <width>47</width>
+                         <height>0</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
                      </widget>
                     </item>
                    </layout>
@@ -10164,7 +11796,8 @@ background-color:#9BA7A5;
   </layout>
  </widget>
  <resources>
-  <include location="../../../Documents/baza/res.qrc"/>
+  <include location="../CloneIMDB_andey5/baza/res.qrc"/>
+  <include location="baza/res.qrc"/>
  </resources>
  <connections/>
 </ui>
