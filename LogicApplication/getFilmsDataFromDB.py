@@ -143,7 +143,13 @@ def getListAllFilmsWithPeopleUser(peopleFullName):
         """
     cur.execute(sqlGetDataFilm, (peopleFullName,))
     data = cur.fetchall()
-    data=refractoringDataPeopleFilm(data)
+    for i in range(len(data)):
+        j = i + 1;
+        while j < len(data):
+            if (data[i][0] == data[j][0]):
+                del data[j]
+            j += 1
+    data = refractoringDataPeopleFilm(data)
     return data
 
 def getAllDataFilmByID(idFilm):

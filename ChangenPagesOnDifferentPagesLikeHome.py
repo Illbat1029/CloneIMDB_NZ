@@ -117,7 +117,6 @@ def next_page_favorite(current_page_favorite,all_button_name,next_button,userid)
 
                 bttn.setEnabled(True)
                 next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
-                current_page_favorite.setText(str(stranica-1))
                 if filmID[i] == filmID[-1]:
                     for j in range(len(filmID)%18,18):
                         bttn = (dict2.get(int(j)  + 1))
