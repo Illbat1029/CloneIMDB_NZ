@@ -12,20 +12,47 @@ import collections
 
 
 
-def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedWidget,buttonsAndLabel):
-    if actors.text() !='':
-        a = getListAllFilmsWithPeopleUser(actors.text())
-    else:
-        genersList=[]
-        checkbox=filter.findChildren(QCheckBox)
+def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedWidget,buttonsAndLabel,film):
 
-        for i in range(len(checkbox)):
-            print(checkbox[i].objectName())
-            if checkbox[i].isChecked():
+    try:
+        if actors.text() !='':
 
-                    genersList.append((checkbox[i].objectName()).replace('checkBox',''))
-        print(genersList)
-        a= getListAllFilmWithGenresUser(genersList)
+            a= getListAllFilmsWithPeopleUser(actors.text())
+        elif int(date_from.text()) !=2000 and int(date_to.text())!=2000:
+
+            a = getAllDataFilmByReleaseDataBetween(str(date_from.text()),str(date_to.text()))
+
+        elif language.text()!= '':
+
+            a = getAllDataFilmByLanguage(language.text())
+        elif country.text() !='':
+
+            a = getAllDataFilmByCountry(country.text())
+        elif film.text()!='':
+            pass
+            #фильмы
+        else:
+            genersList = []
+            checkbox = filter.findChildren(QCheckBox)
+
+            for i in range(len(checkbox)):
+                print(checkbox[i].objectName())
+                if checkbox[i].isChecked():
+                    if checkbox[i].objectName() == 'checkBoxGameShow':
+                        genersList.append('Game-Show')
+                    elif checkbox[i].objectName() == 'checkBoxRealityTV':
+                        genersList.append('Reality-TV')
+                    elif checkbox[i].objectName() == 'checkBoxTalkShow':
+                        genersList.append('Talk-Show')
+                    elif checkbox[i].objectName() == 'checkBoxFilmNoir':
+                        genersList.append('Film-Noir')
+                    else:
+                        genersList.append((checkbox[i].objectName()).replace('checkBox', ''))
+
+            a = getListAllFilmWithGenresUser(genersList)
+    except:
+        pass
+
     button = buttonsAndLabel.findChildren(QPushButton)
     labels = buttonsAndLabel.findChildren(QLabel)
     stackedWidget.setCurrentIndex(7)
@@ -50,6 +77,7 @@ def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedW
             bttn.setIconSize(QSize(100, 140))
             bttn.setIcon(QIcon(pixmap))
             label.setText(a[i].name)
+            bttn.setEnabled(True)
     except:
 
         for i in range(len(a)):
@@ -62,5 +90,15 @@ def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedW
             bttn.setIconSize(QSize(100, 140))
             bttn.setIcon(QIcon(pixmap))
             label.setText(a[i].name)
+            bttn.setEnabled(True)
+        for i in range(len(a),18):
+            bttn = (dict2.get(int(i) + 1))
+            label = labelDict.get(int(i) + 1)
+
+            label.setText('')
+            bttn.setIconSize(QSize(0, 0))
+            bttn.setEnabled(False)
+
+
 
 
