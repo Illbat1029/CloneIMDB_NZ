@@ -9,7 +9,8 @@ class ReportReview:
 def addFilmsAdmin (idFilmStart, idFilmEnd=0):
     if (idFilmEnd == 0):
         idFilmEnd = idFilmStart+1
-    addFilmsAdmin(idFilmStart, idFilmEnd)
+    addFilms(idFilmStart, idFilmEnd)
+
 def splitDataFilmDelete(dataSplit):
     ret = dataSplit.split(",")
     for i in range(len(ret)):

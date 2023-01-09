@@ -40,7 +40,7 @@ def existFilmDatabase(nameFilm, release):
     isExist = isExist[0]
     return isExist
 def createFilm(filmname, description, country, genre, language, releasedata, runtime, score, vote, director, actors):
-    file = open("../Images_Film/1.png", 'rb').read()
+    file = open("Images_Film/1.png", 'rb').read()
     file = base64.b64encode(file)
     con = createConnection()
     cur = con.cursor()
@@ -160,10 +160,10 @@ def peopleDataInsert(directors, cast, filmID):
                 actor = ia.get_person(i.personID)
                 imA = actor['headshot']
                 downloadImagesPeop(imA)
-                file = open("../Images_People/1.png", 'rb').read()
+                file = open("Images_People/1.png", 'rb').read()
                 file = base64.b64encode(file)
             except:
-                file = open("../Images_People/noFoto.png", 'rb').read()
+                file = open("Images_People/noFoto.png", 'rb').read()
                 file = base64.b64encode(file)
             newPeopleList.append((str(i), file))
     for i in cast:
@@ -179,10 +179,10 @@ def peopleDataInsert(directors, cast, filmID):
                     actor = ia.get_person(i.personID)
                     imA = actor['headshot']
                     downloadImagesPeop(imA)
-                    file = open("../Images_People/1.png", 'rb').read()
+                    file = open("Images_People/1.png", 'rb').read()
                     file = base64.b64encode(file)
                 except:
-                    file = open("../Images_People/noFoto.png", 'rb').read()
+                    file = open("Images_People/noFoto.png", 'rb').read()
                     file = base64.b64encode(file)
                 newPeopleList.append((str(i), file))
     sqlAddPeople = """
