@@ -1678,7 +1678,7 @@ class Main_page(object):
         self.verticalLayout_8.addWidget(self.frame)
         self.frame_5 = QtWidgets.QFrame(self.scrollAreaWidgetContents_4)
         self.frame_5.setMinimumSize(QtCore.QSize(0, 200))
-        self.frame_5.setMaximumSize(QtCore.QSize(920, 160))
+        self.frame_5.setMaximumSize(QtCore.QSize(970, 160))
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
@@ -1798,11 +1798,6 @@ class Main_page(object):
 "  font-size: 12px;\n"
 "border-radius: 12px;")
         self.sendReviewBttn_2.setObjectName("sendReviewBttn_2")
-        self.frame_19 = QtWidgets.QFrame(self.page)
-        self.frame_19.setGeometry(QtCore.QRect(0, 160, 911, 811))
-        self.frame_19.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_19.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_19.setObjectName("frame_19")
         self.stackedWidget_2.addWidget(self.page)
         self.gridLayout_4.addWidget(self.stackedWidget_2, 0, 0, 1, 1)
         self.verticalLayout_8.addWidget(self.frame_5)
@@ -4375,6 +4370,7 @@ class Main_page(object):
     #         print(self.reviewCount)
 
     def about_film(self, button_name):
+            self.reviewTextEdit.setText("")
             self.current_page_watch_later_2.setText("1")
             about_film_page(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
@@ -4405,6 +4401,7 @@ class Main_page(object):
                       self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5,
                       self.current_page_watch_later_2.text(), self.reviewCount)
     def about_film_search_page(self,button_name):
+        self.reviewTextEdit.setText("")
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                             self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_searchin,self.current_page_history_2,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to)
@@ -4425,7 +4422,7 @@ class Main_page(object):
 
     def about_film_later_page(self,button_name):
         self.current_page_watch_later_2.setText("1")
-
+        self.reviewTextEdit.setText("")
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                             self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_watch_later, self.current_page_watch_later,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to)
@@ -4444,7 +4441,7 @@ class Main_page(object):
                   self.reviewCount)
     def about_film_history_page(self,button_name):
             self.current_page_watch_later_2.setText("1")
-
+            self.reviewTextEdit.setText("")
             aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                                  self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                                  self.Score_of_film_2, self.current_page_home, self.add_in_favorite_bttn_2,
@@ -4539,6 +4536,8 @@ class Main_page(object):
 
     def addReviewTo(self):
         addReviewToDB(self.id_label, self.label_50.text(), self.reviewTextEdit.toPlainText(), self.stackedWidget_2, self.userReviewText)
+        self.reviewTextEdit.setText("")
+        setCount(self.label_50.text(), self.reviewCount)
         setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2, self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4, self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2, self.userReviewText,
                   self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
 
@@ -4551,7 +4550,7 @@ class Main_page(object):
 
     def deletingReview(self):
             deleteReviewFromDB(self.id_label, self.label_50.text())
-            self.reviewCount.setText(str(int(self.reviewCount.text())-1))
+            setCount(self.label_50.text(), self.reviewCount)
             setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2,
                       self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4,
                       self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2,self.userReviewText,

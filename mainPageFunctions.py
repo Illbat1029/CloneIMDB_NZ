@@ -151,7 +151,7 @@ def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userNam
         frame4.setMaximumSize(QtCore.QSize(970, 400))
         frame5.setMaximumSize(QtCore.QSize(970, 400))
 
-    elif(len(allReviews)==0):
+    elif(k==0):
         frame1.setMaximumSize(QtCore.QSize(0, 0))
         frame2.setMaximumSize(QtCore.QSize(0, 0))
         frame3.setMaximumSize(QtCore.QSize(0, 0))
@@ -162,6 +162,7 @@ def editReview(idUser,filmId,stackedWidgetReview, newReviewText, oldReviewText):
     userid1 = re.sub("[^0-9]", "", idUser.text())
     changeRivewText(userid1, filmId, newReviewText.toPlainText())
     stackedWidgetReview.setCurrentIndex(1)
+    newReviewText.setText("")
 
 def changingPageInEditing(stackedWidgetReview, newReviewText, oldReviewText):
     stackedWidgetReview.setCurrentIndex(2)
