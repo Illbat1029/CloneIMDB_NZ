@@ -10,6 +10,7 @@ from LogicApplication.getDataFromIMDB import *
 from LogicApplication.getAndSetReviews import *
 from main_page import *
 from LogicApplication.reviewLogic import *
+from LogicApplication.methodsAdminAndModerator import *
 
 
 
@@ -198,13 +199,13 @@ def report(allComboBox, buttonName, send_buttons):
     if buttonName[-1].isnumeric():
         allComboBox[int(buttonName[-1]) - 1].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(700, 94, 150, 20))
-        send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(860, 80, 61, 40))
+        send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(855, 80, 55, 40))
 
 
     else:
         allComboBox[0].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[0].setGeometry(QtCore.QRect(700, 94, 150, 20))
-        send_buttons[0].setGeometry(QtCore.QRect(860, 80, 61, 40))
+        send_buttons[0].setGeometry(QtCore.QRect(855, 80, 55, 40))
 
 def sendRep(buttonName, allComboBoxes, idReviews, idUser, all_buttons):
     userid1 = re.sub("[^0-9]", "", idUser.text())
@@ -213,9 +214,9 @@ def sendRep(buttonName, allComboBoxes, idReviews, idUser, all_buttons):
     for c in buttonName:
         if c.isnumeric():
             allComboBoxes[int(c) - 1].setMaximumSize(QtCore.QSize(200, 0))
-            all_buttons[int(c) - 1].setGeometry(QtCore.QRect(860, 80, 61, 0))
+            all_buttons[int(c) - 1].setGeometry(QtCore.QRect(855, 80, 55, 0))
             reviewId=idReviews[int(c)-1]
-            createReportReview(int(reviewId),int(userid1) ,allComboBoxes[int(c) - 1].currentIndex())
+            createReportReview(int(reviewId),int(userid1) ,(allComboBoxes[int(c) - 1].currentIndex()+1))
 
 
 def changePPage(reviewCount, currPage, allComboBox, allButtons):
@@ -223,7 +224,7 @@ def changePPage(reviewCount, currPage, allComboBox, allButtons):
     for comboBox in allComboBox:
         comboBox.setMaximumSize(QtCore.QSize(200, 0))
     for button in allButtons:
-        button.setGeometry(QtCore.QRect(860, 80, 61, 0))
+        button.setGeometry(QtCore.QRect(855, 80, 55, 0))
     if (int(currPage.text())>1):
         currPage.setText(str(int(currPage.text())-1))
         reviewCount.setText(str(k+5))
@@ -233,7 +234,7 @@ def changeNPage(reviewCount, currPage, allComboBox, allButtons):
     for comboBox in allComboBox:
         comboBox.setMaximumSize(QtCore.QSize(200, 0))
     for button in allButtons:
-        button.setGeometry(QtCore.QRect(860, 80, 61, 0))
+        button.setGeometry(QtCore.QRect(855, 80, 55, 0))
 
     if k>5:
         currPage.setText(str(int(currPage.text()) + 1))
@@ -242,3 +243,21 @@ def changeNPage(reviewCount, currPage, allComboBox, allButtons):
 def setCount(filmId, countLabel):
     allReviews = getAllReviewsForFilm(filmId)
     countLabel.setText(str(len(allReviews)))
+
+def addFilmToDB(lineEdit):
+    a=lineEdit.text()
+    if "-" in a:
+        indexes = a.split("-")
+        if int(indexes[0])<int(indexes[1]):
+            addFilmsAdmin(int(indexes[0]),int(indexes[1]))
+            lineEdit.setText("")
+    else:
+        addFilmsAdmin(int(a))
+        lineEdit.setText("")
+
+def deleteFilmFromDB(lineEdit):
+    deleteFilmFromDB(lineEdit)
+    lineEdit.setText("")
+
+
+
