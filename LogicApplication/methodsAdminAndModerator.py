@@ -1,6 +1,7 @@
 from LogicApplication.DB_connector import *
 import mysql.connector
 from LogicApplication.getDataFromIMDB import *
+from datetime import datetime, timedelta
 class ReportReview:
     def __init__(self, id, review, type):
         self.reviw_id = id
@@ -16,6 +17,7 @@ def splitDataFilmDelete(dataSplit):
         ret[i]=ret[i].strip()
     return ret
 def deleteFilmFromDB (dataWindow):
+    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlDeleteFilm = """
@@ -24,7 +26,9 @@ def deleteFilmFromDB (dataWindow):
     dataDelete = (splitValue[0], splitValue[1])
     cur.execute(sqlDeleteFilm,dataDelete)
     con.commit()
+    print("Delete film ADMIN = ", datetime.now() - stime)
 def getAllReportReviews():
+    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlGetAllReportReviews = """
@@ -41,8 +45,10 @@ def getAllReportReviews():
         buff = list(row)
         rep = ReportReview(buff[0], buff[1], buff[2])
         retData.append(rep)
+    print("Get all review by ADMIN = ", datetime.now() - stime)
     return retData
 def deleteReviewAfterValidation(reviewId):
+    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlDeleteReview = """
@@ -51,7 +57,9 @@ def deleteReviewAfterValidation(reviewId):
     dataDelete = (reviewId, )
     cur.execute(sqlDeleteReview, dataDelete)
     con.commit()
+    print("Delete review after cammit report by ADMIN = ", datetime.now() - stime)
 def deleteReviewFromAdminTableWhereReviewGood(reviewId):
+    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlDeleteReview = """
@@ -60,3 +68,4 @@ def deleteReviewFromAdminTableWhereReviewGood(reviewId):
     dataDelete = (reviewId,)
     cur.execute(sqlDeleteReview, dataDelete)
     con.commit()
+    print("Delete review after cammit no report by ADMIN = ", datetime.now() - stime)
