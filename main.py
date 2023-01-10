@@ -62,6 +62,12 @@ if __name__ == "__main__":
                 Log_page_form.close()
                 Main_page.username_lable.setText(Log_page.user_or_email.text())
                 Main_page.id_label.setText('ID: '+  str(dataUser[0]))
+                if (Main_page.username_lable.text())[:14] == 'adminCloneImdb':
+                     Main_page.adminPageBttn.setMaximumSize(25,25)
+                elif (Main_page.username_lable.text())[:18] == 'moderatorCloneImdb':
+                    Main_page.moderatorPageBttn.setMaximumSize(25,25)
+
+
             else:
                 Log_page.push_up_login_notifikation.setFixedSize(276, 10)
         except:
