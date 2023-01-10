@@ -51,6 +51,26 @@ settings_default=("background-image: url(:/icon/settings.svg);\n"
                      "background-position:center left;\n"
                      "padding-left:30px;")
 
+admin_pressed=("background-image: url(:/icon/user.svg);\n"
+                     "background-color:#9BA7A5;\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
+
+admin_default=("background-image: url(:/icon/user.svg);\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
+
+moder_pressed=("background-image: url(:/icon/users.svg);\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
+moder_default=("background-image: url(:/icon/users.svg);\n"
+                     "background-repeat:none;\n"
+                     "background-position:center left;\n"
+                     "padding-left:30px;")
+
 
 
 

@@ -9,14 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back,aboutFilmFromNotHome
+from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back,aboutFilmFromNotHome, adminPage, moderPage
 from SlideMenuFunction import slide_menu_fun
 from ScoreFilmAndChangeIcon import swap_star_and_get_score1_icon,swap_star_and_get_score2_icon,swap_star_and_get_score3_icon,swap_star_and_get_score4_icon,swap_star_and_get_score5_icon,setScoreFromDataBase
 from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_history,next_page_later, next_page_favorite, back_page_history,back_page_favorite,back_page_home,back_page_later,next_page_search,back_page_search
 from PyQt5.QtWidgets import QPushButton, QLabel, QComboBox
 from addFilmToFavoriteLaterWatched import addFavorite,addLater,addwatched
 from SearchFilmByGenresNameIDT import searchFilm
-from mainPageFunctions import addReviewToDB, setReview, editReview, changingPageInEditing, deleteReviewFromDB, changeScore,report, sendRep,changeNPage, changePPage, setCount
+from mainPageFunctions import addReviewToDB, setReview, editReview, changingPageInEditing, deleteReviewFromDB, changeScore,report, sendRep,changeNPage, changePPage, setCount, addFilmToDB, deleteFilmFromDB
 
 class Main_page(object):
     def setupUi(self, Form):
@@ -327,6 +327,8 @@ class Main_page(object):
         self.home_button.setFlat(False)
         self.home_button.setObjectName("home_button")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.home_button)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.formLayout.setItem(4, QtWidgets.QFormLayout.LabelRole, spacerItem1)
         self.favorite_button = QtWidgets.QPushButton(self.left_menu_bar)
         self.favorite_button.setMinimumSize(QtCore.QSize(156, 31))
         self.favorite_button.setMaximumSize(QtCore.QSize(156, 31))
@@ -343,6 +345,8 @@ class Main_page(object):
         self.favorite_button.setIconSize(QtCore.QSize(25, 25))
         self.favorite_button.setObjectName("favorite_button")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.favorite_button)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.formLayout.setItem(6, QtWidgets.QFormLayout.LabelRole, spacerItem2)
         self.watch_later_button = QtWidgets.QPushButton(self.left_menu_bar)
         self.watch_later_button.setMinimumSize(QtCore.QSize(156, 31))
         self.watch_later_button.setMaximumSize(QtCore.QSize(156, 31))
@@ -358,6 +362,8 @@ class Main_page(object):
 "")
         self.watch_later_button.setObjectName("watch_later_button")
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.SpanningRole, self.watch_later_button)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.formLayout.setItem(8, QtWidgets.QFormLayout.LabelRole, spacerItem3)
         self.histor_button = QtWidgets.QPushButton(self.left_menu_bar)
         self.histor_button.setMinimumSize(QtCore.QSize(156, 31))
         self.histor_button.setMaximumSize(QtCore.QSize(156, 31))
@@ -394,14 +400,23 @@ class Main_page(object):
 "")
         self.settings_button.setObjectName("settings_button")
         self.formLayout.setWidget(11, QtWidgets.QFormLayout.LabelRole, self.settings_button)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.formLayout.setItem(4, QtWidgets.QFormLayout.LabelRole, spacerItem1)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.formLayout.setItem(6, QtWidgets.QFormLayout.LabelRole, spacerItem2)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.formLayout.setItem(8, QtWidgets.QFormLayout.LabelRole, spacerItem3)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.formLayout.setItem(12, QtWidgets.QFormLayout.LabelRole, spacerItem4)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.formLayout.setItem(15, QtWidgets.QFormLayout.LabelRole, spacerItem5)
+        self.adminPageBttn = QtWidgets.QPushButton(self.left_menu_bar)
+        self.adminPageBttn.setMinimumSize(QtCore.QSize(0, 0))
+        self.adminPageBttn.setMaximumSize(QtCore.QSize(25, 0))
+        self.adminPageBttn.setStyleSheet("background-image: url(:/icon/user.svg);")
+        self.adminPageBttn.setText("")
+        self.adminPageBttn.setObjectName("adminPageBttn")
+        self.formLayout.setWidget(13, QtWidgets.QFormLayout.LabelRole, self.adminPageBttn)
+        self.moderatorPageBttn = QtWidgets.QPushButton(self.left_menu_bar)
+        self.moderatorPageBttn.setMaximumSize(QtCore.QSize(25, 0))
+        self.moderatorPageBttn.setStyleSheet("background-image: url(:/icon/users.svg);")
+        self.moderatorPageBttn.setText("")
+        self.moderatorPageBttn.setObjectName("moderatorPageBttn")
+        self.formLayout.setWidget(14, QtWidgets.QFormLayout.LabelRole, self.moderatorPageBttn)
         self.verticalLayout_3.addWidget(self.left_menu_bar)
         self.horizontalLayout_6.addWidget(self.left_menu)
         self.main_body = QtWidgets.QFrame(self.body)
@@ -883,8 +898,8 @@ class Main_page(object):
         self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_14.setSpacing(0)
         self.horizontalLayout_14.setObjectName("horizontalLayout_14")
-        spacerItem5 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_14.addItem(spacerItem5)
+        spacerItem6 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_14.addItem(spacerItem6)
         self.previos_page_button_home = QtWidgets.QPushButton(self.frame_where_swap_pages_home)
         self.previos_page_button_home.setMinimumSize(QtCore.QSize(30, 30))
         self.previos_page_button_home.setMaximumSize(QtCore.QSize(30, 30))
@@ -937,8 +952,8 @@ class Main_page(object):
         self.label_15.setText("")
         self.label_15.setObjectName("label_15")
         self.horizontalLayout_14.addWidget(self.label_15)
-        spacerItem6 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_14.addItem(spacerItem6)
+        spacerItem7 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_14.addItem(spacerItem7)
         self.verticalLayout_9.addWidget(self.frame_where_swap_pages_home)
         self.stackedWidget.addWidget(self.home_page)
         self.favorite_page = QtWidgets.QWidget()
@@ -1416,8 +1431,8 @@ class Main_page(object):
         self.horizontalLayout_15.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_15.setSpacing(0)
         self.horizontalLayout_15.setObjectName("horizontalLayout_15")
-        spacerItem7 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_15.addItem(spacerItem7)
+        spacerItem8 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_15.addItem(spacerItem8)
         self.previos_page_button_favorite = QtWidgets.QPushButton(self.frame_where_swap_pages_home_2)
         self.previos_page_button_favorite.setMinimumSize(QtCore.QSize(30, 30))
         self.previos_page_button_favorite.setMaximumSize(QtCore.QSize(30, 30))
@@ -1470,8 +1485,8 @@ class Main_page(object):
         self.label_14.setText("")
         self.label_14.setObjectName("label_14")
         self.horizontalLayout_15.addWidget(self.label_14)
-        spacerItem8 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_15.addItem(spacerItem8)
+        spacerItem9 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_15.addItem(spacerItem9)
         self.verticalLayout_10.addWidget(self.frame_where_swap_pages_home_2)
         self.stackedWidget.addWidget(self.favorite_page)
         self.About_film_page = QtWidgets.QWidget()
@@ -1483,18 +1498,19 @@ class Main_page(object):
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.scrollArea = QtWidgets.QScrollArea(self.About_film_page)
         self.scrollArea.setMaximumSize(QtCore.QSize(16777215, 500))
-        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, -1062, 970, 1560))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 927, 1560))
         self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 100)
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.frame = QtWidgets.QFrame(self.scrollAreaWidgetContents_4)
-        self.frame.setMinimumSize(QtCore.QSize(970, 400))
+        self.frame.setMinimumSize(QtCore.QSize(920, 400))
+        self.frame.setMaximumSize(QtCore.QSize(920, 1000))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -1599,11 +1615,11 @@ class Main_page(object):
         self.score_5_button.setIconSize(QtCore.QSize(30, 30))
         self.score_5_button.setObjectName("score_5_button")
         self.horizontalLayout_11.addWidget(self.score_5_button)
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_11.addItem(spacerItem9)
+        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem10)
         self.gridLayout_13.addWidget(self.frame_7, 7, 2, 1, 1)
-        spacerItem10 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.gridLayout_13.addItem(spacerItem10, 0, 1, 1, 7)
+        spacerItem11 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_13.addItem(spacerItem11, 0, 1, 1, 7)
         self.Score_of_film_2 = QtWidgets.QLabel(self.frame_18)
         self.Score_of_film_2.setMinimumSize(QtCore.QSize(50, 50))
         self.Score_of_film_2.setMaximumSize(QtCore.QSize(100, 50))
@@ -1640,10 +1656,10 @@ class Main_page(object):
         self.Name_of_film_and_year_2.setScaledContents(True)
         self.Name_of_film_and_year_2.setObjectName("Name_of_film_and_year_2")
         self.gridLayout_13.addWidget(self.Name_of_film_and_year_2, 1, 1, 1, 2)
-        spacerItem11 = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.gridLayout_13.addItem(spacerItem11, 8, 1, 1, 1)
-        spacerItem12 = QtWidgets.QSpacerItem(20, 7, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.gridLayout_13.addItem(spacerItem12, 3, 1, 1, 1)
+        spacerItem12 = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_13.addItem(spacerItem12, 8, 1, 1, 1)
+        spacerItem13 = QtWidgets.QSpacerItem(20, 7, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_13.addItem(spacerItem13, 3, 1, 1, 1)
         self.gridLayout_12.addWidget(self.frame_18, 2, 2, 1, 2)
         self.back_buttn = QtWidgets.QPushButton(self.frame)
         self.back_buttn.setMinimumSize(QtCore.QSize(30, 30))
@@ -1656,11 +1672,12 @@ class Main_page(object):
         self.back_buttn.setObjectName("back_buttn")
         self.gridLayout_12.addWidget(self.back_buttn, 0, 0, 1, 1)
         self.label_50 = QtWidgets.QLabel(self.frame)
+        self.label_50.setMaximumSize(QtCore.QSize(50, 50))
         self.label_50.setText("")
         self.label_50.setObjectName("label_50")
         self.gridLayout_12.addWidget(self.label_50, 4, 5, 1, 1)
-        spacerItem13 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_12.addItem(spacerItem13, 2, 0, 1, 1)
+        spacerItem14 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_12.addItem(spacerItem14, 2, 0, 1, 1)
         self.Film_foto_about_2 = QtWidgets.QLabel(self.frame)
         self.Film_foto_about_2.setMinimumSize(QtCore.QSize(170, 250))
         self.Film_foto_about_2.setMaximumSize(QtCore.QSize(170, 250))
@@ -1678,7 +1695,7 @@ class Main_page(object):
         self.verticalLayout_8.addWidget(self.frame)
         self.frame_5 = QtWidgets.QFrame(self.scrollAreaWidgetContents_4)
         self.frame_5.setMinimumSize(QtCore.QSize(0, 200))
-        self.frame_5.setMaximumSize(QtCore.QSize(970, 160))
+        self.frame_5.setMaximumSize(QtCore.QSize(920, 160))
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
@@ -1798,12 +1815,18 @@ class Main_page(object):
 "  font-size: 12px;\n"
 "border-radius: 12px;")
         self.sendReviewBttn_2.setObjectName("sendReviewBttn_2")
+        self.frame_19 = QtWidgets.QFrame(self.page)
+        self.frame_19.setGeometry(QtCore.QRect(0, 160, 911, 811))
+        self.frame_19.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_19.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_19.setObjectName("frame_19")
         self.stackedWidget_2.addWidget(self.page)
         self.gridLayout_4.addWidget(self.stackedWidget_2, 0, 0, 1, 1)
         self.verticalLayout_8.addWidget(self.frame_5)
         self.frame_6 = QtWidgets.QFrame(self.scrollAreaWidgetContents_4)
         self.frame_6.setMinimumSize(QtCore.QSize(0, 160))
         self.frame_6.setMaximumSize(QtCore.QSize(16777215, 400))
+        self.frame_6.setStyleSheet("")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
@@ -1811,6 +1834,7 @@ class Main_page(object):
         self.frame_8.setGeometry(QtCore.QRect(0, 20, 920, 130))
         self.frame_8.setMinimumSize(QtCore.QSize(0, 130))
         self.frame_8.setMaximumSize(QtCore.QSize(920, 160))
+        self.frame_8.setStyleSheet("")
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
@@ -1823,6 +1847,9 @@ class Main_page(object):
         self.reviewScore = QtWidgets.QLabel(self.frame_8)
         self.reviewScore.setGeometry(QtCore.QRect(860, 18, 16, 16))
         self.reviewScore.setMaximumSize(QtCore.QSize(20, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.reviewScore.setFont(font)
         self.reviewScore.setObjectName("reviewScore")
         self.dislikeReviwe = QtWidgets.QPushButton(self.frame_8)
         self.dislikeReviwe.setGeometry(QtCore.QRect(832, 10, 20, 33))
@@ -1835,9 +1862,15 @@ class Main_page(object):
         self.nameReviewer.setGeometry(QtCore.QRect(10, 10, 800, 31))
         self.nameReviewer.setMinimumSize(QtCore.QSize(800, 0))
         self.nameReviewer.setMaximumSize(QtCore.QSize(700, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewer.setFont(font)
         self.nameReviewer.setObjectName("nameReviewer")
         self.textCommentary = QtWidgets.QLabel(self.frame_8)
         self.textCommentary.setGeometry(QtCore.QRect(10, 49, 741, 71))
+        self.textCommentary.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.textCommentary.setWordWrap(True)
         self.textCommentary.setObjectName("textCommentary")
         self.reportComboBox = QtWidgets.QComboBox(self.frame_8)
@@ -1856,7 +1889,7 @@ class Main_page(object):
         self.idReview.setText("")
         self.idReview.setObjectName("idReview")
         self.sendReport1 = QtWidgets.QPushButton(self.frame_8)
-        self.sendReport1.setGeometry(QtCore.QRect(860, 80, 61, 0))
+        self.sendReport1.setGeometry(QtCore.QRect(855, 80, 55, 0))
         self.sendReport1.setMinimumSize(QtCore.QSize(40, 0))
         self.sendReport1.setMaximumSize(QtCore.QSize(150, 100))
         font = QtGui.QFont()
@@ -1890,6 +1923,9 @@ class Main_page(object):
         self.reviewScore_2 = QtWidgets.QLabel(self.frame_10)
         self.reviewScore_2.setGeometry(QtCore.QRect(860, 18, 16, 16))
         self.reviewScore_2.setMaximumSize(QtCore.QSize(20, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.reviewScore_2.setFont(font)
         self.reviewScore_2.setObjectName("reviewScore_2")
         self.dislikeReviwe_2 = QtWidgets.QPushButton(self.frame_10)
         self.dislikeReviwe_2.setGeometry(QtCore.QRect(832, 10, 20, 33))
@@ -1902,9 +1938,15 @@ class Main_page(object):
         self.nameReviewer_2.setGeometry(QtCore.QRect(10, 10, 800, 31))
         self.nameReviewer_2.setMinimumSize(QtCore.QSize(800, 0))
         self.nameReviewer_2.setMaximumSize(QtCore.QSize(700, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewer_2.setFont(font)
         self.nameReviewer_2.setObjectName("nameReviewer_2")
         self.textCommentary_2 = QtWidgets.QLabel(self.frame_10)
         self.textCommentary_2.setGeometry(QtCore.QRect(10, 49, 741, 71))
+        self.textCommentary_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.textCommentary_2.setWordWrap(True)
         self.textCommentary_2.setObjectName("textCommentary_2")
         self.reportComboBox_2 = QtWidgets.QComboBox(self.frame_10)
@@ -1969,6 +2011,9 @@ class Main_page(object):
         self.reviewScore_3 = QtWidgets.QLabel(self.frame_12)
         self.reviewScore_3.setGeometry(QtCore.QRect(860, 18, 16, 16))
         self.reviewScore_3.setMaximumSize(QtCore.QSize(20, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.reviewScore_3.setFont(font)
         self.reviewScore_3.setObjectName("reviewScore_3")
         self.dislikeReviwe_3 = QtWidgets.QPushButton(self.frame_12)
         self.dislikeReviwe_3.setGeometry(QtCore.QRect(832, 10, 20, 33))
@@ -1981,9 +2026,15 @@ class Main_page(object):
         self.nameReviewer_3.setGeometry(QtCore.QRect(10, 10, 800, 31))
         self.nameReviewer_3.setMinimumSize(QtCore.QSize(800, 0))
         self.nameReviewer_3.setMaximumSize(QtCore.QSize(700, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewer_3.setFont(font)
         self.nameReviewer_3.setObjectName("nameReviewer_3")
         self.textCommentary_3 = QtWidgets.QLabel(self.frame_12)
         self.textCommentary_3.setGeometry(QtCore.QRect(10, 49, 741, 71))
+        self.textCommentary_3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.textCommentary_3.setWordWrap(True)
         self.textCommentary_3.setObjectName("textCommentary_3")
         self.reportComboBox_3 = QtWidgets.QComboBox(self.frame_12)
@@ -2036,6 +2087,9 @@ class Main_page(object):
         self.reviewScore_4 = QtWidgets.QLabel(self.frame_14)
         self.reviewScore_4.setGeometry(QtCore.QRect(860, 18, 16, 16))
         self.reviewScore_4.setMaximumSize(QtCore.QSize(20, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.reviewScore_4.setFont(font)
         self.reviewScore_4.setObjectName("reviewScore_4")
         self.dislikeReviwe_4 = QtWidgets.QPushButton(self.frame_14)
         self.dislikeReviwe_4.setGeometry(QtCore.QRect(832, 10, 20, 33))
@@ -2048,9 +2102,15 @@ class Main_page(object):
         self.nameReviewer_4.setGeometry(QtCore.QRect(10, 10, 800, 31))
         self.nameReviewer_4.setMinimumSize(QtCore.QSize(800, 0))
         self.nameReviewer_4.setMaximumSize(QtCore.QSize(700, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewer_4.setFont(font)
         self.nameReviewer_4.setObjectName("nameReviewer_4")
         self.textCommentary_4 = QtWidgets.QLabel(self.frame_14)
         self.textCommentary_4.setGeometry(QtCore.QRect(10, 49, 741, 71))
+        self.textCommentary_4.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.textCommentary_4.setWordWrap(True)
         self.textCommentary_4.setObjectName("textCommentary_4")
         self.reportComboBox_4 = QtWidgets.QComboBox(self.frame_14)
@@ -2103,6 +2163,9 @@ class Main_page(object):
         self.reviewScore_5 = QtWidgets.QLabel(self.frame_17)
         self.reviewScore_5.setGeometry(QtCore.QRect(860, 18, 16, 16))
         self.reviewScore_5.setMaximumSize(QtCore.QSize(20, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.reviewScore_5.setFont(font)
         self.reviewScore_5.setObjectName("reviewScore_5")
         self.dislikeReviwe_5 = QtWidgets.QPushButton(self.frame_17)
         self.dislikeReviwe_5.setGeometry(QtCore.QRect(832, 10, 20, 33))
@@ -2115,9 +2178,15 @@ class Main_page(object):
         self.nameReviewer_5.setGeometry(QtCore.QRect(10, 10, 800, 31))
         self.nameReviewer_5.setMinimumSize(QtCore.QSize(800, 0))
         self.nameReviewer_5.setMaximumSize(QtCore.QSize(700, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewer_5.setFont(font)
         self.nameReviewer_5.setObjectName("nameReviewer_5")
         self.textCommentary_5 = QtWidgets.QLabel(self.frame_17)
         self.textCommentary_5.setGeometry(QtCore.QRect(10, 49, 741, 71))
+        self.textCommentary_5.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.textCommentary_5.setWordWrap(True)
         self.textCommentary_5.setObjectName("textCommentary_5")
         self.reportComboBox_5 = QtWidgets.QComboBox(self.frame_17)
@@ -2676,8 +2745,8 @@ class Main_page(object):
         self.horizontalLayout_16.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_16.setSpacing(0)
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        spacerItem14 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_16.addItem(spacerItem14)
+        spacerItem15 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_16.addItem(spacerItem15)
         self.previos_page_button_watch_later = QtWidgets.QPushButton(self.frame_where_swap_pages_home_3)
         self.previos_page_button_watch_later.setMinimumSize(QtCore.QSize(30, 30))
         self.previos_page_button_watch_later.setMaximumSize(QtCore.QSize(30, 30))
@@ -2730,8 +2799,8 @@ class Main_page(object):
         self.label_13.setText("")
         self.label_13.setObjectName("label_13")
         self.horizontalLayout_16.addWidget(self.label_13)
-        spacerItem15 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_16.addItem(spacerItem15)
+        spacerItem16 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_16.addItem(spacerItem16)
         self.verticalLayout_12.addWidget(self.frame_where_swap_pages_home_3)
         self.stackedWidget.addWidget(self.watch_later_page)
         self.history_page = QtWidgets.QWidget()
@@ -2761,7 +2830,7 @@ class Main_page(object):
         self.verticalLayout_11.setObjectName("verticalLayout_11")
         self.frame_where_all_films_history_page = QtWidgets.QFrame(self.history_page)
         self.frame_where_all_films_history_page.setMaximumSize(QtCore.QSize(16777215, 500))
-        self.frame_where_all_films_history_page.setStyleSheet("")
+        self.frame_where_all_films_history_page.setStyleSheet("color: rgb(255, 255, 255);")
         self.frame_where_all_films_history_page.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_where_all_films_history_page.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_where_all_films_history_page.setObjectName("frame_where_all_films_history_page")
@@ -2828,7 +2897,7 @@ class Main_page(object):
         self.history_film_bttn1.setStyleSheet("")
         self.history_film_bttn1.setText("")
         self.history_film_bttn1.setObjectName("history_film_bttn1")
-        self.verticalLayout_72.addWidget(self.history_film_bttn1)
+        self.verticalLayout_72.addWidget(self.history_film_bttn1, 0, QtCore.Qt.AlignHCenter)
         self.history_name_film1 = QtWidgets.QLabel(self.history_film_1)
         self.history_name_film1.setMaximumSize(QtCore.QSize(16777215, 22))
         self.history_name_film1.setStyleSheet("color:white;")
@@ -3211,8 +3280,8 @@ class Main_page(object):
         self.horizontalLayout_17.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_17.setSpacing(0)
         self.horizontalLayout_17.setObjectName("horizontalLayout_17")
-        spacerItem16 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_17.addItem(spacerItem16)
+        spacerItem17 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_17.addItem(spacerItem17)
         self.previos_page_button_history = QtWidgets.QPushButton(self.frame_where_swap_pages_home_4)
         self.previos_page_button_history.setMinimumSize(QtCore.QSize(30, 30))
         self.previos_page_button_history.setMaximumSize(QtCore.QSize(30, 30))
@@ -3265,8 +3334,8 @@ class Main_page(object):
         self.label_12.setText("")
         self.label_12.setObjectName("label_12")
         self.horizontalLayout_17.addWidget(self.label_12)
-        spacerItem17 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_17.addItem(spacerItem17)
+        spacerItem18 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_17.addItem(spacerItem18)
         self.verticalLayout_11.addWidget(self.frame_where_swap_pages_home_4)
         self.stackedWidget.addWidget(self.history_page)
         self.filter_page = QtWidgets.QWidget()
@@ -3571,17 +3640,22 @@ class Main_page(object):
         self.id_label_sett.setObjectName("id_label_sett")
         self.user_info.addWidget(self.id_label_sett, 2, 0, 1, 1)
         self.email_sett = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.email_sett.setStyleSheet("color: rgb(255, 255, 255);")
         self.email_sett.setText("")
+        self.email_sett.setAlignment(QtCore.Qt.AlignCenter)
         self.email_sett.setObjectName("email_sett")
-        self.user_info.addWidget(self.email_sett, 1, 1, 1, 1, QtCore.Qt.AlignHCenter)
+        self.user_info.addWidget(self.email_sett, 1, 1, 1, 1, QtCore.Qt.AlignLeft)
         self.username_sett = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.username_sett.setStyleSheet("color: rgb(255, 255, 255);")
         self.username_sett.setText("")
         self.username_sett.setObjectName("username_sett")
-        self.user_info.addWidget(self.username_sett, 0, 1, 1, 1, QtCore.Qt.AlignHCenter)
+        self.user_info.addWidget(self.username_sett, 0, 1, 1, 1, QtCore.Qt.AlignLeft)
         self.id_sett = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.id_sett.setStyleSheet("color: rgb(255, 255, 255);")
         self.id_sett.setText("")
+        self.id_sett.setAlignment(QtCore.Qt.AlignLeft|QtCore.Qt.AlignCenter)
         self.id_sett.setObjectName("id_sett")
-        self.user_info.addWidget(self.id_sett, 2, 1, 1, 1, QtCore.Qt.AlignHCenter)
+        self.user_info.addWidget(self.id_sett, 2, 1, 1, 1, QtCore.Qt.AlignLeft)
         self.verticalLayout_13.addWidget(self.frame_115)
         self.stackedWidget.addWidget(self.Settings_page)
         self.pageForSearching = QtWidgets.QWidget()
@@ -4052,8 +4126,8 @@ class Main_page(object):
         self.horizontalLayout_19.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_19.setSpacing(0)
         self.horizontalLayout_19.setObjectName("horizontalLayout_19")
-        spacerItem18 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_19.addItem(spacerItem18)
+        spacerItem19 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_19.addItem(spacerItem19)
         self.previos_page_button_history_2 = QtWidgets.QPushButton(self.frame_where_swap_pages_home_5)
         self.previos_page_button_history_2.setMinimumSize(QtCore.QSize(30, 30))
         self.previos_page_button_history_2.setMaximumSize(QtCore.QSize(30, 30))
@@ -4106,17 +4180,113 @@ class Main_page(object):
         self.label_11.setText("")
         self.label_11.setObjectName("label_11")
         self.horizontalLayout_19.addWidget(self.label_11)
-        spacerItem19 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_19.addItem(spacerItem19)
+        spacerItem20 = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_19.addItem(spacerItem20)
         self.verticalLayout_104.addWidget(self.frame_where_swap_pages_home_5)
         self.stackedWidget.addWidget(self.pageForSearching)
+        self.admin_page = QtWidgets.QWidget()
+        self.admin_page.setObjectName("admin_page")
+        self.adminFrame = QtWidgets.QFrame(self.admin_page)
+        self.adminFrame.setGeometry(QtCore.QRect(0, 0, 951, 551))
+        self.adminFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.adminFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.adminFrame.setObjectName("adminFrame")
+        self.addLabel = QtWidgets.QLabel(self.adminFrame)
+        self.addLabel.setGeometry(QtCore.QRect(80, 150, 81, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.addLabel.setFont(font)
+        self.addLabel.setStyleSheet("\n"
+"color: rgb(172, 172, 172);")
+        self.addLabel.setObjectName("addLabel")
+        self.addFilmEdit = QtWidgets.QLineEdit(self.adminFrame)
+        self.addFilmEdit.setGeometry(QtCore.QRect(230, 150, 171, 31))
+        self.addFilmEdit.setStyleSheet("background-color: rgb(42, 54, 63);\n"
+"background:transparent;;\n"
+"font: 13pt \"MS Shell Dlg 2\";\n"
+"\n"
+"border-radius:10px;\n"
+"border:2px solid #696d6d;\n"
+"color:#bfc5c5;")
+        self.addFilmEdit.setObjectName("addFilmEdit")
+        self.addFilmBttn = QtWidgets.QPushButton(self.adminFrame)
+        self.addFilmBttn.setGeometry(QtCore.QRect(440, 150, 75, 31))
+        self.addFilmBttn.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.addFilmBttn.setObjectName("addFilmBttn")
+        self.removeFilmEdit = QtWidgets.QLineEdit(self.adminFrame)
+        self.removeFilmEdit.setGeometry(QtCore.QRect(230, 270, 171, 31))
+        self.removeFilmEdit.setStyleSheet("background-color: rgb(42, 54, 63);\n"
+"background:transparent;;\n"
+"font: 13pt \"MS Shell Dlg 2\";\n"
+"\n"
+"border-radius:10px;\n"
+"border:2px solid #696d6d;\n"
+"color:#bfc5c5;")
+        self.removeFilmEdit.setObjectName("removeFilmEdit")
+        self.removeFilmBttn = QtWidgets.QPushButton(self.adminFrame)
+        self.removeFilmBttn.setGeometry(QtCore.QRect(440, 272, 75, 31))
+        self.removeFilmBttn.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.removeFilmBttn.setObjectName("removeFilmBttn")
+        self.delLabel = QtWidgets.QLabel(self.adminFrame)
+        self.delLabel.setGeometry(QtCore.QRect(80, 260, 121, 51))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.delLabel.setFont(font)
+        self.delLabel.setStyleSheet("\n"
+"color: rgb(172, 172, 172);")
+        self.delLabel.setObjectName("delLabel")
+        self.stackedWidget.addWidget(self.admin_page)
+        self.moderator_page = QtWidgets.QWidget()
+        self.moderator_page.setObjectName("moderator_page")
+        self.moderatorFrame = QtWidgets.QFrame(self.moderator_page)
+        self.moderatorFrame.setGeometry(QtCore.QRect(0, 0, 951, 541))
+        self.moderatorFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.moderatorFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.moderatorFrame.setObjectName("moderatorFrame")
+        self.label_19 = QtWidgets.QLabel(self.moderatorFrame)
+        self.label_19.setGeometry(QtCore.QRect(20, 10, 191, 51))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_19.setFont(font)
+        self.label_19.setStyleSheet("\n"
+"color: rgb(172, 172, 172);")
+        self.label_19.setObjectName("label_19")
+        self.stackedWidget.addWidget(self.moderator_page)
         self.horizontalLayout_7.addWidget(self.stackedWidget)
         self.horizontalLayout_6.addWidget(self.main_body, 0, QtCore.Qt.AlignTop)
         self.verticalLayout.addWidget(self.body)
         self.verticalLayout_5.addWidget(self.widget)
 
         self.retranslateUi(Form)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(6)
         self.stackedWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -4170,7 +4340,7 @@ class Main_page(object):
         self.sendReviewBttn_2.setText(_translate("Form", "Change review"))
         self.reviewScore.setText(_translate("Form", "5"))
         self.nameReviewer.setText(_translate("Form", "dodik"))
-        self.textCommentary.setText(_translate("Form", "text"))
+        self.textCommentary.setText(_translate("Form", "nice"))
         self.sendReport1.setText(_translate("Form", "Send"))
         self.reviewScore_2.setText(_translate("Form", "5"))
         self.nameReviewer_2.setText(_translate("Form", "dodik"))
@@ -4248,6 +4418,11 @@ class Main_page(object):
         self.current_page_history_2.setText(_translate("Form", "1"))
         self.next_button_history_2.setText(_translate("Form", ">"))
         self.last_page_butt_history_2.setText(_translate("Form", "last"))
+        self.addLabel.setText(_translate("Form", "Add Film"))
+        self.addFilmBttn.setText(_translate("Form", "Add"))
+        self.removeFilmBttn.setText(_translate("Form", "Remove"))
+        self.delLabel.setText(_translate("Form", "Remove Film"))
+        self.label_19.setText(_translate("Form", "Reviews to check"))
         self.home_button.clicked.connect(self.home)
         self.favorite_button.clicked.connect(self.favorite)
         self.watch_later_button.clicked.connect(self.later)
@@ -4257,6 +4432,7 @@ class Main_page(object):
         self.back_buttn.clicked.connect(self.back_button)
         self.menu_buttn.clicked.connect(self.slide_menu)
         self.search_button.clicked.connect(self.searchFunction)
+        self.adminPageBttn.clicked.connect(self.setAdminPage)
         self.next_button_home.clicked.connect(
                 lambda checked, b=self.frame_where_all_films_home: self.next_page_home1(b))
 
@@ -4295,6 +4471,12 @@ class Main_page(object):
         self.deleteReviewBttn.clicked.connect(self.deletingReview)
         self.previos_page_button_watch_later_2.clicked.connect(self.previosPage)
         self.next_button_watch_later_2.clicked.connect(self.nextPage)
+        self.moderatorPageBttn.clicked.connect(self.setModerPage)
+        self.addFilmBttn.clicked.connect(self.addFilm)
+        self.removeFilmBttn.clicked.connect(self.deleteFilm)
+
+
+
 
 
         buttons = self.scrollArea.findChildren(QPushButton)
@@ -4340,33 +4522,42 @@ class Main_page(object):
 
     def home(self):
             homePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                     self.settings_button, self.watch_later_button, self.pushButton_6)
+                     self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,)
 
     def favorite(self):
             favoritePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                         self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_favorite,self.id_label,self.current_page_favorite,self.next_button_favorite)
+                         self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_favorite,self.id_label,self.current_page_favorite,self.next_button_favorite)
 
     def later(self):
             laterPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_watch_later,self.id_label,self.current_page_watch_later,self.next_button_watch_later)
+                      self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_watch_later,self.id_label,self.current_page_watch_later,self.next_button_watch_later)
 
     def history(self):
             histroyPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                      self.settings_button, self.watch_later_button, self.pushButton_6,self.frame_where_all_films_history_page,self.id_label,self.current_page_history,self.next_button_history)
+                      self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_history_page,self.id_label,self.current_page_history,self.next_button_history)
 
     def settings(self):
             settingsPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                         self.settings_button, self.watch_later_button, self.pushButton_6, self.username_sett,
-                         self.email_sett, self.id_sett,self.username_lable,self.id_label)
+                         self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn, self.username_sett,self.email_sett, self.id_sett,self.username_lable,self.id_label)
 
     def IsPress(self):
             IsPressSearchButton(self.pushButton_6, self.stackedWidget, self.searchingActosLineEdit,
                                 self.searchingCountriesLineEdit, self.searchingLanguageLineEdit,
                                 self.searchingRuntimeLineEdit, self.search)
 
-    # def setCounter(self):
-    #         setCount(self.label_50.text(), self.reviewCount)
-    #         print(self.reviewCount)
+    def setAdminPage(self):
+            adminPage(self.stackedWidget,self.home_button, self.favorite_button, self.histor_button,
+                         self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn)
+
+    def setModerPage(self):
+            moderPage(self.stackedWidget,self.home_button, self.favorite_button, self.histor_button,
+                         self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn)
+
+    def addFilm(self):
+           addFilmToDB(self.addFilmEdit)
+
+    def deleteFilm(self):
+            deleteFilmFromDB(self.removeFilmEdit.text())
 
     def about_film(self, button_name):
             self.reviewTextEdit.setText("")

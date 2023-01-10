@@ -216,7 +216,7 @@ background-color:#9BA7A5;
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+               <iconset resource="baza/res.qrc">
                 <normaloff>:/icon/menu.svg</normaloff>:/icon/menu.svg</iconset>
               </property>
               <property name="iconSize">
@@ -293,7 +293,7 @@ background-color:#9BA7A5;
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="../CloneIMDB_andey5/baza/res.qrc">:/icon/2560px-Tmdb.new.logo.svg.png</pixmap>
+                  <pixmap resource="baza/res.qrc">:/icon/2560px-Tmdb.new.logo.svg.png</pixmap>
                  </property>
                  <property name="scaledContents">
                   <bool>true</bool>
@@ -392,7 +392,7 @@ border:2px solid #696d6d;
                      <string/>
                     </property>
                     <property name="pixmap">
-                     <pixmap resource="../CloneIMDB_andey5/baza/res.qrc">:/icon/search-svgrepo-com.svg</pixmap>
+                     <pixmap resource="baza/res.qrc">:/icon/search-svgrepo-com.svg</pixmap>
                     </property>
                     <property name="scaledContents">
                      <bool>true</bool>
@@ -464,7 +464,7 @@ color:#bfc5c5;</string>
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                     <iconset resource="baza/res.qrc">
                       <normaloff>:/icon/arrow-down.svg</normaloff>:/icon/arrow-down.svg</iconset>
                     </property>
                     <property name="iconSize">
@@ -614,7 +614,7 @@ color:#bfc5c5;</string>
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../CloneIMDB_andey5/baza/res.qrc">:/icon/1613328317_108-p-kislotno-sinii-fon-148.jpg</pixmap>
+               <pixmap resource="baza/res.qrc">:/icon/1613328317_108-p-kislotno-sinii-fon-148.jpg</pixmap>
               </property>
               <property name="scaledContents">
                <bool>true</bool>
@@ -791,6 +791,22 @@ padding-left:30px;
                  </property>
                 </widget>
                </item>
+               <item row="4" column="0">
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
                <item row="5" column="0">
                 <widget class="QPushButton" name="favorite_button">
                  <property name="minimumSize">
@@ -830,6 +846,22 @@ padding-left:30px;
                  </property>
                 </widget>
                </item>
+               <item row="6" column="0">
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
                <item row="7" column="0" colspan="2">
                 <widget class="QPushButton" name="watch_later_button">
                  <property name="minimumSize">
@@ -862,6 +894,22 @@ padding-left:30px;
                   <string>Later</string>
                  </property>
                 </widget>
+               </item>
+               <item row="8" column="0">
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item row="9" column="0">
                 <widget class="QPushButton" name="histor_button">
@@ -945,55 +993,20 @@ padding-left:30px;
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0">
-                <spacer name="verticalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="6" column="0">
-                <spacer name="verticalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="8" column="0">
-                <spacer name="verticalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
                <item row="12" column="0">
+                <spacer name="verticalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="15" column="0">
                 <spacer name="verticalSpacer_4">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -1008,6 +1021,44 @@ padding-left:30px;
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item row="13" column="0">
+                <widget class="QPushButton" name="adminPageBttn">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>25</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-image: url(:/icon/user.svg);</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="14" column="0">
+                <widget class="QPushButton" name="moderatorPageBttn">
+                 <property name="maximumSize">
+                  <size>
+                   <width>25</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-image: url(:/icon/users.svg);</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1081,7 +1132,7 @@ padding-left:30px;
                <string notr="true"/>
               </property>
               <property name="currentIndex">
-               <number>3</number>
+               <number>6</number>
               </property>
               <widget class="QWidget" name="home_page">
                <property name="styleSheet">
@@ -4186,7 +4237,7 @@ background-color:#9BA7A5;
                    </size>
                   </property>
                   <property name="horizontalScrollBarPolicy">
-                   <enum>Qt::ScrollBarAlwaysOff</enum>
+                   <enum>Qt::ScrollBarAsNeeded</enum>
                   </property>
                   <property name="widgetResizable">
                    <bool>true</bool>
@@ -4195,8 +4246,8 @@ background-color:#9BA7A5;
                    <property name="geometry">
                     <rect>
                      <x>0</x>
-                     <y>-962</y>
-                     <width>970</width>
+                     <y>0</y>
+                     <width>927</width>
                      <height>1560</height>
                     </rect>
                    </property>
@@ -4220,8 +4271,14 @@ background-color:#9BA7A5;
                      <widget class="QFrame" name="frame">
                       <property name="minimumSize">
                        <size>
-                        <width>970</width>
+                        <width>920</width>
                         <height>400</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>920</width>
+                        <height>1000</height>
                        </size>
                       </property>
                       <property name="frameShape">
@@ -4288,7 +4345,7 @@ background-color:#9BA7A5;
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                             <iconset resource="baza/res.qrc">
                               <normaloff>:/icon/pause.svg</normaloff>:/icon/pause.svg</iconset>
                             </property>
                             <property name="iconSize">
@@ -4317,7 +4374,7 @@ background-color:#9BA7A5;
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                             <iconset resource="baza/res.qrc">
                               <normaloff>:/icon/favorite-svgrepo-com.svg</normaloff>:/icon/favorite-svgrepo-com.svg</iconset>
                             </property>
                             <property name="iconSize">
@@ -4346,7 +4403,7 @@ background-color:#9BA7A5;
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                             <iconset resource="baza/res.qrc">
                               <normaloff>:/icon/history-svgrepo-com.svg</normaloff>:/icon/history-svgrepo-com.svg</iconset>
                             </property>
                             <property name="iconSize">
@@ -4721,7 +4778,7 @@ background-color:#9BA7A5;
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="../CloneIMDB_andey5/baza/res.qrc">
+                          <iconset resource="baza/res.qrc">
                            <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
                          </property>
                          <property name="iconSize">
@@ -4734,6 +4791,12 @@ background-color:#9BA7A5;
                        </item>
                        <item row="4" column="5">
                         <widget class="QLabel" name="label_50">
+                         <property name="maximumSize">
+                          <size>
+                           <width>50</width>
+                           <height>50</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -5121,6 +5184,9 @@ border-radius: 12px;</string>
                         <height>400</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -5147,6 +5213,9 @@ border-radius: 12px;</string>
                          <width>920</width>
                          <height>160</height>
                         </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true"/>
                        </property>
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
@@ -5190,6 +5259,11 @@ border-radius: 12px;</string>
                           <width>20</width>
                           <height>16777215</height>
                          </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>10</pointsize>
+                         </font>
                         </property>
                         <property name="text">
                          <string>5</string>
@@ -5239,6 +5313,13 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>14</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>dodik</string>
                         </property>
@@ -5253,7 +5334,10 @@ border-radius: 12px;</string>
                          </rect>
                         </property>
                         <property name="text">
-                         <string>text</string>
+                         <string>nice</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
@@ -5319,9 +5403,9 @@ border-radius: 12px;</string>
                        <widget class="QPushButton" name="sendReport1">
                         <property name="geometry">
                          <rect>
-                          <x>860</x>
+                          <x>855</x>
                           <y>80</y>
-                          <width>61</width>
+                          <width>55</width>
                           <height>0</height>
                          </rect>
                         </property>
@@ -5434,6 +5518,11 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>10</pointsize>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>5</string>
                         </property>
@@ -5482,6 +5571,13 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>14</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>dodik</string>
                         </property>
@@ -5497,6 +5593,9 @@ border-radius: 12px;</string>
                         </property>
                         <property name="text">
                          <string>text</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
@@ -5714,6 +5813,11 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>10</pointsize>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>5</string>
                         </property>
@@ -5762,6 +5866,13 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>14</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>dodik</string>
                         </property>
@@ -5777,6 +5888,9 @@ border-radius: 12px;</string>
                         </property>
                         <property name="text">
                          <string>text</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
@@ -5957,6 +6071,11 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>10</pointsize>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>5</string>
                         </property>
@@ -6005,6 +6124,13 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>14</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>dodik</string>
                         </property>
@@ -6020,6 +6146,9 @@ border-radius: 12px;</string>
                         </property>
                         <property name="text">
                          <string>text</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
@@ -6200,6 +6329,11 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>10</pointsize>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>5</string>
                         </property>
@@ -6248,6 +6382,13 @@ border-radius: 12px;</string>
                           <height>16777215</height>
                          </size>
                         </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>14</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
                          <string>dodik</string>
                         </property>
@@ -6263,6 +6404,9 @@ border-radius: 12px;</string>
                         </property>
                         <property name="text">
                          <string>text</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
@@ -8099,7 +8243,7 @@ background-color:#9BA7A5;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true"/>
+                   <string notr="true">color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -8277,7 +8421,7 @@ background-color:#9BA7A5;
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
-                      <item>
+                      <item alignment="Qt::AlignHCenter">
                        <widget class="QPushButton" name="history_film_bttn1">
                         <property name="minimumSize">
                          <size>
@@ -10226,24 +10370,39 @@ background-color:#9BA7A5;
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="1" alignment="Qt::AlignHCenter">
+                    <item row="1" column="1" alignment="Qt::AlignLeft">
                      <widget class="QLabel" name="email_sett">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
                       <property name="text">
                        <string/>
                       </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
                      </widget>
                     </item>
-                    <item row="0" column="1" alignment="Qt::AlignHCenter">
+                    <item row="0" column="1" alignment="Qt::AlignLeft">
                      <widget class="QLabel" name="username_sett">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
                       <property name="text">
                        <string/>
                       </property>
                      </widget>
                     </item>
-                    <item row="2" column="1" alignment="Qt::AlignHCenter">
+                    <item row="2" column="1" alignment="Qt::AlignLeft">
                      <widget class="QLabel" name="id_sett">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
                       <property name="text">
-                       <string/>
+                       <string>23234234234</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
@@ -11782,6 +11941,206 @@ background-color:#9BA7A5;
                 </item>
                </layout>
               </widget>
+              <widget class="QWidget" name="admin_page">
+               <widget class="QFrame" name="adminFrame">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>951</width>
+                  <height>551</height>
+                 </rect>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <widget class="QLabel" name="addLabel">
+                 <property name="geometry">
+                  <rect>
+                   <x>80</x>
+                   <y>150</y>
+                   <width>81</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+color: rgb(172, 172, 172);</string>
+                 </property>
+                 <property name="text">
+                  <string>Add Film</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="addFilmEdit">
+                 <property name="geometry">
+                  <rect>
+                   <x>230</x>
+                   <y>150</y>
+                   <width>171</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(42, 54, 63);
+background:transparent;;
+font: 13pt &quot;MS Shell Dlg 2&quot;;
+
+border-radius:10px;
+border:2px solid #696d6d;
+color:#bfc5c5;</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="addFilmBttn">
+                 <property name="geometry">
+                  <rect>
+                   <x>440</x>
+                   <y>150</y>
+                   <width>75</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	padding: 5px 10px;
+	border:none;
+	border-radius:10px;
+	background-color:#6ED9A0;
+	color:#F6F8F7;
+}
+
+QPushButton:hover
+{
+background-color:#9BA7A5;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="removeFilmEdit">
+                 <property name="geometry">
+                  <rect>
+                   <x>230</x>
+                   <y>270</y>
+                   <width>171</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(42, 54, 63);
+background:transparent;;
+font: 13pt &quot;MS Shell Dlg 2&quot;;
+
+border-radius:10px;
+border:2px solid #696d6d;
+color:#bfc5c5;</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="removeFilmBttn">
+                 <property name="geometry">
+                  <rect>
+                   <x>440</x>
+                   <y>272</y>
+                   <width>75</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	padding: 5px 10px;
+	border:none;
+	border-radius:10px;
+	background-color:#6ED9A0;
+	color:#F6F8F7;
+}
+
+QPushButton:hover
+{
+background-color:#9BA7A5;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Remove</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="delLabel">
+                 <property name="geometry">
+                  <rect>
+                   <x>80</x>
+                   <y>260</y>
+                   <width>121</width>
+                   <height>51</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+color: rgb(172, 172, 172);</string>
+                 </property>
+                 <property name="text">
+                  <string>Remove Film</string>
+                 </property>
+                </widget>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="moderator_page">
+               <widget class="QFrame" name="moderatorFrame">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>951</width>
+                  <height>541</height>
+                 </rect>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <widget class="QLabel" name="label_19">
+                 <property name="geometry">
+                  <rect>
+                   <x>20</x>
+                   <y>10</y>
+                   <width>191</width>
+                   <height>51</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+color: rgb(172, 172, 172);</string>
+                 </property>
+                 <property name="text">
+                  <string>Reviews to check</string>
+                 </property>
+                </widget>
+               </widget>
+              </widget>
              </widget>
             </item>
            </layout>
@@ -11796,7 +12155,8 @@ background-color:#9BA7A5;
   </layout>
  </widget>
  <resources>
-  <include location="../CloneIMDB_andey5/baza/res.qrc"/>
+  <include location="baza/res.qrc"/>
+  <include location="baza/res.qrc"/>
   <include location="baza/res.qrc"/>
  </resources>
  <connections/>

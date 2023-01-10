@@ -22,7 +22,7 @@ def getlat(id):
 def gethis(id):
     global hisfilm
     hisfilm = getUsersWatchedFilms(id)
-def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6):
+def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button):
     stackedWidget.setCurrentIndex(0)
     home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -30,7 +30,9 @@ def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_bu
     settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
     pushButton_6.setIcon(QIcon(('arrow-down')))
-def favoritePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,allbutton,userid,currentPage,next_button):
+    moder_button.setStyleSheet(StyleSheetForButtons.moder_default)
+    admin_button.setStyleSheet(StyleSheetForButtons.admin_default)
+def favoritePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button, allbutton,userid,currentPage,next_button):
     stackedWidget.setCurrentIndex(1)
     currentPage.setText('1')
     next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
@@ -40,6 +42,8 @@ def favoritePage(stackedWidget,home_button,favorite_button,histor_button,setting
     settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
     pushButton_6.setIcon(QIcon(('arrow-down')))
+    moder_button.setStyleSheet(StyleSheetForButtons.moder_default)
+    admin_button.setStyleSheet(StyleSheetForButtons.admin_default)
     userid1 = re.sub("[^0-9]", "", userid.text())
 
     filmID = getUsersFavoriteFilms(userid1)
@@ -87,7 +91,7 @@ def favoritePage(stackedWidget,home_button,favorite_button,histor_button,setting
             label.setText('')
             bttn.setEnabled(False)
 
-def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,allbutton,userid,currentPage,next_button):
+def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button, allbutton,userid,currentPage,next_button):
     stackedWidget.setCurrentIndex(3)
     home_button.setStyleSheet(StyleSheetForButtons.home_default)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -95,6 +99,8 @@ def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_b
     settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_pressed)
     pushButton_6.setIcon(QIcon(('arrow-down')))
+    moder_button.setStyleSheet(StyleSheetForButtons.moder_default)
+    admin_button.setStyleSheet(StyleSheetForButtons.admin_default)
     currentPage.setText('1')
     next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
     userid1 = re.sub("[^0-9]", "", userid.text())
@@ -143,7 +149,7 @@ def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_b
             label.setText('')
             bttn.setEnabled(False)
 
-def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,allbutton,userid,currentPage,next_button):
+def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button, allbutton,userid,currentPage,next_button):
     stackedWidget.setCurrentIndex(4)
     home_button.setStyleSheet(StyleSheetForButtons.home_default)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -151,6 +157,8 @@ def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings
     settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
     pushButton_6.setIcon(QIcon(('arrow-down')))
+    moder_button.setStyleSheet(StyleSheetForButtons.moder_default)
+    admin_button.setStyleSheet(StyleSheetForButtons.admin_default)
     currentPage.setText('1')
     next_button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
     userid1 = re.sub("[^0-9]", "", userid.text())
@@ -199,7 +207,8 @@ def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings
             bttn.setIconSize(QSize(0, 0))
             label.setText('')
             bttn.setEnabled(False)
-def settingsPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,username,email,id,setuser,setid):
+def settingsPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button, username,email,id,setuser,setid):
+    k=getDataUser([setuser.text()])
     stackedWidget.setCurrentIndex(6)
     home_button.setStyleSheet(StyleSheetForButtons.home_default)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -207,12 +216,16 @@ def settingsPage(stackedWidget,home_button,favorite_button,histor_button,setting
     settings_button.setStyleSheet(StyleSheetForButtons.settings_pressed)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
     pushButton_6.setIcon(QIcon(('arrow-down')))
-    username.setText(str(setuser))
-    id.setText(str(setid))
+    moder_button.setStyleSheet(StyleSheetForButtons.moder_default)
+    admin_button.setStyleSheet(StyleSheetForButtons.admin_default)
+    username.setText(str(k[1]))
+    id.setText(str(k[0]))
+    email.setText(str(k[2]))
 
 
 
 def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film):
+
     pushButton_6.setIcon(QIcon(('arrow-up')))
 
     global index
@@ -468,8 +481,27 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
         elif filmId in getUsersWatchedFilms(userid1):
             his.setStyleSheet('background-color: #696d6d')
 
+def adminPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,admin_button, moder_button):
+    stackedWidget.setCurrentIndex(8)
+    home_button.setStyleSheet(StyleSheetForButtons.home_default)
+    favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
+    histor_button.setStyleSheet(StyleSheetForButtons.history_default)
+    settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
+    watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
+    pushButton_6.setIcon(QIcon(('arrow-down')))
+    moder_button.setStyleSheet(StyleSheetForButtons.moder_default)
+    admin_button.setStyleSheet(StyleSheetForButtons.admin_pressed)
 
-
+def moderPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button):
+    stackedWidget.setCurrentIndex(9)
+    home_button.setStyleSheet(StyleSheetForButtons.home_default)
+    favorite_button.setStyleSheet(StyleSheetForButtons.favorite_pressed)
+    histor_button.setStyleSheet(StyleSheetForButtons.history_default)
+    settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
+    watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
+    pushButton_6.setIcon(QIcon(('arrow-down')))
+    moder_button.setStyleSheet(StyleSheetForButtons.moder_pressed)
+    admin_button.setStyleSheet(StyleSheetForButtons.admin_default)
 
 
 def back(stackedWidget):
