@@ -14,8 +14,6 @@ def createConnection():
     except Error as e:
         print(f"The error '{e}' occurred")
     return connection
-
-
 def executeQuery(connection, query):
     connection.autocommit = True
     cursor = connection.cursor()
@@ -24,8 +22,6 @@ def executeQuery(connection, query):
         print("Query executed successfully")
     except OperationalError as e:
         print(f"The error '{e}' occurred")
-
-
 def executemanyQuery(connection, query, data):
     connection.autocommit = True
     cursor = connection.cursor()
@@ -34,8 +30,6 @@ def executemanyQuery(connection, query, data):
         print("Query executed successfully")
     except OperationalError as e:
         print(f"The error '{e}' occurred")
-
-
 def getDataFromDataBaseExecute (connection, query):
     connection.autocommit = True
     result = None
@@ -47,7 +41,6 @@ def getDataFromDataBaseExecute (connection, query):
     except OperationalError as e:
         print(f"The error '{e}' occurred")
     return result
-
 def getDataFromDataBaseExecutemany (connection, query, data):
     connection.autocommit = True
     result = None

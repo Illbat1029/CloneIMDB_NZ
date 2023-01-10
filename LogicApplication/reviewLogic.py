@@ -50,11 +50,13 @@ def reviewScoreButton(idUser, idReview, score, likesReviewsListForThisFilm):
         print("Not exists, creating...")
     con.commit()
 
-def isExistsReport(idReview, idUser, type_id, con = createConnection()):
+def isExistsReport(idReview, idUser, type_id):
+    con = createConnection()
     cur = con.cursor()
     sqlIsReportExists = """    SELECT EXISTS(SELECT * FROM reviews_report WHERE id_review = '%s' AND id_user = '%s' AND type_id = '%s')"""
     cur.execute(sqlIsReportExists, (idReview, idUser, type_id))
     exe = cur.fetchone()
+    con.close()
     return exe
 
 def createReportReview(idReview, idUser, type_id):

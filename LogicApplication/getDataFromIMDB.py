@@ -235,7 +235,6 @@ def getFilmID(name, year):
     cur.execute(sqlGetFilmID, args)
     filmID = cur.fetchone()
     return filmID[0]
-
 def getfilmImage():
     con = createConnection()
     cur = con.cursor()

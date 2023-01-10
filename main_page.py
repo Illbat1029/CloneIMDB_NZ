@@ -4504,7 +4504,6 @@ class Main_page(object):
                 if button.objectName()[:9] == 'home_film':
                         button.clicked.connect(lambda checked, b=button: self.about_film(b.objectName()))
 
-
         buttons_favorite = self.frame_where_all_films_favorite.findChildren(QPushButton)
         for button in buttons_favorite:
                 button.clicked.connect(lambda checked, b=button: self.about_film_favorite_page(b.objectName()))

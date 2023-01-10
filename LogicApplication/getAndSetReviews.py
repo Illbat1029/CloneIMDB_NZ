@@ -27,7 +27,6 @@ def addReview(idUser, idFilm, review):
         con.commit()
     else:
         print("Review is allredy exist!")
-
 def changeRivewText (idUser, idFilm, review):
     con = createConnection()
     cur = con.cursor()
@@ -48,7 +47,6 @@ def deleteReview (idUser, idFilm):
         con.commit()
     else:
         print("Review is not exist!")
-
 def getAllReviewsUser(idUser):
     con = createConnection()
     cur = con.cursor()

@@ -67,7 +67,6 @@ def addwatched(name,lat,userid,fav,his):
     his.setStyleSheet('background-color: #696d6d')
     if a in favorite:
         fav.setStyleSheet('background-color:rgb(42, 54, 63)')
-
     elif a in watcghedLater:
         lat.setStyleSheet('background-color:rgb(42, 54, 63)')
     elif a in watched:

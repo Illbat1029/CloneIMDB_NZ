@@ -18,12 +18,10 @@ class Film:
         self.director = director
         self.actors = actors
         self.images = picture
-
 def createList(data):
     listData = data.split(";")
     listData.remove("")
     return listData
-
 def getListAllDataAllFilms():
     con = createConnection()
     cur = con.cursor()
@@ -39,7 +37,6 @@ def getListAllDataAllFilms():
                     buff[6], buff[7], buff[8], buff[9], createList(buff[10]), createList(buff[11]), buff[12])
         dataRet.append(film)
     return dataRet
-
 def getAllUserGenresID(genresList):
     con = createConnection()
     cur = con.cursor()
@@ -50,7 +47,6 @@ def getAllUserGenresID(genresList):
     cur.execute(qr, genresList)
     genIDList = cur.fetchall()
     return genIDList
-
 def refractoringDataGenresFilm(data):
     retData = []
     for i in data:
@@ -66,7 +62,6 @@ def refractoringDataGenresFilm(data):
             filmData.images = j[7]
             retData.append(filmData)
     return retData
-
 def refractoringDataPeopleFilm(data):
     retData = []
     for j in data:
@@ -81,7 +76,6 @@ def refractoringDataPeopleFilm(data):
         filmData.images = j[7]
         retData.append(filmData)
     return retData
-
 def refractoringAllDataFilm(data):
     filmData = Film(
     data[0],
@@ -99,7 +93,6 @@ def refractoringAllDataFilm(data):
     data[12],
     )
     return filmData
-
 def getListAllFilmWithGenresUser(genresList):
     con = createConnection()
     cur = con.cursor()
@@ -117,7 +110,6 @@ def getListAllFilmWithGenresUser(genresList):
     data=refractoringDataGenresFilm(data)
 
     return data
-
 def getListAllFilmsWithPeopleUserAndStatus(peopleFullName):
     con = createConnection()
     cur = con.cursor()
@@ -131,7 +123,6 @@ def getListAllFilmsWithPeopleUserAndStatus(peopleFullName):
     cur.execute(sqlGetDataFilm,(peopleFullName,))
     data = cur.fetchall()
     return data
-
 def getListAllFilmsWithPeopleUser(peopleFullName):
     con = createConnection()
     cur = con.cursor()
@@ -151,7 +142,6 @@ def getListAllFilmsWithPeopleUser(peopleFullName):
             j += 1
     data = refractoringDataPeopleFilm(data)
     return data
-
 def getAllDataFilmByID(idFilm):
     con = createConnection()
     cur = con.cursor()
@@ -161,7 +151,6 @@ def getAllDataFilmByID(idFilm):
     data = cur.fetchone()
     data = refractoringAllDataFilm(data)
     return data
-
 def getAllDataFilmByReleaseDataBetween(releaseStart = 0, releaseEnd=3000):
     con = createConnection()
     cur = con.cursor()
@@ -173,7 +162,6 @@ def getAllDataFilmByReleaseDataBetween(releaseStart = 0, releaseEnd=3000):
     data = cur.fetchall()
     data = refractoringDataPeopleFilm(data)
     return data
-
 def getAllDataFilmByLanguage(language):
     con = createConnection()
     cur = con.cursor()
@@ -187,7 +175,6 @@ def getAllDataFilmByLanguage(language):
     data=cur.fetchall()
     data = refractoringDataPeopleFilm(data)
     return data
-
 def getAllDataFilmByCountry(country):
     con = createConnection()
     cur = con.cursor()
@@ -201,7 +188,6 @@ def getAllDataFilmByCountry(country):
     data = cur.fetchall()
     data = refractoringDataPeopleFilm(data)
     return data
-
 def getAllDataFilmByScoreBetween(scoreStart = 0, scoreEnd = 5):
     con = createConnection()
     cur = con.cursor()

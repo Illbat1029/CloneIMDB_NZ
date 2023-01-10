@@ -2,14 +2,14 @@ from LogicApplication.DB_connector import *
 import mysql.connector
 from LogicApplication.getDataFromIMDB import *
 class ReportReview:
-    def __init__(self, review, type):
+    def __init__(self, id, review, type):
+        self.reviw_id = id
         self.review = review
         self.type = type
 def addFilmsAdmin (idFilmStart, idFilmEnd=0):
     if (idFilmEnd == 0):
         idFilmEnd = idFilmStart+1
     addFilms(idFilmStart, idFilmEnd)
-
 def splitDataFilmDelete(dataSplit):
     ret = dataSplit.split(",")
     for i in range(len(ret)):
@@ -28,7 +28,7 @@ def getAllReportReviews():
     con = createConnection()
     cur = con.cursor()
     sqlGetAllReportReviews = """
-    SELECT review, report_types.type_name FROM admin_review_validation
+    SELECT id_review, review, report_types.type_name FROM admin_review_validation
     JOIN films_review
     ON admin_review_validation.id_review = films_review.id
     JOIN report_types
@@ -39,7 +39,7 @@ def getAllReportReviews():
     retData = []
     for row in allReportReviews:
         buff = list(row)
-        rep = ReportReview(buff[0], buff[1])
+        rep = ReportReview(buff[0], buff[1], buff[2])
         retData.append(rep)
     return retData
 def deleteReviewAfterValidation(reviewId):
@@ -51,5 +51,12 @@ def deleteReviewAfterValidation(reviewId):
     dataDelete = (reviewId, )
     cur.execute(sqlDeleteReview, dataDelete)
     con.commit()
-
-
+def deleteReviewFromAdminTableWhereReviewGood(reviewId):
+    con = createConnection()
+    cur = con.cursor()
+    sqlDeleteReview = """
+    DELETE FROM admin_review_validation WHERE id_review = %s
+    """
+    dataDelete = (reviewId,)
+    cur.execute(sqlDeleteReview, dataDelete)
+    con.commit()
