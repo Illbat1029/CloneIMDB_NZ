@@ -16,7 +16,7 @@ from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_histo
 from PyQt5.QtWidgets import QPushButton, QLabel, QComboBox
 from addFilmToFavoriteLaterWatched import addFavorite,addLater,addwatched
 from SearchFilmByGenresNameIDT import searchFilm
-from mainPageFunctions import addReviewToDB, setReview, editReview, changingPageInEditing, deleteReviewFromDB, changeScore,report, sendRep,changeNPage, changePPage, setCount, addFilmToDB, deleteFilmFromDB
+from mainPageFunctions import addReviewToDB, setReview, editReview, changingPageInEditing, deleteReviewFromDB, changeScore,report, sendRep,changeNPage, changePPage, setCount, addFilmToDB, deleteFilmFromDBUI
 
 class Main_page(object):
     def setupUi(self, Form):
@@ -4554,10 +4554,10 @@ class Main_page(object):
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn)
 
     def addFilm(self):
-           addFilmToDB(self.addFilmEdit)
+                addFilmToDB(self.addFilmEdit)
 
     def deleteFilm(self):
-            deleteFilmFromDB(self.removeFilmEdit.text())
+                deleteFilmFromDBUI(self.removeFilmEdit.text())
 
     def about_film(self, button_name):
             self.reviewTextEdit.setText("")

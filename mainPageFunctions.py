@@ -199,8 +199,8 @@ def report(allComboBox, buttonName, send_buttons):
     if buttonName[-1].isnumeric():
         allComboBox[int(buttonName[-1]) - 1].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(700, 94, 150, 20))
-         send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(855, 80, 55, 40))
-         send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(860, 80, 61, 40))
+        send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(855, 80, 55, 40))
+        send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(860, 80, 61, 40))
     else:
         allComboBox[0].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[0].setGeometry(QtCore.QRect(700, 94, 150, 20))
@@ -250,9 +250,9 @@ def addFilmToDB(lineEdit):
         addFilmsAdmin(int(a))
         lineEdit.setText("")
 
-def deleteFilmFromDB(lineEdit):
+def deleteFilmFromDBUI(lineEdit):
     deleteFilmFromDB(lineEdit)
-    lineEdit.setText("")
+    #lineEdit.setText("")
 
 
 
