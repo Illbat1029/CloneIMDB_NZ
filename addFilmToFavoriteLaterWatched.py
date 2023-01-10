@@ -10,7 +10,7 @@ from LogicApplication.getFilmsDataFromDB import *
 from LogicApplication.getDataFromIMDB import *
 from LogicApplication.getAndSetDataFilmStatusUser import *
 from collections import OrderedDict
-
+from datetime import datetime, date
 def addFavorite(name,fav,userid,lat,his):
     userid1 = re.sub("[^0-9]", "", userid.text())
 
@@ -33,6 +33,7 @@ def addFavorite(name,fav,userid,lat,his):
     addUserFavoriteFilm(userid1, a, favorite, watched, watcghedLater)
 
 def addLater(name,lat,userid,fav,his):
+    stime = datetime.now()
     userid1 = re.sub("[^0-9]", "", userid.text())
 
     without_brackets = re.sub(r"[\(\)]", "", str(name.text()))
