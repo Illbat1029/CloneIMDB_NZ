@@ -40,7 +40,7 @@ def existFilmDatabase(nameFilm, release):
     isExist = isExist[0]
     return isExist
 def createFilm(filmname, description, country, genre, language, releasedata, runtime, score, vote, director, actors):
-    file = open("Images_Film/1.png", 'rb').read()
+    file = open("Images_Films/1.png", 'rb').read()
     file = base64.b64encode(file)
     con = createConnection()
     cur = con.cursor()
@@ -64,9 +64,9 @@ def createFilm(filmname, description, country, genre, language, releasedata, run
     con.commit()
 #download images
 def downloadImagesPeop(imURL):
-    urllib.request.urlretrieve(imURL, "Images_People/1.png")
+    urllib.request.urlretrieve(imURL, "Images_People/noFoto.png")
 def downloadImages(imURL):
-    urllib.request.urlretrieve(imURL, "Images_Film/1.png")
+    urllib.request.urlretrieve(imURL, "Images_Films/1.png")
 def getDataFilmIMDB(code, num):
     print(30*"*")
     print("FILM NUMBER = ", num)

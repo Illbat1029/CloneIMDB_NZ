@@ -9,14 +9,18 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back,aboutFilmFromNotHome, adminPage, moderPage
-from SlideMenuFunction import slide_menu_fun
-from ScoreFilmAndChangeIcon import swap_star_and_get_score1_icon,swap_star_and_get_score2_icon,swap_star_and_get_score3_icon,swap_star_and_get_score4_icon,swap_star_and_get_score5_icon,setScoreFromDataBase
-from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_history,next_page_later, next_page_favorite, back_page_history,back_page_favorite,back_page_home,back_page_later,next_page_search,back_page_search
+import time
+
+from PyQt5.QtCore import QDate
+
+from SwapPagesMainMenuFunctions import *
+from SlideMenuFunction import *
+from ScoreFilmAndChangeIcon import *
+from ChangenPagesOnDifferentPagesLikeHome import *
 from PyQt5.QtWidgets import QPushButton, QLabel, QComboBox
-from addFilmToFavoriteLaterWatched import addFavorite,addLater,addwatched
-from SearchFilmByGenresNameIDT import searchFilm
-from mainPageFunctions import addReviewToDB, setReview, editReview, changingPageInEditing, deleteReviewFromDB, changeScore,report, sendRep,changeNPage, changePPage, setCount, addFilmToDB, deleteFilmFromDB
+from addFilmToFavoriteLaterWatched import *
+from SearchFilmByGenresNameIDT import *
+from mainPageFunctions import *
 
 class Main_page(object):
     def setupUi(self, Form):
@@ -4423,6 +4427,7 @@ class Main_page(object):
         self.removeFilmBttn.setText(_translate("Form", "Remove"))
         self.delLabel.setText(_translate("Form", "Remove Film"))
         self.label_19.setText(_translate("Form", "Reviews to check"))
+        collectInfoForAutoCompleter(self.search)
         self.home_button.clicked.connect(self.home)
         self.favorite_button.clicked.connect(self.favorite)
         self.watch_later_button.clicked.connect(self.later)
@@ -4433,6 +4438,7 @@ class Main_page(object):
         self.menu_buttn.clicked.connect(self.slide_menu)
         self.search_button.clicked.connect(self.searchFunction)
         self.adminPageBttn.clicked.connect(self.setAdminPage)
+        self.search.returnPressed.connect(self.searchFunction)
         self.next_button_home.clicked.connect(
                 lambda checked, b=self.frame_where_all_films_home: self.next_page_home1(b))
 
@@ -4475,6 +4481,8 @@ class Main_page(object):
         self.addFilmBttn.clicked.connect(self.addFilm)
         self.removeFilmBttn.clicked.connect(self.deleteFilm)
 
+        self.date_from.setDate(QDate(1800,1,1))
+        self.date_to.setDate(QDate(1800,1,1))
 
 
 
@@ -4521,29 +4529,40 @@ class Main_page(object):
                 button.clicked.connect(lambda checked, b=button: self.about_film_search_page(b.objectName()))
 
     def home(self):
+            self.search.setText('')
             homePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                     self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,)
+                     self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.home_page,self.current_page_home)
 
     def favorite(self):
+            self.search.setText('')
             favoritePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_favorite,self.id_label,self.current_page_favorite,self.next_button_favorite)
 
     def later(self):
+            self.search.setText('')
             laterPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                       self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_watch_later,self.id_label,self.current_page_watch_later,self.next_button_watch_later)
 
     def history(self):
+            self.search.setText('')
             histroyPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                       self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_history_page,self.id_label,self.current_page_history,self.next_button_history)
 
     def settings(self):
+            self.search.setText('')
             settingsPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn, self.username_sett,self.email_sett, self.id_sett,self.username_lable,self.id_label)
 
+
     def IsPress(self):
+            self.home_button.setStyleSheet(StyleSheetForButtons.home_default)
+            self.favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
+            self.histor_button.setStyleSheet(StyleSheetForButtons.history_default)
+            self.settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
+            self.watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
             IsPressSearchButton(self.pushButton_6, self.stackedWidget, self.searchingActosLineEdit,
                                 self.searchingCountriesLineEdit, self.searchingLanguageLineEdit,
-                                self.searchingRuntimeLineEdit, self.search)
+                                self.searchingRuntimeLineEdit, self.search,self.filter_page)
 
     def setAdminPage(self):
             adminPage(self.stackedWidget,self.home_button, self.favorite_button, self.histor_button,
@@ -4554,26 +4573,41 @@ class Main_page(object):
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn)
 
     def addFilm(self):
-           addFilmToDB(self.addFilmEdit)
+                addFilmToDB(self.addFilmEdit)
 
     def deleteFilm(self):
-            deleteFilmFromDB(self.removeFilmEdit.text())
+                deleteFilmFromDBUI(self.removeFilmEdit.text())
 
     def about_film(self, button_name):
+            start_time3=time.time()
+            start_time = time.time()
             self.reviewTextEdit.setText("")
             self.current_page_watch_later_2.setText("1")
             about_film_page(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                             self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.label_50,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2)
+            end_time = time.time()
+            print("сбор инфы и выстветление по поводу самого фильма: " + str(end_time - start_time))
+
+            start_time = time.time()
             setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
                                  self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
+
+            end_time = time.time()
+            print("сбор инфы и выстветление по оценок:" + str(end_time - start_time))
+
+            start_time = time.time()
             setCount(self.label_50.text(), self.reviewCount)
             setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2, self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4, self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2, self.userReviewText,
                       self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
-
+            end_time = time.time()
+            print("сбор инфы и выстветление по поводу коментов: " + str(end_time - start_time))
+            end_time3=time.time()
+            print('сумарное время высветления фильма:'+ str(end_time3 - start_time3))
 
 
     def about_film_favorite_page(self,button_name):
+            start_time3 = time.time()
             self.current_page_watch_later_2.setText("1")
 
             aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
@@ -4590,7 +4624,10 @@ class Main_page(object):
                       self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview,
                       self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5,
                       self.current_page_watch_later_2.text(), self.reviewCount)
+            end_time3 = time.time()
+            print('сумарное время высветления фильма из вкладки любимое:' + str(end_time3 - start_time3))
     def about_film_search_page(self,button_name):
+        start_time3 = time.time()
         self.reviewTextEdit.setText("")
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
@@ -4609,8 +4646,10 @@ class Main_page(object):
                                        self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
                                        self.reviewCount)
 
-
+        end_time3 = time.time()
+        print('сумарное время высветления фильма из вкладки поиска :' + str(end_time3 - start_time3))
     def about_film_later_page(self,button_name):
+        start_time3 = time.time()
         self.current_page_watch_later_2.setText("1")
         self.reviewTextEdit.setText("")
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
@@ -4629,7 +4668,10 @@ class Main_page(object):
                   self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
                   self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
                   self.reviewCount)
+        end_time3 = time.time()
+        print('сумарное время высветления фильма из вкладки позже :' + str(end_time3 - start_time3))
     def about_film_history_page(self,button_name):
+            start_time3 = time.time()
             self.current_page_watch_later_2.setText("1")
             self.reviewTextEdit.setText("")
             aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
@@ -4650,8 +4692,11 @@ class Main_page(object):
                       self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
                       self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
                       self.reviewCount)
+            end_time3 = time.time()
+            print('сумарное время высветления фильма из вкладки позже :' + str(end_time3 - start_time3))
     def back_button(self):
-            back(self.stackedWidget)
+
+            backFromAbout(self.stackedWidget)
 
     def slide_menu(self):
             slide_menu_fun(self.left_menu)
@@ -4667,7 +4712,7 @@ class Main_page(object):
             next_page_later(self.current_page_watch_later, all_button_name,self.next_button_watch_later,self.id_label)
 
     def next_page_search1(self,all_button_name):
-            next_page_search(self.current_page_history_2, all_button_name,self.next_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4)
+            next_page_search(self.current_page_history_2, all_button_name,self.next_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4,self.search)
 
     def next_page_history1(self, all_button_name):
                     next_page_history(self.current_page_history, all_button_name, self.next_button_history,self.id_label)
@@ -4686,7 +4731,7 @@ class Main_page(object):
             back_page_history(self.current_page_history, all_button_name,self.next_button_history, self.id_label)
 
     def back_page_search1(self,all_button_name):
-            back_page_search(self.current_page_history_2, all_button_name,self.previos_page_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4)
+            back_page_search(self.current_page_history_2, all_button_name,self.previos_page_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4,self.search,self.next_button_history_2)
     def swap_star_and_get_score1(self):
 
             swap_star_and_get_score1_icon(self.score_1_button, self.score_2_button, self.score_3_button,
@@ -4722,8 +4767,21 @@ class Main_page(object):
             addwatched(self.Name_of_film_and_year_2, self.add_in_watch_later_bttn_2,self.id_label, self.add_in_favorite_bttn_2,self.add_in_history_bttn_2)
 
     def searchFunction(self):
-            searchFilm(self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.filter_page,self.stackedWidget,self.frame_where_all_films_searchin,self.search)
 
+            start_time=time.time()
+            checkbox = self.filter_page.findChildren(QCheckBox)
+            x=False
+            for i in range(len(checkbox)):
+
+                    if checkbox[i].isChecked():
+                          x=True
+            if (self.searchingActosLineEdit.text()!='' or self.searchingLanguageLineEdit.text()!=''  or self.searchingCountriesLineEdit.text()!=''  or self.date_from.text()!='1800'  or self.date_to.text()!='1800' or self.search.text()!=''or x!=False ):
+                searchFilm(self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.filter_page,self.stackedWidget,self.frame_where_all_films_searchin,self.search)
+                end_time=time.time()
+                self.pushButton_6.setIcon(QIcon(('arrow-down')))
+                print('сумарнлое вреия поиска:'+str(end_time-start_time))
+            else:
+                pass
     def addReviewTo(self):
         addReviewToDB(self.id_label, self.label_50.text(), self.reviewTextEdit.toPlainText(), self.stackedWidget_2, self.userReviewText)
         self.reviewTextEdit.setText("")

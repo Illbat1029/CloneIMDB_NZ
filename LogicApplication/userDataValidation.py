@@ -88,7 +88,9 @@ def RegistrationUser(username, email, password, repeatPassword):
         cur.execute(createAcconutSQL, [(username), (email), (bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))])
         con.commit()
         print ("Account has been created!")
+        return True
     else:
+        return False
         print("User exist!")
 
 def gennerateVereficationCodeEmail():
@@ -118,7 +120,7 @@ def sendMailForgoutPassword(userEmail):
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
     print("Email send successfully!")
-
+    return 1
 
 def ForgoutPassword(email, verificationCode, password, repeatPassword):
     global verCode

@@ -1,12 +1,7 @@
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
-from PyQt5.QtGui import QIcon
 
-from LogicApplication.getAndSetScoreFilms import *
+
 from LogicApplication.userDataValidation import *
-from LogicApplication.DB_connector import *
-from LogicApplication.getFilmsDataFromDB import *
-from LogicApplication.getDataFromIMDB import *
+
 from LogicApplication.getAndSetReviews import *
 from main_page import *
 from LogicApplication.reviewLogic import *
@@ -199,8 +194,8 @@ def report(allComboBox, buttonName, send_buttons):
     if buttonName[-1].isnumeric():
         allComboBox[int(buttonName[-1]) - 1].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(700, 94, 150, 20))
-         send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(855, 80, 55, 40))
-         send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(860, 80, 61, 40))
+        send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(855, 80, 55, 40))
+        send_buttons[int(buttonName[-1]) - 1].setGeometry(QtCore.QRect(860, 80, 61, 40))
     else:
         allComboBox[0].setMaximumSize(QtCore.QSize(200, 50))
         allComboBox[0].setGeometry(QtCore.QRect(700, 94, 150, 20))
@@ -250,9 +245,9 @@ def addFilmToDB(lineEdit):
         addFilmsAdmin(int(a))
         lineEdit.setText("")
 
-def deleteFilmFromDB(lineEdit):
+def deleteFilmFromDBUI(lineEdit):
     deleteFilmFromDB(lineEdit)
-    lineEdit.setText("")
+    #lineEdit.setText("")
 
 
 
