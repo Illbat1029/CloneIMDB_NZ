@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QPushButton
+from forgotPassword import *
 
 class Forgot_page(object):
     def setupUi(self, Form):
@@ -159,7 +160,10 @@ class Forgot_page(object):
         self.verticalLayout_4.addWidget(self.widget, 0, QtCore.Qt.AlignHCenter)
 
         self.retranslateUi(Form)
+
         QtCore.QMetaObject.connectSlotsByName(Form)
+        self.sentCodelForgotBttn.clicked.connect(self.sentCode)
+        self.acceptNewPassBttn.clicked.connect(self.NewPass)
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
@@ -174,4 +178,7 @@ class Forgot_page(object):
         self.wrongPassword2.setText(_translate("Form", "The passwords don\'t match"))
         self.acceptNewPassBttn.setText(_translate("Form", "Accept new password"))
 
-
+    def sentCode(self):
+        sent(self.Email_forgot_password,self.wrong_email)
+    def NewPass(self):
+        newpassword(self.Code_forgot_password,self.New_password,self.Confirm_password_forgot_page,self.Email_forgot_password,self.wrong_email,self.wrong_password,self.wrong_code,self.wrongPassword2 )

@@ -1,12 +1,7 @@
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
-from PyQt5.QtGui import QIcon
 
-from LogicApplication.getAndSetScoreFilms import *
+
 from LogicApplication.userDataValidation import *
-from LogicApplication.DB_connector import *
-from LogicApplication.getFilmsDataFromDB import *
-from LogicApplication.getDataFromIMDB import *
+
 from LogicApplication.getAndSetReviews import *
 from main_page import *
 from LogicApplication.reviewLogic import *

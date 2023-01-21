@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from LoginPageFunctions import page_to_sign,page_to_login,registration_function
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
+
 
 class Login(object):
     def setupUi(self, Form):
@@ -353,11 +353,11 @@ class Login(object):
         self.label_4.setText(_translate("Form", "Sign up"))
         self.label_3.setText(_translate("Form", "Enter your information "))
         self.username.setPlaceholderText(_translate("Form", "username"))
-        self.wrong_username_reg.setText(_translate("Form", "Incorrect username"))
+        self.wrong_username_reg.setText(_translate("Form", "username exists"))
         self.email.setPlaceholderText(_translate("Form", "email"))
         self.worng_email_reg.setText(_translate("Form", "Incorrect email"))
         self.password_sign.setPlaceholderText(_translate("Form", "passwrod"))
-        self.wrong_pass_reg.setText(_translate("Form", "Incorrect password"))
+        self.wrong_pass_reg.setText(_translate("Form", "min length 8,A-Z, a-z, 0-9, special charactes"))
         self.reapet_passwd.setPlaceholderText(_translate("Form", "again password"))
         self.wrong_pass_repeat_reg.setText(_translate("Form", "Passwords do not match"))
         self.agree_box.setText(_translate("Form", "Agree with our terms"))

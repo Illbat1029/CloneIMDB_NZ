@@ -1,9 +1,12 @@
+import time
+start_time = time.time()
+import base64
 import sys
 import os
-from PIL.ImageQt import ImageQt
 
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt ,QSize
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem,QLabel
+
+from PyQt5.QtCore import  QSize
+
 from PyQt5.QtGui import QIcon
 
 import StyleSheetForButtons
@@ -11,24 +14,23 @@ import StyleSheetForButtons
 from Login_page import *
 from main_page import *
 from forgot_GUI import *
-#from search_field import *
+import time
 from LogicApplication.userDataValidation import *
-from LogicApplication.DB_connector import *
+
 from LogicApplication.getFilmsDataFromDB import *
-from LogicApplication.getAndSetDataFilmStatusUser import *
-from LogicApplication.getAndSetScoreFilms import *
-from LogicApplication.getAndSetReviews import *
-from LogicApplication.methodsAdminAndModerator import *
-from LogicApplication.reviewLogic import *
+
 
 if __name__ == "__main__":
+
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     app = QtWidgets.QApplication(sys.argv)
     Log_page_form = QtWidgets.QWidget()
     Log_page = Login()
     Log_page.setupUi(Log_page_form)
+
     Log_page_form.show()
 
+#    addFilmsAdmin(2278388)
 
     Main_page_form = QtWidgets.QWidget()
     Main_page = Main_page()
@@ -46,7 +48,7 @@ if __name__ == "__main__":
         #createReportReview(4, 9, 2)
         #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
         #getListAllFilmsWithPeopleUserAndStatus("Frank Darabont")
-        #addFilmsAdmin(993840)
+
         #getListAllFilmsWithPeopleUser("Matthias Schweighöfer")
         #getAllDataFilmByID(1)
         #getAllDataFilmByReleaseDataBetween(2000, 2010)
@@ -64,52 +66,32 @@ if __name__ == "__main__":
                 Main_page.id_label.setText('ID: '+  str(dataUser[0]))
                 if (Main_page.username_lable.text())[:14] == 'adminCloneImdb':
                      Main_page.adminPageBttn.setMaximumSize(25,25)
-                     Main_page.moderatorPageBttn.setMaximumSize(25, 25)
                 elif (Main_page.username_lable.text())[:18] == 'moderatorCloneImdb':
                     Main_page.moderatorPageBttn.setMaximumSize(25,25)
+
+
             else:
                 Log_page.push_up_login_notifikation.setFixedSize(276, 10)
         except:
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
-        Main_page.stackedWidget.setCurrentIndex(0)
-        Main_page.home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
+        Main_page.stackedWidget.setCurrentIndex(6)
+        Main_page.settings_button.setStyleSheet(StyleSheetForButtons.settings_pressed)
     def fogort():
         Fogort_page.wrong_email.setFixedSize(0, 0)
         Fogort_page.wrong_code.setFixedSize(0, 0)
         Fogort_page.wrong_password.setFixedSize(0, 0)
         Fogort_page.wrongPassword2.setFixedSize(0, 0)
+        Fogort_page.Email_forgot_password.setText('')
+        Fogort_page.New_password.setText('')
+        Fogort_page.Code_forgot_password.setText('')
+        Fogort_page.Confirm_password_forgot_page.setText('')
         Fogort_page_from.show()
-    def sent_forgot():
-        Fogort_page.wrong_email.setFixedSize(276, 13)
-        Fogort_page.wrong_code.setFixedSize(276, 13)
-        Fogort_page.wrong_password.setFixedSize(276, 13)
-        Fogort_page.wrongPassword2.setFixedSize(276, 13)
-    film_bttn ={}
-    film_bttn_not_text = {}
-    film_name = {}
-    film_name_not_text = {}
-    buttons = Main_page.widget.findChildren(QPushButton)
-    Labels = Main_page.widget.findChildren(QLabel)
-    for button in buttons:
-        for i in range(19):
-            if button.objectName() == 'home_film_bttn' + str(i):
-                film_bttn[i]=button.objectName()
-                film_bttn_not_text[i]=button
-    for label in Labels:
-        for i in range(19):
-            if label.objectName() == 'home_name_film' + str(i):
 
-                film_name_not_text[i]=label
-    a = getListAllDataAllFilms()
-    x=0
-    for i in film_bttn_not_text.keys():
-        binary_data = base64.b64decode(a[i-1 ].images)
-        pixmap = QtGui.QPixmap()
-        pixmap.loadFromData(binary_data)
-        film_name_not_text[i].setText(a[i-1].name)
-        film_bttn_not_text[i].setIconSize(QSize(100, 140))
-        film_bttn_not_text[i].setIcon(QIcon(pixmap))
+
+
     Log_page.bttn_forgot.clicked.connect(fogort)
     Log_page.bttn_login.clicked.connect(login)
-    Fogort_page.sentCodelForgotBttn.clicked.connect(sent_forgot)
+
+    end_time = time.time()
+    print('время открытия приложения:' + str(end_time - start_time))
     sys.exit(app.exec_())

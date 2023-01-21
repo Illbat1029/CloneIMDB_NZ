@@ -43,7 +43,6 @@ def validatePassword(password):
         print( "Bad password. Your password must be at least 8 characters including a lowercase letter, an uppercase letter, a number, and a special char!")
         return False
 def AuthenticateUser (login, password):
-    stime = datetime.now()
     sqlAuthenticateUser = """
     SELECT password FROM user WHERE username = %s 
     """
@@ -55,9 +54,7 @@ def AuthenticateUser (login, password):
         #hashDataBase = hashDataBase.replace('b', '',1)
         hashDataBase = hashDataBase.replace("'", "")
     if bcrypt.checkpw(password.encode('utf-8'), hashDataBase.encode('utf-8')):
-        print("Authinticate user = ", datetime.now() - stime)
         return True
-    print("Authinticate user = ", datetime.now() - stime)
     return False
 def checkEmailExist(email):
     pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -84,17 +81,16 @@ def checkEmailForgoutPassword(email):
         return True
     return False
 def RegistrationUser(username, email, password, repeatPassword):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     createAcconutSQL = """INSERT INTO user (username, email, password) VALUES (%s, %s, %s)"""
     if checkUsernameExist(username) == False and checkEmailExist(email) == False and validatePassword(password) and password == repeatPassword:
         cur.execute(createAcconutSQL, [(username), (email), (bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))])
         con.commit()
-        print("Registrate user user = ", datetime.now() - stime)
         print ("Account has been created!")
+        return True
     else:
-        print("Registrate user user = ", datetime.now() - stime)
+        return False
         print("User exist!")
 
 def gennerateVereficationCodeEmail():
@@ -124,7 +120,7 @@ def sendMailForgoutPassword(userEmail):
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
     print("Email send successfully!")
-
+    return 1
 
 def ForgoutPassword(email, verificationCode, password, repeatPassword):
     global verCode
@@ -147,18 +143,15 @@ def ForgoutPassword(email, verificationCode, password, repeatPassword):
     return False
 
 def getDataUser (username):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlGetDataUser = """
     SELECT * FROM user WHERE username = %s"""
     cur.execute(sqlGetDataUser, username)
     userData = cur.fetchone()
-    print("Get data user = ", datetime.now() - stime)
     return userData
 
 def updateLastVisitDataTime (id):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlUpdateData = """
@@ -166,7 +159,6 @@ def updateLastVisitDataTime (id):
     cur.execute(sqlUpdateData, [(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), (id)])
     con.commit()
     print ("Update last visit data successful!")
-    print("Update last visit data = ", datetime.now() - stime)
 
 
 

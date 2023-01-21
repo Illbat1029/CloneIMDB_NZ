@@ -221,4 +221,3 @@ def getAllDataFilmByScoreBetween(scoreStart = 0, scoreEnd = 5):
     data = refractoringDataPeopleFilm(data)
     print("Get film by score between = ", datetime.now() - stime)
     return data
-
