@@ -8,7 +8,6 @@ import smtplib
 import random
 from datetime import datetime, date
 
-
 def checkUsernameExist(username):
     con = createConnection()
     cur = con.cursor()
@@ -18,9 +17,12 @@ def checkUsernameExist(username):
     existUsername = cur.fetchone()
     if existUsername != None:
         return True
+    return False
+def chekUsername(username):
     if len(username) > 4 and len(username) <= 18:
-        return False
-    return True
+        return True
+    return False
+
 def validatePassword(password):
     l,u,p,d = 0,0,0,0
     capitAlalphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -56,20 +58,26 @@ def AuthenticateUser (login, password):
     if bcrypt.checkpw(password.encode('utf-8'), hashDataBase.encode('utf-8')):
         return True
     return False
-def checkEmailExist(email):
-    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-    con = createConnection()
-    cur = con.cursor()
-    existMailSQL = """
-    SELECT * FROM user WHERE "email" =%s"""
-    cur.execute(existMailSQL,[email])
-    existMail = cur.fetchone()
-    if existMail != None:
-        return True
-    if re.match(pattern,email):
+def checkEmailExist(Email):
+    try:
+        con = createConnection()
+        cur = con.cursor()
+        existMailSQL = """
+        SELECT * FROM user WHERE email =%s"""
+        cur.execute(existMailSQL,(Email ,))
+        existMail = cur.fetchone()
+        if existMail != None:
+            print("Email exist")
+            return True
         return False
-    return True
-
+    except Error as e:
+        print("chekEmailExist ", e)
+def chekEmail(email):
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    if re.match(pattern, email):
+        return True
+    print("Bad email")
+    return False
 def checkEmailForgoutPassword(email):
     con = createConnection()
     cur = con.cursor()
@@ -84,7 +92,7 @@ def RegistrationUser(username, email, password, repeatPassword):
     con = createConnection()
     cur = con.cursor()
     createAcconutSQL = """INSERT INTO user (username, email, password) VALUES (%s, %s, %s)"""
-    if checkUsernameExist(username) == False and checkEmailExist(email) == False and validatePassword(password) and password == repeatPassword:
+    if checkUsernameExist(username) == False and chekUsername(username)==True and checkEmailExist(email) == False and chekEmail(email)==True and validatePassword(password) and password == repeatPassword:
         cur.execute(createAcconutSQL, [(username), (email), (bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))])
         con.commit()
         print ("Account has been created!")
