@@ -62,6 +62,8 @@ if __name__ == "__main__":
         #updateEmailUser(6, "maks@gmaillllll.lll")
         #updatePasswordUser(22, "Ha!2.324345m,@")
         #updatateUserUsername(22, "Kalycz")
+        #a = getViewFilmDataWhereUserNotLogin()
+
         try:
             if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
                 dataUser = getDataUser([Log_page.user_or_email.text()])

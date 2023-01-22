@@ -220,4 +220,39 @@ def getAllDataFilmByScoreBetween(scoreStart = 0, scoreEnd = 5):
     data = cur.fetchall()
     data = refractoringDataPeopleFilm(data)
     print("Get film by score between = ", datetime.now() - stime)
+    return data
+def getFilmByFilmname(filmname):
+    try:
+        stime = datetime.now()
+        con = createConnection()
+        cur = con.cursor()
+        sqlGetAllDataFilm = """
+            SELECT films.id, films.filmname, films.country, films.gen, films.language, films.releasedata, films.score, films.picture 
+            FROM films
+            WHERE films.filmname=%s
+            """
+        cur.execute(sqlGetAllDataFilm, (filmname,))
+        data = cur.fetchall()
+        data = refractoringDataPeopleFilm(data)
+        print("Get film by name = ", datetime.now() - stime)
+        return data
+    except Error as e:
+        print("Excpet getFilmByFilmname", e)
+def getViewFilmDataWhereUserNotLogin():
+    stime = datetime.now()
+    con = createConnection()
+    cur = con.cursor()
+    sqlGetView = """
+        SELECT * FROM Unlogin_Film_Top_View
+        """
+    cur.execute(sqlGetView)
+    allFilmData = cur.fetchall()
+    dataRet = []
+    for row in allFilmData:
+        buff = list(row)
+        film = Film(buff[0], buff[1], buff[2], createList(buff[3]), createList(buff[4]), createList(buff[5]),
+                    buff[6], buff[7], buff[8], buff[9], createList(buff[10]), createList(buff[11]), buff[12])
+        dataRet.append(film)
+    print("Get view where user not login = ", datetime.now() - stime)
+    return dataRet
 
