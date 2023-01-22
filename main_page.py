@@ -9,14 +9,18 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from SwapPagesMainMenuFunctions import homePage , favoritePage, laterPage,histroyPage,settingsPage,IsPressSearchButton,about_film_page,back,aboutFilmFromNotHome, adminPage, moderPage
-from SlideMenuFunction import slide_menu_fun
-from ScoreFilmAndChangeIcon import swap_star_and_get_score1_icon,swap_star_and_get_score2_icon,swap_star_and_get_score3_icon,swap_star_and_get_score4_icon,swap_star_and_get_score5_icon,setScoreFromDataBase
-from ChangenPagesOnDifferentPagesLikeHome import next_page_home, next_page_history,next_page_later, next_page_favorite, back_page_history,back_page_favorite,back_page_home,back_page_later,next_page_search,back_page_search
+import time
+
+from PyQt5.QtCore import QDate
+
+from SwapPagesMainMenuFunctions import *
+from SlideMenuFunction import *
+from ScoreFilmAndChangeIcon import *
+from ChangenPagesOnDifferentPagesLikeHome import *
 from PyQt5.QtWidgets import QPushButton, QLabel, QComboBox
-from addFilmToFavoriteLaterWatched import addFavorite,addLater,addwatched
-from SearchFilmByGenresNameIDT import searchFilm
-from mainPageFunctions import addReviewToDB, setReview, editReview, changingPageInEditing, deleteReviewFromDB, changeScore,report, sendRep,changeNPage, changePPage, setCount, addFilmToDB, deleteFilmFromDBUI
+from addFilmToFavoriteLaterWatched import *
+from SearchFilmByGenresNameIDT import *
+from mainPageFunctions import *
 
 class Main_page(object):
     def setupUi(self, Form):
@@ -1502,7 +1506,7 @@ class Main_page(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 927, 1560))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, -1062, 927, 1560))
         self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 100)
@@ -3653,7 +3657,7 @@ class Main_page(object):
         self.id_sett = QtWidgets.QLabel(self.gridLayoutWidget)
         self.id_sett.setStyleSheet("color: rgb(255, 255, 255);")
         self.id_sett.setText("")
-        self.id_sett.setAlignment(QtCore.Qt.AlignLeft|QtCore.Qt.AlignCenter)
+        self.id_sett.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.id_sett.setObjectName("id_sett")
         self.user_info.addWidget(self.id_sett, 2, 1, 1, 1, QtCore.Qt.AlignLeft)
         self.verticalLayout_13.addWidget(self.frame_115)
@@ -4266,11 +4270,12 @@ class Main_page(object):
         self.moderator_page.setObjectName("moderator_page")
         self.moderatorFrame = QtWidgets.QFrame(self.moderator_page)
         self.moderatorFrame.setGeometry(QtCore.QRect(0, 0, 951, 541))
+        self.moderatorFrame.setStyleSheet("color: rgb(255, 255, 255);")
         self.moderatorFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.moderatorFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.moderatorFrame.setObjectName("moderatorFrame")
         self.label_19 = QtWidgets.QLabel(self.moderatorFrame)
-        self.label_19.setGeometry(QtCore.QRect(20, 10, 191, 51))
+        self.label_19.setGeometry(QtCore.QRect(10, 10, 191, 51))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -4279,6 +4284,329 @@ class Main_page(object):
         self.label_19.setStyleSheet("\n"
 "color: rgb(172, 172, 172);")
         self.label_19.setObjectName("label_19")
+        self.frame_20 = QtWidgets.QFrame(self.moderatorFrame)
+        self.frame_20.setGeometry(QtCore.QRect(10, 50, 927, 160))
+        self.frame_20.setMinimumSize(QtCore.QSize(0, 0))
+        self.frame_20.setMaximumSize(QtCore.QSize(16777215, 400))
+        self.frame_20.setStyleSheet("")
+        self.frame_20.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_20.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_20.setObjectName("frame_20")
+        self.frame_21 = QtWidgets.QFrame(self.frame_20)
+        self.frame_21.setGeometry(QtCore.QRect(0, 20, 920, 130))
+        self.frame_21.setMinimumSize(QtCore.QSize(0, 130))
+        self.frame_21.setMaximumSize(QtCore.QSize(920, 160))
+        self.frame_21.setStyleSheet("")
+        self.frame_21.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_21.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_21.setObjectName("frame_21")
+        self.nameReviewerRep1 = QtWidgets.QLabel(self.frame_21)
+        self.nameReviewerRep1.setGeometry(QtCore.QRect(10, 10, 400, 31))
+        self.nameReviewerRep1.setMinimumSize(QtCore.QSize(400, 0))
+        self.nameReviewerRep1.setMaximumSize(QtCore.QSize(400, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewerRep1.setFont(font)
+        self.nameReviewerRep1.setObjectName("nameReviewerRep1")
+        self.textReviewRep1 = QtWidgets.QLabel(self.frame_21)
+        self.textReviewRep1.setGeometry(QtCore.QRect(10, 49, 731, 71))
+        self.textReviewRep1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.textReviewRep1.setWordWrap(True)
+        self.textReviewRep1.setObjectName("textReviewRep1")
+        self.idReviewRep1 = QtWidgets.QLabel(self.frame_21)
+        self.idReviewRep1.setGeometry(QtCore.QRect(800, 50, 0, 0))
+        self.idReviewRep1.setText("")
+        self.idReviewRep1.setObjectName("idReviewRep1")
+        self.reviewOkBttn1 = QtWidgets.QPushButton(self.frame_21)
+        self.reviewOkBttn1.setGeometry(QtCore.QRect(750, 20, 131, 31))
+        self.reviewOkBttn1.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.reviewOkBttn1.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.reviewOkBttn1.setObjectName("reviewOkBttn1")
+        self.deleteReviewBttn1 = QtWidgets.QPushButton(self.frame_21)
+        self.deleteReviewBttn1.setGeometry(QtCore.QRect(750, 70, 131, 31))
+        self.deleteReviewBttn1.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.deleteReviewBttn1.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.deleteReviewBttn1.setObjectName("deleteReviewBttn1")
+        self.reportName1 = QtWidgets.QLabel(self.frame_21)
+        self.reportName1.setGeometry(QtCore.QRect(510, 20, 231, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.reportName1.setFont(font)
+        self.reportName1.setStyleSheet("color: rgb(255, 0, 0);")
+        self.reportName1.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTop|QtCore.Qt.AlignTrailing)
+        self.reportName1.setObjectName("reportName1")
+        self.frame_27 = QtWidgets.QFrame(self.frame_21)
+        self.frame_27.setGeometry(QtCore.QRect(0, 0, 911, 121))
+        self.frame_27.setStyleSheet("background-color: transparent; \n"
+"border: 1px solid white;")
+        self.frame_27.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_27.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_27.setObjectName("frame_27")
+        self.frame_30 = QtWidgets.QFrame(self.frame_27)
+        self.frame_30.setGeometry(QtCore.QRect(480, 120, 911, 121))
+        self.frame_30.setStyleSheet("background-color: transparent; \n"
+"border: 1px solid white;")
+        self.frame_30.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_30.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_30.setObjectName("frame_30")
+        self.frame_27.raise_()
+        self.nameReviewerRep1.raise_()
+        self.textReviewRep1.raise_()
+        self.idReviewRep1.raise_()
+        self.reviewOkBttn1.raise_()
+        self.deleteReviewBttn1.raise_()
+        self.reportName1.raise_()
+        self.frame_23 = QtWidgets.QFrame(self.moderatorFrame)
+        self.frame_23.setGeometry(QtCore.QRect(10, 200, 927, 160))
+        self.frame_23.setMinimumSize(QtCore.QSize(0, 0))
+        self.frame_23.setMaximumSize(QtCore.QSize(16777215, 400))
+        self.frame_23.setStyleSheet("")
+        self.frame_23.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_23.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_23.setObjectName("frame_23")
+        self.frame_24 = QtWidgets.QFrame(self.frame_23)
+        self.frame_24.setGeometry(QtCore.QRect(0, 20, 920, 130))
+        self.frame_24.setMinimumSize(QtCore.QSize(0, 130))
+        self.frame_24.setMaximumSize(QtCore.QSize(920, 160))
+        self.frame_24.setStyleSheet("")
+        self.frame_24.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_24.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_24.setObjectName("frame_24")
+        self.nameReviewerRep2 = QtWidgets.QLabel(self.frame_24)
+        self.nameReviewerRep2.setGeometry(QtCore.QRect(10, 10, 400, 31))
+        self.nameReviewerRep2.setMinimumSize(QtCore.QSize(400, 0))
+        self.nameReviewerRep2.setMaximumSize(QtCore.QSize(400, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewerRep2.setFont(font)
+        self.nameReviewerRep2.setObjectName("nameReviewerRep2")
+        self.textReviewRep2 = QtWidgets.QLabel(self.frame_24)
+        self.textReviewRep2.setGeometry(QtCore.QRect(10, 49, 731, 71))
+        self.textReviewRep2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.textReviewRep2.setWordWrap(True)
+        self.textReviewRep2.setObjectName("textReviewRep2")
+        self.idReviewRep2 = QtWidgets.QLabel(self.frame_24)
+        self.idReviewRep2.setGeometry(QtCore.QRect(800, 50, 0, 0))
+        self.idReviewRep2.setText("")
+        self.idReviewRep2.setObjectName("idReviewRep2")
+        self.reviewOkBttn2 = QtWidgets.QPushButton(self.frame_24)
+        self.reviewOkBttn2.setGeometry(QtCore.QRect(750, 20, 131, 31))
+        self.reviewOkBttn2.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.reviewOkBttn2.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.reviewOkBttn2.setObjectName("reviewOkBttn2")
+        self.deleteReviewBttn2 = QtWidgets.QPushButton(self.frame_24)
+        self.deleteReviewBttn2.setGeometry(QtCore.QRect(750, 70, 131, 31))
+        self.deleteReviewBttn2.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.deleteReviewBttn2.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.deleteReviewBttn2.setObjectName("deleteReviewBttn2")
+        self.reportName2 = QtWidgets.QLabel(self.frame_24)
+        self.reportName2.setGeometry(QtCore.QRect(510, 20, 231, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.reportName2.setFont(font)
+        self.reportName2.setStyleSheet("color: rgb(255, 0, 0);")
+        self.reportName2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTop|QtCore.Qt.AlignTrailing)
+        self.reportName2.setObjectName("reportName2")
+        self.frame_28 = QtWidgets.QFrame(self.frame_24)
+        self.frame_28.setGeometry(QtCore.QRect(0, 0, 911, 121))
+        self.frame_28.setStyleSheet("background-color: transparent; \n"
+"border: 1px solid white;")
+        self.frame_28.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_28.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_28.setObjectName("frame_28")
+        self.frame_28.raise_()
+        self.nameReviewerRep2.raise_()
+        self.textReviewRep2.raise_()
+        self.idReviewRep2.raise_()
+        self.deleteReviewBttn2.raise_()
+        self.reportName2.raise_()
+        self.reviewOkBttn2.raise_()
+        self.frame_25 = QtWidgets.QFrame(self.moderatorFrame)
+        self.frame_25.setGeometry(QtCore.QRect(10, 350, 927, 160))
+        self.frame_25.setMinimumSize(QtCore.QSize(0, 0))
+        self.frame_25.setMaximumSize(QtCore.QSize(16777215, 400))
+        self.frame_25.setStyleSheet("")
+        self.frame_25.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_25.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_25.setObjectName("frame_25")
+        self.frame_26 = QtWidgets.QFrame(self.frame_25)
+        self.frame_26.setGeometry(QtCore.QRect(0, 20, 920, 130))
+        self.frame_26.setMinimumSize(QtCore.QSize(0, 130))
+        self.frame_26.setMaximumSize(QtCore.QSize(920, 160))
+        self.frame_26.setStyleSheet("")
+        self.frame_26.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_26.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_26.setObjectName("frame_26")
+        self.nameReviewerRep3 = QtWidgets.QLabel(self.frame_26)
+        self.nameReviewerRep3.setGeometry(QtCore.QRect(10, 10, 421, 31))
+        self.nameReviewerRep3.setMinimumSize(QtCore.QSize(400, 0))
+        self.nameReviewerRep3.setMaximumSize(QtCore.QSize(700, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.nameReviewerRep3.setFont(font)
+        self.nameReviewerRep3.setObjectName("nameReviewerRep3")
+        self.textReviewRep3 = QtWidgets.QLabel(self.frame_26)
+        self.textReviewRep3.setGeometry(QtCore.QRect(10, 49, 731, 71))
+        self.textReviewRep3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.textReviewRep3.setWordWrap(True)
+        self.textReviewRep3.setObjectName("textReviewRep3")
+        self.idReviewRep3 = QtWidgets.QLabel(self.frame_26)
+        self.idReviewRep3.setGeometry(QtCore.QRect(800, 50, 0, 0))
+        self.idReviewRep3.setText("")
+        self.idReviewRep3.setObjectName("idReviewRep3")
+        self.reviewOkBttn3 = QtWidgets.QPushButton(self.frame_26)
+        self.reviewOkBttn3.setGeometry(QtCore.QRect(750, 20, 131, 31))
+        self.reviewOkBttn3.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.reviewOkBttn3.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.reviewOkBttn3.setObjectName("reviewOkBttn3")
+        self.deleteReviewBttn3 = QtWidgets.QPushButton(self.frame_26)
+        self.deleteReviewBttn3.setGeometry(QtCore.QRect(750, 70, 131, 31))
+        self.deleteReviewBttn3.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.deleteReviewBttn3.setStyleSheet("QPushButton{\n"
+"    padding: 5px 10px;\n"
+"    border:none;\n"
+"    border-radius:10px;\n"
+"    background-color:#6ED9A0;\n"
+"    color:#F6F8F7;\n"
+"}\n"
+"\n"
+"QPushButton:hover\n"
+"{\n"
+"background-color:#9BA7A5;\n"
+"}")
+        self.deleteReviewBttn3.setObjectName("deleteReviewBttn3")
+        self.reportName3 = QtWidgets.QLabel(self.frame_26)
+        self.reportName3.setGeometry(QtCore.QRect(440, 20, 301, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.reportName3.setFont(font)
+        self.reportName3.setStyleSheet("color: rgb(255, 0, 0);")
+        self.reportName3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTop|QtCore.Qt.AlignTrailing)
+        self.reportName3.setObjectName("reportName3")
+        self.frame_29 = QtWidgets.QFrame(self.frame_26)
+        self.frame_29.setGeometry(QtCore.QRect(0, 0, 911, 121))
+        self.frame_29.setStyleSheet("background-color: transparent; \n"
+"border: 1px solid white;")
+        self.frame_29.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_29.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_29.setObjectName("frame_29")
+        self.frame_29.raise_()
+        self.nameReviewerRep3.raise_()
+        self.textReviewRep3.raise_()
+        self.idReviewRep3.raise_()
+        self.reviewOkBttn3.raise_()
+        self.deleteReviewBttn3.raise_()
+        self.reportName3.raise_()
+        self.nextPageRevRepBttn = QtWidgets.QPushButton(self.moderatorFrame)
+        self.nextPageRevRepBttn.setGeometry(QtCore.QRect(490, 510, 30, 30))
+        self.nextPageRevRepBttn.setMinimumSize(QtCore.QSize(30, 30))
+        self.nextPageRevRepBttn.setMaximumSize(QtCore.QSize(30, 30))
+        font = QtGui.QFont()
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.nextPageRevRepBttn.setFont(font)
+        self.nextPageRevRepBttn.setObjectName("nextPageRevRepBttn")
+        self.currentPageRevRep = QtWidgets.QPushButton(self.moderatorFrame)
+        self.currentPageRevRep.setGeometry(QtCore.QRect(460, 510, 30, 30))
+        self.currentPageRevRep.setMinimumSize(QtCore.QSize(30, 30))
+        self.currentPageRevRep.setMaximumSize(QtCore.QSize(30, 30))
+        font = QtGui.QFont()
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.currentPageRevRep.setFont(font)
+        self.currentPageRevRep.setObjectName("currentPageRevRep")
+        self.previosPageRevBttn = QtWidgets.QPushButton(self.moderatorFrame)
+        self.previosPageRevBttn.setGeometry(QtCore.QRect(430, 510, 30, 30))
+        self.previosPageRevBttn.setMinimumSize(QtCore.QSize(30, 30))
+        self.previosPageRevBttn.setMaximumSize(QtCore.QSize(30, 30))
+        font = QtGui.QFont()
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.previosPageRevBttn.setFont(font)
+        self.previosPageRevBttn.setObjectName("previosPageRevBttn")
+        self.reviewRepCount = QtWidgets.QLabel(self.moderatorFrame)
+        self.reviewRepCount.setGeometry(QtCore.QRect(760, 520, 47, 50))
+        self.reviewRepCount.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.reviewRepCount.setText("")
+        self.reviewRepCount.setObjectName("reviewRepCount")
+        self.nextPageRevRepBttn.raise_()
+        self.label_19.raise_()
+        self.frame_20.raise_()
+        self.frame_23.raise_()
+        self.frame_25.raise_()
+        self.currentPageRevRep.raise_()
+        self.previosPageRevBttn.raise_()
+        self.reviewRepCount.raise_()
         self.stackedWidget.addWidget(self.moderator_page)
         self.horizontalLayout_7.addWidget(self.stackedWidget)
         self.horizontalLayout_6.addWidget(self.main_body, 0, QtCore.Qt.AlignTop)
@@ -4286,7 +4614,7 @@ class Main_page(object):
         self.verticalLayout_5.addWidget(self.widget)
 
         self.retranslateUi(Form)
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(9)
         self.stackedWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -4294,7 +4622,7 @@ class Main_page(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.search.setPlaceholderText(_translate("Form", "Search"))
-        self.username_lable.setText(_translate("Form", "Username"))
+        self.username_lable.setText(_translate("Form", "Usernameпиииииииииии"))
         self.id_label.setText(_translate("Form", "Id: 23232"))
         self.home_button.setText(_translate("Form", "Home"))
         self.favorite_button.setText(_translate("Form", "Favorite"))
@@ -4423,6 +4751,26 @@ class Main_page(object):
         self.removeFilmBttn.setText(_translate("Form", "Remove"))
         self.delLabel.setText(_translate("Form", "Remove Film"))
         self.label_19.setText(_translate("Form", "Reviews to check"))
+        self.nameReviewerRep1.setText(_translate("Form", "dodik"))
+        self.textReviewRep1.setText(_translate("Form", "nice"))
+        self.reviewOkBttn1.setText(_translate("Form", "This review is ok"))
+        self.deleteReviewBttn1.setText(_translate("Form", "Delete review"))
+        self.reportName1.setText(_translate("Form", "Prichina"))
+        self.nameReviewerRep2.setText(_translate("Form", "dodik"))
+        self.textReviewRep2.setText(_translate("Form", "nice"))
+        self.reviewOkBttn2.setText(_translate("Form", "This review is ok"))
+        self.deleteReviewBttn2.setText(_translate("Form", "Delete review"))
+        self.reportName2.setText(_translate("Form", "Prichina"))
+        self.nameReviewerRep3.setText(_translate("Form", "dodik"))
+        self.textReviewRep3.setText(_translate("Form", "nice"))
+        self.reviewOkBttn3.setText(_translate("Form", "This review is ok"))
+        self.deleteReviewBttn3.setText(_translate("Form", "Delete review"))
+        self.reportName3.setText(_translate("Form", "prichina"))
+        self.nextPageRevRepBttn.setText(_translate("Form", ">"))
+        self.currentPageRevRep.setText(_translate("Form", "1"))
+        self.previosPageRevBttn.setText(_translate("Form", "<"))
+
+        collectInfoForAutoCompleter(self.search)
         self.home_button.clicked.connect(self.home)
         self.favorite_button.clicked.connect(self.favorite)
         self.watch_later_button.clicked.connect(self.later)
@@ -4433,6 +4781,13 @@ class Main_page(object):
         self.menu_buttn.clicked.connect(self.slide_menu)
         self.search_button.clicked.connect(self.searchFunction)
         self.adminPageBttn.clicked.connect(self.setAdminPage)
+        self.search.returnPressed.connect(self.searchFunction)
+        self.previosPageRevBttn.clicked.connect(self.prevPageReports)
+        self.nextPageRevRepBttn.clicked.connect(self.nextPageReports)
+
+
+
+
         self.next_button_home.clicked.connect(
                 lambda checked, b=self.frame_where_all_films_home: self.next_page_home1(b))
 
@@ -4475,6 +4830,8 @@ class Main_page(object):
         self.addFilmBttn.clicked.connect(self.addFilm)
         self.removeFilmBttn.clicked.connect(self.deleteFilm)
 
+        self.date_from.setDate(QDate(1800,1,1))
+        self.date_to.setDate(QDate(1800,1,1))
 
 
 
@@ -4520,60 +4877,100 @@ class Main_page(object):
         for button in buttons_search:
                 button.clicked.connect(lambda checked, b=button: self.about_film_search_page(b.objectName()))
 
+        buttons_search = self.moderatorFrame.findChildren(QPushButton)
+        for button in buttons_search:
+                if button.objectName()[:16] == 'deleteReviewBttn':
+                        button.clicked.connect(lambda checked, b=button: self.deleteReviewAfterValid(b.objectName()))
+
+        buttons_search = self.moderatorFrame.findChildren(QPushButton)
+        for button in buttons_search:
+                if button.objectName()[:12] == 'reviewOkBttn':
+                        button.clicked.connect(lambda checked, b=button: self.deleteReviewIfOkAfterValid(b.objectName()))
+
     def home(self):
+            self.search.setText('')
             homePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                     self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,)
+                     self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.home_page,self.current_page_home)
 
     def favorite(self):
+            self.search.setText('')
             favoritePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_favorite,self.id_label,self.current_page_favorite,self.next_button_favorite)
 
     def later(self):
+            self.search.setText('')
             laterPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                       self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_watch_later,self.id_label,self.current_page_watch_later,self.next_button_watch_later)
 
     def history(self):
+            self.search.setText('')
             histroyPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                       self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.frame_where_all_films_history_page,self.id_label,self.current_page_history,self.next_button_history)
 
     def settings(self):
+            self.search.setText('')
             settingsPage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn, self.username_sett,self.email_sett, self.id_sett,self.username_lable,self.id_label)
 
+
     def IsPress(self):
+            self.home_button.setStyleSheet(StyleSheetForButtons.home_default)
+            self.favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
+            self.histor_button.setStyleSheet(StyleSheetForButtons.history_default)
+            self.settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
+            self.watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
             IsPressSearchButton(self.pushButton_6, self.stackedWidget, self.searchingActosLineEdit,
                                 self.searchingCountriesLineEdit, self.searchingLanguageLineEdit,
-                                self.searchingRuntimeLineEdit, self.search)
+                                self.searchingRuntimeLineEdit, self.search,self.filter_page)
 
     def setAdminPage(self):
             adminPage(self.stackedWidget,self.home_button, self.favorite_button, self.histor_button,
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn)
 
     def setModerPage(self):
+
             moderPage(self.stackedWidget,self.home_button, self.favorite_button, self.histor_button,
                          self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn)
+            refreshReviewCheck(self.nameReviewerRep1,self.textReviewRep1, self.nameReviewerRep2,self.textReviewRep2,
+                               self.nameReviewerRep3,self.textReviewRep3, self.frame_20, self.frame_23, self.frame_25, self.reportName1, self.reportName2, self.reportName3,
+                               self.idReviewRep1, self.idReviewRep2, self.idReviewRep3, self.currentPageRevRep.text(), self.reviewRepCount)
 
     def addFilm(self):
                 addFilmToDB(self.addFilmEdit)
 
     def deleteFilm(self):
-                deleteFilmFromDBUI(self.removeFilmEdit.text())
+                deleteFilmFromDBUI(self.removeFilmEdit)
 
     def about_film(self, button_name):
+            start_time3=time.time()
+            start_time = time.time()
             self.reviewTextEdit.setText("")
             self.current_page_watch_later_2.setText("1")
             about_film_page(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
                             self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.label_50,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2)
+            end_time = time.time()
+            print("сбор инфы и выстветление по поводу самого фильма: " + str(end_time - start_time))
+
+            start_time = time.time()
             setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,
                                  self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
+
+            end_time = time.time()
+            print("сбор инфы и выстветление по оценок:" + str(end_time - start_time))
+
+            start_time = time.time()
             setCount(self.label_50.text(), self.reviewCount)
             setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2, self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4, self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2, self.userReviewText,
                       self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
-
+            end_time = time.time()
+            print("сбор инфы и выстветление по поводу коментов: " + str(end_time - start_time))
+            end_time3=time.time()
+            print('сумарное время высветления фильма:'+ str(end_time3 - start_time3))
 
 
     def about_film_favorite_page(self,button_name):
+            start_time3 = time.time()
             self.current_page_watch_later_2.setText("1")
 
             aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
@@ -4590,7 +4987,10 @@ class Main_page(object):
                       self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview,
                       self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5,
                       self.current_page_watch_later_2.text(), self.reviewCount)
+            end_time3 = time.time()
+            print('сумарное время высветления фильма из вкладки любимое:' + str(end_time3 - start_time3))
     def about_film_search_page(self,button_name):
+        start_time3 = time.time()
         self.reviewTextEdit.setText("")
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
@@ -4609,8 +5009,10 @@ class Main_page(object):
                                        self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
                                        self.reviewCount)
 
-
+        end_time3 = time.time()
+        print('сумарное время высветления фильма из вкладки поиска :' + str(end_time3 - start_time3))
     def about_film_later_page(self,button_name):
+        start_time3 = time.time()
         self.current_page_watch_later_2.setText("1")
         self.reviewTextEdit.setText("")
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
@@ -4629,7 +5031,10 @@ class Main_page(object):
                   self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
                   self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
                   self.reviewCount)
+        end_time3 = time.time()
+        print('сумарное время высветления фильма из вкладки позже :' + str(end_time3 - start_time3))
     def about_film_history_page(self,button_name):
+            start_time3 = time.time()
             self.current_page_watch_later_2.setText("1")
             self.reviewTextEdit.setText("")
             aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
@@ -4650,8 +5055,11 @@ class Main_page(object):
                       self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
                       self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
                       self.reviewCount)
+            end_time3 = time.time()
+            print('сумарное время высветления фильма из вкладки позже :' + str(end_time3 - start_time3))
     def back_button(self):
-            back(self.stackedWidget)
+
+            backFromAbout(self.stackedWidget)
 
     def slide_menu(self):
             slide_menu_fun(self.left_menu)
@@ -4667,7 +5075,7 @@ class Main_page(object):
             next_page_later(self.current_page_watch_later, all_button_name,self.next_button_watch_later,self.id_label)
 
     def next_page_search1(self,all_button_name):
-            next_page_search(self.current_page_history_2, all_button_name,self.next_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4)
+            next_page_search(self.current_page_history_2, all_button_name,self.next_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4,self.search)
 
     def next_page_history1(self, all_button_name):
                     next_page_history(self.current_page_history, all_button_name, self.next_button_history,self.id_label)
@@ -4686,7 +5094,7 @@ class Main_page(object):
             back_page_history(self.current_page_history, all_button_name,self.next_button_history, self.id_label)
 
     def back_page_search1(self,all_button_name):
-            back_page_search(self.current_page_history_2, all_button_name,self.previos_page_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4)
+            back_page_search(self.current_page_history_2, all_button_name,self.previos_page_button_history_2,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.frame_4,self.search,self.next_button_history_2)
     def swap_star_and_get_score1(self):
 
             swap_star_and_get_score1_icon(self.score_1_button, self.score_2_button, self.score_3_button,
@@ -4722,8 +5130,21 @@ class Main_page(object):
             addwatched(self.Name_of_film_and_year_2, self.add_in_watch_later_bttn_2,self.id_label, self.add_in_favorite_bttn_2,self.add_in_history_bttn_2)
 
     def searchFunction(self):
-            searchFilm(self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.filter_page,self.stackedWidget,self.frame_where_all_films_searchin,self.search)
 
+            start_time=time.time()
+            checkbox = self.filter_page.findChildren(QCheckBox)
+            x=False
+            for i in range(len(checkbox)):
+
+                    if checkbox[i].isChecked():
+                          x=True
+            if (self.searchingActosLineEdit.text()!='' or self.searchingLanguageLineEdit.text()!=''  or self.searchingCountriesLineEdit.text()!=''  or self.date_from.text()!='1800'  or self.date_to.text()!='1800' or self.search.text()!=''or x!=False ):
+                searchFilm(self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.filter_page,self.stackedWidget,self.frame_where_all_films_searchin,self.search)
+                end_time=time.time()
+                self.pushButton_6.setIcon(QIcon(('arrow-down')))
+                print('сумарнлое вреия поиска:'+str(end_time-start_time))
+            else:
+                pass
     def addReviewTo(self):
         addReviewToDB(self.id_label, self.label_50.text(), self.reviewTextEdit.toPlainText(), self.stackedWidget_2, self.userReviewText)
         self.reviewTextEdit.setText("")
@@ -4868,7 +5289,58 @@ class Main_page(object):
                       self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
 
 
+    def prevPageReports(self):
+            k=int(self.reviewRepCount.text())
+            if (int(self.currentPageRevRep.text()) > 1):
+                    self.currentPageRevRep.setText(str(int(self.currentPageRevRep.text()) - 1))
+                    self.reviewRepCount.setText(str(k + 3))
+                    refreshReviewCheck(self.nameReviewerRep1, self.textReviewRep1, self.nameReviewerRep2,
+                                       self.textReviewRep2,
+                                       self.nameReviewerRep3, self.textReviewRep3, self.frame_20, self.frame_23,
+                                       self.frame_25,
+                                       self.reportName1, self.reportName2, self.reportName3,
+                                       self.idReviewRep1, self.idReviewRep2, self.idReviewRep3,
+                                       self.currentPageRevRep.text(),
+                                       self.reviewRepCount)
+
+    def nextPageReports(self):
+            k=int(self.reviewRepCount.text())
+            if k>3:
+                self.currentPageRevRep.setText(str(int(self.currentPageRevRep.text()) + 1))
+                self.reviewRepCount.setText(str(k-3))
+                refreshReviewCheck(self.nameReviewerRep1, self.textReviewRep1, self.nameReviewerRep2, self.textReviewRep2,
+                                   self.nameReviewerRep3, self.textReviewRep3, self.frame_20, self.frame_23, self.frame_25,
+                                   self.reportName1, self.reportName2, self.reportName3,
+                                   self.idReviewRep1, self.idReviewRep2, self.idReviewRep3, self.currentPageRevRep.text(),
+                                   self.reviewRepCount)
+
+    def deleteReviewAfterValid(self, label_name):
+            buttons = self.moderatorFrame.findChildren(QLabel)
+            all_labels=[]
+            for button in buttons:
+                    if button.objectName()[:11] == 'idReviewRep':
+                            all_labels.append(button)
+            deleteRep(label_name, all_labels)
+            allReports = getAllReportReviews()
+            self.reviewRepCount.setText(str(len(allReports)))
+            refreshReviewCheck(self.nameReviewerRep1, self.textReviewRep1, self.nameReviewerRep2, self.textReviewRep2,
+                               self.nameReviewerRep3, self.textReviewRep3, self.frame_20, self.frame_23, self.frame_25,
+                               self.reportName1, self.reportName2, self.reportName3,
+                               self.idReviewRep1, self.idReviewRep2, self.idReviewRep3, self.currentPageRevRep.text(),self.reviewRepCount)
 
 
-
+    def deleteReviewIfOkAfterValid(self, label_name):
+            buttons = self.moderatorFrame.findChildren(QLabel)
+            all_labels=[]
+            for button in buttons:
+                    if button.objectName()[:11] == 'idReviewRep':
+                            all_labels.append(button)
+            deleteOkRep(label_name, all_labels)
+            allReports = getAllReportReviews()
+            self.reviewRepCount.setText(str(len(allReports)))
+            refreshReviewCheck(self.nameReviewerRep1, self.textReviewRep1, self.nameReviewerRep2, self.textReviewRep2,
+                               self.nameReviewerRep3, self.textReviewRep3, self.frame_20, self.frame_23, self.frame_25,
+                               self.reportName1, self.reportName2, self.reportName3,
+                               self.idReviewRep1, self.idReviewRep2, self.idReviewRep3, self.currentPageRevRep.text(),
+                               self.reviewRepCount)
 import res

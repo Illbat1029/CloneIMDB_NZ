@@ -1,6 +1,4 @@
 from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
-from PyQt5.QtGui import QIcon
 
 
 def slide_menu_fun(left_menu):

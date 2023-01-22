@@ -92,4 +92,21 @@ def getAllReviewsForFilm(idFilm):
         dataRet.append(uReview)
     print("Get all review dla filma = ", datetime.now() - stime)
     return dataRet
+def getReviewDataByReviewId(idReview):
+    con = createConnection()
+    cur = con.cursor()
+    sqlGetAllReviewFilm = """     
+        SELECT fr.id_user, u.username, f.filmname, fr.review, fr.score, fr.id 
+        FROM films_review  fr  
+        JOIN films  f   
+        ON fr.id_films = f.id    
+        JOIN user u    
+        ON fr.id_user = u.id     
+        WHERE fr.id = %s"""
+    cur.execute(sqlGetAllReviewFilm, (idReview,))
+    buff = cur.fetchone()
+    uReview = userReview(buff[0], buff[1], buff[2], buff[3], buff[4], buff[5])
+    return (uReview)
+    
+
 

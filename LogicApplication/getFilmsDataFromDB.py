@@ -255,3 +255,4 @@ def getViewFilmDataWhereUserNotLogin():
         dataRet.append(film)
     print("Get view where user not login = ", datetime.now() - stime)
     return dataRet
+

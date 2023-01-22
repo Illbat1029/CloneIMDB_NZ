@@ -1,16 +1,10 @@
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem , QLabel
-from PyQt5.QtGui import QIcon
-from PyQt5 import QtGui
-import re
-import StyleSheetForButtons
+
 from LogicApplication.userDataValidation import *
-from LogicApplication.DB_connector import *
-from LogicApplication.getFilmsDataFromDB import *
+
 from LogicApplication.getDataFromIMDB import *
 from LogicApplication.getAndSetDataFilmStatusUser import *
-from collections import OrderedDict
-from datetime import datetime, date
+
+
 def addFavorite(name,fav,userid,lat,his):
     userid1 = re.sub("[^0-9]", "", userid.text())
 
@@ -33,7 +27,6 @@ def addFavorite(name,fav,userid,lat,his):
     addUserFavoriteFilm(userid1, a, favorite, watched, watcghedLater)
 
 def addLater(name,lat,userid,fav,his):
-    stime = datetime.now()
     userid1 = re.sub("[^0-9]", "", userid.text())
 
     without_brackets = re.sub(r"[\(\)]", "", str(name.text()))
