@@ -99,8 +99,9 @@ if __name__ == "__main__":
                 Log_page.push_up_login_notifikation.setFixedSize(276, 10)
         except:
             Log_page.push_up_login_notifikation.setFixedSize(276,10)
-        Main_page.stackedWidget.setCurrentIndex(6)
-        Main_page.settings_button.setStyleSheet(StyleSheetForButtons.settings_pressed)
+        Main_page.home_button.click()
+        Main_page.stackedWidget.setCurrentIndex(0)
+
     def fogort():
         Fogort_page.wrong_email.setFixedSize(0, 0)
         Fogort_page.wrong_code.setFixedSize(0, 0)
@@ -156,6 +157,7 @@ if __name__ == "__main__":
         else:
             change_passwrod.wrong_password.setFixedSize(276, 10)
             change_passwrod.wrong_password.setText('Incorrect')
+
     Main_page.change_username_bttn_sett.clicked.connect(open_window_to_change_username)
     Main_page.change_email_bttn_sett.clicked.connect(open_window_to_change_email)
     Main_page.change_pass_bttn_sett.clicked.connect(open_window_to_change_password)
@@ -163,6 +165,7 @@ if __name__ == "__main__":
     Log_page.bttn_login.clicked.connect(login)
     change_username.Confirm_Name.clicked.connect(confirm_username)
     change_email.Confirm_email.clicked.connect(confirm_email)
+
     change_passwrod.Confirm_password.clicked.connect(confirm_pass)
     end_time = time.time()
     print('время открытия приложения:' + str(end_time - start_time))

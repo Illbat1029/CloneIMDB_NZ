@@ -77,6 +77,7 @@ class change_passwrod(object):
         self.verticalLayout_5.addItem(spacerItem)
         self.New_password = QtWidgets.QLineEdit(self.widget)
         self.New_password.setObjectName("New_password")
+        self.New_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.verticalLayout_5.addWidget(self.New_password)
         self.wrong_password = QtWidgets.QLabel(self.widget)
         self.wrong_password.setEnabled(True)
