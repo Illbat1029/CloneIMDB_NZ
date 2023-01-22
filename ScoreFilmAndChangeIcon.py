@@ -1,24 +1,26 @@
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
+
 from PyQt5.QtGui import QIcon
 from LogicApplication.getAndSetScoreFilms import *
 from LogicApplication.userDataValidation import *
-from LogicApplication.DB_connector import *
-from LogicApplication.getFilmsDataFromDB import *
+import time
 from LogicApplication.getDataFromIMDB import *
 def setScoreFromDataBase(userid,score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name,idfilm):
 
     userid1 = re.sub("[^0-9]", "", userid.text())
-    without_brackets = re.sub(r"[\(\)]", "", str(name.text()))
+
+
+    start_time = time.time()
 
     a = selectScoreFromDB(userid1, idfilm.text())
+    end_time = time.time()
+    print("конкретный вызов запроса оценокf: "+ str(end_time-start_time))
     a = str(a)
     a = a.replace('(', '')
     a = a.replace(')', '')
     a = a.replace(',', '')
     a = a.replace('[', '')
     a = a.replace(']', '')
-    print(a)
+
 
     if a=='1':
         score_1_button.setIcon(QIcon(('icons8-star-filled-48')))

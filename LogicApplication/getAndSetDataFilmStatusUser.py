@@ -1,6 +1,5 @@
 from LogicApplication.DB_connector import *
 import mysql.connector
-from datetime import datetime, timedelta
 
 def getUsersFavoriteFilms(id_user):
     con = createConnection()
@@ -16,7 +15,6 @@ def getUsersFavoriteFilms(id_user):
             output.append(exe[0][j][0])
     return output
 def getUsersWatchedFilms(id_user):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlGetUsersWatched = """   
@@ -30,7 +28,6 @@ def getUsersWatchedFilms(id_user):
             output.append(exe[0][j][0])
     return output
 def getUsersWatchLaterFilms(id_user):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlGetUsersWatch_later = """
@@ -82,7 +79,6 @@ def deleteFilmFromWatchLaterFilms(id_user, id_film, con = createConnection()):
             DELETE FROM watchlater_films WHERE id_user = %s AND id_films = %s"""
     cur.execute(sqlRemoveFromWatchLaterFilms, (id_user, id_film))
 def addUserFavoriteFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmList, userWatchLaterFilmList):
-    stime = datetime.now()
     con = createConnection()
     if id_film in userFavoriteFilmList:
         #ОБЕСЦВЕТИТЬ КНОПКУ FAVORITE
@@ -99,9 +95,7 @@ def addUserFavoriteFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmL
         # ЗАКРАСИТЬ КНОПКУ FAVORITE
         insertIntoFavoriteFilms(id_user, id_film, con)
     con.commit()
-    print("Add user favorite = ", datetime.now() - stime)
 def addUserWatchedFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmList, userWatchLaterFilmList):
-    stime = datetime.now()
     con = createConnection()
     if id_film in userFavoriteFilmList:
         #ОБЕСЦВЕТИТЬ КНОПКУ FAVORITE/ЗАКРАСИТЬ КНОПКУ WATCHED
@@ -118,9 +112,7 @@ def addUserWatchedFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmLi
         # ЗАКРАСИТЬ КНОПКУ WATCHED
         insertIntoWatchedFilms(id_user, id_film, con)
     con.commit()
-    print("Add user watched = ", datetime.now() - stime)
 def addUserWatchLaterFilm(id_user, id_film, userFavoriteFilmList, userWatchedFilmList, userWatchLaterFilmList):
-    stime = datetime.now()
     con = createConnection()
     if id_film in userFavoriteFilmList:
         deleteFilmFromFavoriteFilms(id_user, id_film, con)
@@ -136,4 +128,3 @@ def addUserWatchLaterFilm(id_user, id_film, userFavoriteFilmList, userWatchedFil
         # ЗАКРАСИТЬ КНОПКУ WatchLater
         insertIntoWatchLaterFilms(id_user, id_film, con)
     con.commit()
-    print("Add user watch later = ", datetime.now() - stime)

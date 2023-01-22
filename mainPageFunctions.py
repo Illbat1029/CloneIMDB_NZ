@@ -1,12 +1,7 @@
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt
-from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem
-from PyQt5.QtGui import QIcon
 
-from LogicApplication.getAndSetScoreFilms import *
+
 from LogicApplication.userDataValidation import *
-from LogicApplication.DB_connector import *
-from LogicApplication.getFilmsDataFromDB import *
-from LogicApplication.getDataFromIMDB import *
+
 from LogicApplication.getAndSetReviews import *
 from main_page import *
 from LogicApplication.reviewLogic import *
@@ -251,8 +246,87 @@ def addFilmToDB(lineEdit):
         lineEdit.setText("")
 
 def deleteFilmFromDBUI(lineEdit):
-    deleteFilmFromDB(lineEdit)
-    #lineEdit.setText("")
+    deleteFilmFromDB(lineEdit.text())
+    lineEdit.setText("")
+
+
+def refreshReviewCheck(userName1,reviewText1,userName2,reviewText2, userName3,
+              reviewText3, frame1, frame2,frame3,
+              reportType1, reportType2, reportType3,idReview1, idReview2, idReview3, currentPage, reviewRepCount):
+    allReports=getAllReportReviews()
+    if reviewRepCount.text()=="":
+        reviewRepCount.setText(str(len(allReports)))
+    k=int(reviewRepCount.text())
+    cp=(int(currentPage)-1)*3
+
+    if(k==1):
+        userName1.setText(allReports[cp].username)
+        reviewText1.setText(allReports[cp].review)
+        reportType1.setText(str(allReports[cp].type))
+        idReview1.setText(str(allReports[cp].review_id))
+
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
+        frame1.setGeometry(QtCore.QRect(10, 50, 927, 160))
+        frame2.setMaximumSize(QtCore.QSize(0, 0))
+        frame2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        frame3.setMaximumSize(QtCore.QSize(0, 0))
+        frame3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+
+    elif(k==2):
+        userName1.setText(allReports[cp].username)
+        reviewText1.setText(allReports[cp].review)
+        reportType1.setText(str(allReports[cp].type))
+        idReview1.setText(str(allReports[cp].review_id))
+
+        userName2.setText(allReports[cp+1].username)
+        reviewText2.setText(allReports[cp+1].review)
+        reportType2.setText(str(allReports[cp+1].type))
+        idReview2.setText(str(allReports[cp+1].review_id))
+
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
+        frame1.setGeometry(QtCore.QRect(10, 50, 927, 160))
+        frame2.setMaximumSize(QtCore.QSize(970, 400))
+        frame2.setGeometry(QtCore.QRect(10, 200, 927, 160))
+        frame3.setMaximumSize(QtCore.QSize(0, 0))
+        frame3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+
+
+    elif(k>=3):
+        userName1.setText(allReports[cp].username)
+        reviewText1.setText(allReports[cp].review)
+        reportType1.setText(str(allReports[cp].type))
+        idReview1.setText(str(allReports[cp].review_id))
+
+        userName2.setText(allReports[cp+1].username)
+        reviewText2.setText(allReports[cp+1].review)
+        reportType2.setText(str(allReports[cp+1].type))
+        idReview2.setText(str(allReports[cp+1].review_id))
+
+        userName3.setText(allReports[cp+2].username)
+        reviewText3.setText(allReports[cp+2].review)
+        reportType3.setText(str(allReports[cp+2].type))
+        idReview3.setText(str(allReports[cp+2].review_id))
+
+        frame1.setMaximumSize(QtCore.QSize(970, 400))
+        frame1.setGeometry(QtCore.QRect(10, 50, 927, 160))
+        frame2.setMaximumSize(QtCore.QSize(970, 400))
+        frame2.setGeometry(QtCore.QRect(10, 200, 927, 160))
+        frame3.setMaximumSize(QtCore.QSize(970, 400))
+        frame3.setGeometry(QtCore.QRect(10, 350, 927, 160))
 
 
 
+    elif(k==0):
+        frame1.setMaximumSize(QtCore.QSize(0, 0))
+        frame2.setMaximumSize(QtCore.QSize(0, 0))
+        frame3.setMaximumSize(QtCore.QSize(0, 0))
+
+
+
+def deleteRep(buttonName, idReviews):
+    c=int(buttonName[-1])
+    deleteReviewAfterValidation(int(idReviews[c-1].text()))
+
+def deleteOkRep(buttonName, idReviews):
+    c=int(buttonName[-1])
+    deleteReviewFromAdminTableWhereReviewGood(int(idReviews[c-1].text()))
