@@ -66,6 +66,7 @@ if __name__ == "__main__":
                 Main_page.id_label.setText('ID: '+  str(dataUser[0]))
                 if (Main_page.username_lable.text())[:14] == 'adminCloneImdb':
                      Main_page.adminPageBttn.setMaximumSize(25,25)
+                     Main_page.moderatorPageBttn.setMaximumSize(25, 25)
                 elif (Main_page.username_lable.text())[:18] == 'moderatorCloneImdb':
                     Main_page.moderatorPageBttn.setMaximumSize(25,25)
 
