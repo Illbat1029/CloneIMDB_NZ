@@ -209,7 +209,7 @@ def sendRep(buttonName, allComboBoxes, idReviews, idUser, all_buttons):
             all_buttons[int(c) - 1].setGeometry(QtCore.QRect(855, 80, 55, 0))
             reviewId=idReviews[int(c)-1]
             createReportReview(int(reviewId),int(userid1) ,(allComboBoxes[int(c) - 1].currentIndex()+1))
-            createReportReview(int(reviewId),int(userid1) ,allComboBoxes[int(c) - 1].currentIndex())
+
 def changePPage(reviewCount, currPage, allComboBox, allButtons):
     k=int(reviewCount.text())
     for comboBox in allComboBox:
@@ -266,7 +266,7 @@ def refreshReviewCheck(userName1,reviewText1,userName2,reviewText2, userName3,
         idReview1.setText(str(allReports[cp].review_id))
 
         frame1.setMaximumSize(QtCore.QSize(970, 400))
-        frame1.setGeometry(QtCore.QRect(10, 50, 927, 160))
+        frame1.setGeometry(QtCore.QRect(10, 50, 927, 160)   )
         frame2.setMaximumSize(QtCore.QSize(0, 0))
         frame2.setGeometry(QtCore.QRect(0, 0, 0, 0))
         frame3.setMaximumSize(QtCore.QSize(0, 0))

@@ -29,7 +29,7 @@ def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedW
 
             aad = getAllDataFilmByCountry(country.text())
         elif film.text()!='':
-            aad=getAllDataFilmByCountry('Japan')
+            aad=getFilmByFilmname(film.text())
         else:
             genersList = []
             checkbox = filter.findChildren(QCheckBox)

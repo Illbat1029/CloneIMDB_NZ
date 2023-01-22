@@ -145,7 +145,7 @@ class Forgot_page(object):
         self.wrong_password.setObjectName("wrong_password")
         self.verticalLayout_5.addWidget(self.wrong_password)
         self.Confirm_password_forgot_page = QtWidgets.QLineEdit(self.widget)
-        self.Confirm_password_forgot_page.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.Confirm_password_forgot_page.setEchoMode(QtWidgets.QLineEdit.Password)
         self.Confirm_password_forgot_page.setObjectName("Confirm_password_forgot_page")
         self.verticalLayout_5.addWidget(self.Confirm_password_forgot_page)
         self.wrongPassword2 = QtWidgets.QLabel(self.widget)
@@ -181,4 +181,4 @@ class Forgot_page(object):
     def sentCode(self):
         sent(self.Email_forgot_password,self.wrong_email)
     def NewPass(self):
-        newpassword(self.Code_forgot_password,self.New_password,self.Confirm_password_forgot_page,self.Email_forgot_password,self.wrong_email,self.wrong_password,self.wrong_code,self.wrongPassword2 )
+        newpassword(self.Code_forgot_password,self.New_password,self.Confirm_password_forgot_page,self.Email_forgot_password,self.wrong_email,self.wrong_password,self.wrong_code,self.wrongPassword2)

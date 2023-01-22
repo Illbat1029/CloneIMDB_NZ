@@ -489,7 +489,8 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
                     filmsID = getAllDataFilmByLanguage(language.text())
                 elif country.text() != '':
                     filmsID = getAllDataFilmByCountry(country.text())
-
+                elif name.text()!='':
+                    filmsID=getFilmByFilmname(name.text())
                 else:
                     genersList = []
                     checkbox = frameForFilter.findChildren(QCheckBox)
