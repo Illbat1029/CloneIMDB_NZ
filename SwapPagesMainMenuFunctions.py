@@ -577,7 +577,7 @@ def adminPage(stackedWidget,home_button,favorite_button,histor_button,settings_b
 def moderPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button):
     stackedWidget.setCurrentIndex(9)
     home_button.setStyleSheet(StyleSheetForButtons.home_default)
-    favorite_button.setStyleSheet(StyleSheetForButtons.favorite_pressed)
+    favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
     histor_button.setStyleSheet(StyleSheetForButtons.history_default)
     settings_button.setStyleSheet(StyleSheetForButtons.settings_default)
     watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)

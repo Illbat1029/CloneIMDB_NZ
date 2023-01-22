@@ -8,7 +8,6 @@ import smtplib
 import random
 from datetime import datetime, date
 
-
 def checkUsernameExist(username):
     con = createConnection()
     cur = con.cursor()
@@ -18,9 +17,12 @@ def checkUsernameExist(username):
     existUsername = cur.fetchone()
     if existUsername != None:
         return True
+    return False
+def chekUsername(username):
     if len(username) > 4 and len(username) <= 18:
-        return False
-    return True
+        return True
+    return False
+
 def validatePassword(password):
     l,u,p,d = 0,0,0,0
     capitAlalphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -70,7 +72,12 @@ def checkEmailExist(Email):
         return False
     except Error as e:
         print("chekEmailExist ", e)
-
+def chekEmail(email):
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    if re.match(pattern, email):
+        return True
+    print("Bad email")
+    return False
 def checkEmailForgoutPassword(email):
     con = createConnection()
     cur = con.cursor()
@@ -85,7 +92,7 @@ def RegistrationUser(username, email, password, repeatPassword):
     con = createConnection()
     cur = con.cursor()
     createAcconutSQL = """INSERT INTO user (username, email, password) VALUES (%s, %s, %s)"""
-    if checkUsernameExist(username) == False and checkEmailExist(email) == False and validatePassword(password) and password == repeatPassword:
+    if checkUsernameExist(username) == False and chekUsername(username)==True and checkEmailExist(email) == False and chekEmail(email)==True and validatePassword(password) and password == repeatPassword:
         cur.execute(createAcconutSQL, [(username), (email), (bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))])
         con.commit()
         print ("Account has been created!")
@@ -160,62 +167,9 @@ def updateLastVisitDataTime (id):
     cur.execute(sqlUpdateData, [(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), (id)])
     con.commit()
     print ("Update last visit data successful!")
-def chekUsername(username):
-    if len(username) > 4 and len(username) <= 18:
-        return True
-    return False
-def chekEmail(email):
-    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-    if re.match(pattern, email):
-        return True
-    print("Bad email")
-    return False
-def updatateUserUsername(id, newUsername):
-    try:
-        stime = datetime.now()
-        con = createConnection()
-        cur = con.cursor()
-        sqlUpdateUsername = """
-        UPDATE user SET username=%s WHERE id = %s"""
-        if(chekUsername(newUsername)==True and checkUsernameExist(newUsername)==False):
-            cur.execute(sqlUpdateUsername, (newUsername, id))
-            con.commit()
-            print("Change username = ", datetime.now() - stime)
-            return True
-    except Error as e:
-        print("Except updateUserUsername ", e)
-        return False
-    return False
-def updatePasswordUser(id, newPass):
-    try:
-        stime = datetime.now()
-        con = createConnection()
-        cur = con.cursor()
-        sqlUpdatePass="""
-        UPDATE user SET password = %s WHERE id=%s"""
-        if(validatePassword(newPass)):
-            cur.execute(sqlUpdatePass, (bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt()), id))
-            con.commit()
-            return True
-    except Error as e:
-        print("Except updatePasswordUser ", e)
-        return False
-    return False
-def updateEmailUser(id, newEmail):
-    try:
-        stime = datetime.now()
-        con = createConnection()
-        cur = con.cursor()
-        sqlUpdateEmail="""
-        UPDATE user SET email =%s WHERE id=%s"""
-        if(chekEmail(newEmail)==True and checkEmailExist(newEmail)==False):
-            cur.execute(sqlUpdateEmail, (newEmail,id))
-            con.commit()
-            return True
-    except Error as e:
-        print("Except updateEmailUser ", e)
-        return False
-    return False
+
+
+
 
 
 

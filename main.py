@@ -71,6 +71,14 @@ if __name__ == "__main__":
         #getAllDataFilmByLanguage("Spanish")
         #getAllDataFilmByCountry("Israel")
         #getAllDataFilmByScoreBetween(1,2) //POKA NETU NI 1 FILMA SO SCORE
+        #a= getFilmByFilmname("The Shawshank Redemption")
+        #for i in range(len(a)):
+            #print(a[i].id ,a[i].name, a[i].genres)
+        #updateEmailUser(6, "maks@gmaillllll.lll")
+        #updatePasswordUser(22, "Ha!2.324345m,@")
+        #updatateUserUsername(22, "Kalycz")
+        #a = getViewFilmDataWhereUserNotLogin()
+
         try:
             if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
                 dataUser = getDataUser([Log_page.user_or_email.text()])
@@ -81,6 +89,7 @@ if __name__ == "__main__":
                 Main_page.id_label.setText('ID: '+  str(dataUser[0]))
                 if (Main_page.username_lable.text())[:14] == 'adminCloneImdb':
                      Main_page.adminPageBttn.setMaximumSize(25,25)
+                     Main_page.moderatorPageBttn.setMaximumSize(25, 25)
                 elif (Main_page.username_lable.text())[:18] == 'moderatorCloneImdb':
                     Main_page.moderatorPageBttn.setMaximumSize(25,25)
 
