@@ -455,7 +455,7 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
     except:
         pass
 
-def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome,frameForFilter,actor,language,country,run,date_from,date_to):
+def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome,frameForFilter,actor,language,country,run,date_from,date_to,name):
 
         userid1 = re.sub("[^0-9]", "", userid.text())
         id =re.sub("[^0-9]", "", button_name)
@@ -465,19 +465,24 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
 
         filmId=0
         start_time=time.time()
-
+        favorite.setStyleSheet('background-color: rgb(42, 54, 63)')
+        lat.setStyleSheet('background-color: rgb(42, 54, 63)')
+        his.setStyleSheet('background-color: rgb(42, 54, 63)')
         if frame.objectName() =='frame_where_all_films_favorite':
             filmsID = getUsersFavoriteFilms(userid1)
 
             filmId = filmsID[int(id)-1+page*18]
             b = cache(filmId)
+            favorite.setStyleSheet('background-color: #696d6d')
         elif frame.objectName() =='frame_where_all_films_watch_later':
             filmsID = getUsersWatchLaterFilms(userid1)
+            lat.setStyleSheet('background-color: #696d6d')
             filmId = filmsID[int(id)-1+page*18]
             b = cache(filmId)
         elif frame.objectName() =='frame_where_all_films_history_page':
             filmsID = getUsersWatchedFilms(userid1)
             filmId = filmsID[int(id)-1+page*18]
+            his.setStyleSheet('background-color: #696d6d')
             b = cache(filmId)
         else:
             try:
@@ -552,16 +557,8 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
         Overview_text.setText(str((b.description)))
         date_country_genres_runtime.setText(str((b.country)).replace(';','')+"("+str(b.lang).replace(';','')+")"+" | "+str(b.genres).replace(';',', ')+" | "+str(b.runtime)+" min ")
         stackedWidget.setCurrentIndex(2)
-        favorite.setStyleSheet('background-color: rgb(42, 54, 63)')
-        lat.setStyleSheet('background-color: rgb(42, 54, 63)')
-        his.setStyleSheet('background-color: rgb(42, 54, 63)')
-        if filmId in filmsID:
-            favorite.setStyleSheet('background-color: #696d6d')
 
-        elif filmId in filmsID:
-            lat.setStyleSheet('background-color: #696d6d')
-        elif filmId in filmsID:
-            his.setStyleSheet('background-color: #696d6d')
+
 
 def adminPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,admin_button, moder_button):
     stackedWidget.setCurrentIndex(8)
