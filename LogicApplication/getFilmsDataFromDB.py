@@ -220,21 +220,4 @@ def getAllDataFilmByScoreBetween(scoreStart = 0, scoreEnd = 5):
     data = cur.fetchall()
     data = refractoringDataPeopleFilm(data)
     print("Get film by score between = ", datetime.now() - stime)
-    return data
-def getFilmByFilmname(filmname):
-    try:
-        stime = datetime.now()
-        con = createConnection()
-        cur = con.cursor()
-        sqlGetAllDataFilm = """
-            SELECT films.id, films.filmname, films.country, films.gen, films.language, films.releasedata, films.score, films.picture 
-            FROM films
-            WHERE films.filmname=%s
-            """
-        cur.execute(sqlGetAllDataFilm, (filmname,))
-        data = cur.fetchall()
-        data = refractoringDataPeopleFilm(data)
-        print("Get film by name = ", datetime.now() - stime)
-        return data
-    except Error as e:
-        print("Excpet getFilmByFilmname", e)
+

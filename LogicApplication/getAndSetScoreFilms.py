@@ -1,9 +1,7 @@
 from LogicApplication.DB_connector import *
 import mysql.connector
-from datetime import datetime, timedelta
 
 def addVotesAndScoreUser(idUser, idFilm, score):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlAddVotesAndScore = """
@@ -11,9 +9,7 @@ def addVotesAndScoreUser(idUser, idFilm, score):
     data = (idUser, idFilm, score)
     cur.execute(sqlAddVotesAndScore, data)
     con.commit()
-    print("Add vote for film = ", datetime.now() - stime)
 def deleteScoreUser (idUser, idFilm):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlDeleteScoreUser = """
@@ -21,9 +17,7 @@ def deleteScoreUser (idUser, idFilm):
     data = (idUser, idFilm)
     cur.execute(sqlDeleteScoreUser, data)
     con.commit()
-    print("Delete score user = ", datetime.now() - stime)
 def changeScoreFilmUser(idUser, idFilm, newScore):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlChangeScoreFilm = """
@@ -31,9 +25,7 @@ def changeScoreFilmUser(idUser, idFilm, newScore):
     data = (newScore, idUser, idFilm)
     cur.execute(sqlChangeScoreFilm, data)
     con.commit()
-    print("Change score user = ", datetime.now() - stime)
 def selectScoreFromDB(idUser, idFilm):
-    stime = datetime.now()
     con = createConnection()
     cur = con.cursor()
     sqlChangeScoreFilm = """
@@ -41,5 +33,4 @@ def selectScoreFromDB(idUser, idFilm):
     data = (idUser, idFilm)
     cur.execute(sqlChangeScoreFilm, data)
     x=cur.fetchall()
-    print("Select score dla filma = ", datetime.now() - stime)
     return x
