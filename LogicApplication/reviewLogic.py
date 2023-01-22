@@ -76,9 +76,6 @@ def createReportReview(idReview, idUser, type_id):
     else:
         cur.execute(sqlSentRewiewReport, (idReview, idUser, type_id))
         con.commit()
-
-
-
 def getAllReportTypes():
     con = createConnection()
     cur = con.cursor()
