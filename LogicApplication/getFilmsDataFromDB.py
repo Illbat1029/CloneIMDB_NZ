@@ -243,7 +243,7 @@ def getViewFilmDataWhereUserNotLogin():
     con = createConnection()
     cur = con.cursor()
     sqlGetView = """
-        SELECT * FROM Unlogin_Film_Top_View
+        SELECT * FROM Top_10_Films
         """
     cur.execute(sqlGetView)
     allFilmData = cur.fetchall()
