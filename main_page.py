@@ -4631,7 +4631,7 @@ class Main_page(object):
         self.reviewTextEdit.setText("")
         aboutFilmFromNotHome(self.stackedWidget, button_name, self.Name_of_film_and_year_2, self.label_9,
                             self.date_country_genres_runtime_2, self.Film_foto_about_2, self.label_10,
-                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_searchin,self.current_page_history_2,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to)
+                            self.Score_of_film_2, self.current_page_home,self.add_in_favorite_bttn_2,self.id_label,self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2,self.frame_where_all_films_searchin,self.current_page_history_2,self.label_50,self.frame_4,self.searchingActosLineEdit,self.searchingLanguageLineEdit,self.searchingCountriesLineEdit,self.searchingRuntimeLineEdit,self.date_from,self.date_to,self.search)
         setScoreFromDataBase(self.id_label, self.score_1_button, self.score_2_button, self.score_3_button,self.score_4_button, self.score_5_button ,self.Name_of_film_and_year_2,self.label_50)
         setCount(self.label_50.text(), self.reviewCount)
 

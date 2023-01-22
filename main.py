@@ -15,6 +15,9 @@ from Login_page import *
 from main_page import *
 from forgot_GUI import *
 import time
+from change_username import *
+from change_email import *
+from change_passwrod import *
 from LogicApplication.userDataValidation import *
 
 from LogicApplication.getFilmsDataFromDB import *
@@ -35,6 +38,18 @@ if __name__ == "__main__":
     Main_page_form = QtWidgets.QWidget()
     Main_page = Main_page()
     Main_page.setupUi(Main_page_form)
+
+    change_username_form = QtWidgets.QWidget()
+    change_username = change_username()
+    change_username.setupUi(change_username_form)
+
+    change_email_form = QtWidgets.QWidget()
+    change_email = change_email()
+    change_email.setupUi(change_email_form)
+
+    change_passwrod_form = QtWidgets.QWidget()
+    change_passwrod = change_passwrod()
+    change_passwrod.setupUi(change_passwrod_form)
 
     Fogort_page_from=QtWidgets.QWidget()
     Fogort_page=Forgot_page()
@@ -86,12 +101,59 @@ if __name__ == "__main__":
         Fogort_page.Code_forgot_password.setText('')
         Fogort_page.Confirm_password_forgot_page.setText('')
         Fogort_page_from.show()
+    def open_window_to_change_username():
+        change_username_form.show()
 
 
+    def open_window_to_change_email():
+        change_email_form.show()
+    def open_window_to_change_password():
+        change_passwrod_form.show()
+    def confirm_username():
+        id = re.sub("[^0-9]", "", Main_page.id_label.text())
+        newname=change_username.New_name.text()
+        change_username.username_exist.setText('')
+        change_username.username_exist.setFixedSize(0, 0)
+        if updatateUserUsername(id, newname):
+            print('good')
+            Main_page.username_lable.setText(newname)
+            change_username_form.close()
+        else:
+            change_username.username_exist.setFixedSize(276, 10)
+            change_username.username_exist.setText('Already exists')
+    def confirm_email():
+        id = re.sub("[^0-9]", "", Main_page.id_label.text())
+        newemail=change_email.New_email.text()
+        change_email.wrong_email.setFixedSize(0, 0)
+        change_email.wrong_email.setText('')
+        if updateEmailUser(id, newemail):
+            print('good')
 
+            change_email_form.close()
+        else:
+            change_email.wrong_email.setFixedSize(276, 10)
+            change_email.wrong_email.setText('Already exists')
+
+    def confirm_pass():
+        id = re.sub("[^0-9]", "", Main_page.id_label.text())
+        newpass=change_passwrod.New_password.text()
+        change_passwrod.wrong_password.setFixedSize(0, 0)
+        change_passwrod.wrong_password.setText('')
+        if updatePasswordUser(id,newpass):
+            print('good')
+
+            change_passwrod_form.close()
+        else:
+            change_passwrod.wrong_password.setFixedSize(276, 10)
+            change_passwrod.wrong_password.setText('Incorrect')
+    Main_page.change_username_bttn_sett.clicked.connect(open_window_to_change_username)
+    Main_page.change_email_bttn_sett.clicked.connect(open_window_to_change_email)
+    Main_page.change_pass_bttn_sett.clicked.connect(open_window_to_change_password)
     Log_page.bttn_forgot.clicked.connect(fogort)
     Log_page.bttn_login.clicked.connect(login)
-
+    change_username.Confirm_Name.clicked.connect(confirm_username)
+    change_email.Confirm_email.clicked.connect(confirm_email)
+    change_passwrod.Confirm_password.clicked.connect(confirm_pass)
     end_time = time.time()
     print('время открытия приложения:' + str(end_time - start_time))
     sys.exit(app.exec_())

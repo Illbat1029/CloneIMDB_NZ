@@ -455,7 +455,7 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
     except:
         pass
 
-def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome,frameForFilter,actor,language,country,run,date_from,date_to):
+def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome,frameForFilter,actor,language,country,run,date_from,date_to,name):
 
         userid1 = re.sub("[^0-9]", "", userid.text())
         id =re.sub("[^0-9]", "", button_name)
@@ -489,7 +489,8 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
                     filmsID = getAllDataFilmByLanguage(language.text())
                 elif country.text() != '':
                     filmsID = getAllDataFilmByCountry(country.text())
-
+                elif name.text()!='':
+                    filmsID=getFilmByFilmname(name.text())
                 else:
                     genersList = []
                     checkbox = frameForFilter.findChildren(QCheckBox)

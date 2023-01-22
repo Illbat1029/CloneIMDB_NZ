@@ -56,19 +56,20 @@ def AuthenticateUser (login, password):
     if bcrypt.checkpw(password.encode('utf-8'), hashDataBase.encode('utf-8')):
         return True
     return False
-def checkEmailExist(email):
-    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-    con = createConnection()
-    cur = con.cursor()
-    existMailSQL = """
-    SELECT * FROM user WHERE "email" =%s"""
-    cur.execute(existMailSQL,[email])
-    existMail = cur.fetchone()
-    if existMail != None:
-        return True
-    if re.match(pattern,email):
+def checkEmailExist(Email):
+    try:
+        con = createConnection()
+        cur = con.cursor()
+        existMailSQL = """
+        SELECT * FROM user WHERE email =%s"""
+        cur.execute(existMailSQL,(Email ,))
+        existMail = cur.fetchone()
+        if existMail != None:
+            print("Email exist")
+            return True
         return False
-    return True
+    except Error as e:
+        print("chekEmailExist ", e)
 
 def checkEmailForgoutPassword(email):
     con = createConnection()
@@ -159,9 +160,62 @@ def updateLastVisitDataTime (id):
     cur.execute(sqlUpdateData, [(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), (id)])
     con.commit()
     print ("Update last visit data successful!")
-
-
-
+def chekUsername(username):
+    if len(username) > 4 and len(username) <= 18:
+        return True
+    return False
+def chekEmail(email):
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    if re.match(pattern, email):
+        return True
+    print("Bad email")
+    return False
+def updatateUserUsername(id, newUsername):
+    try:
+        stime = datetime.now()
+        con = createConnection()
+        cur = con.cursor()
+        sqlUpdateUsername = """
+        UPDATE user SET username=%s WHERE id = %s"""
+        if(chekUsername(newUsername)==True and checkUsernameExist(newUsername)==False):
+            cur.execute(sqlUpdateUsername, (newUsername, id))
+            con.commit()
+            print("Change username = ", datetime.now() - stime)
+            return True
+    except Error as e:
+        print("Except updateUserUsername ", e)
+        return False
+    return False
+def updatePasswordUser(id, newPass):
+    try:
+        stime = datetime.now()
+        con = createConnection()
+        cur = con.cursor()
+        sqlUpdatePass="""
+        UPDATE user SET password = %s WHERE id=%s"""
+        if(validatePassword(newPass)):
+            cur.execute(sqlUpdatePass, (bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt()), id))
+            con.commit()
+            return True
+    except Error as e:
+        print("Except updatePasswordUser ", e)
+        return False
+    return False
+def updateEmailUser(id, newEmail):
+    try:
+        stime = datetime.now()
+        con = createConnection()
+        cur = con.cursor()
+        sqlUpdateEmail="""
+        UPDATE user SET email =%s WHERE id=%s"""
+        if(chekEmail(newEmail)==True and checkEmailExist(newEmail)==False):
+            cur.execute(sqlUpdateEmail, (newEmail,id))
+            con.commit()
+            return True
+    except Error as e:
+        print("Except updateEmailUser ", e)
+        return False
+    return False
 
 
 
