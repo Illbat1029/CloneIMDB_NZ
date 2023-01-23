@@ -362,6 +362,7 @@ def next_page_search(current_page_search,all_button_name,next_button,actor,langu
                         next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
 
             except:
+                current_page_search.setText(str(stranica-1))
                 pass
 def back_page_search(current_page_search,all_button_name,next_button,actor,language,country,run,date_from,date_to,filter,film,nxt):
     if current_page_search.text() != '1':
