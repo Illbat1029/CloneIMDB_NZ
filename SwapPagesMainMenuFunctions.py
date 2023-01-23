@@ -7,12 +7,13 @@ from PyQt5 import QtGui
 from functools import lru_cache
 import StyleSheetForButtons
 from LogicApplication.userDataValidation import *
-
+import SearchFilmByGenresNameIDT
 from LogicApplication.getFilmsDataFromDB import *
 from LogicApplication.getDataFromIMDB import *
 from LogicApplication.getAndSetDataFilmStatusUser import *
 start_time=time.time()
 alldata=getListAllDataAllFilms()
+
 end_time=time.time()
 print(end_time-start_time)
 @lru_cache()
@@ -20,8 +21,10 @@ def cache(id):
 
     return getAllDataFilmByID(id)
 
-def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button,home_page,current_page):
+def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button,home_page,current_page,user):
     stackedWidget.setCurrentIndex(0)
+
+
     current_page.setText('1')
     home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -488,6 +491,7 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
             try:
                 if actor.text() != '':
                     filmsID = getListAllFilmsWithPeopleUser(actor.text())
+
                 elif int(date_from.text()) != 1800 and int(date_to.text()) != 1800:
                     filmsID = getAllDataFilmByReleaseDataBetween(str(date_from.text()), str(date_to.text()))
                 elif language.text() != '':
@@ -514,11 +518,18 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
                             else:
                                 genersList.append((checkbox[i].objectName()).replace('checkBox', ''))
 
-                filmsID= getListAllFilmWithGenresUser(genersList)
+                    filmsID= getListAllFilmWithGenresUser(genersList)
 
             except:
                 pass
+
             filmId = int(filmsID[int(id) - 1 + page * 18].id)
+            if filmId in getUsersFavoriteFilms(userid1):
+                favorite.setStyleSheet('background-color: #696d6d')
+            elif filmId in getUsersWatchedFilms(userid1):
+                his.setStyleSheet('background-color: #696d6d')
+            elif filmId in getUsersWatchLaterFilms(userid1):
+                lat.setStyleSheet('background-color: #696d6d')
             b = cache(filmId)
         end_time = time.time()
         print("сбор фльмов изходя из того где они находяться (любимое , история ,позже или поиск): " + str(end_time - start_time))
@@ -550,7 +561,7 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
         image.setScaledContents(True)
         image.setPixmap((pixmap))
         Name_of_film.setText(str(b.name)+' '+'('+str(b.release)+')')
-        without_brackets = re.sub(r"[\(\)]", "", str(Name_of_film.text()))
+
 
 
 

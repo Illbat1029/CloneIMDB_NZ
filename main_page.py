@@ -454,10 +454,7 @@ class Main_page(object):
 "\n"
 "\n"
 "\n"
-"QPushButton:hover\n"
-"{\n"
-"background-color:#9BA7A5;\n"
-"}\n"
+
 "")
         self.home_page.setObjectName("home_page")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.home_page)
@@ -2822,10 +2819,7 @@ class Main_page(object):
 "}\n"
 "\n"
 "\n"
-"QPushButton:hover\n"
-"{\n"
-"background-color:#9BA7A5;\n"
-"}\n"
+
 "")
         self.history_page.setObjectName("history_page")
         self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.history_page)
@@ -4890,7 +4884,7 @@ class Main_page(object):
     def home(self):
             self.search.setText('')
             homePage(self.stackedWidget, self.home_button, self.favorite_button, self.histor_button,
-                     self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.home_page,self.current_page_home)
+                     self.settings_button, self.watch_later_button, self.pushButton_6, self.adminPageBttn, self.moderatorPageBttn,self.home_page,self.current_page_home,self.label_50)
 
     def favorite(self):
             self.search.setText('')
