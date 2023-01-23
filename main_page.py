@@ -4915,7 +4915,7 @@ class Main_page(object):
             self.watch_later_button.setStyleSheet(StyleSheetForButtons.later_default)
             IsPressSearchButton(self.pushButton_6, self.stackedWidget, self.searchingActosLineEdit,
                                 self.searchingCountriesLineEdit, self.searchingLanguageLineEdit,
-                                self.searchingRuntimeLineEdit, self.search,self.filter_page)
+                                self.searchingRuntimeLineEdit, self.search,self.filter_page,self.date_to,self.date_from)
 
     def setAdminPage(self):
             adminPage(self.stackedWidget,self.home_button, self.favorite_button, self.histor_button,

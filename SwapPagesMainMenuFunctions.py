@@ -1,6 +1,6 @@
 import time
 
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt,QSize
+from PyQt5.QtCore import QPropertyAnimation, QEasingCurve, Qt, QSize, QDate
 from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem , QLabel , QCheckBox, QLineEdit,QDateEdit
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtGui
@@ -320,7 +320,7 @@ def collectInfoForAutoCompleter(film):
     completer.setCaseSensitivity(Qt.CaseInsensitive)
     film.setCompleter(completer)
 
-def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter):
+def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter,date_to,date_from):
 
     time_start1 = time.time()
     pushButton_6.setIcon(QIcon(('arrow-up')))
@@ -328,6 +328,9 @@ def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,fi
     country.setText('')
     language.setText('')
     film.setText('')
+    date_from.setDate(QDate(1800, 1, 1))
+    date_to.setDate(QDate(1800, 1, 1))
+
     checkbox = filter.findChildren(QCheckBox)
     for i in range(len(checkbox)):
         checkbox[i].setChecked(False)
@@ -375,7 +378,7 @@ def filter_off(pushButton_6,stackedWidget):
 
 
 
-def IsPressSearchButton(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter):
+def IsPressSearchButton(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter,date_to,date_from):
 
     pushButton_6.setCheckable(True)
     pushButton_6.toggle()
@@ -383,7 +386,7 @@ def IsPressSearchButton(pushButton_6,stackedWidget,actorSearch,country,language,
     if pushButton_6.isChecked():
         if stackedWidget.currentIndex() != 5 and stackedWidget.currentIndex() != 2:
 
-            filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter)
+            filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter,date_to,date_from)
 
         elif stackedWidget.currentIndex() == 2:
             pass
