@@ -29,7 +29,7 @@ def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedW
 
             aad = getAllDataFilmByCountry(country.text())
         elif film.text()!='':
-            aad=getAllDataFilmByCountry('Japan')
+            aad=getFilmByFilmname(film.text())
         else:
             genersList = []
             checkbox = filter.findChildren(QCheckBox)
@@ -79,7 +79,7 @@ def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedW
                 bttn.setEnabled(True)
         except:
 
-            for i in range(len(a)):
+            for i in range(len(aad)):
                 bttn=(dict2.get(int(i)+1))
                 label=labelDict.get(int(i)+1)
                 binary_data = base64.b64decode(aad[i].images)
@@ -97,6 +97,7 @@ def searchFilm(actors,language,country,runtime,date_from,date_to,filter,stackedW
                 label.setText('')
                 bttn.setIconSize(QSize(0, 0))
                 bttn.setEnabled(False)
+
 
     except:
         pass

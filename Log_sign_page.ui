@@ -92,31 +92,6 @@ color:white;
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="minimumSize">
-       <size>
-        <width>450</width>
-        <height>400</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>450</width>
-        <height>400</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="baza/res.qrc">:/icon/2560px-Tmdb.new.logo.svg.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="enabled">
        <bool>true</bool>
@@ -863,12 +838,1120 @@ color:white;
       </widget>
      </widget>
     </item>
+    <item row="0" column="1">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>576</width>
+         <height>2653</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="top10films1">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>291</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>311</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1">
+           <property name="geometry">
+            <rect>
+             <x>490</x>
+             <y>10</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>90</y>
+             <width>361</width>
+             <height>81</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_2{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_2">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_2">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>301</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_2">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_2">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_2">
+           <property name="geometry">
+            <rect>
+             <x>490</x>
+             <y>10</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_2">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>90</y>
+             <width>361</width>
+             <height>81</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_3{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_3">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_3">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>311</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_3">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>311</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_3">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>70</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_3">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_3">
+           <property name="geometry">
+            <rect>
+             <x>490</x>
+             <y>10</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_4">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_4{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_4">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_4">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>311</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_4">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>311</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_4">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_4">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>80</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_4">
+           <property name="geometry">
+            <rect>
+             <x>490</x>
+             <y>10</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_5">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_5{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_5">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_5">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>311</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_5">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_5">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_5">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>80</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_5">
+           <property name="geometry">
+            <rect>
+             <x>490</x>
+             <y>0</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_6">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_6{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_6">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_6">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>331</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_6">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>331</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_6">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_6">
+           <property name="geometry">
+            <rect>
+             <x>500</x>
+             <y>10</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_6">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>80</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_7">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_7{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_7">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_7">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_7">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_7">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_7">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>80</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_7">
+           <property name="geometry">
+            <rect>
+             <x>500</x>
+             <y>0</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_8">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_8{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_8">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_8">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_8">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_8">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_8">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>90</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_8">
+           <property name="geometry">
+            <rect>
+             <x>500</x>
+             <y>0</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_9">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_9{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_9">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_9">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>311</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_9">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_9">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_11">
+           <property name="geometry">
+            <rect>
+             <x>500</x>
+             <y>0</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_9">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>90</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="top10films1_10">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>250</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#top10films1_10{border: 1px solid grey; border-style: solid; background: transparent}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="fotoLogPage1_10">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>foto</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLogPage1_10">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>20</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="genresLogPage1_10">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>50</y>
+             <width>321</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>genres</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="actorsLogPage1_10">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>170</y>
+             <width>501</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>actors</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="descriptionLogPage1_10">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>80</y>
+             <width>361</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>description</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="scoreLogPage1_12">
+           <property name="geometry">
+            <rect>
+             <x>500</x>
+             <y>0</y>
+             <width>41</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
  <resources>
   <include location="baza/res.qrc"/>
-  <include location="../../Documents/baza/res.qrc"/>
+  <include location="baza/res.qrc"/>
  </resources>
  <connections/>
 </ui>
