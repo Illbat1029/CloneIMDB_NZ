@@ -4,15 +4,11 @@ import re
 
 from PyQt5.QtGui import QPixmap
 
-
-
 from LogicApplication.getFilmsDataFromDB import *
 
 
-
-top10Films=getViewFilmDataWhereUserNotLogin()
-
 def updateTop10Films(listOfFrames):
+    top10Films = getViewFilmDataWhereUserNotLogin()
     for i in range(len(listOfFrames)):
         if i<10:
             actors = ", ".join(top10Films[i].actors)
@@ -48,5 +44,3 @@ def updateTop10Films(listOfFrames):
             listOfFrames[i].setText(top10Films[i-40].name+" ("+str(top10Films[i-40].release) + ")")
         if i in range(50, 60):
             listOfFrames[i].setText(str(top10Films[i-50].score))
-
-
