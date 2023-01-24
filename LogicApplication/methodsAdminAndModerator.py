@@ -4,7 +4,7 @@ from LogicApplication.getDataFromIMDB import *
 from datetime import datetime, timedelta
 class ReportReview:
     def __init__(self, id, review, type, username):
-        self.reviw_id = id
+        self.review_id = id
         self.review = review
         self.type = type
         self.username = username

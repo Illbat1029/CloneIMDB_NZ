@@ -1,18 +1,19 @@
 import time
 
-from PyQt5.QtCore import  QPropertyAnimation, QEasingCurve, Qt,QSize
+from PyQt5.QtCore import QPropertyAnimation, QEasingCurve, Qt, QSize, QDate
 from PyQt5.QtWidgets import QPushButton, QSizePolicy, QMessageBox, QCompleter, QListWidgetItem , QLabel , QCheckBox, QLineEdit,QDateEdit
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtGui
 from functools import lru_cache
 import StyleSheetForButtons
 from LogicApplication.userDataValidation import *
-
+import SearchFilmByGenresNameIDT
 from LogicApplication.getFilmsDataFromDB import *
 from LogicApplication.getDataFromIMDB import *
 from LogicApplication.getAndSetDataFilmStatusUser import *
 start_time=time.time()
 alldata=getListAllDataAllFilms()
+
 end_time=time.time()
 print(end_time-start_time)
 @lru_cache()
@@ -20,8 +21,10 @@ def cache(id):
 
     return getAllDataFilmByID(id)
 
-def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button,home_page,current_page):
+def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button,home_page,current_page,user):
     stackedWidget.setCurrentIndex(0)
+
+
     current_page.setText('1')
     home_button.setStyleSheet(StyleSheetForButtons.home_pressed)
     favorite_button.setStyleSheet(StyleSheetForButtons.favorite_default)
@@ -317,7 +320,7 @@ def collectInfoForAutoCompleter(film):
     completer.setCaseSensitivity(Qt.CaseInsensitive)
     film.setCompleter(completer)
 
-def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter):
+def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter,date_to,date_from):
 
     time_start1 = time.time()
     pushButton_6.setIcon(QIcon(('arrow-up')))
@@ -325,6 +328,9 @@ def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,fi
     country.setText('')
     language.setText('')
     film.setText('')
+    date_from.setDate(QDate(1800, 1, 1))
+    date_to.setDate(QDate(1800, 1, 1))
+
     checkbox = filter.findChildren(QCheckBox)
     for i in range(len(checkbox)):
         checkbox[i].setChecked(False)
@@ -372,7 +378,7 @@ def filter_off(pushButton_6,stackedWidget):
 
 
 
-def IsPressSearchButton(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter):
+def IsPressSearchButton(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter,date_to,date_from):
 
     pushButton_6.setCheckable(True)
     pushButton_6.toggle()
@@ -380,7 +386,7 @@ def IsPressSearchButton(pushButton_6,stackedWidget,actorSearch,country,language,
     if pushButton_6.isChecked():
         if stackedWidget.currentIndex() != 5 and stackedWidget.currentIndex() != 2:
 
-            filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter)
+            filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,film,filter,date_to,date_from)
 
         elif stackedWidget.currentIndex() == 2:
             pass
@@ -455,7 +461,7 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
     except:
         pass
 
-def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome,frameForFilter,actor,language,country,run,date_from,date_to):
+def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,date_country_genres_runtime,image, actors,score, current_page_home,favorite,userid,lat,his,frame,current_page,idFilmFromHome,frameForFilter,actor,language,country,run,date_from,date_to,name):
 
         userid1 = re.sub("[^0-9]", "", userid.text())
         id =re.sub("[^0-9]", "", button_name)
@@ -465,31 +471,38 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
 
         filmId=0
         start_time=time.time()
-
+        favorite.setStyleSheet('background-color: rgb(42, 54, 63)')
+        lat.setStyleSheet('background-color: rgb(42, 54, 63)')
+        his.setStyleSheet('background-color: rgb(42, 54, 63)')
         if frame.objectName() =='frame_where_all_films_favorite':
             filmsID = getUsersFavoriteFilms(userid1)
 
             filmId = filmsID[int(id)-1+page*18]
             b = cache(filmId)
+            favorite.setStyleSheet('background-color: #696d6d')
         elif frame.objectName() =='frame_where_all_films_watch_later':
             filmsID = getUsersWatchLaterFilms(userid1)
+            lat.setStyleSheet('background-color: #696d6d')
             filmId = filmsID[int(id)-1+page*18]
             b = cache(filmId)
         elif frame.objectName() =='frame_where_all_films_history_page':
             filmsID = getUsersWatchedFilms(userid1)
             filmId = filmsID[int(id)-1+page*18]
+            his.setStyleSheet('background-color: #696d6d')
             b = cache(filmId)
         else:
             try:
                 if actor.text() != '':
                     filmsID = getListAllFilmsWithPeopleUser(actor.text())
+
                 elif int(date_from.text()) != 1800 and int(date_to.text()) != 1800:
                     filmsID = getAllDataFilmByReleaseDataBetween(str(date_from.text()), str(date_to.text()))
                 elif language.text() != '':
                     filmsID = getAllDataFilmByLanguage(language.text())
                 elif country.text() != '':
                     filmsID = getAllDataFilmByCountry(country.text())
-
+                elif name.text()!='':
+                    filmsID=getFilmByFilmname(name.text())
                 else:
                     genersList = []
                     checkbox = frameForFilter.findChildren(QCheckBox)
@@ -508,11 +521,18 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
                             else:
                                 genersList.append((checkbox[i].objectName()).replace('checkBox', ''))
 
-                filmsID= getListAllFilmWithGenresUser(genersList)
+                    filmsID= getListAllFilmWithGenresUser(genersList)
 
             except:
                 pass
+
             filmId = int(filmsID[int(id) - 1 + page * 18].id)
+            if filmId in getUsersFavoriteFilms(userid1):
+                favorite.setStyleSheet('background-color: #696d6d')
+            elif filmId in getUsersWatchedFilms(userid1):
+                his.setStyleSheet('background-color: #696d6d')
+            elif filmId in getUsersWatchLaterFilms(userid1):
+                lat.setStyleSheet('background-color: #696d6d')
             b = cache(filmId)
         end_time = time.time()
         print("сбор фльмов изходя из того где они находяться (любимое , история ,позже или поиск): " + str(end_time - start_time))
@@ -544,23 +564,15 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
         image.setScaledContents(True)
         image.setPixmap((pixmap))
         Name_of_film.setText(str(b.name)+' '+'('+str(b.release)+')')
-        without_brackets = re.sub(r"[\(\)]", "", str(Name_of_film.text()))
+
 
 
 
         Overview_text.setText(str((b.description)))
         date_country_genres_runtime.setText(str((b.country)).replace(';','')+"("+str(b.lang).replace(';','')+")"+" | "+str(b.genres).replace(';',', ')+" | "+str(b.runtime)+" min ")
         stackedWidget.setCurrentIndex(2)
-        favorite.setStyleSheet('background-color: rgb(42, 54, 63)')
-        lat.setStyleSheet('background-color: rgb(42, 54, 63)')
-        his.setStyleSheet('background-color: rgb(42, 54, 63)')
-        if filmId in filmsID:
-            favorite.setStyleSheet('background-color: #696d6d')
 
-        elif filmId in filmsID:
-            lat.setStyleSheet('background-color: #696d6d')
-        elif filmId in filmsID:
-            his.setStyleSheet('background-color: #696d6d')
+
 
 def adminPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6,admin_button, moder_button):
     stackedWidget.setCurrentIndex(8)
