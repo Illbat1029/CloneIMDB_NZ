@@ -27,7 +27,7 @@ def deleteFilmFromDB (dataWindow):
     dataDelete = (splitValue[0], splitValue[1])
     cur.execute(sqlDeleteFilm,dataDelete)
     con.commit()
-    print("Delete film ADMIN = ", datetime.now() - stime)
+    #print("Delete film ADMIN = ", datetime.now() - stime)
 def getAllReportReviews():
     stime = datetime.now()
     con = createConnection()
@@ -48,7 +48,7 @@ def getAllReportReviews():
         buff = list(row)
         rep = ReportReview(buff[0], buff[1], buff[2], buff[3])
         retData.append(rep)
-    print("Get all review by ADMIN = ", datetime.now() - stime)
+    #print("Get all review by ADMIN = ", datetime.now() - stime)
     return retData
 def deleteReviewAfterValidation(reviewId):
     stime = datetime.now()
@@ -60,7 +60,7 @@ def deleteReviewAfterValidation(reviewId):
     dataDelete = (reviewId, )
     cur.execute(sqlDeleteReview, dataDelete)
     con.commit()
-    print("Delete review after cammit report by ADMIN = ", datetime.now() - stime)
+    #print("Delete review after commit report by ADMIN = ", datetime.now() - stime)
 def deleteReviewFromAdminTableWhereReviewGood(reviewId):
     stime = datetime.now()
     con = createConnection()
@@ -71,4 +71,4 @@ def deleteReviewFromAdminTableWhereReviewGood(reviewId):
     dataDelete = (reviewId,)
     cur.execute(sqlDeleteReview, dataDelete)
     con.commit()
-    print("Delete review after cammit no report by ADMIN = ", datetime.now() - stime)
+    #print("Delete review after commit no report by ADMIN = ", datetime.now() - stime)

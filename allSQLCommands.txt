@@ -259,5 +259,87 @@ CREATE DEFINER=`root`@`%` TRIGGER `deleteAllReviewScoreAfterUserDelete`
     WHERE
         review_score.id_user = OLD.id;
 end
-
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Last_5_Added_Films`
+        AS
+            select `films`.`id` AS `id`,`films`.`filmname` AS `filmname`,
+            `films`.`description` AS `description`,
+            `films`.`country` AS `country`,
+            `films`.`gen` AS `gen`,
+            `films`.`language` AS `language`,
+            `films`.`releasedata` AS `releasedata`,
+            `films`.`runtime` AS `runtime`,
+            `films`.`score` AS `score`,
+            `films`.`vote` AS `vote`,
+            `films`.`director` AS `director`,
+            `films`.`actors` AS `actors`,
+            `films`.`picture` AS `picture`
+            from `films`
+            order by `films`.`id` desc
+            limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Last_5_Review`
+        AS
+            select `f`.`filmname` AS `filmname`,
+            `f`.`gen` AS `gen`,
+            `f`.`releasedata` AS `releasedata`,
+            `f`.`vote` AS `vote`,
+            `f`.`score` AS `score`,
+            `f`.`runtime` AS `runtime`,
+            `rew`.`review` AS `review`,
+            `u`.`username` AS `username`
+            from ((`films` `f` join `films_review` `rew` on((`rew`.`id_films` = `f`.`id`)))
+            join `user` `u` on((`rew`.`id_user` = `u`.`id`)))
+            order by `rew`.`id` desc
+            limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Top_5_Films_Review`
+        AS
+            select `f`.`filmname` AS `Nazwa filmu`,
+            count(`fr`.`id_films`) AS `Ilosc review`
+            from (`films_review` `fr` join `films` `f` on((`fr`.`id_films` = `f`.`id`)))
+            group by `f`.`id`
+            order by count(`fr`.`id_films`)
+            desc limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Top_5_Reviews`
+        AS
+            select `u`.`username` AS `username`
+            ,`f`.`filmname` AS `filmname`
+            ,`fr`.`review` AS `review`
+            ,`fr`.`score` AS `score`
+            from ((`films_review` `fr` join `films` `f` on((`fr`.`id_films` = `f`.`id`)))
+            join `user` `u` on((`fr`.`id_user` = `u`.`id`)))
+            order by `fr`.`score` desc
+            limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Top_10_Films`
+        AS
+            select `films`.`id` AS `id`,
+            `films`.`filmname` AS `filmname`,
+            `films`.`description` AS `description`,
+            `films`.`country` AS `country`,
+            `films`.`gen` AS `gen`,
+            `films`.`language` AS `language`,
+            `films`.`releasedata` AS `releasedata`,
+            `films`.`runtime` AS `runtime`,
+            `films`.`score` AS `score`,
+            `films`.`vote` AS `vote`,
+            `films`.`director` AS `director`,
+            `films`.`actors` AS `actors`,
+            `films`.`picture` AS `picture`
+            from `films`
+            order by `films`.`score` desc,`films`.`vote` desc
+            limit 10
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` EVENT `deleteUserAfter3Mon`
+    ON SCHEDULE EVERY 1 MONTH STARTS '2023-01-24 10:51:58'
+    ON COMPLETION NOT PRESERVE ENABLE
+    DO DELETE FROM user
+        WHERE lastvisitdata < NOW()- INTERVAL 3 MONTH
 #-------------------------------------------------------------------------------------------------------------

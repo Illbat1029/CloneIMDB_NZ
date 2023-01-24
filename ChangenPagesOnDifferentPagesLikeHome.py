@@ -171,7 +171,7 @@ def next(current_page,all_button_name,next_button,userid):
         next_button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
         pass
     end_time = time.time()
-    print('Время переключение страниц вперед:'+str(end_time-start_time))
+    #print('Время переключение страниц вперед:'+str(end_time-start_time))
 
 def back(current_page,all_button_name,next_button,userid):
     start_time = time.time()
@@ -228,7 +228,7 @@ def back(current_page,all_button_name,next_button,userid):
     except:
         pass
     end_time = time.time()
-    print('Время переключение страниц вперед:' + str(end_time - start_time))
+    #print('Время переключение страниц вперед:' + str(end_time - start_time))
 # переключает след старницу в разедле фаворит
 def next_page_favorite(current_page_favorite,all_button_name,next_button,userid):
     if current_page_favorite.text() != 'last':
