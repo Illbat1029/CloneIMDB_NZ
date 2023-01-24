@@ -852,7 +852,7 @@ color:white;
          <x>0</x>
          <y>0</y>
          <width>576</width>
-         <height>2653</height>
+         <height>2693</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -862,6 +862,21 @@ color:white;
         <property name="spacing">
          <number>15</number>
         </property>
+        <item>
+         <widget class="QLabel" name="topfilms">
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Top 10 films</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QFrame" name="top10films1">
           <property name="minimumSize">
