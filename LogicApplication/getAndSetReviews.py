@@ -29,7 +29,7 @@ def addReview(idUser, idFilm, review):
         con.commit()
     else:
         print("Review is allredy exist!")
-    print("Add review = ", datetime.now() - stime)
+    #print("Add review = ", datetime.now() - stime)
 def changeRivewText (idUser, idFilm, review):
     stime = datetime.now()
     con = createConnection()
@@ -41,7 +41,7 @@ def changeRivewText (idUser, idFilm, review):
         con.commit()
     else:
         print("Review is not exist!")
-    print("Change review = ", datetime.now() - stime)
+    #print("Change review = ", datetime.now() - stime)
 def deleteReview (idUser, idFilm):
     stime = datetime.now()
     con = createConnection()
@@ -53,7 +53,7 @@ def deleteReview (idUser, idFilm):
         con.commit()
     else:
         print("Review is not exist!")
-    print("Delete review = ", datetime.now() - stime)
+    #print("Delete review = ", datetime.now() - stime)
 def getAllReviewsUser(idUser):
     stime = datetime.now()
     con = createConnection()
@@ -67,7 +67,7 @@ def getAllReviewsUser(idUser):
         buff = list(row)
         uReview = userReview(buff[0], "BRAK", buff[1], buff[2], buff[3], buff[4])
         dataRet.append(uReview)
-    print("Get all review dla user = ", datetime.now() - stime)
+    #print("Get all review dla user = ", datetime.now() - stime)
     return dataRet
 
 def getAllReviewsForFilm(idFilm):
@@ -90,7 +90,7 @@ def getAllReviewsForFilm(idFilm):
         buff = list(row)
         uReview = userReview(buff[0], buff[1], buff[2], buff[3], buff[4], buff[5])
         dataRet.append(uReview)
-    print("Get all review dla filma = ", datetime.now() - stime)
+    #print("Get all review dla filma = ", datetime.now() - stime)
     return dataRet
 def getReviewDataByReviewId(idReview):
     con = createConnection()

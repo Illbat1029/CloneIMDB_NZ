@@ -38,7 +38,7 @@ def getListAllDataAllFilms():
         film = Film(buff[0], buff[1], buff[2], createList(buff[3]), createList(buff[4]), createList(buff[5]),
                     buff[6], buff[7], buff[8], buff[9], createList(buff[10]), createList(buff[11]), buff[12])
         dataRet.append(film)
-    print("Get all films = ", datetime.now() - stime)
+    #print("Get all films = ", datetime.now() - stime)
     return dataRet
 def getAllUserGenresID(genresList):
     stime = datetime.now()
@@ -50,7 +50,7 @@ def getAllUserGenresID(genresList):
     qr = 'SELECT id FROM genres WHERE genre in ({0})'.format(', '.join('%s' for _ in genresList))
     cur.execute(qr, genresList)
     genIDList = cur.fetchall()
-    print("Get genres list = ", datetime.now() - stime)
+    #print("Get genres list = ", datetime.now() - stime)
     return genIDList
 def refractoringDataGenresFilm(data):
     retData = []
@@ -114,7 +114,7 @@ def getListAllFilmWithGenresUser(genresList):
         cur.execute(sqlGetDataFilm, genresIDUser[i])
         data.append(cur.fetchall())
     data=refractoringDataGenresFilm(data)
-    print("Get genres film user filtr = ", datetime.now() - stime)
+    #print("Get genres film user filtr = ", datetime.now() - stime)
 
     return data
 def getListAllFilmsWithPeopleUserAndStatus(peopleFullName):
@@ -130,7 +130,7 @@ def getListAllFilmsWithPeopleUserAndStatus(peopleFullName):
     ON films_people_status.id_status = status.status_id"""
     cur.execute(sqlGetDataFilm,(peopleFullName,))
     data = cur.fetchall()
-    print("Get list film people and status filtr = ", datetime.now() - stime)
+    #print("Get list film people and status filtr = ", datetime.now() - stime)
     return data
 def getListAllFilmsWithPeopleUser(peopleFullName):
     stime = datetime.now()
@@ -151,7 +151,7 @@ def getListAllFilmsWithPeopleUser(peopleFullName):
                 del data[j]
             j += 1
     data = refractoringDataPeopleFilm(data)
-    print("Get list film people filtr = ", datetime.now() - stime)
+    #print("Get list film people filtr = ", datetime.now() - stime)
     return data
 def getAllDataFilmByID(idFilm):
     stime = datetime.now()
@@ -162,7 +162,7 @@ def getAllDataFilmByID(idFilm):
     cur.execute(sqlGetAllDataFilm, (idFilm,))
     data = cur.fetchone()
     data = refractoringAllDataFilm(data)
-    print("Get film by ID = ", datetime.now() - stime)
+    #print("Get film by ID = ", datetime.now() - stime)
     return data
 def getAllDataFilmByReleaseDataBetween(releaseStart = 0, releaseEnd=3000):
     stime = datetime.now()
@@ -175,7 +175,7 @@ def getAllDataFilmByReleaseDataBetween(releaseStart = 0, releaseEnd=3000):
     cur.execute(sqlGetAllDataFilm, (releaseStart,releaseEnd))
     data = cur.fetchall()
     data = refractoringDataPeopleFilm(data)
-    print("Get film by release between = ", datetime.now() - stime)
+    #print("Get film by release between = ", datetime.now() - stime)
     return data
 def getAllDataFilmByLanguage(language):
     stime = datetime.now()
@@ -190,7 +190,7 @@ def getAllDataFilmByLanguage(language):
     cur.execute(sqlGetAllDataFilm, (parameters,))
     data=cur.fetchall()
     data = refractoringDataPeopleFilm(data)
-    print("Get film by language = ", datetime.now() - stime)
+    #print("Get film by language = ", datetime.now() - stime)
     return data
 def getAllDataFilmByCountry(country):
     stime = datetime.now()
@@ -205,7 +205,7 @@ def getAllDataFilmByCountry(country):
     cur.execute(sqlGetAllDataFilm, (parameters,))
     data = cur.fetchall()
     data = refractoringDataPeopleFilm(data)
-    print("Get film by country = ", datetime.now() - stime)
+    #print("Get film by country = ", datetime.now() - stime)
     return data
 def getAllDataFilmByScoreBetween(scoreStart = 0, scoreEnd = 5):
     stime = datetime.now()
@@ -219,7 +219,7 @@ def getAllDataFilmByScoreBetween(scoreStart = 0, scoreEnd = 5):
     cur.execute(sqlGetAllDataFilm,(scoreStart,scoreEnd))
     data = cur.fetchall()
     data = refractoringDataPeopleFilm(data)
-    print("Get film by score between = ", datetime.now() - stime)
+    #print("Get film by score between = ", datetime.now() - stime)
     return data
 def getFilmByFilmname(filmname):
     try:
@@ -253,6 +253,6 @@ def getViewFilmDataWhereUserNotLogin():
         film = Film(buff[0], buff[1], buff[2], createList(buff[3]), createList(buff[4]), createList(buff[5]),
                     buff[6], buff[7], buff[8], buff[9], createList(buff[10]), createList(buff[11]), buff[12])
         dataRet.append(film)
-    print("Get view where user not login = ", datetime.now() - stime)
+    #print("Get view where user not login = ", datetime.now() - stime)
     return dataRet
 

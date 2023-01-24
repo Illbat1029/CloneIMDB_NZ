@@ -180,7 +180,7 @@ def updatateUserUsername(id, newUsername):
         if(chekUsername(newUsername)==True and checkUsernameExist(newUsername)==False):
             cur.execute(sqlUpdateUsername, (newUsername, id))
             con.commit()
-            print("Change username = ", datetime.now() - stime)
+            #print("Change username = ", datetime.now() - stime)
             return True
     except Error as e:
         print("Except updateUserUsername ", e)

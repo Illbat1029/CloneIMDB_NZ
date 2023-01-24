@@ -56,30 +56,6 @@ if __name__ == "__main__":
     Fogort_page.setupUi(Fogort_page_from)
 
     def login():
-        #getListAllDataAllFilms()
-       #a=getListAllFilmWithGenresUser(["Adventure", "Comedy"])
-       #for i in range(len(a)):
-        #   print(a[i].name, a[i].genres)
-        #createReportReview(4, 9, 2)
-        #getListAllFilmsWithPeopleUserAndStatus("Matthias Schweighöfer")
-        #getListAllFilmsWithPeopleUserAndStatus("Frank Darabont")
-
-        #getListAllFilmsWithPeopleUser("Matthias Schweighöfer")
-        #getAllDataFilmByID(1)
-        #getAllDataFilmByReleaseDataBetween(2000, 2010)
-        #getAllDataFilmByReleaseDataBetween()
-        #getAllDataFilmByLanguage("Spanish")
-        #getAllDataFilmByCountry("Israel")
-        #getAllDataFilmByScoreBetween(1,2) //POKA NETU NI 1 FILMA SO SCORE
-        #a= getFilmByFilmname("The Shawshank Redemption")
-        #for i in range(len(a)):
-            #print(a[i].id ,a[i].name, a[i].genres)
-        #updateEmailUser(6, "maks@gmaillllll.lll")
-        #updatePasswordUser(22, "Ha!2.324345m,@")
-        #updatateUserUsername(22, "Kalycz")
-        #a = getViewFilmDataWhereUserNotLogin()
-        #for i in range(len(a)):
-            #print(a[i].id ,a[i].name, a[i].genres)
         try:
             if len(Log_page.user_or_email.text()) != 0 and len(Log_page.password.text()) != 0 and AuthenticateUser(Log_page.user_or_email.text(), Log_page.password.text()):
                 dataUser = getDataUser([Log_page.user_or_email.text()])
@@ -114,8 +90,6 @@ if __name__ == "__main__":
         Fogort_page_from.show()
     def open_window_to_change_username():
         change_username_form.show()
-
-
     def open_window_to_change_email():
         change_email_form.show()
     def open_window_to_change_password():
@@ -126,7 +100,7 @@ if __name__ == "__main__":
         change_username.username_exist.setText('')
         change_username.username_exist.setFixedSize(0, 0)
         if updatateUserUsername(id, newname):
-            print('good')
+            #print('good')
             Main_page.username_lable.setText(newname)
             change_username_form.close()
         else:
@@ -138,21 +112,19 @@ if __name__ == "__main__":
         change_email.wrong_email.setFixedSize(0, 0)
         change_email.wrong_email.setText('')
         if updateEmailUser(id, newemail):
-            print('good')
+            #print('good')
 
             change_email_form.close()
         else:
             change_email.wrong_email.setFixedSize(276, 10)
             change_email.wrong_email.setText('Already exists')
-
     def confirm_pass():
         id = re.sub("[^0-9]", "", Main_page.id_label.text())
         newpass=change_passwrod.New_password.text()
         change_passwrod.wrong_password.setFixedSize(0, 0)
         change_passwrod.wrong_password.setText('')
         if updatePasswordUser(id,newpass):
-            print('good')
-
+            #print('good')
             change_passwrod_form.close()
         else:
             change_passwrod.wrong_password.setFixedSize(276, 10)
@@ -165,8 +137,7 @@ if __name__ == "__main__":
     Log_page.bttn_login.clicked.connect(login)
     change_username.Confirm_Name.clicked.connect(confirm_username)
     change_email.Confirm_email.clicked.connect(confirm_email)
-
     change_passwrod.Confirm_password.clicked.connect(confirm_pass)
     end_time = time.time()
-    print('время открытия приложения:' + str(end_time - start_time))
+    #print('время открытия приложения:' + str(end_time - start_time))
     sys.exit(app.exec_())
