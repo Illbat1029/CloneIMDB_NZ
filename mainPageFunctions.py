@@ -1,8 +1,11 @@
 
 
 from LogicApplication.userDataValidation import *
-
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QPushButton, QLabel, QComboBox
 from LogicApplication.getAndSetReviews import *
+from PyQt5.QtCore import QDate
+
 from main_page import *
 from LogicApplication.reviewLogic import *
 from LogicApplication.methodsAdminAndModerator import *
@@ -20,9 +23,29 @@ def addReviewToDB(idUser,filmId, reviewText, stackedWidget, yourReviewLabel):
 def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userName3,
               reviewText3,userName4, reviewText4,userName5,
               reviewText5,stackedWidgetReview,userReviewLabel, frame1, frame2,frame3,frame4,frame5,
-              reviewScore1, reviewScore2, reviewScore3,reviewScore4,reviewScore5, idReview1, idReview2, idReview3, idReview4, idReview5, currentPage, reviewCount):
+              reviewScore1, reviewScore2, reviewScore3,reviewScore4,reviewScore5, idReview1, idReview2, idReview3, idReview4, idReview5, currentPage, reviewCount, mainFrame):
     userid1 = re.sub("[^0-9]", "", idUser.text())
     allReviews = getAllReviewsForFilm(filmId)
+    allLikes= getLikesListForThisFilmReviews(filmId)
+    allIdReview= [idReview1, idReview2, idReview3, idReview4, idReview5]
+    frameButtons =mainFrame.findChildren(QPushButton)
+    frameLikeButtons=[]
+    for button in frameButtons:
+        if button.objectName()[:10] == 'likeReview':
+                frameLikeButtons.append(button)
+
+
+    frameButtons =mainFrame.findChildren(QPushButton)
+    frameDislikeButtons=[]
+    for button in frameButtons:
+        if button.objectName()[:13] == 'dislikeReviwe':
+                frameDislikeButtons.append(button)
+
+    for i in range(5):
+        frameLikeButtons[i].setStyleSheet("image: url(:/icon/plus.svg);")
+        frameDislikeButtons[i].setStyleSheet("image: url(:/icon/minus.svg);")
+
+
     k=int(reviewCount.text())
     cp=(int(currentPage)-1)*5
     if len(allReviews)==0:
@@ -153,6 +176,20 @@ def setReview(idUser,filmId,userName1,reviewText1,userName2,reviewText2, userNam
         frame3.setMaximumSize(QtCore.QSize(0, 0))
         frame4.setMaximumSize(QtCore.QSize(0, 0))
         frame5.setMaximumSize(QtCore.QSize(0, 0))
+
+
+    for like in allLikes:
+        if like[0]==int(userid1):
+            for i in range(len(allIdReview)):
+                if allIdReview[i].text()!="":
+                    if int(allIdReview[i].text())== like[1]:
+                        if like[2]==1:
+                            frameLikeButtons[i].setStyleSheet("image: url(:/icon/plus.svg); background-color: rgb(0, 255, 0);")
+                            frameDislikeButtons[i].setStyleSheet("image: url(:/icon/minus.svg);")
+                        elif like[2]==-1:
+                            frameDislikeButtons[i].setStyleSheet("image: url(:/icon/minus.svg); background-color: rgb(255, 0, 0);")
+                            frameLikeButtons[i].setStyleSheet("image: url(:/icon/plus.svg);")
+
 
 def editReview(idUser,filmId,stackedWidgetReview, newReviewText, oldReviewText):
     userid1 = re.sub("[^0-9]", "", idUser.text())
