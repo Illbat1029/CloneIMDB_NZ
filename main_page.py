@@ -4961,7 +4961,7 @@ class Main_page(object):
             start_time = time.time()
             setCount(self.label_50.text(), self.reviewCount)
             setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2, self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4, self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2, self.userReviewText,
-                      self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
+                      self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
             end_time = time.time()
             print("сбор инфы и выстветление по поводу коментов: " + str(end_time - start_time))
             end_time3=time.time()
@@ -4985,7 +4985,7 @@ class Main_page(object):
                       self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore,
                       self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview,
                       self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5,
-                      self.current_page_watch_later_2.text(), self.reviewCount)
+                      self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
             end_time3 = time.time()
             print('сумарное время высветления фильма из вкладки любимое:' + str(end_time3 - start_time3))
     def about_film_search_page(self,button_name):
@@ -5006,7 +5006,7 @@ class Main_page(object):
                                        self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4,
                                        self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
                                        self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
-                                       self.reviewCount)
+                                       self.reviewCount, self.scrollArea)
 
         end_time3 = time.time()
         print('сумарное время высветления фильма из вкладки поиска :' + str(end_time3 - start_time3))
@@ -5029,7 +5029,7 @@ class Main_page(object):
                   self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4,
                   self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
                   self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
-                  self.reviewCount)
+                  self.reviewCount, self.scrollArea)
         end_time3 = time.time()
         print('сумарное время высветления фильма из вкладки позже :' + str(end_time3 - start_time3))
     def about_film_history_page(self,button_name):
@@ -5053,7 +5053,7 @@ class Main_page(object):
                       self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4,
                       self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
                       self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(),
-                      self.reviewCount)
+                      self.reviewCount, self.scrollArea)
             end_time3 = time.time()
             print('сумарное время высветления фильма из вкладки позже :' + str(end_time3 - start_time3))
     def back_button(self):
@@ -5149,12 +5149,12 @@ class Main_page(object):
         self.reviewTextEdit.setText("")
         setCount(self.label_50.text(), self.reviewCount)
         setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2, self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4, self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2, self.userReviewText,
-                  self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
+                  self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
 
     def editYourReview(self):
         editReview(self.id_label, self.label_50.text(), self.stackedWidget_2, self.reviewTextEdit_2, self.userReviewText.text())
         setReview(self.id_label, self.label_50.text(), self.nameReviewer, self.textCommentary, self.nameReviewer_2, self.textCommentary_2, self.nameReviewer_3, self.textCommentary_3,self.nameReviewer_4, self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2, self.userReviewText,
-                  self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
+                  self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
     def changingPage(self):
             changingPageInEditing(self.stackedWidget_2,self.reviewTextEdit_2, self.userReviewText.text())
 
@@ -5166,7 +5166,7 @@ class Main_page(object):
                       self.textCommentary_4,self.nameReviewer_5, self.textCommentary_5, self.stackedWidget_2,self.userReviewText,
                       self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16,
                       self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5,
-                      self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
+                      self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
 
     def likeReviews(self, all_buttons_name):
             labels = self.scrollArea.findChildren(QLabel)
@@ -5182,7 +5182,7 @@ class Main_page(object):
                       self.userReviewText,
                       self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16,
                       self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5,
-                      self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
+                      self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
     def dislikeReviews(self,all_buttons_name):
             labels = self.scrollArea.findChildren(QLabel)
             all_labels=[]
@@ -5197,7 +5197,7 @@ class Main_page(object):
                       self.userReviewText,
                       self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16,
                       self.reviewScore, self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5,
-                      self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
+                      self.idReview, self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
 
     def openReport(self, all_buttons_name):
             combbox = self.scrollArea.findChildren(QComboBox)
@@ -5263,7 +5263,7 @@ class Main_page(object):
                      self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore,
                      self.reviewScore_2, self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview,
                      self.idReview_2, self.idReview_3, self.idReview_4, self.idReview_5,
-                     self.current_page_watch_later_2.text(), self.reviewCount)
+                     self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
 
     def previosPage(self):
             combbox = self.scrollArea.findChildren(QComboBox)
@@ -5285,7 +5285,7 @@ class Main_page(object):
                       self.textCommentary_5, self.stackedWidget_2, self.userReviewText,
                       self.frame_6, self.frame_9, self.frame_11, self.frame_13, self.frame_16, self.reviewScore, self.reviewScore_2,
                       self.reviewScore_3, self.reviewScore_4, self.reviewScore_5, self.idReview, self.idReview_2, self.idReview_3,
-                      self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount)
+                      self.idReview_4, self.idReview_5, self.current_page_watch_later_2.text(), self.reviewCount, self.scrollArea)
 
 
     def prevPageReports(self):
