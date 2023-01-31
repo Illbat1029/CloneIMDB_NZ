@@ -1,8 +1,10 @@
 
 from PyQt5.QtGui import QIcon
 from LogicApplication.getAndSetScoreFilms import *
+from LogicApplication.getFilmsDataFromDB import *
 from LogicApplication.userDataValidation import *
 import time
+
 from LogicApplication.getDataFromIMDB import *
 def setScoreFromDataBase(userid,score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name,idfilm):
 
@@ -68,10 +70,10 @@ def setScoreFromDataBase(userid,score_1_button,score_2_button,score_3_button,sco
 
 
 
-def swap_star_and_get_score1_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+def swap_star_and_get_score1_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid,score2,id):
     userid1=re.sub("[^0-9]", "", userid.text())
     without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
-    filmId =getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
 
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
 
@@ -81,18 +83,18 @@ def swap_star_and_get_score1_icon(score_1_button,score_2_button,score_3_button,s
     score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
 
     score = 1
-    deleteScoreUser(int(userid1),filmId)
-    addVotesAndScoreUser(int(userid1),filmId,score)
+    deleteScoreUser(int(userid1),id.text())
+    addVotesAndScoreUser(int(userid1),id.text(),score)
+    a=getAllDataFilmByID(id.text())
+    score2.setText(str(a.score))
 
-
-
-def swap_star_and_get_score2_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+def swap_star_and_get_score2_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid,score2,id):
 
 
     score = 2
     userid1 = re.sub("[^0-9]", "", userid.text())
-    without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
-    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
+
 
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
@@ -100,16 +102,17 @@ def swap_star_and_get_score2_icon(score_1_button,score_2_button,score_3_button,s
     score_4_button.setIcon(QIcon(('star-empty-icon.webp')))
     score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
 
+    deleteScoreUser(int(userid1), id.text())
+    addVotesAndScoreUser(int(userid1), id.text(), score)
+    a = getAllDataFilmByID(id.text())
+    score2.setText(str(a.score))
 
-    deleteScoreUser(int(userid1), filmId)
-    addVotesAndScoreUser(int(userid1), filmId, score)
 
-
-def swap_star_and_get_score3_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+def swap_star_and_get_score3_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid,score2,id):
 
     userid1 = re.sub("[^0-9]", "", userid.text())
     without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
-    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
 
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
@@ -119,15 +122,16 @@ def swap_star_and_get_score3_icon(score_1_button,score_2_button,score_3_button,s
     score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     score = 3
 
+    deleteScoreUser(int(userid1), id.text())
+    addVotesAndScoreUser(int(userid1), id.text(), score)
+    a = getAllDataFilmByID(id.text())
+    score2.setText(str(a.score))
 
-    deleteScoreUser(int(userid1), filmId)
-    addVotesAndScoreUser(int(userid1), filmId, score)
 
-
-def swap_star_and_get_score4_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+def swap_star_and_get_score4_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid,score2,id):
     userid1 = re.sub("[^0-9]", "", userid.text())
     without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
-    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
 
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
@@ -137,15 +141,17 @@ def swap_star_and_get_score4_icon(score_1_button,score_2_button,score_3_button,s
     score_5_button.setIcon(QIcon(('star-empty-icon.webp')))
     score = 4
 
-    deleteScoreUser(int(userid1), filmId)
-    addVotesAndScoreUser(int(userid1), filmId, score)
+    deleteScoreUser(int(userid1), id.text())
+    addVotesAndScoreUser(int(userid1), id.text(), score)
+    a = getAllDataFilmByID(id.text())
+    score2.setText(str(a.score))
 
 
 
-def swap_star_and_get_score5_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid):
+def swap_star_and_get_score5_icon(score_1_button,score_2_button,score_3_button,score_4_button,score_5_button,name_year,userid,score2,id):
     userid1 = re.sub("[^0-9]", "", userid.text())
     without_brackets = re.sub(r"[\(\)]", "", str(name_year.text()))
-    filmId = getFilmID(str(without_brackets[:-4]), str(without_brackets[-4:]))
+
 
     score_1_button.setIcon(QIcon(('icons8-star-filled-48')))
     score_2_button.setIcon(QIcon(('icons8-star-filled-48')))
@@ -155,5 +161,7 @@ def swap_star_and_get_score5_icon(score_1_button,score_2_button,score_3_button,s
     score_5_button.setIcon(QIcon(('icons8-star-filled-48')))
     score = 5
 
-    deleteScoreUser(int(userid1), filmId)
-    addVotesAndScoreUser(int(userid1), filmId, score)
+    deleteScoreUser(int(userid1), id.text())
+    addVotesAndScoreUser(int(userid1), id.text(), score)
+    a = getAllDataFilmByID(id.text())
+    score2.setText(str(a.score))
