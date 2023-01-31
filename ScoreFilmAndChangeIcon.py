@@ -105,6 +105,7 @@ def swap_star_and_get_score2_icon(score_1_button,score_2_button,score_3_button,s
     deleteScoreUser(int(userid1), id.text())
     addVotesAndScoreUser(int(userid1), id.text(), score)
     a = getAllDataFilmByID(id.text())
+    print(id.text())
     score2.setText(str(a.score))
 
 
