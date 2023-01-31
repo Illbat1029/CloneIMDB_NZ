@@ -1,0 +1,345 @@
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `password` char(60) DEFAULT NULL,
+  `lastvisitdata` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `films` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `filmname` varchar(70) DEFAULT NULL,
+  `description` text,
+  `country` varchar(30) DEFAULT NULL,
+  `gen` varchar(100) DEFAULT NULL,
+  `language` varchar(100) DEFAULT NULL,
+  `releasedata` int DEFAULT NULL,
+  `runtime` int unsigned NOT NULL,
+  `score` float unsigned DEFAULT NULL,
+  `vote` int unsigned DEFAULT NULL,
+  `director` varchar(150) DEFAULT NULL,
+  `actors` text,
+  `picture` longblob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `people` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(50) DEFAULT NULL,
+  `peopleIMG` longblob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `genres` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `genre` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `status` (
+  `status_id` int NOT NULL AUTO_INCREMENT,
+  `status_name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `films_genres` (
+  `id_films` int DEFAULT NULL,
+  `id_genres` int DEFAULT NULL,
+  KEY `id_films` (`id_films`),
+  KEY `id_genres` (`id_genres`),
+  CONSTRAINT `films_genres_ibfk_1` FOREIGN KEY (`id_films`) REFERENCES `films` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `films_genres_ibfk_2` FOREIGN KEY (`id_genres`) REFERENCES `genres` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `films_people_status` (
+  `id_film` int DEFAULT NULL,
+  `id_people` int DEFAULT NULL,
+  `id_status` int DEFAULT NULL,
+  KEY `id_film` (`id_film`),
+  KEY `id_people` (`id_people`),
+  KEY `id_status` (`id_status`),
+  CONSTRAINT `films_people_status_ibfk_1` FOREIGN KEY (`id_film`) REFERENCES `films` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `films_people_status_ibfk_2` FOREIGN KEY (`id_people`) REFERENCES `people` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `films_people_status_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `status` (`status_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `favorite_films` (
+  `id_user` int DEFAULT NULL,
+  `id_films` int DEFAULT NULL,
+  KEY `id_user` (`id_user`),
+  KEY `id_films` (`id_films`),
+  CONSTRAINT `favorite_films_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `favorite_films_ibfk_2` FOREIGN KEY (`id_films`) REFERENCES `films` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `watchlater_films` (
+  `id_user` int DEFAULT NULL,
+  `id_films` int DEFAULT NULL,
+  KEY `id_user` (`id_user`),
+  KEY `id_films` (`id_films`),
+  CONSTRAINT `watchlater_films_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `watchlater_films_ibfk_2` FOREIGN KEY (`id_films`) REFERENCES `films` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `watched_films` (
+  `id_user` int DEFAULT NULL,
+  `id_films` int DEFAULT NULL,
+  KEY `id_user` (`id_user`),
+  KEY `id_films` (`id_films`),
+  CONSTRAINT `watched_films_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `watched_films_ibfk_2` FOREIGN KEY (`id_films`) REFERENCES `films` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `films_score` (
+  `id_user` int DEFAULT NULL,
+  `id_films` int DEFAULT NULL,
+  `score` int unsigned NOT NULL,
+  KEY `id_user` (`id_user`),
+  KEY `films_score_ibfk_2` (`id_films`),
+  CONSTRAINT `films_score_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `films_score_ibfk_2` FOREIGN KEY (`id_films`) REFERENCES `films` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `films_review` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int DEFAULT NULL,
+  `id_films` int DEFAULT NULL,
+  `review` text NOT NULL,
+  `score` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  KEY `films_review_ibfk_2` (`id_films`),
+  CONSTRAINT `films_review_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `films_review_ibfk_2` FOREIGN KEY (`id_films`) REFERENCES `films` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `report_types` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `review_score` (
+  `id_user` int DEFAULT NULL,
+  `id_review` int DEFAULT NULL,
+  `score` int DEFAULT NULL,
+  KEY `id_user` (`id_user`),
+  KEY `review_score_ibfk_2` (`id_review`),
+  CONSTRAINT `review_score_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+  CONSTRAINT `review_score_ibfk_2` FOREIGN KEY (`id_review`) REFERENCES `films_review` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `reviews_report` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_review` int DEFAULT NULL,
+  `id_user` int DEFAULT NULL,
+  `type_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `reviews_report_ibfk_1` (`id_review`),
+  KEY `id_user` (`id_user`),
+  KEY `reviews_report_ibfk_3` (`type_id`),
+  CONSTRAINT `reviews_report_ibfk_1` FOREIGN KEY (`id_review`) REFERENCES `films_review` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `reviews_report_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `reviews_report_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `report_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE TABLE `admin_review_validation` (
+  `id_review` int DEFAULT NULL,
+  `id_report_type` int DEFAULT NULL,
+  KEY `id_review` (`id_review`),
+  KEY `admin_review_validation_ibfk_2` (`id_report_type`),
+  CONSTRAINT `admin_review_validation_ibfk_1` FOREIGN KEY (`id_review`) REFERENCES `films_review` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `admin_review_validation_ibfk_2` FOREIGN KEY (`id_report_type`) REFERENCES `report_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `updateReviewsReportAfterInsertReportToAdminTableReviews`
+    BEFORE DELETE ON `admin_review_validation`
+    FOR EACH ROW BEGIN
+    DELETE FROM reviews_report
+    WHERE reviews_report.id_review = OLD.id_review
+    AND reviews_report.type_id = OLD.id_report_type;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `updateScoreFilmAfterAddedNewVotesFilmsTable`
+    AFTER INSERT ON `films_score`
+    FOR EACH ROW BEGIN
+    UPDATE films
+    SET
+        vote = vote+1,
+        films.score = (films.score*(vote-1) + NEW.score)/vote
+    WHERE films.id = NEW.id_films;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `updateScoreFilmsBeforeUpdateScoreUser`
+    AFTER UPDATE ON `films_score`
+    FOR EACH ROW BEGIN
+    UPDATE films
+    SET
+        vote = vote,
+        films.score = (films.score*vote - OLD.score + NEW.score)/vote
+    WHERE films.id = OLD.id_films;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `updateScoreAfterDeleteUserScore`
+    BEFORE DELETE ON `films_score`
+    FOR EACH ROW BEGIN
+    DECLARE `votes` INT;
+    SET votes = (SELECT vote FROM films WHERE id = OLD.id_films);
+    IF (votes>1) THEN
+        UPDATE films
+    SET
+        vote = vote-1,
+        films.score = (films.score*(vote+1) - OLD.score)/vote
+    WHERE films.id = OLD.id_films;
+
+    ELSE
+        UPDATE films
+    SET
+        vote = 0,
+        films.score = 0
+    WHERE films.id = OLD.id_films;
+    end if;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `updateScoreAfterAddNewScoreRivew`
+    AFTER INSERT ON `review_score`
+    FOR EACH ROW BEGIN
+    UPDATE films_review
+    SET films_review.score = films_review.score + NEW.score
+        WHERE films_review.id = NEW.id_review;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `updateScoreAfterChangeScoreRivew`
+    AFTER UPDATE ON `review_score`
+    FOR EACH ROW BEGIN
+    UPDATE films_review
+    SET films_review.score = films_review.score + NEW.score - OLD.score
+        WHERE films_review.id = NEW.id_review;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `updateScoreBeforeDeleteScoreRivew`
+    BEFORE DELETE ON `review_score`
+    FOR EACH ROW BEGIN
+    UPDATE films_review
+    SET films_review.score = films_review.score - OLD.score
+        WHERE films_review.id = OLD.id_review;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `sendReportForAdminTableReport`
+    BEFORE INSERT ON `reviews_report`
+    FOR EACH ROW BEGIN
+    DECLARE `countReports` INT;
+    DECLARE `ExistReviewAdmin` INT;
+    SET countReports = (SELECT COUNT(*) FROM reviews_report WHERE type_id=NEW.type_id
+                                                            AND id_review= NEW.id_review);
+    IF(countReports>4) THEN
+        SET ExistReviewAdmin = (SELECT COUNT(*) FROM admin_review_validation
+                                                WHERE admin_review_validation.id_review = NEW.id_review
+                                                AND admin_review_validation.id_report_type = NEW.type_id);
+        IF (ExistReviewAdmin = 0) THEN
+            INSERT INTO admin_review_validation(id_review, id_report_type)
+            VALUES (NEW.id_review, NEW.type_id);
+        end if;
+    end if;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `deleteAllVotesAfterUserDelete`
+    BEFORE DELETE ON `user`
+    FOR EACH ROW BEGIN
+    DELETE FROM films_score
+    WHERE
+        id_user = OLD.id;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` TRIGGER `deleteAllReviewScoreAfterUserDelete`
+    BEFORE DELETE ON `user`
+    FOR EACH ROW BEGIN
+    DELETE FROM review_score
+    WHERE
+        review_score.id_user = OLD.id;
+end
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Last_5_Added_Films`
+        AS
+            select `films`.`id` AS `id`,`films`.`filmname` AS `filmname`,
+            `films`.`description` AS `description`,
+            `films`.`country` AS `country`,
+            `films`.`gen` AS `gen`,
+            `films`.`language` AS `language`,
+            `films`.`releasedata` AS `releasedata`,
+            `films`.`runtime` AS `runtime`,
+            `films`.`score` AS `score`,
+            `films`.`vote` AS `vote`,
+            `films`.`director` AS `director`,
+            `films`.`actors` AS `actors`,
+            `films`.`picture` AS `picture`
+            from `films`
+            order by `films`.`id` desc
+            limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Last_5_Review`
+        AS
+            select `f`.`filmname` AS `filmname`,
+            `f`.`gen` AS `gen`,
+            `f`.`releasedata` AS `releasedata`,
+            `f`.`vote` AS `vote`,
+            `f`.`score` AS `score`,
+            `f`.`runtime` AS `runtime`,
+            `rew`.`review` AS `review`,
+            `u`.`username` AS `username`
+            from ((`films` `f` join `films_review` `rew` on((`rew`.`id_films` = `f`.`id`)))
+            join `user` `u` on((`rew`.`id_user` = `u`.`id`)))
+            order by `rew`.`id` desc
+            limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Top_5_Films_Review`
+        AS
+            select `f`.`filmname` AS `Nazwa filmu`,
+            count(`fr`.`id_films`) AS `Ilosc review`
+            from (`films_review` `fr` join `films` `f` on((`fr`.`id_films` = `f`.`id`)))
+            group by `f`.`id`
+            order by count(`fr`.`id_films`)
+            desc limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Top_5_Reviews`
+        AS
+            select `u`.`username` AS `username`
+            ,`f`.`filmname` AS `filmname`
+            ,`fr`.`review` AS `review`
+            ,`fr`.`score` AS `score`
+            from ((`films_review` `fr` join `films` `f` on((`fr`.`id_films` = `f`.`id`)))
+            join `user` `u` on((`fr`.`id_user` = `u`.`id`)))
+            order by `fr`.`score` desc
+            limit 5
+#-------------------------------------------------------------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%`
+    SQL SECURITY DEFINER VIEW `Top_10_Films`
+        AS
+            select `films`.`id` AS `id`,
+            `films`.`filmname` AS `filmname`,
+            `films`.`description` AS `description`,
+            `films`.`country` AS `country`,
+            `films`.`gen` AS `gen`,
+            `films`.`language` AS `language`,
+            `films`.`releasedata` AS `releasedata`,
+            `films`.`runtime` AS `runtime`,
+            `films`.`score` AS `score`,
+            `films`.`vote` AS `vote`,
+            `films`.`director` AS `director`,
+            `films`.`actors` AS `actors`,
+            `films`.`picture` AS `picture`
+            from `films`
+            order by `films`.`score` desc,`films`.`vote` desc
+            limit 10
+#-------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`%` EVENT `deleteUserAfter3Mon`
+    ON SCHEDULE EVERY 1 MONTH STARTS '2023-01-24 10:51:58'
+    ON COMPLETION NOT PRESERVE ENABLE
+    DO DELETE FROM user
+        WHERE lastvisitdata < NOW()- INTERVAL 3 MONTH
+#-------------------------------------------------------------------------------------------------------------

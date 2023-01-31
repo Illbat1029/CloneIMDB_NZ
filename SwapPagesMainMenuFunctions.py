@@ -142,7 +142,7 @@ def favoritePage(stackedWidget,home_button,favorite_button,histor_button,setting
             label.setText('')
             bttn.setEnabled(False)
     end_start1 = time.time()
-    print("открытие вкладки любимое "+str(end_start1 - time_start1))
+    #print("открытие вкладки любимое "+str(end_start1 - time_start1))
 
 def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button, allbutton,userid,currentPage,next_button):
     time_start1 = time.time()
@@ -218,7 +218,7 @@ def laterPage(stackedWidget,home_button,favorite_button,histor_button,settings_b
             label.setText('')
             bttn.setEnabled(False)
     end_start1 = time.time()
-    print("открытие вкладки позже " + str(end_start1 - time_start1))
+    #print("открытие вкладки позже " + str(end_start1 - time_start1))
 def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button, allbutton,userid,currentPage,next_button):
     time_start1 = time.time()
     global filmIDHistory
@@ -293,7 +293,7 @@ def histroyPage(stackedWidget,home_button,favorite_button,histor_button,settings
             label.setText('')
             bttn.setEnabled(False)
     end_start1 = time.time()
-    print("открытие вкладки история " + str(end_start1 - time_start1))
+    #print("открытие вкладки история " + str(end_start1 - time_start1))
 def settingsPage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button, username,email,id,setuser,setid):
     time_start1 = time.time()
     k=getDataUser([setuser.text()])
@@ -310,7 +310,7 @@ def settingsPage(stackedWidget,home_button,favorite_button,histor_button,setting
     id.setText(str(k[0]))
     email.setText(str(k[2]))
     end_start1 = time.time()
-    print("открытие вкладки настройки " + str(end_start1 - time_start1))
+    #print("открытие вкладки настройки " + str(end_start1 - time_start1))
 
 def collectInfoForAutoCompleter(film):
     list_of_films = []
@@ -367,7 +367,7 @@ def filter_on(pushButton_6,stackedWidget,actorSearch,country,language,runtime,fi
     language.setCompleter(completer)
 
     end_start1 = time.time()
-    print("открытие вкладки поиск " + str(end_start1 - time_start1))
+    #print("открытие вкладки поиск " + str(end_start1 - time_start1))
 
 
 def filter_off(pushButton_6,stackedWidget):
