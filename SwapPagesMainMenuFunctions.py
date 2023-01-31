@@ -16,10 +16,6 @@ alldata=getListAllDataAllFilms()
 
 end_time=time.time()
 print(end_time-start_time)
-@lru_cache()
-def cache(id):
-
-    return getAllDataFilmByID(id)
 
 def homePage(stackedWidget,home_button,favorite_button,histor_button,settings_button,watch_later_button,pushButton_6, admin_button, moder_button,home_page,current_page,user):
     stackedWidget.setCurrentIndex(0)
@@ -401,8 +397,7 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
 
         userid1 = re.sub("[^0-9]", "", userid.text())
         id =re.sub("[^0-9]", "", button_name)
-        idFilmFromHome.setText(str(int(id)+(int(current_page.text())-1)*18))
-        idFilmFromHome.setStyleSheet('color:rgb(42, 54, 63)')
+
         filminxed=str(int(id)+(int(current_page.text())-1)*18)
         filminxed2 = str(int(id) + (int(current_page.text()) - 1) * 18)
         x=(alldata[int(filminxed)-1].id)
@@ -415,7 +410,7 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
         while pop==False:
             try:
 
-                    a =cache(filminxed2)
+                    a =getAllDataFilmByID(filminxed2)
                     pop=True
                     filmid=filminxed2
 
@@ -446,6 +441,8 @@ def about_film_page(stackedWidget,button_name,Name_of_film,Overview_text,date_co
                                                                                                               ', ') + " | " + str(
                 a.runtime) + " min ")
         stackedWidget.setCurrentIndex(2)
+        idFilmFromHome.setText(str(filminxed2))
+        idFilmFromHome.setStyleSheet('color:rgb(42, 54, 63)')
         favorite.setStyleSheet('background-color: rgb(42, 54, 63)')
         lat.setStyleSheet('background-color: rgb(42, 54, 63)')
         his.setStyleSheet('background-color: rgb(42, 54, 63)')
@@ -478,18 +475,18 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
             filmsID = getUsersFavoriteFilms(userid1)
 
             filmId = filmsID[int(id)-1+page*18]
-            b = cache(filmId)
+            b = getAllDataFilmByID(filmId)
             favorite.setStyleSheet('background-color: #696d6d')
         elif frame.objectName() =='frame_where_all_films_watch_later':
             filmsID = getUsersWatchLaterFilms(userid1)
             lat.setStyleSheet('background-color: #696d6d')
             filmId = filmsID[int(id)-1+page*18]
-            b = cache(filmId)
+            b = getAllDataFilmByID(filmId)
         elif frame.objectName() =='frame_where_all_films_history_page':
             filmsID = getUsersWatchedFilms(userid1)
             filmId = filmsID[int(id)-1+page*18]
             his.setStyleSheet('background-color: #696d6d')
-            b = cache(filmId)
+            b = getAllDataFilmByID(filmId)
         else:
             try:
                 if actor.text() != '':
@@ -533,7 +530,7 @@ def aboutFilmFromNotHome(stackedWidget, button_name,Name_of_film, Overview_text,
                 his.setStyleSheet('background-color: #696d6d')
             elif filmId in getUsersWatchLaterFilms(userid1):
                 lat.setStyleSheet('background-color: #696d6d')
-            b = cache(filmId)
+            b = getAllDataFilmByID(filmId)
         end_time = time.time()
         print("сбор фльмов изходя из того где они находяться (любимое , история ,позже или поиск): " + str(end_time - start_time))
         idFilmFromHome.setText(str(filmId))
