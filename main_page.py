@@ -4672,7 +4672,6 @@ class Main_page(object):
         self.reviewScore_2.setText(_translate("Form", "5"))
         self.nameReviewer_2.setText(_translate("Form", "dodik"))
         self.textCommentary_2.setText(_translate("Form", "text"))
-        self.idReview_2.setText(_translate("Form", "TextLabel"))
         self.sendReviewBttn_4.setText(_translate("Form", "Send"))
         self.sendReport2.setText(_translate("Form", "Send"))
         self.reviewScore_3.setText(_translate("Form", "5"))
