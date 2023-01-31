@@ -5097,27 +5097,27 @@ class Main_page(object):
     def swap_star_and_get_score1(self):
 
             swap_star_and_get_score1_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label,self.Score_of_film_2,self.label_50)
 
     def swap_star_and_get_score2(self):
 
             swap_star_and_get_score2_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label,self.Score_of_film_2,self.label_50)
 
     def swap_star_and_get_score3(self):
 
             swap_star_and_get_score3_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label,self.Score_of_film_2,self.label_50)
 
     def swap_star_and_get_score4(self):
 
             swap_star_and_get_score4_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label,self.Score_of_film_2,self.label_50)
 
     def swap_star_and_get_score5(self):
 
             swap_star_and_get_score5_icon(self.score_1_button, self.score_2_button, self.score_3_button,
-                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label)
+                                          self.score_4_button, self.score_5_button,self.Name_of_film_and_year_2,self.id_label,self.Score_of_film_2,self.label_50)
 
     def addInFavorite(self):
             addFavorite(self.Name_of_film_and_year_2, self.add_in_favorite_bttn_2, self.id_label, self.add_in_watch_later_bttn_2,self.add_in_history_bttn_2)
